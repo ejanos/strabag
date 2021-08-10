@@ -1,36 +1,54 @@
 from typing import (Deque, Dict, FrozenSet, List, Optional, Sequence, Set, Tuple, Union)
-from fastapi import FastAPI, File, UploadFile
 from convert_excel import ConvertExcel
+import os
+import aiofiles
+import requests
+from flask import Flask, request
+import os
+import yaml
 
 CACHE = "./cache/"
+BUFFER = 50_000
 
-conv = ConvertExcel
+conv = ConvertExcel()
 
 Vector = List[int]
 
-app = FastAPI()
+app = Flask(__name__)
 
-@app.post("/upload/")
-async def upload(file: UploadFile = File(...)):
-    contents = await file.read()
-    with open(CACHE + file.filename, 'w') as f_w:
-        f_w.write(contents)
-    return {"message": "File saved"}
+app.config['UPLOAD_FOLDER'] = CACHE
 
-@app.post("/convert/")
-#async def root():
+def convert_int_list(txt):
+    result = []
+    if txt:
+        txt_split = txt.split(",")
+    else:
+        return None
+    for token in txt_split:
+        result.append(int(token))
+    return result
+
+@app.route("/convert", methods=['POST'])
 # TODO make it async
-def convert(
-        source_rows: Vector,
-        source_cols: Vector,
-        target_rows: Vector,
-        target_cols: Vector):
+def convert():
+    if request.method == 'POST':
+        form = request.form
+        source_rows = convert_int_list(form['source_rows'])
+        print(source_rows)
+        source_cols = convert_int_list(form['source_cols'])
+        target_rows = convert_int_list(form['target_rows'])
+        target_cols = convert_int_list(form['target_cols'])
+        f = request.files['file']
+        filename = f.filename
+        cwd = os.getcwd()
+        file_path = os.path.join(cwd, 'cache2', filename)
+        print(file_path)
+        f.save(file_path)
 
-    conv.process(source_rows,
-                 source_cols,
-                 target_rows,
-                 target_cols,
-                 './cache/tmp.xlsx')
+        conv.process(source_rows, source_cols, target_rows, target_cols, file_path)
+        return "ok"
 
-    return {"message": "file is converted"}
+    return "invalid method"
 
+if __name__ == "__main__":
+    app.run(threaded=True, port=5000)
