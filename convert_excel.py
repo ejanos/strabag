@@ -207,10 +207,6 @@ if __name__ == '__main__':
     conv = ConvertExcel()
     source_rows = (5,6,7,8,9,10,11,12,13,)
     source_cols = (5,6,)
-<<<<<<< HEAD
     target_rows = ("02.01.", "02.02.", "02.03.", "02.01.", "02.02.", "02.03.", "02.01.", "02.02.", "02.03.")
-=======
-    target_rows = (5,6,7,8,9,10,11,12,13,)
->>>>>>> 0d9eaec48970031ccaf995641bc45ead4830ee7d
     target_cols = (2,4,)
     conv.process(source_rows, source_cols, target_rows, target_cols, SOURCE_FILE)
