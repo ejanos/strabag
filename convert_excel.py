@@ -42,15 +42,6 @@ class ConvertExcel():
     cat_text['04'] = {'01': 'Vakolás'}
     cat_text['05'] = {'01': 'Vasúti pálya'}
 
-    category = dict()
-    category['01'] = {'01': 3}
-    category['02'] = {'01': 5,
-                      '02': 6,
-                      '03': 7}
-    category['03'] = {'01': 9}
-    category['04'] = {'01': 11}
-    category['05'] = {'01': 13}
-
     cat_content = dict()
     cat_content['01'] = {'01': '0010'}
     cat_content['02'] = {'01': '0010',
@@ -60,23 +51,21 @@ class ConvertExcel():
     cat_content['04'] = {'01': '0010'}
     cat_content['05'] = {'01': '0010'}
 
-    shifted_index = 0
+    max_index = 0
 
     def sort_indicies(self, df_target):
         df_target.sort_values(by='TSZ', inplace=True)  # sorszám alapján rendezi
         df_target.reset_index(inplace=True, drop=True)   # újragyártja az indexet
 
-    def shift_index(self, x):
-        if x >= self.shifted_index:
-            return x + 1
+    def top_index(self, x):
+        if x == self.max_index:
+            return -1
         return x
 
-    def renumber_rows(self, df_target, target_index):
-        self.shifted_index = target_index
-        if target_index in df_target.index:
-            index = df_target.index.map(self.shift_index, na_action='ignore')
-            df_target.index = index
-
+    def renumber_top_row(self, df_target):
+        self.max_index = df_target[df_target['TSZ'] == "1"].index
+        index = df_target.index.map(self.top_index, na_action='ignore')
+        df_target.index = index
 
     def read_template(self, filename):
             res = []
@@ -97,7 +86,11 @@ class ConvertExcel():
 
         df_target = self.insert_rows(source_cols, df, df_target, source_rows, target_cols, target_rows)
 
-        df_target.sort_index(inplace=True)  # inplace: ezt az objektumot, dataframe-t rendezi
+        self.sort_indicies(df_target)
+        self.renumber_top_row(df_target)
+        df_target.index += 1
+        df_target.sort_index(inplace=True)
+        df_target.set_index('TSZ', inplace=True)
 
         # Create a Pandas Excel writer using XlsxWriter as the engine.
         file = pathlib.Path(EXPORT_FILENAME)
@@ -117,6 +110,7 @@ class ConvertExcel():
         row_index = 0
         for j, r in enumerate(source_rows):
             content_index = self.get_target_content(target_rows[j])
+            self.increment_content_index(target_rows[j])
             new_row = [target_rows[j] + content_index]  # sorszám a kategória alapján kerül meghatározásra az MI által
             row_header = []
             row_header.append(self.column_subset[0])
@@ -124,11 +118,7 @@ class ConvertExcel():
                 x = df.iloc[r, c]
                 new_row.append(x)
                 row_header.append(self.column_subset[target_cols[i]])
-            target_index = self.get_target_row(target_rows[j])
-            target_text = target_rows[j]
-            print(target_index, target_text)
-            self.renumber_rows(df_target, target_index)
-            row_df = pd.DataFrame([new_row], columns=row_header, dtype=str, index=[target_index])
+            row_df = pd.DataFrame([new_row], columns=row_header, dtype=str)
             df_target = pd.concat([df_target, row_df], join='outer')
             row_index += 1
         return df_target
@@ -142,19 +132,9 @@ class ConvertExcel():
             raise ValueError("invalid target value")
         return content_index + "."
 
-
-    def get_target_row(self, target):
+    def increment_content_index(self, target):
         top = target[:2]
         sub = target[3:5]
-        if self.is_valid_target(target):
-            target_index = self.category[top][sub]
-            self.increment_content_index(top, sub)
-            self.renumber_categories(top, sub)
-        else:
-            raise ValueError("invalid target value")
-        return target_index
-
-    def increment_content_index(self, top, sub):
         num = int(self.cat_content[top][sub])
         num += 10
         self.cat_content[top][sub] = self.extend_with_nulls(num)
@@ -165,21 +145,6 @@ class ConvertExcel():
         while len(num) < 4:
             num = "0" + num
         return num
-
-
-    def renumber_categories(self, top, sub):
-        while top and sub:
-            self.category[top][sub] += 1
-            sub = self.increment(sub)
-            if sub in self.category[top]:
-                continue
-            else:
-                top = self.increment(top)
-                sub = "01"
-                if top in self.category:
-                    continue
-                else:
-                    break
 
     @staticmethod
     def increment(txt):
