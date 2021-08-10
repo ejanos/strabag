@@ -51,6 +51,15 @@ class ConvertExcel():
     category['04'] = {'01': 11}
     category['05'] = {'01': 13}
 
+    cat_content = dict()
+    cat_content['01'] = {'01': '0010'}
+    cat_content['02'] = {'01': '0010',
+                         '02': '0010',
+                         '03': '0010'}
+    cat_content['03'] = {'01': '0010'}
+    cat_content['04'] = {'01': '0010'}
+    cat_content['05'] = {'01': '0010'}
+
     shifted_index = 0
 
     def sort_indicies(self, df_target):
@@ -107,14 +116,14 @@ class ConvertExcel():
     def insert_rows(self, source_cols, df, df_target, source_rows, target_cols, target_rows):
         row_index = 0
         for j, r in enumerate(source_rows):
-            new_row = [target_rows[j]]  # sorszám a kategória alapján kerül meghatározásra az MI által
+            content_index = self.get_target_content(target_rows[j])
+            new_row = [target_rows[j] + content_index]  # sorszám a kategória alapján kerül meghatározásra az MI által
             row_header = []
             row_header.append(self.column_subset[0])
             for i, c in enumerate(source_cols):
                 x = df.iloc[r, c]
                 new_row.append(x)
                 row_header.append(self.column_subset[target_cols[i]])
-            #target_index = target_rows[j]
             target_index = self.get_target_row(target_rows[j])
             target_text = target_rows[j]
             print(target_index, target_text)
@@ -124,16 +133,39 @@ class ConvertExcel():
             row_index += 1
         return df_target
 
+    def get_target_content(self, target):
+        top = target[:2]
+        sub = target[3:5]
+        if self.is_valid_target(target):
+            content_index = self.cat_content[top][sub]
+        else:
+            raise ValueError("invalid target value")
+        return content_index + "."
+
+
     def get_target_row(self, target):
-        target_index = 0
         top = target[:2]
         sub = target[3:5]
         if self.is_valid_target(target):
             target_index = self.category[top][sub]
+            self.increment_content_index(top, sub)
             self.renumber_categories(top, sub)
         else:
             raise ValueError("invalid target value")
         return target_index
+
+    def increment_content_index(self, top, sub):
+        num = int(self.cat_content[top][sub])
+        num += 10
+        self.cat_content[top][sub] = self.extend_with_nulls(num)
+
+    @staticmethod
+    def extend_with_nulls(num):
+        num = str(num)
+        while len(num) < 4:
+            num = "0" + num
+        return num
+
 
     def renumber_categories(self, top, sub):
         while top and sub:
@@ -161,15 +193,11 @@ class ConvertExcel():
             num += 1
             return str(num)
 
-
     @staticmethod
     def is_valid_target(target):
         if target[0] in NUMERIC and target[1] in NUMERIC and target[2] == "." and target[3] in NUMERIC and target[4] in NUMERIC and target[5] == ".":
             return True
         return False
-
-
-
 
 
 if __name__ == '__main__':
