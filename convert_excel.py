@@ -114,6 +114,6 @@ if __name__ == '__main__':
     conv = ConvertExcel()
     source_rows = (5,6,7,8,9,10,11,12,13,)
     source_cols = (5,6,)
-    target_rows = (2,4,)
-    target_cols  = (5,6,7,8,9,10,11,12,13,)
+    target_rows = (5,6,7,8,9,10,11,12,13,)
+    target_cols = (2,4,)
     conv.process(source_rows, source_cols, target_rows, target_cols, SOURCE_FILE)
