@@ -10,6 +10,36 @@ CREATE DATABASE train_excel
     LC_CTYPE = 'Hungarian_Hungary.1250'
     TABLESPACE = pg_default
     CONNECTION LIMIT = -1;
+	
+CREATE TABLE public."users"
+(
+    id integer NOT NULL,
+    name character varying(64),
+    PRIMARY KEY (id)
+)
+
+TABLESPACE pg_default;
+
+ALTER TABLE public."users"
+    OWNER to postgres;
+	
+CREATE TABLE public.columns
+(
+    id integer NOT NULL,
+    text character varying(512) NOT NULL,
+    "column" integer NOT NULL,
+    "target" integer NOT NULL,
+    user_id integer,
+    PRIMARY KEY (id),
+	CONSTRAINT fk_column
+   FOREIGN KEY(user_id) 
+   REFERENCES users(id)
+)
+
+TABLESPACE pg_default;
+
+ALTER TABLE public.columns
+    OWNER to postgres;
 
 CREATE TABLE public.sentence_label
 (

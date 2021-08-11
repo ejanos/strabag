@@ -3,25 +3,33 @@ from convert_excel import ConvertExcel
 import os
 import aiofiles
 import requests
-from flask import Flask, request
+from flask import Flask, request, jsonify
 import os
 import yaml
 from db_helper import DBHelper
 from training_dataset import TrainingDataset
+from process_columns import ProcessColumns
+from flasgger import Swagger
 
 CACHE = "cache"
 BUFFER = 50_000
 
-conv = ConvertExcel()
-db = DBHelper()
-training = TrainingDataset()
+if not os.path.isdir(CACHE):
+    os.mkdir(CACHE)
 
 Vector = List[int]
 
 app = Flask(__name__)
-
 app.config['UPLOAD_FOLDER'] = CACHE
+swagger = Swagger(app)
 
+
+conv = ConvertExcel()
+db = DBHelper()
+training = TrainingDataset()
+process_columns = ProcessColumns()
+
+@staticmethod
 def convert_int_list(txt):
     result = []
     if txt:
@@ -32,12 +40,76 @@ def convert_int_list(txt):
         result.append(int(token))
     return result
 
+@staticmethod
 def convert_string_list(txt):
     return txt.replace(" ", "").split(',')
 
-@app.route("/save", methods=['POST'])
+@app.route("/test", methods=['POST'])
 # TODO make it async
-def save_train_data():
+def test(self):
+    target_columns = [1,2,3]
+    target_targets = [4,5,6]
+    user_id = [7,8,9]
+    return {"target_columns": target_columns,
+            "target_targets": target_targets,
+            "user_id": user_id}
+
+@app.route("/compare/columns", methods=['POST'])
+# TODO make it async
+def compare(self):
+    if request.method == 'POST':
+        form = request.form
+        texts = convert_string_list(form['texts'])
+        target_columns, target_targets, user_id = process_columns.compare(texts)
+        return {"target_columns": target_columns,
+                "target_targets": target_targets,
+                "user_id": user_id}
+
+@app.route("/save/columns", methods=['POST'])
+# TODO make it async
+def save_columns(self):
+    if request.method == 'POST':
+        form = request.form
+        texts = convert_string_list(form['texts'])
+        columns = convert_string_list(form['columns'])
+        targets = convert_string_list(form['targets'])
+        user_id = form['user_id']
+        db.insert_columns(texts, columns, targets, user_id)
+        return "ok"
+
+@app.route("/save/user", methods=['POST'])
+# TODO make it async
+def save_user(self):
+    if request.method == 'POST':
+        form = request.form
+        name = form['name']
+        db.insert_user(name)
+        return "ok"
+
+@app.route("/save/category", methods=['POST'])
+# TODO make it async
+def save_category(self):
+    if request.method == 'POST':
+        form = request.form
+        name = form['name']
+        ordinal = form['ordinal']
+        db.insert_sentence_label(name, ordinal)
+        return "ok"
+
+@app.route("/save/tokenlabel", methods=['POST'])
+# TODO make it async
+def save_token_label(self):
+    if request.method == 'POST':
+        form = request.form
+        name = form['name']
+        category_id = form['category_id']
+        db.insert_token_label(name, category_id)
+        return "ok"
+
+
+@app.route("/save/traindata", methods=['POST'])
+# TODO make it async
+def save_train_data(self):
     if request.method == 'POST':
         form = request.form
         source_rows = convert_int_list(form['source_rows'])
@@ -57,7 +129,7 @@ def save_train_data():
 
 @app.route("/convert", methods=['POST'])
 # TODO make it async
-def convert():
+def convert(self):
     if request.method == 'POST':
         form = request.form
         source_rows = convert_int_list(form['source_rows'])

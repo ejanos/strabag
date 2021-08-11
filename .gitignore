@@ -3,3 +3,8 @@
 
 
 /test_isdigit.py
+/__pycache__/db_helper.cpython-38.pyc
+/__pycache__/process_columns.cpython-38.pyc
+/__pycache__/sentence_label.cpython-38.pyc
+/__pycache__/training_dataset.cpython-38.pyc
+/test2.py

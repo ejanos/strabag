@@ -41,16 +41,42 @@ class TrainingDataset():
         row_len = len(row)
         if self.buffer_count > self.BUFFER_SIZE:
             self.save_buffer2database(row_len)
+        else:
+            self.buffer.append(row)
 
     def save_buffer2database(self, row_len):
         row_type = self.test_row_type(row_len)
         row_index = self.get_text_row_indicies(row_type)
         data = []
+
         for row in self.buffer:
             data_row = []
             for i in row_index:
                 data_row.append(row[i])
             data.append(data_row)
+        max_index = self.get_index_of_longest(data)
+        filtered_data = []
+        for row in self.buffer:
+            filtered_data.append([row[0], row[max_index]])
+        self.db.save_sentences(filtered_data)
+
+    def get_index_of_longest(data):
+        row_len = len(data[0])
+        row_score = [0 for x in range(row_len)]
+        for row in data:
+            for i, cell in enumerate(row):
+                row_score[i] += len(cell)
+        max_index = 0
+        max_score = 0
+        for i, score in enumerate(row_score[1:]):  # 0. oszlop a sorszám
+            if score > max_score:
+                max_index = i
+        return max_index
+
+
+
+
+
 
 
 
