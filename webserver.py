@@ -9,7 +9,6 @@ import yaml
 from db_helper import DBHelper
 from training_dataset import TrainingDataset
 from process_columns import ProcessColumns
-from flasgger import Swagger
 
 CACHE = "cache"
 BUFFER = 50_000
@@ -21,8 +20,6 @@ Vector = List[int]
 
 app = Flask(__name__)
 app.config['UPLOAD_FOLDER'] = CACHE
-swagger = Swagger(app)
-
 
 conv = ConvertExcel()
 db = DBHelper()
@@ -46,7 +43,7 @@ def convert_string_list(txt):
 
 @app.route("/test", methods=['POST'])
 # TODO make it async
-def test(self):
+def test():
     target_columns = [1,2,3]
     target_targets = [4,5,6]
     user_id = [7,8,9]
@@ -56,7 +53,7 @@ def test(self):
 
 @app.route("/compare/columns", methods=['POST'])
 # TODO make it async
-def compare(self):
+def compare():
     if request.method == 'POST':
         form = request.form
         texts = convert_string_list(form['texts'])
@@ -67,7 +64,7 @@ def compare(self):
 
 @app.route("/save/columns", methods=['POST'])
 # TODO make it async
-def save_columns(self):
+def save_columns():
     if request.method == 'POST':
         form = request.form
         texts = convert_string_list(form['texts'])
@@ -79,7 +76,7 @@ def save_columns(self):
 
 @app.route("/save/user", methods=['POST'])
 # TODO make it async
-def save_user(self):
+def save_user():
     if request.method == 'POST':
         form = request.form
         name = form['name']
@@ -88,7 +85,7 @@ def save_user(self):
 
 @app.route("/save/category", methods=['POST'])
 # TODO make it async
-def save_category(self):
+def save_category():
     if request.method == 'POST':
         form = request.form
         name = form['name']
@@ -98,7 +95,7 @@ def save_category(self):
 
 @app.route("/save/tokenlabel", methods=['POST'])
 # TODO make it async
-def save_token_label(self):
+def save_token_label():
     if request.method == 'POST':
         form = request.form
         name = form['name']
@@ -109,7 +106,7 @@ def save_token_label(self):
 
 @app.route("/save/traindata", methods=['POST'])
 # TODO make it async
-def save_train_data(self):
+def save_train_data():
     if request.method == 'POST':
         form = request.form
         source_rows = convert_int_list(form['source_rows'])
@@ -129,7 +126,7 @@ def save_train_data(self):
 
 @app.route("/convert", methods=['POST'])
 # TODO make it async
-def convert(self):
+def convert():
     if request.method == 'POST':
         form = request.form
         source_rows = convert_int_list(form['source_rows'])
