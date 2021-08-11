@@ -26,7 +26,6 @@ db = DBHelper()
 training = TrainingDataset()
 process_columns = ProcessColumns()
 
-@staticmethod
 def convert_int_list(txt):
     result = []
     if txt:
@@ -37,19 +36,8 @@ def convert_int_list(txt):
         result.append(int(token))
     return result
 
-@staticmethod
 def convert_string_list(txt):
     return txt.replace(" ", "").split(',')
-
-@app.route("/test", methods=['POST'])
-# TODO make it async
-def test():
-    target_columns = [1,2,3]
-    target_targets = [4,5,6]
-    user_id = [7,8,9]
-    return {"target_columns": target_columns,
-            "target_targets": target_targets,
-            "user_id": user_id}
 
 @app.route("/compare/columns", methods=['POST'])
 # TODO make it async
