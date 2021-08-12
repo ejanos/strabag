@@ -13,7 +13,7 @@ CREATE DATABASE train_excel
 	
 CREATE TABLE public."users"
 (
-    id integer NOT NULL,
+    id SERIAL NOT NULL,
     name character varying(64),
     PRIMARY KEY (id)
 )
@@ -25,11 +25,12 @@ ALTER TABLE public."users"
 	
 CREATE TABLE public.columns
 (
-    id integer NOT NULL,
+    id SERIAL NOT NULL,
     text character varying(512) NOT NULL,
     "column" integer NOT NULL,
     "target" integer NOT NULL,
-    user_id integer,
+    user_id integer NOT NULL,
+	subset_id integer NOT NULL,
     PRIMARY KEY (id),
 	CONSTRAINT fk_column
    FOREIGN KEY(user_id) 
@@ -43,9 +44,9 @@ ALTER TABLE public.columns
 
 CREATE TABLE public.sentence_label
 (
+    id SERIAL NOT NULL,
     category character varying(128) NOT NULL,
-    id integer NOT NULL,
-    ordinal character varying(16) NOT NULL,
+    ordinal character varying(16) NOT NULL UNIQUE,
     PRIMARY KEY (id)
 )
 
@@ -56,7 +57,7 @@ ALTER TABLE public.sentence_label
     
 CREATE TABLE public.token_label
 (
-    id integer NOT NULL,
+    id SERIAL NOT NULL,
     name character varying(128) NOT NULL,
     category_id integer,
     PRIMARY KEY (id),
@@ -72,9 +73,9 @@ ALTER TABLE public.token_label
 
 CREATE TABLE public.sentence
 (
+    id SERIAL NOT NULL,
     text character varying(1024) NOT NULL,
-    label integer,
-    id integer NOT NULL,
+    label integer NOT NULL,
     token_labels integer[],
     PRIMARY KEY (id),
     CONSTRAINT fk_label

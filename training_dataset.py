@@ -10,55 +10,73 @@ class TrainingDataset():
     conv = ConvertExcel()
     buffer = []
     buffer_count = 0
-    sen_labels = dict()  # sentence_labels tábla tartalma
+    sen_labels = dict()  # sentence_labels tábla tartalma, key: ordinal, value: egy sor
+    token_labels = dict()  # token_label tábla tartalma, key: id
 
     def __init__(self):
+        self.get_sentence_labels()
+        self.get_token_labels()
+
+    def get_sentence_labels(self):
         categories = self.db.get_all_categories()
+        #  cat = egy sor a sentence_label táblában
         for cat in categories:
-            self.sen_labels[cat.ordinal] = cat
+            self.sen_labels[cat[2]] = cat
         categories.clear()
 
-    def save(self, source_rows, source_cols, target_rows, target_cols, file):
+    def get_token_labels(self):
+        tokens = self.db.get_all_token_labels()
+        for token in tokens:
+            self.token_labels[token[0]] = token
+        tokens.clear()
+
+    def save(self, source_rows, source_cols, target_rows, target_cols, token_labels, file):
         df = pd.read_excel(file, header=0, sheet_name='Total', engine='openpyxl')
 
-        df_target = self.extract_rows(source_cols, df, source_rows, target_cols, target_rows)
+        result = self.extract_rows(source_cols, df, source_rows, target_cols, target_rows, token_labels)
+        return result
 
-    def extract_rows(self, source_cols, df, source_rows, target_cols, target_rows):
+    def extract_rows(self, source_cols, df, source_rows, target_cols, target_rows, token_labels):
         row_index = 0
         for j, r in enumerate(source_rows):
             new_row = [target_rows[j]]  # sorszám a kategória alapján kerül meghatározásra az MI által
-            # TODO elmenteni oszlopok headert is az adatbázisba, melyik oszlop hova van bind-olva
             row_header = []
             row_header.append(self.conv.column_subset[0])
             for i, c in enumerate(source_cols):
                 x = df.iloc[r, c]
                 new_row.append(x)
                 row_header.append(self.conv.column_subset[target_cols[i]])
-                self.save_row(new_row)
+                # is success to save to DB?
+                if not self.save_row(new_row, token_labels[j]):
+                    return None
             row_index += 1
 
-    def save_row(self, row):
+    def save_row(self, row, token_labels):
         row_len = len(row)
+        sentence_id = 1
         if self.buffer_count > self.BUFFER_SIZE:
-            self.save_buffer2database(row_len)
+            self.buffer.append((row, token_labels,))
+            sentence_id = self.save_buffer2database(row_len)
         else:
-            self.buffer.append(row)
+            self.buffer.append((row, token_labels,))
+        return sentence_id
 
     def save_buffer2database(self, row_len):
         row_type = self.test_row_type(row_len)
         row_index = self.get_text_row_indicies(row_type)
         data = []
 
-        for row in self.buffer:
+        for row, token_labels in self.buffer:
             data_row = []
             for i in row_index:
                 data_row.append(row[i])
             data.append(data_row)
         max_index = self.get_index_of_longest(data)
         filtered_data = []
-        for row in self.buffer:
-            filtered_data.append([row[0], row[max_index]])
-        self.db.save_sentences(filtered_data)
+        for row, token_labels in self.buffer:
+            filtered_data.append([row[0], row[max_index], token_labels])
+        sentence_id = self.db.insert_sentences(filtered_data)
+        return sentence_id
 
     def get_index_of_longest(data):
         row_len = len(data[0])
@@ -72,16 +90,6 @@ class TrainingDataset():
             if score > max_score:
                 max_index = i
         return max_index
-
-
-
-
-
-
-
-
-
-
 
     def get_text_row_indicies(self, row_type):
         row_index = [0]

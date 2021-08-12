@@ -74,6 +74,27 @@ class DBHelper():
             return None
         return category_id
 
+    def insert_sentences(self, data):
+        # data: első oszlop sorszám, második oszlop szöveg, 3. oszlop list of token_labels
+        # TODO token_labels -t is be kell szúrni!!!
+        sql = """INSERT INTO sentence(text, label, token_labels) VALUES(%s) RETURNING id;"""
+        try:
+            for row in data:
+                ordinal = row[0]
+                text = row[1]
+                token_labels = row[2]
+                id, category, ordinal = self.get_sentence_label_by_ordinal(ordinal)
+                if id:
+                    self.cur.execute(sql, (text, id, token_labels, ))
+                    sentence_id = self.cur.fetchone()[0]
+                    self.conn.commit()
+                else:
+                    return None
+        except(Exception, psycopg2.DatabaseError) as error:
+            print(error)
+            return None
+        return sentence_id
+
     def insert_token_label(self, name, category_id):
         sql = """INSERT INTO token_label(name, category_id) VALUES(%s) RETURNING id;"""
         try:
@@ -95,6 +116,17 @@ class DBHelper():
             return None
         return rows
 
+    def get_all_token_labels(self):
+        try:
+            sql = f"SELECT * FROM token_label"
+            self.cur.execute(sql)
+            rows = self.cur.fetchall()
+        except(Exception, psycopg2.DatabaseError) as error:
+            print(error)
+            return None
+        return rows
+
+
     def get_sentence_label_by_ordinal(self, ordinal):
         try:
             sql = f"SELECT * FROM sentence_label WHERE ordinal='{ordinal}'"
@@ -105,25 +137,7 @@ class DBHelper():
             print(error)
             return None
 
-    def save_sentences(self, data):
-        # data: első oszlop sorszám, második oszlop szöveg
-        # TODO token_labels -t is be kell szúrni!!!
-        sql = """INSERT INTO sentence(text, label) VALUES(%s) RETURNING id;"""
-        try:
-            for row in data:
-                ordinal = row[0]
-                text = row[1]
-                id, category, ordinal = self.get_sentence_label_by_ordinal(ordinal)
-                if id:
-                    self.cur.execute(sql, (text, id,))
-                    sentence_id = self.cur.fetchone()[0]
-                    self.conn.commit()
-                else:
-                    return None
-        except(Exception, psycopg2.DatabaseError) as error:
-            print(error)
-            return None
-        return sentence_id
+
 
 
 

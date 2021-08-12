@@ -1,6 +1,5 @@
 from typing import (Deque, Dict, FrozenSet, List, Optional, Sequence, Set, Tuple, Union)
 from convert_excel import ConvertExcel
-import os
 import aiofiles
 import requests
 from flask import Flask, request, jsonify
@@ -101,14 +100,18 @@ def save_train_data():
         source_cols = convert_int_list(form['source_cols'])
         target_categories = convert_string_list(form['target_categories'])
         target_cols = convert_int_list(form['target_cols'])
+        token_labels = convert_int_list(form['token_labels'])
         f = request.files['file']
         filename = f.filename
         cwd = os.getcwd()
         file_path = os.path.join(cwd, CACHE, filename)
         f.save(file_path)
 
-        training.save(source_rows, source_cols, target_categories, target_cols, file_path)
-        return "ok"
+        result = training.save(source_rows, source_cols, target_categories, target_cols, token_labels, file_path)
+        if result:
+            return "ok"
+        else:
+            return "Database error!"
 
     return "invalid method"
 

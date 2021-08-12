@@ -3,14 +3,21 @@ from db_helper import DBHelper
 class ProcessColumns:
     db = DBHelper()
     threshold = 0.6
+    users = dict()  # key: user id, value: row from users table
 
     def __init__(self):
-        users = self.db.get_all_user()
+        self.get_users()
         # TODO if users == None raise Exception
 
+    def get_users(self):
+        users = self.db.get_all_user()
+        for user in users:
+            self.users[user[0]] = user[1]
+        users.clear()
+
     def compare(self, texts):
-        for user in self.users:
-            data = self.db.get_columns_by_user(user[0])
+        for key, value in self.users:
+            data = self.db.get_columns_by_user(key)
             target_text = data[1]
             target_columns = data[2]
             target_targets = data[3]
