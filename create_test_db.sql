@@ -1,16 +1,11 @@
--- Database: train_excel
+-- Database: train_excel_test
+DROP TABLE public.headers;
+DROP TABLE public.sentence;
+DROP TABLE public.token_label;
+DROP TABLE public.sentence_label;
+DROP TABLE public."users";
 
--- DROP DATABASE train_excel;
 
-CREATE DATABASE train_excel
-    WITH 
-    OWNER = postgres
-    ENCODING = 'UTF8'
-    LC_COLLATE = 'Hungarian_Hungary.1250'
-    LC_CTYPE = 'Hungarian_Hungary.1250'
-    TABLESPACE = pg_default
-    CONNECTION LIMIT = -1;
-	
 CREATE TABLE public."users"
 (
     id SERIAL NOT NULL,
@@ -22,7 +17,9 @@ TABLESPACE pg_default;
 
 ALTER TABLE public."users"
     OWNER to postgres;
-	
+
+
+
 CREATE TABLE public.headers
 (
     id SERIAL NOT NULL,
@@ -42,6 +39,8 @@ TABLESPACE pg_default;
 ALTER TABLE public.headers
     OWNER to postgres;
 
+
+
 CREATE TABLE public.sentence_label
 (
     id SERIAL NOT NULL,
@@ -54,7 +53,9 @@ TABLESPACE pg_default;
 
 ALTER TABLE public.sentence_label
     OWNER to postgres;
-    
+
+
+
 CREATE TABLE public.token_label
 (
     id SERIAL NOT NULL,
@@ -70,6 +71,8 @@ TABLESPACE pg_default;
 
 ALTER TABLE public.token_label
     OWNER to postgres;
+
+
 
 CREATE TABLE public.sentence
 (

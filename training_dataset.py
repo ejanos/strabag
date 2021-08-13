@@ -10,25 +10,7 @@ class TrainingDataset():
     conv = ConvertExcel()
     buffer = []
     buffer_count = 0
-    sen_labels = dict()  # sentence_labels tábla tartalma, key: ordinal, value: egy sor
-    token_labels = dict()  # token_label tábla tartalma, key: id
 
-    def __init__(self):
-        self.get_sentence_labels()
-        self.get_token_labels()
-
-    def get_sentence_labels(self):
-        categories = self.db.get_all_categories()
-        #  cat = egy sor a sentence_label táblában
-        for cat in categories:
-            self.sen_labels[cat[2]] = cat
-        categories.clear()
-
-    def get_token_labels(self):
-        tokens = self.db.get_all_token_labels()
-        for token in tokens:
-            self.token_labels[token[0]] = token
-        tokens.clear()
 
     def save(self, source_rows, source_cols, target_rows, target_cols, token_labels, file):
         df = pd.read_excel(file, header=0, sheet_name='Total', engine='openpyxl')

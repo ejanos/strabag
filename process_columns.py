@@ -3,28 +3,38 @@ from db_helper import DBHelper
 class ProcessColumns:
     db = DBHelper()
     threshold = 0.6
-    users = dict()  # key: user id, value: row from users table
 
-    def __init__(self):
-        self.get_users()
-        # TODO if users == None raise Exception
-
-    def get_users(self):
-        users = self.db.get_all_user()
-        for user in users:
-            self.users[user[0]] = user[1]
-        users.clear()
 
     def compare(self, texts):
-        for key, value in self.users:
-            data = self.db.get_columns_by_user(key)
-            target_text = data[1]
-            target_columns = data[2]
-            target_targets = data[3]
-            if self.is_greater_than_threshold(texts, target_text):
-                user_id = data[4]
-                return target_columns, target_targets, user_id
+        result = dict()
+        users = self.db.get_all_user()
+        for key, value in users:
+            scores = []
+            subset_ids = self.db.get_headers_subset_ids(key)
+            if not subset_ids:
+                continue
+            for subset in subset_ids:
+                rows = self.db.get_headers_by_user_subset_id(key, subset[0])
+                target_text = self.get_column_from_rows(rows, 1)
+                target_columns = self.get_column_from_rows(rows, 2)
+                target_targets = self.get_column_from_rows(rows, 3)
+
+                score = self.get_header_similarity_score(texts, target_text)
+                if score > self.threshold:
+                    scores.append(score)
+                    if score not in result:
+                        result[score] = (target_columns, target_targets, key, subset,)
+        if scores:
+            scores.sort(reverse=True)
+            return result[scores[0]]
         return (None, None, None,)
+
+    def get_column_from_rows(self, rows, column):
+        target_text = []
+        for row in rows:
+            target_text.append(row[column])
+        return target_text
+
 
 
     def is_greater_than_threshold(self, texts, target_text):
@@ -33,6 +43,13 @@ class ProcessColumns:
             score = self.test_similarity(text, target_text[i])
             scores.append(score)
         return self.average(scores) > self.threshold
+
+    def get_header_similarity_score(self, texts, target_text):
+        scores = []
+        for i, text in enumerate(texts):
+            score = self.test_similarity(text, target_text[i])
+            scores.append(score)
+        return self.average(scores)
 
 
     def test_similarity(text, target):
