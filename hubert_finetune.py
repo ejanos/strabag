@@ -98,9 +98,11 @@ class TextSamplerDataset(Dataset):
     seek = 0
     position = 0
     save_conf = False
-    text = []
-    sen_class = []
-    token_class = []
+    #text = []
+    #sen_class = []
+    #token_class = []
+    data_ids = []
+
 
     def __init__(self, seq_len, device, tokenizer, db, test=False):
         super().__init__()
@@ -110,11 +112,11 @@ class TextSamplerDataset(Dataset):
         self.seq_len = seq_len
         self.device = device
         self.test = test
-        # TODO filesize
-        self.file_size = 10000
         self.data_counter = 0
         self.BUFFER_LEN = 50000
-        self.data = []
+        #self.data = []
+
+        self.load_data_ids()
 
         self.pad_id = tokenizer.pad_token_id
         self.mask_id = tokenizer.mask_token_id
@@ -123,6 +125,10 @@ class TextSamplerDataset(Dataset):
         self.eos_token_id = tokenizer.cls_token_id
         self.mask_token_id = tokenizer.mask_token_id
 
+    def load_data_ids(self):
+        self.data_ids = db.get_all_sentence_id()
+        random.shuffle(self.data_ids)
+
     def tokenize(self, txt):
         end = txt.find(" ", len(txt) - 100)
         tokenized = self.tokenizer.encode(txt[:end], return_tensors='pt')
@@ -130,10 +136,14 @@ class TextSamplerDataset(Dataset):
         return tokenized_ids
 
     def __len__(self):
-        return self.file_size
+        return len(self.data_ids)
 
     def __getitem__(self, idx):
-        row = db.get_next_sentence()
+        sentence_id = self.data_ids[self.data_counter]
+        self.data_counter += 1
+        if self.data_counter >= self.__len__():
+            self.data_counter = 0
+        row = db.get_sentence(sentence_id)
         ic(row)
         text = row[0]
         sen_class = row[1]

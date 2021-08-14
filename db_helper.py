@@ -6,10 +6,15 @@ ic = ic.IceCreamDebugger()
 
 
 class DBHelper():
+    conn = ""
+    cur = ""
 
     def __init__(self, test=False):
         self.test = test
-        if test:
+        self.connect()
+
+    def connect(self):
+        if self.test:
             self.conn = psycopg2.connect(
                 host="localhost",
                 database="train_excel_test",
@@ -21,7 +26,6 @@ class DBHelper():
                 database="train_excel",
                 user="postgres",
                 password="@JbhNA;g.qW3S-8H")
-
         self.cur = self.conn.cursor()
 
     def insert_user(self, name):
@@ -32,21 +36,29 @@ class DBHelper():
             self.conn.commit()
         except(Exception, psycopg2.DatabaseError) as error:
             print(error)
+            self.conn.close()
+            self.connect()
             return None
         return user_id
 
     def insert_headers(self, columns, col_numbers, target_numbers, user_id):
-        subset_id = 1
-        old_subset = self.get_header_subset_max_id(user_id)
-        if old_subset[0]:
-            subset_id = old_subset[0] + 1
-        col_len = len(columns)
-        assert col_len == len(col_numbers)
-        assert col_len == len(target_numbers)
-        for i, column in enumerate(columns):
-            id = self.insert_one_header(column, col_numbers[i], target_numbers[i], user_id, subset_id)
-            if not id:
-                return None
+        try:
+            subset_id = 1
+            old_subset = self.get_header_subset_max_id(user_id)
+            if old_subset and old_subset[0]:
+                subset_id = old_subset[0] + 1
+            col_len = len(columns)
+            assert col_len == len(col_numbers)
+            assert col_len == len(target_numbers)
+            for i, column in enumerate(columns):
+                id = self.insert_one_header(column, col_numbers[i], target_numbers[i], user_id, subset_id)
+                if not id:
+                    return None
+        except(Exception, psycopg2.DatabaseError) as error:
+            print(error)
+            self.conn.close()
+            self.connect()
+            return None
         return True
 
     def get_all_user(self):
@@ -57,6 +69,8 @@ class DBHelper():
             return rows
         except(Exception, psycopg2.DatabaseError) as error:
             print(error)
+            self.conn.close()
+            self.connect()
             return None
 
     def get_user_by_name(self, name):
@@ -67,6 +81,8 @@ class DBHelper():
             return row
         except(Exception, psycopg2.DatabaseError) as error:
             print(error)
+            self.conn.close()
+            self.connect()
             return None
 
     def get_headers_subset_ids(self, user_id):
@@ -77,6 +93,8 @@ class DBHelper():
             return rows
         except(Exception, psycopg2.DatabaseError) as error:
             print(error)
+            self.conn.close()
+            self.connect()
             return None
 
 
@@ -88,6 +106,8 @@ class DBHelper():
             return rows
         except(Exception, psycopg2.DatabaseError) as error:
             print(error)
+            self.conn.close()
+            self.connect()
             return None
 
     def get_headers_by_user(self, user_id):
@@ -98,6 +118,8 @@ class DBHelper():
             return rows
         except(Exception, psycopg2.DatabaseError) as error:
             print(error)
+            self.conn.close()
+            self.connect()
             return None
 
     def get_header_subset_max_id(self, user_id):
@@ -108,6 +130,8 @@ class DBHelper():
             return row
         except(Exception, psycopg2.DatabaseError) as error:
             print(error)
+            self.conn.close()
+            self.connect()
             return None
 
 
@@ -119,6 +143,8 @@ class DBHelper():
             self.conn.commit()
         except(Exception, psycopg2.DatabaseError) as error:
             print(error)
+            self.conn.close()
+            self.connect()
             return None
         return header_id
 
@@ -130,6 +156,8 @@ class DBHelper():
             self.conn.commit()
         except(Exception, psycopg2.DatabaseError) as error:
             print(error)
+            self.conn.close()
+            self.connect()
             return None
         return category_id
 
@@ -151,6 +179,8 @@ class DBHelper():
                     return None
         except(Exception, psycopg2.DatabaseError) as error:
             print(error)
+            self.conn.close()
+            self.connect()
             return None
         return sentence_id
 
@@ -162,6 +192,8 @@ class DBHelper():
             self.conn.commit()
         except(Exception, psycopg2.DatabaseError) as error:
             print(error)
+            self.conn.close()
+            self.connect()
             return None
         return token_label_id
 
@@ -172,8 +204,23 @@ class DBHelper():
             rows = self.cur.fetchall()
         except(Exception, psycopg2.DatabaseError) as error:
             print(error)
+            self.conn.close()
+            self.connect()
             return None
         return rows
+
+    def get_all_sentence_id(self):
+        try:
+            sql = f"SELECT id FROM sentence"
+            self.cur.execute(sql)
+            rows = self.cur.fetchall()
+        except(Exception, psycopg2.DatabaseError) as error:
+            print(error)
+            self.conn.close()
+            self.connect()
+            return None
+        return rows
+
 
     def get_all_token_labels(self):
         try:
@@ -182,6 +229,8 @@ class DBHelper():
             rows = self.cur.fetchall()
         except(Exception, psycopg2.DatabaseError) as error:
             print(error)
+            self.conn.close()
+            self.connect()
             return None
         return rows
 
@@ -194,6 +243,8 @@ class DBHelper():
             return row
         except(Exception, psycopg2.DatabaseError) as error:
             print(error)
+            self.conn.close()
+            self.connect()
             return None
 
     def get_next_sentence(self):
@@ -205,6 +256,32 @@ class DBHelper():
                 yield row
         except(Exception, psycopg2.DatabaseError) as error:
             print(error)
+            self.conn.close()
+            self.connect()
+            return None
+
+    def get_sentence(self, sentence_id):
+        try:
+            sql = f"SELECT text, label, token_labels FROM sentence WHERE id='{sentence_id}'"
+            self.cur.execute(sql)
+            row = self.cur.fetchone()
+            return row
+        except(Exception, psycopg2.DatabaseError) as error:
+            print(error)
+            self.conn.close()
+            self.connect()
+            return None
+
+    def get_sentence_label(self, category_id):
+        try:
+            sql = f"SELECT * FROM sentence_label WHERE id='{category_id}'"
+            self.cur.execute(sql)
+            row = self.cur.fetchone()
+            return row
+        except(Exception, psycopg2.DatabaseError) as error:
+            print(error)
+            self.conn.close()
+            self.connect()
             return None
 
 

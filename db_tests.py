@@ -11,10 +11,31 @@ ic = ic.IceCreamDebugger()
 letters = string.ascii_lowercase
 db = DBHelper(test=True)
 
-HEADERS = {0: ["alma", "körte", "szilva", "barack"],
-           }
-COL_NUMBERS = {0: [1, 2, 3, 4]}
-TARGET_NUMBERS = {0: [5, 6, 7, 8]}
+#HEADERS = {0: ["alma", "körte", "szilva", "barack", "káposzta", "kukorica", "dinnye"],
+#           }
+HEADERS = {0: [
+            "TSZ",
+            "ÁT",
+            "Rövid szöveg",
+            "Hosszú szöveg",
+            "TJ-menny.",
+            "VÁ-menny.",
+            "ME",
+            "Eá",
+            "FE",
+            "Óra",
+            "Anyag",
+            "Díj",
+        "15.",
+        "16.",
+        "17.",
+        "18.",
+        "Maradék",
+        "TÖ",
+        "FE.1"]}
+ic(len(HEADERS[0]))
+COL_NUMBERS = {0: [1, 2, 3, 4, 5, 6, 7, 8, 9, 10, 11, 12, 13, 14, 15, 16, 17, 18, 19]}
+TARGET_NUMBERS = {0: [5, 6, 7, 8, 9, 10, 11, 12, 13, 14, 15, 16, 17, 18, 19, 20, 21, 22, 23]}
 TEXT = {0: "Felső talajréteghumusz  eltávolítása 60 cm vastagságban (tömör m3) 101,50 - től 100,90 mBf- ig - ",
         1: "felső talajréteg elhelyezése ideiglenes depóniában a területen",
         2: "Ideiglenes talaj depónia kezelése",
