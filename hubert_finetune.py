@@ -177,7 +177,7 @@ def get_token_labels():
     rows = db.get_all_token_labels()
     for row in rows:
         label_ids.append(row[0])
-        token_labels.append(row[2])
+        token_labels.append(row[1])
     return label_ids, token_labels
 
 if LOAD_TOKENIZER:
