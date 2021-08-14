@@ -5,7 +5,7 @@ import random
 import string
 
 ic = ic.IceCreamDebugger()
-#ic.disable()
+ic.disable()
 
 # choose from all lowercase letter
 letters = string.ascii_lowercase
@@ -89,7 +89,7 @@ def insert_sentence_labels(num):
 def insert_headers(num, user_id):
     ic("i headers")
     for x in range(num):
-        header_id = db.insert_headers(HEADERS, COL_NUMBERS, TARGET_NUMBERS, user_id)
+        header_id = db.insert_headers(HEADERS[0], COL_NUMBERS, TARGET_NUMBERS, user_id)
 
 def insert_token_labels(num, category_ids):
     ic("i token labels")
@@ -130,6 +130,23 @@ def generate_token_labels(token_labels_len):
         token_labels.append(token_list)
     return token_labels
 
+def initialize():
+    conn = psycopg2.connect(
+        host="localhost",
+        database="train_excel_test",
+        user="postgres",
+        password="@JbhNA;g.qW3S-8H")
+
+    cur = conn.cursor()
+    with open("create_test_db.sql", 'r') as f:
+        sql = f.read()
+    cur.execute(sql)
+    conn.commit()
+    conn.close()
+
+
+
+#initialize()
 user_ids = insert_users(10)
 category_ids = insert_sentence_labels(10)
 header_id = insert_headers(10, user_ids[0])
