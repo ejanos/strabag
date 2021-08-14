@@ -2,10 +2,13 @@ from db_helper import DBHelper
 import psycopg2
 import icecream as ic
 import random
+import string
 
 ic = ic.IceCreamDebugger()
 #ic.disable()
 
+# choose from all lowercase letter
+letters = string.ascii_lowercase
 db = DBHelper(test=True)
 
 HEADERS = {0: ["alma", "körte", "szilva", "barack"],
@@ -43,10 +46,8 @@ def get_sentence_label_by_ordinal_test():
     label1 = "twrjghfewz"
     label2 = "bvciuztxgfd"
     ordinal1 = random.randint(0, 9999)
-    ic(ordinal1)
     category_id1 = db.insert_sentence_label(label1, str(ordinal1))
     ordinal2 = random.randint(0, 9999)
-    ic(ordinal2)
     category_id2 = db.insert_sentence_label(label2, str(ordinal2))
     sentence_label = db.get_sentence_label_by_ordinal(ordinal1)
     assert sentence_label[2] == str(ordinal1)
@@ -85,7 +86,6 @@ def insert_token_label_test():
     rnd = random.randint(0,11)
     category_id = db.insert_sentence_label("sdfgs", str(rnd))
     token_label_id = db.insert_token_label("sfgsdfg", category_id)
-    ic(token_label_id)
     assert token_label_id > 0
 
 def insert_sentences_test():
@@ -120,59 +120,64 @@ def insert_sentence_label_test():
     assert category_id >= 1
 
 def insert_one_header_test():
-    #header, col_number, target_number, user_id, subset_id):
-    user_id = db.insert_user("Kis Béla")
-    header_id = db.insert_one_header("gjhgfjg", 1, 3, 1, 1)
+    username = get_random_string(15)
+    user_id = db.insert_user(username)
+    header_id = db.insert_one_header("gjhgfjg", 1, 3, user_id, 1)
     assert header_id > 0
 
 def get_header_subset_max_id_test():
-    user_id = db.insert_user("Kis Béla")
-    insert_headers_by_user_id(1)
-    insert_headers_by_user_id(1)
-    max_id = db.get_header_subset_max_id(1)
+    username = get_random_string(15)
+    user_id = db.insert_user(username)
+    insert_headers_by_user_id(user_id)
+    insert_headers_by_user_id(user_id)
+    max_id = db.get_header_subset_max_id(user_id)
     assert max_id[0] >= 2
 
 
 def get_headers_by_user_test():
-    user_id = db.insert_user("Kis Béla")
+    username = get_random_string(15)
+    user_id = db.insert_user(username)
     insert_headers_by_user_id(user_id)
     headers = db.get_headers_by_user(user_id)
-    ic(headers)
     for i, header in enumerate(headers):
-        ic(header[1], HEADERS[0][i])
         assert header[1] == HEADERS[0][i]
 
 def get_headers_by_user_subset_id_test():
-    user_id = db.insert_user("Kis Béla")
-    insert_headers_by_user_id(1)
-    insert_headers_by_user_id(1)
-    headers = db.get_headers_by_user_subset_id(1, 1)
+    username = get_random_string(15)
+    user_id = db.insert_user(username)
+    insert_headers_by_user_id(user_id)
+    insert_headers_by_user_id(user_id)
+    headers = db.get_headers_by_user_subset_id(user_id, 2)
     for i, header in enumerate(headers):
         assert header[1] == HEADERS[0][i]
 
 def get_headers_subset_ids_test():
-    user_id = db.insert_user("Kis Béla")
-    insert_headers_by_user_id(1)
-    insert_headers_by_user_id(1)
-    subset_ids = db.get_headers_subset_ids(1)
+    username = get_random_string(15)
+    user_id = db.insert_user(username)
+    insert_headers_by_user_id(user_id)
+    insert_headers_by_user_id(user_id)
+    subset_ids = db.get_headers_subset_ids(user_id)
     assert subset_ids == [(1,), (2,)]
 
 def get_user_by_name_test():
-    rnd = random.randint(0, 99999)
-    user_id = db.insert_user(str(rnd))
-    name = db.get_user_by_name(str(rnd))[1]
+    username = get_random_string(15)
+    user_id = db.insert_user(username)
+    row = db.get_user_by_name(username)
     assert user_id > 0
-    assert name == str(rnd)
+    assert row[1] == username
 
 def get_all_user_test():
-    db.insert_user("Nagy Elemér")
-    db.insert_user("Kis Béla")
+    username1 = get_random_string(15)
+    username2 = get_random_string(15)
+    db.insert_user(username1)
+    db.insert_user(username2)
     users = db.get_all_user()
     assert len(users) >= 2
 
 
 def insert_user():
-    user_id = db.insert_user("Kis Béla")
+    username = get_random_string(15)
+    user_id = db.insert_user(username)
     assert user_id > 0
 
 
@@ -180,7 +185,8 @@ def insert_headers():
     header = HEADERS[0]
     col_number = COL_NUMBERS[0]
     target_number = TARGET_NUMBERS[0]
-    user_id = db.insert_user("Kis Béla")
+    username = get_random_string(15)
+    user_id = db.insert_user(username)
     column_id = db.insert_headers(header, col_number, target_number, user_id)
     assert column_id == True
 
@@ -195,13 +201,14 @@ def insert_headers_user_id_1():
     header = HEADERS[0]
     col_number = COL_NUMBERS[0]
     target_number = TARGET_NUMBERS[0]
-    user_id = db.insert_user("Kis Béla")
-    column_id = db.insert_headers(header, col_number, target_number, 1)
+    username = get_random_string(15)
+    user_id = db.insert_user(username)
+    column_id = db.insert_headers(header, col_number, target_number, user_id)
     assert column_id == True
 
-def insert_one_header():
-    column_id = db.insert_one_header("alma", 5, 2, 1, 1)
-    assert column_id == 1
+def get_random_string(length):
+    result_str = ''.join(random.choice(letters) for i in range(length))
+    return result_str
 
 initialize()
 get_sentence_label_by_ordinal_test()
@@ -236,5 +243,4 @@ insert_headers_user_id_1()
 print("Test insert headers user id=1 is OK'")
 insert_headers()
 print("Test insert headers is OK'")
-insert_one_header()
-print("Test insert one header is OK'")
+
