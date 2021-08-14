@@ -196,6 +196,17 @@ class DBHelper():
             print(error)
             return None
 
+    def get_next_sentence(self):
+        try:
+            sql = f"SELECT text, label, token_labels FROM sentence"
+            self.cur.execute(sql)
+            while True:
+                row = self.cur.fetchone()
+                yield row
+        except(Exception, psycopg2.DatabaseError) as error:
+            print(error)
+            return None
+
 
 
 
