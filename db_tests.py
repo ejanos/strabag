@@ -43,8 +43,8 @@ def initialize():
     conn.close()
 
 def get_sentence_label_by_ordinal_test():
-    label1 = "twrjghfewz"
-    label2 = "bvciuztxgfd"
+    label1 = get_random_string(15)
+    label2 = get_random_string(15)
     ordinal1 = random.randint(0, 9999)
     category_id1 = db.insert_sentence_label(label1, str(ordinal1))
     ordinal2 = random.randint(0, 9999)
@@ -53,12 +53,14 @@ def get_sentence_label_by_ordinal_test():
     assert sentence_label[2] == str(ordinal1)
 
 def get_all_token_labels_test():
-    label1 = "kjhguzjhgjmnbv"
-    label2 = "kjhertetxycvdguzjhgjmnbv"
+    label1 = get_random_string(15)
+    label2 = get_random_string(15)
+    sen_label1 = get_random_string(15)
+    sen_label2 = get_random_string(15)
     ordinal1 = random.randint(0, 9999)
-    category_id1 = db.insert_sentence_label("nbvcbvc", str(ordinal1))
+    category_id1 = db.insert_sentence_label(sen_label1, str(ordinal1))
     ordinal2 = random.randint(0, 9999)
-    category_id2 = db.insert_sentence_label("iuztkjhg", str(ordinal2))
+    category_id2 = db.insert_sentence_label(sen_label2, str(ordinal2))
     token_id1 = db.insert_token_label(label1, category_id1)
     token_id2 = db.insert_token_label(label2, category_id2)
     token_labels = db.get_all_token_labels()
@@ -71,9 +73,11 @@ def get_all_token_labels_test():
 
 def get_all_categories_test():
     ordinal1 = random.randint(0, 9999)
-    category_id1 = db.insert_sentence_label("trewtrew", str(ordinal1))
+    label1= get_random_string(15)
+    label2= get_random_string(15)
+    category_id1 = db.insert_sentence_label(label1, str(ordinal1))
     ordinal2 = random.randint(0, 9999)
-    category_id2 = db.insert_sentence_label("uztruztr", str(ordinal2))
+    category_id2 = db.insert_sentence_label(label2, str(ordinal2))
     categories = db.get_all_categories()
     assert len(categories) > 1
     for category in categories:
@@ -83,9 +87,11 @@ def get_all_categories_test():
             assert category[2] == str(ordinal2)
 
 def insert_token_label_test():
-    rnd = random.randint(0,11)
-    category_id = db.insert_sentence_label("sdfgs", str(rnd))
-    token_label_id = db.insert_token_label("sfgsdfg", category_id)
+    sen_label = get_random_string(15)
+    token_label = get_random_string(15)
+    category = get_random_string(15)
+    category_id = db.insert_sentence_label(category, sen_label)
+    token_label_id = db.insert_token_label(token_label, category_id)
     assert token_label_id > 0
 
 def insert_sentences_test():
@@ -120,9 +126,10 @@ def insert_sentence_label_test():
     assert category_id >= 1
 
 def insert_one_header_test():
+    header = get_random_string(15)
     username = get_random_string(15)
     user_id = db.insert_user(username)
-    header_id = db.insert_one_header("gjhgfjg", 1, 3, user_id, 1)
+    header_id = db.insert_one_header(header, 1, 3, user_id, 1)
     assert header_id > 0
 
 def get_header_subset_max_id_test():
