@@ -4,7 +4,7 @@ class ProcessColumns:
     db = DBHelper()
     threshold = 0.6
 
-
+    # megnézi, az adatbázisban már található ilyen header összeállítás?
     def compare(self, texts):
         result = dict()
         users = self.db.get_all_user()

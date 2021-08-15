@@ -59,7 +59,7 @@ class DBHelper():
             self.conn.close()
             self.connect()
             return None
-        return True
+        return subset_id
 
     def get_all_user(self):
         try:

@@ -8,6 +8,8 @@ import yaml
 from db_helper import DBHelper
 from training_dataset import TrainingDataset
 from process_columns import ProcessColumns
+import json
+from types import SimpleNamespace
 import icecream as ic
 
 ic = ic.IceCreamDebugger()
@@ -34,7 +36,7 @@ process_columns = ProcessColumns()
 def compare():
     if request.method == 'POST':
         form = request.form
-        texts = convert_string_list(form['texts'])
+        texts = json.loads(form['texts'])
         target_columns, target_targets, user_id, subset_id = process_columns.compare(texts)
         return {"target_columns": target_columns,
                 "target_targets": target_targets,
@@ -47,13 +49,13 @@ def save_columns():
     if request.method == 'POST':
         form = request.form
         # texts: column headers
-        texts = convert_string_list(form['texts'])
-        columns = convert_int_list(form['columns'])
-        targets = convert_int_list(form['targets'])
+        texts = json.loads(form['texts'])
+        columns = json.loads(form['columns'])
+        targets = json.loads(form['targets'])
         ic(texts, columns, targets)
         user_id = form['user_id']
         result = db.insert_headers(texts, columns, targets, user_id)
-        return return_response(result)
+        return return_response(result)  # subset_id
 
 @app.route("/save/user", methods=['POST'])
 # TODO make it async
@@ -84,22 +86,22 @@ def save_token_label():
         result = db.insert_token_label(name, category_id)
         return return_response(result)
 
-@app.route("/save/traindata", methods=['POST'])
+@app.route("/save/trainingdata", methods=['POST'])
 # TODO make it async
-def save_train_data():
+def save_training_data():
+    ic("save training data")
     if request.method == 'POST':
         form = request.form
-        source_rows = convert_int_list(form['source_rows'])
-        source_cols = convert_int_list(form['source_cols'])
-        target_categories = convert_string_list(form['target_categories'])
-        target_cols = convert_int_list(form['target_cols'])
-        token_labels = convert_int_list(form['token_labels'])
+        source_rows = json.loads(form['source_rows'])
+        source_cols = json.loads(form['source_cols'])
+        target_categories = json.loads(form['target_categories'])
+        target_cols = json.loads(form['target_cols'])
+        token_labels = json.loads(form['token_labels'])
         f = request.files['file']
         filename = f.filename
         cwd = os.getcwd()
         file_path = os.path.join(cwd, CACHE, filename)
         f.save(file_path)
-
         result = training.save(source_rows, source_cols, target_categories, target_cols, token_labels, file_path)
         return return_response(result)
 
@@ -110,10 +112,10 @@ def save_train_data():
 def convert():
     if request.method == 'POST':
         form = request.form
-        source_rows = convert_int_list(form['source_rows'])
-        source_cols = convert_int_list(form['source_cols'])
-        target_categories = convert_string_list(form['target_categories'])
-        target_cols = convert_int_list(form['target_cols'])
+        source_rows = json.loads(form['source_rows'])
+        source_cols = json.loads(form['source_cols'])
+        target_categories = json.loads(form['target_categories'])
+        target_cols = json.loads(form['target_cols'])
         f = request.files['file']
         filename = f.filename
         cwd = os.getcwd()
@@ -130,19 +132,6 @@ def return_response(result):
         return "ok"
     else:
         return "Database error!"
-
-def convert_int_list(txt):
-    result = []
-    if txt:
-        txt_split = txt.split(",")
-    else:
-        return None
-    for token in txt_split:
-        result.append(int(token))
-    return result
-
-def convert_string_list(txt):
-    return txt.replace(" ", "").split(',')
 
 if __name__ == "__main__":
     app.run(threaded=True, port=5000)
