@@ -107,7 +107,6 @@ class ConvertExcel():
 
 
     def insert_rows(self, source_cols, df, df_target, source_rows, target_cols, target_rows):
-        row_index = 0
         for j, r in enumerate(source_rows):
             content_index = self.get_target_content(target_rows[j])
             self.increment_content_index(target_rows[j])
@@ -120,7 +119,6 @@ class ConvertExcel():
                 row_header.append(self.column_subset[target_cols[i]])
             row_df = pd.DataFrame([new_row], columns=row_header, dtype=str)
             df_target = pd.concat([df_target, row_df], join='outer')
-            row_index += 1
         return df_target
 
     def get_target_content(self, target):
