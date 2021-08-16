@@ -8,13 +8,13 @@ class ProcessColumns:
     def compare(self, texts):
         result = dict()
         users = self.db.get_all_user()
-        for key, value in users:
+        for user_id, _ in users:
             scores = []
-            subset_ids = self.db.get_headers_subset_ids(key)
+            subset_ids = self.db.get_headers_subset_ids(user_id)
             if not subset_ids:
                 continue
             for subset in subset_ids:
-                rows = self.db.get_headers_by_user_subset_id(key, subset[0])
+                rows = self.db.get_headers_by_user_subset_id(user_id, subset[0])
                 target_text = self.get_column_from_rows(rows, 1)
                 target_columns = self.get_column_from_rows(rows, 2)
                 target_targets = self.get_column_from_rows(rows, 3)
@@ -23,7 +23,7 @@ class ProcessColumns:
                 if score > self.threshold:
                     scores.append(score)
                     if score not in result:
-                        result[score] = (target_columns, target_targets, key, subset,)
+                        result[score] = (target_columns, target_targets, user_id, subset,)
         if scores:
             scores.sort(reverse=True)
             return result[scores[0]]
