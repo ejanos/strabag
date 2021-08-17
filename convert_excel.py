@@ -4,6 +4,10 @@ import xlsxwriter
 import os
 import csv
 import pathlib
+import icecream as ic
+
+ic = ic.IceCreamDebugger()
+#ic.disable()
 
 
 EXPORT_FILENAME = "pandas_converted.xlsx"
@@ -82,29 +86,62 @@ class ConvertExcel():
         #usecols = column_subset,
         #nrows = 100   beolvasott sorok száma
 
-        df = pd.read_excel(file, header=0, sheet_name='Total', engine='openpyxl')
-
+        df = pd.read_excel(file, header=0, sheet_name=0, engine='openpyxl')
         df_target = self.insert_rows(source_cols, df, df_target, source_rows, target_cols, target_rows)
+        self.sort_dataframe(df_target)
+        self.save(df_target)
 
+    def process_more_files(self, source_rows, source_cols, target_rows, target_cols, files):
+        df_target = pd.read_csv("./data/ITWO_sablon3.csv", dtype=str)
+
+        for file in files:
+            df_target = self.process_more_sheets(source_rows, source_cols, target_rows, target_cols, file, df_target)
+
+        self.sort_dataframe(df_target)
+
+        self.save(df_target)
+
+
+    def process_more_sheets(self, source_rows, source_cols, target_rows, target_cols, file, df_target):
+        df_sheets = pd.read_excel(file, header=0, sheet_name=None, engine='openpyxl')
+        sheets = df_sheets.keys()
+        for sheet in sheets:
+            df = pd.read_excel(file, header=0, sheet_name=sheet, engine='openpyxl')
+            df_target = self.insert_rows(source_cols, df, df_target, source_rows, target_cols, target_rows)
+        return df_target
+
+    def process_and_save_sheets(self, source_rows, source_cols, target_rows, target_cols, file):
+        df_target = pd.read_csv("./data/ITWO_sablon3.csv", dtype=str)
+        #usecols = column_subset,
+        #nrows = 100   beolvasott sorok száma
+
+        df_sheets = pd.read_excel(file, header=0, sheet_name=None, engine='openpyxl')
+        sheets = df_sheets.keys()
+        for sheet in sheets:
+            df = pd.read_excel(file, header=0, sheet_name=sheet, engine='openpyxl')
+            df_target = self.insert_rows(source_cols, df, df_target, source_rows, target_cols, target_rows)
+
+        self.sort_dataframe(df_target)
+
+        self.save(df_target)
+
+    def save(self, df_target):
+        # Create a Pandas Excel writer using XlsxWriter as the engine.
+        file = pathlib.Path(EXPORT_FILENAME)
+        if file.exists():
+            os.remove(EXPORT_FILENAME)
+        writer = pd.ExcelWriter(EXPORT_FILENAME, engine='xlsxwriter', mode='w')
+        # Convert the dataframe to an XlsxWriter Excel object.
+        df_target.to_excel(writer, sheet_name='Sheet1')
+        # Close the Pandas Excel writer and output the Excel file.
+        writer.save()
+
+    def sort_dataframe(self, df_target):
         self.sort_indicies(df_target)
         self.renumber_top_row(df_target)
         df_target.index += 1
         df_target.sort_index(inplace=True)
         df_target.set_index('TSZ', inplace=True)
-
-        # Create a Pandas Excel writer using XlsxWriter as the engine.
-        file = pathlib.Path(EXPORT_FILENAME)
-        if file.exists():
-            os.remove(EXPORT_FILENAME)
-
-        writer = pd.ExcelWriter(EXPORT_FILENAME, engine='xlsxwriter', mode='w')
-
-        # Convert the dataframe to an XlsxWriter Excel object.
-        df_target.to_excel(writer, sheet_name='Sheet1')
-
-        # Close the Pandas Excel writer and output the Excel file.
-        writer.save()
-
 
     def insert_rows(self, source_cols, df, df_target, source_rows, target_cols, target_rows):
         for j, r in enumerate(source_rows):

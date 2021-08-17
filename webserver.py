@@ -111,21 +111,60 @@ def save_training_data():
 # TODO make it async
 def convert():
     if request.method == 'POST':
-        form = request.form
-        source_rows = json.loads(form['source_rows'])
-        source_cols = json.loads(form['source_cols'])
-        target_categories = json.loads(form['target_categories'])
-        target_cols = json.loads(form['target_cols'])
-        f = request.files['file']
-        filename = f.filename
-        cwd = os.getcwd()
-        file_path = os.path.join(cwd, CACHE, filename)
-        f.save(file_path)
+        file_path, source_cols, source_rows, target_categories, target_cols = get_convert_data()
 
         conv.process(source_rows, source_cols, target_categories, target_cols, file_path)
         return "ok"
 
     return "invalid method"
+
+
+@app.route("/convert/more/sheets", methods=['POST'])
+# TODO make it async
+def convert_more_sheets():
+    if request.method == 'POST':
+        file_path, source_cols, source_rows, target_categories, target_cols = get_convert_data()
+
+        conv.process_more_sheets(source_rows, source_cols, target_categories, target_cols, file_path)
+        return "ok"
+
+    return "invalid method"
+
+@app.route("/convert/more/files", methods=['POST'])
+# TODO make it async
+def convert_more_files():
+    if request.method == 'POST':
+        form = request.form
+        source_rows = json.loads(form['source_rows'])
+        source_cols = json.loads(form['source_cols'])
+        target_categories = json.loads(form['target_categories'])
+        target_cols = json.loads(form['target_cols'])
+        files = json.loads(form['files'])
+        cached_files = []
+        for file in files:
+            f = request.files['file']
+            filename = f.filename
+            cwd = os.getcwd()
+            file_path = os.path.join(cwd, CACHE, filename)
+            cached_files.append(file_path)
+            f.save(file_path)
+        conv.process_more_files(source_rows, source_cols, target_categories, target_cols, cached_files)
+        return "ok"
+
+    return "invalid method"
+
+def get_convert_data():
+    form = request.form
+    source_rows = json.loads(form['source_rows'])
+    source_cols = json.loads(form['source_cols'])
+    target_categories = json.loads(form['target_categories'])
+    target_cols = json.loads(form['target_cols'])
+    f = request.files['file']
+    filename = f.filename
+    cwd = os.getcwd()
+    file_path = os.path.join(cwd, CACHE, filename)
+    f.save(file_path)
+    return file_path, source_cols, source_rows, target_categories, target_cols
 
 def return_response(result):
     if result:
