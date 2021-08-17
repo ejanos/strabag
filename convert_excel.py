@@ -5,6 +5,8 @@ import os
 import csv
 import pathlib
 import icecream as ic
+from db_helper import DBHelper
+
 
 ic = ic.IceCreamDebugger()
 #ic.disable()
@@ -15,6 +17,8 @@ SOURCE_FILE = './data/b1.xlsx'
 NUMERIC = "0123456789"
 
 class ConvertExcel():
+    db = DBHelper()
+    test = False
     column_subset = [
             "TSZ",
             "ÁT",
@@ -37,6 +41,7 @@ class ConvertExcel():
         "FE.1",
         ]
 
+    # test data, load_category() will overwrite these data
     cat_text = dict()
     cat_text['01'] = {'01': 'Földmunka'}
     cat_text['02'] = {'01': 'Betonozás',
@@ -46,6 +51,7 @@ class ConvertExcel():
     cat_text['04'] = {'01': 'Vakolás'}
     cat_text['05'] = {'01': 'Vasúti pálya'}
 
+    # test data, load_category() will overwrite these data
     cat_content = dict()
     cat_content['01'] = {'01': '0010'}
     cat_content['02'] = {'01': '0010',
@@ -56,6 +62,37 @@ class ConvertExcel():
     cat_content['05'] = {'01': '0010'}
 
     max_index = 0
+
+    def __init__(self, test=False):
+        self.test = test
+
+    def load_categories(self):
+        if self.test:
+            return
+        rows = self.db.get_all_categories()
+        cat_content = dict()
+        cat_text = dict()
+        for row in rows:
+            name = row[1]
+            category = row[2]
+            top, sub = self.split_top_sub(category)
+            if top in cat_content:
+                cat_content[top][sub] = '0010'
+            else:
+                cat_content[top] = {sub: '0010'}
+            if top in cat_text:
+                cat_text[top][sub] = name
+            else:
+                cat_text[top] = {sub: name}
+        self.cat_content = cat_content
+        self.cat_text = cat_text
+
+
+    def split_top_sub(self, category):
+        top = category[:2]
+        sub = category[3:5]
+        return top, sub
+
 
     def sort_indicies(self, df_target):
         df_target.sort_values(by='TSZ', inplace=True)  # sorszám alapján rendezi
@@ -82,6 +119,7 @@ class ConvertExcel():
             return res[:1], res[1:], index
 
     def process(self, source_rows, source_cols, target_rows, target_cols, file):
+        self.load_categories()
         df_target = pd.read_csv("./data/ITWO_sablon3.csv", dtype=str)
         #usecols = column_subset,
         #nrows = 100   beolvasott sorok száma
@@ -89,7 +127,7 @@ class ConvertExcel():
         df = pd.read_excel(file, header=0, sheet_name=0, engine='openpyxl')
         try:
             df_target = self.insert_rows(source_cols, df, df_target, source_rows, target_cols, target_rows)
-        except ValueError as value_error:
+        except AssertionError as value_error:
             print(value_error)
         self.sort_dataframe(df_target)
         self.save(df_target)
@@ -97,13 +135,13 @@ class ConvertExcel():
         return cwd, EXPORT_FILENAME
 
     def process_more_files(self, source_rows, source_cols, target_rows, target_cols, files):
+        self.load_categories()
         df_target = pd.read_csv("./data/ITWO_sablon3.csv", dtype=str)
-
         try:
             for file in files:
                 ic(file)
                 df_target = self.process_more_sheets(source_rows, source_cols, target_rows, target_cols, file, df_target)
-        except ValueError as value_error:
+        except AssertionError as value_error:
             print(value_error)
         self.sort_dataframe(df_target)
         self.save(df_target)
@@ -111,10 +149,11 @@ class ConvertExcel():
         return cwd, EXPORT_FILENAME
 
     def process_more_sheets_and_save(self, source_rows, source_cols, target_rows, target_cols, file, df_target):
+        self.load_categories()
         df_target = pd.read_csv("./data/ITWO_sablon3.csv", dtype=str)
         try:
             df_target = self.process_more_sheets(source_rows, source_cols, target_rows, target_cols, file, df_target)
-        except ValueError as value_error:
+        except AssertionError as value_error:
             print(value_error)
         self.sort_dataframe(df_target)
         self.save(df_target)
@@ -151,6 +190,14 @@ class ConvertExcel():
         df_target.set_index('TSZ', inplace=True)
 
     def insert_rows(self, source_cols, df, df_target, source_rows, target_cols, target_rows):
+        assert len(source_rows) == len(target_rows)
+        assert len(source_cols) == len(target_cols)
+        assert df_target.columns.size > max(target_cols)
+        assert df.columns.size > max(source_cols)
+        assert df.shape[0] > max(source_rows)
+        assert df_target.columns.size > max(target_cols)
+        assert self.are_valid_categories(target_rows)
+
         for j, r in enumerate(source_rows):
             content_index = self.get_target_content(target_rows[j])
             self.increment_content_index(target_rows[j])
@@ -173,6 +220,19 @@ class ConvertExcel():
         else:
             raise ValueError("invalid target value")
         return content_index + "."
+
+    def are_valid_categories(self, target):
+        top = target[:2]
+        sub = target[3:5]
+        for t in target:
+            if self.is_valid_target(t):
+                if top in self.cat_content and sub in self.cat_content[top]:
+                    continue
+                else:
+                    return False
+            else:
+                return False
+        return True
 
     def increment_content_index(self, target):
         top = target[:2]
@@ -211,7 +271,7 @@ if __name__ == '__main__':
     # [(forrás oszlopok), (forrás sorok), cél_sor, cél_oszlop]
     # 5 = F, 0-ról kezdődik az index
 
-    conv = ConvertExcel()
+    conv = ConvertExcel(test=True)
     source_rows = (5,6,7,8,9,10,11,12,13,)
     source_cols = (5,6,)
     target_rows = ("02.01.", "02.02.", "02.03.", "02.01.", "02.02.", "02.03.", "02.01.", "02.02.", "02.03.")
