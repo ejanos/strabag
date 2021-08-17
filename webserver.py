@@ -2,7 +2,7 @@ from typing import (Deque, Dict, FrozenSet, List, Optional, Sequence, Set, Tuple
 from convert_excel import ConvertExcel
 import aiofiles
 import requests
-from flask import Flask, request, jsonify
+from flask import Flask, request, jsonify, send_from_directory
 import os
 import yaml
 from db_helper import DBHelper
@@ -113,8 +113,8 @@ def convert():
     if request.method == 'POST':
         file_path, source_cols, source_rows, target_categories, target_cols = get_convert_data()
 
-        conv.process(source_rows, source_cols, target_categories, target_cols, file_path)
-        return "ok"
+        directory, file_name = conv.process(source_rows, source_cols, target_categories, target_cols, file_path)
+        return send_from_directory(directory, file_name, as_attachment=True)
 
     return "invalid method"
 
@@ -125,8 +125,8 @@ def convert_more_sheets():
     if request.method == 'POST':
         file_path, source_cols, source_rows, target_categories, target_cols = get_convert_data()
 
-        conv.process_more_sheets(source_rows, source_cols, target_categories, target_cols, file_path)
-        return "ok"
+        directory, file_name = conv.process_more_sheets_and_save(source_rows, source_cols, target_categories, target_cols, file_path)
+        return send_from_directory(directory, file_name, as_attachment=True)
 
     return "invalid method"
 
@@ -148,8 +148,8 @@ def convert_more_files():
             file_path = os.path.join(cwd, CACHE, filename)
             cached_files.append(file_path)
             file.save(file_path)
-        conv.process_more_files(source_rows, source_cols, target_categories, target_cols, cached_files)
-        return "ok"
+        directory, file_name = conv.process_more_files(source_rows, source_cols, target_categories, target_cols, cached_files)
+        return send_from_directory(directory, file_name, as_attachment=True)
 
     return "invalid method"
 

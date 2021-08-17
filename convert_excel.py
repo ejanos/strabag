@@ -87,44 +87,50 @@ class ConvertExcel():
         #nrows = 100   beolvasott sorok száma
 
         df = pd.read_excel(file, header=0, sheet_name=0, engine='openpyxl')
-        df_target = self.insert_rows(source_cols, df, df_target, source_rows, target_cols, target_rows)
+        try:
+            df_target = self.insert_rows(source_cols, df, df_target, source_rows, target_cols, target_rows)
+        except ValueError as value_error:
+            print(value_error)
         self.sort_dataframe(df_target)
         self.save(df_target)
+        cwd = os.getcwd()
+        return cwd, EXPORT_FILENAME
 
     def process_more_files(self, source_rows, source_cols, target_rows, target_cols, files):
         df_target = pd.read_csv("./data/ITWO_sablon3.csv", dtype=str)
 
-        for file in files:
-            ic(file)
-            df_target = self.process_more_sheets(source_rows, source_cols, target_rows, target_cols, file, df_target)
-
+        try:
+            for file in files:
+                ic(file)
+                df_target = self.process_more_sheets(source_rows, source_cols, target_rows, target_cols, file, df_target)
+        except ValueError as value_error:
+            print(value_error)
         self.sort_dataframe(df_target)
-
         self.save(df_target)
+        cwd = os.getcwd()
+        return cwd, EXPORT_FILENAME
 
+    def process_more_sheets_and_save(self, source_rows, source_cols, target_rows, target_cols, file, df_target):
+        df_target = pd.read_csv("./data/ITWO_sablon3.csv", dtype=str)
+        try:
+            df_target = self.process_more_sheets(source_rows, source_cols, target_rows, target_cols, file, df_target)
+        except ValueError as value_error:
+            print(value_error)
+        self.sort_dataframe(df_target)
+        self.save(df_target)
+        cwd = os.getcwd()
+        return cwd, EXPORT_FILENAME
 
     def process_more_sheets(self, source_rows, source_cols, target_rows, target_cols, file, df_target):
         df_sheets = pd.read_excel(file, header=0, sheet_name=None, engine='openpyxl')
         sheets = df_sheets.keys()
-        for sheet in sheets:
-            df = pd.read_excel(file, header=0, sheet_name=sheet, engine='openpyxl')
-            df_target = self.insert_rows(source_cols, df, df_target, source_rows, target_cols, target_rows)
+        try:
+            for sheet in sheets:
+                df = pd.read_excel(file, header=0, sheet_name=sheet, engine='openpyxl')
+                df_target = self.insert_rows(source_cols, df, df_target, source_rows, target_cols, target_rows)
+        except ValueError as value_error:
+            print(value_error)
         return df_target
-
-    def process_and_save_sheets(self, source_rows, source_cols, target_rows, target_cols, file):
-        df_target = pd.read_csv("./data/ITWO_sablon3.csv", dtype=str)
-        #usecols = column_subset,
-        #nrows = 100   beolvasott sorok száma
-
-        df_sheets = pd.read_excel(file, header=0, sheet_name=None, engine='openpyxl')
-        sheets = df_sheets.keys()
-        for sheet in sheets:
-            df = pd.read_excel(file, header=0, sheet_name=sheet, engine='openpyxl')
-            df_target = self.insert_rows(source_cols, df, df_target, source_rows, target_cols, target_rows)
-
-        self.sort_dataframe(df_target)
-
-        self.save(df_target)
 
     def save(self, df_target):
         # Create a Pandas Excel writer using XlsxWriter as the engine.
