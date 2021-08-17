@@ -139,15 +139,15 @@ def convert_more_files():
         source_cols = json.loads(form['source_cols'])
         target_categories = json.loads(form['target_categories'])
         target_cols = json.loads(form['target_cols'])
-        files = json.loads(form['files'])
         cached_files = []
-        for file in files:
-            f = request.files['file']
-            filename = f.filename
+        uploaded_files = request.files.getlist("file[]")
+        print(uploaded_files)
+        for file in uploaded_files:
+            filename = file.filename
             cwd = os.getcwd()
             file_path = os.path.join(cwd, CACHE, filename)
             cached_files.append(file_path)
-            f.save(file_path)
+            file.save(file_path)
         conv.process_more_files(source_rows, source_cols, target_categories, target_cols, cached_files)
         return "ok"
 

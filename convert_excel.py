@@ -95,6 +95,7 @@ class ConvertExcel():
         df_target = pd.read_csv("./data/ITWO_sablon3.csv", dtype=str)
 
         for file in files:
+            ic(file)
             df_target = self.process_more_sheets(source_rows, source_cols, target_rows, target_cols, file, df_target)
 
         self.sort_dataframe(df_target)
