@@ -2,7 +2,7 @@ import psycopg2
 import icecream as ic
 
 ic = ic.IceCreamDebugger()
-#ic.disable()
+ic.disable()
 
 
 class DBHelper():

@@ -150,6 +150,23 @@ def convert_more_files():
             file.save(file_path)
         directory, file_name = conv.process_more_files(source_rows, source_cols, target_categories, target_cols, cached_files)
         return send_from_directory(directory, file_name, as_attachment=True)
+    return "invalid method"
+
+@app.route("/convert/mi", methods=['POST'])
+# TODO make it async
+def convert_mi():
+    if request.method == 'POST':
+        form = request.form
+        source_cols = json.loads(form['source_cols'])
+        target_cols = json.loads(form['target_cols'])
+        f = request.files['file']
+        filename = f.filename
+        cwd = os.getcwd()
+        file_path = os.path.join(cwd, CACHE, filename)
+        f.save(file_path)
+
+        directory, file_name = conv.process_mi(source_cols, target_cols, file_path)
+        return send_from_directory(directory, file_name, as_attachment=True)
 
     return "invalid method"
 

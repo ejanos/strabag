@@ -2,6 +2,7 @@ from db_helper import DBHelper
 import pandas as pd
 from convert_excel import ConvertExcel
 from sentence_label import SentenceLabel
+from helpers import Helpers
 
 class TrainingDataset():
     NUMERIC = "01234567890.,"
@@ -62,16 +63,7 @@ class TrainingDataset():
 
     def get_index_of_longest(data):
         row_len = len(data[0])
-        row_score = [0 for x in range(row_len)]
-        for row in data:
-            for i, cell in enumerate(row):
-                row_score[i] += len(cell)
-        max_index = 0
-        max_score = 0
-        for i, score in enumerate(row_score[1:]):  # 0. oszlop a sorszám
-            if score > max_score:
-                max_index = i
-        return max_index
+        return Helpers.get_max_row_number(data, row_len)
 
     def get_text_row_indicies(self, row_type):
         row_index = [0]

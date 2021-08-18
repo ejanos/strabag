@@ -15,3 +15,6 @@
 /test15.py
 /test15.py
 /pandas_converted.xlsx
+/__pycache__/helpers.cpython-38.pyc
+/__pycache__/hubert_model.cpython-38.pyc
+/model_bert/best/pytorch_model.bin

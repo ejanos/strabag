@@ -6,10 +6,13 @@ import csv
 import pathlib
 import icecream as ic
 from db_helper import DBHelper
+#from hubert_model import HubertModel
+from helpers import Helpers
+import numpy as np
 
 
 ic = ic.IceCreamDebugger()
-#ic.disable()
+ic.disable()
 
 
 EXPORT_FILENAME = "pandas_converted.xlsx"
@@ -18,6 +21,7 @@ NUMERIC = "0123456789"
 
 class ConvertExcel():
     db = DBHelper()
+    #model = HubertModel()
     test = False
     column_subset = [
             "TSZ",
@@ -61,6 +65,8 @@ class ConvertExcel():
     cat_content['04'] = {'01': '0010'}
     cat_content['05'] = {'01': '0010'}
 
+    category_by_index = dict()
+
     max_index = 0
 
     def __init__(self, test=False):
@@ -73,8 +79,10 @@ class ConvertExcel():
         cat_content = dict()
         cat_text = dict()
         for row in rows:
+            id = row[0]
             name = row[1]
             category = row[2]
+            self.category_by_index[id] = category
             top, sub = self.split_top_sub(category)
             if top in cat_content:
                 cat_content[top][sub] = '0010'
@@ -133,6 +141,48 @@ class ConvertExcel():
         self.save(df_target)
         cwd = os.getcwd()
         return cwd, EXPORT_FILENAME
+
+    def process_mi(self, source_cols, target_cols, file):
+        self.load_categories()
+        df_target = pd.read_csv("./data/ITWO_sablon3.csv", dtype=str)
+        df = pd.read_excel(file, header=0, sheet_name=0, engine='openpyxl')
+
+        rows = df.shape[0]
+        max_rows = rows
+        if max_rows > 15:
+            max_rows = 15
+        data_slice = df.loc[5:max_rows]
+
+        ic(data_slice.values.tolist())
+        # index of text row, which needs to be classified by the model
+        txt_index = self.get_index_of_longest(data_slice.values.tolist())
+        ic(txt_index)
+
+        target_categories = []
+        source_rows = []
+        first_row = 1
+
+        for i, txt in enumerate(df.iloc[first_row:,txt_index]):
+            if txt and not np.isna(txt):
+                # TODO felhasználni cat_prob valószínűségi értéket a blokkok értelmezéséhez
+                # TODO plusz a tokenek értékét is erre lehet felhasználni
+                # TODO token probability-t is fel lehet használni erre !!!
+                #category, cat_prob, tokens = self.model.predict(txt)
+                category, cat_prob, tokens = (0,0,0)
+                if category and category[0] in self.category_by_index:
+                    cat_name = self.category_by_index[category[0]]
+                    target_categories.append(cat_name)
+                    source_rows.append(i + first_row)
+
+        try:
+            df_target = self.insert_rows(source_cols, df, df_target, source_rows, target_cols, target_categories)
+        except AssertionError as value_error:
+            print(value_error)
+        self.sort_dataframe(df_target)
+        self.save(df_target)
+        cwd = os.getcwd()
+        return cwd, EXPORT_FILENAME
+
 
     def process_more_files(self, source_rows, source_cols, target_rows, target_cols, files):
         self.load_categories()
@@ -196,6 +246,7 @@ class ConvertExcel():
         assert df.columns.size > max(source_cols)
         assert df.shape[0] > max(source_rows)
         assert df_target.columns.size > max(target_cols)
+
         assert self.are_valid_categories(target_rows)
 
         for j, r in enumerate(source_rows):
@@ -222,10 +273,11 @@ class ConvertExcel():
         return content_index + "."
 
     def are_valid_categories(self, target):
-        top = target[:2]
-        sub = target[3:5]
         for t in target:
+            top = t[:2]
+            sub = t[3:5]
             if self.is_valid_target(t):
+                ic(top, sub)
                 if top in self.cat_content and sub in self.cat_content[top]:
                     continue
                 else:
@@ -266,14 +318,36 @@ class ConvertExcel():
             return True
         return False
 
+    @staticmethod
+    def get_index_of_longest(data):
+        row_len = len(data[0])
+        max_rows = len(data)
+        # calculate score just small set of rows
+        if max_rows > 10:
+            max_rows = 10
+        data_slice = data[0:max_rows]
+        return Helpers.get_max_row_number(data_slice, row_len)
+
+
+def test_process():
+    global source_rows
+    source_rows = (5, 6, 7, 8, 9, 10, 11, 12, 13,)
+    source_cols = (5, 6,)
+    target_rows = ("02.01.", "02.02.", "02.03.", "02.01.", "02.02.", "02.03.", "02.01.", "02.02.", "02.03.")
+    target_cols = (2, 4,)
+    conv.process(source_rows, source_cols, target_rows, target_cols, SOURCE_FILE)
+
+def test_process_mi():
+    source_cols = (5, 6,)
+    target_cols = (2, 4,)
+    conv.process_mi(source_cols, target_cols, SOURCE_FILE)
+
 
 if __name__ == '__main__':
     # [(forrás oszlopok), (forrás sorok), cél_sor, cél_oszlop]
     # 5 = F, 0-ról kezdődik az index
 
-    conv = ConvertExcel(test=True)
-    source_rows = (5,6,7,8,9,10,11,12,13,)
-    source_cols = (5,6,)
-    target_rows = ("02.01.", "02.02.", "02.03.", "02.01.", "02.02.", "02.03.", "02.01.", "02.02.", "02.03.")
-    target_cols = (2,4,)
-    conv.process(source_rows, source_cols, target_rows, target_cols, SOURCE_FILE)
+    #conv = ConvertExcel(test=True)
+    conv = ConvertExcel(test=False)
+    #test_process()
+    test_process_mi()
