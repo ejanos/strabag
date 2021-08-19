@@ -92,17 +92,17 @@ def save_training_data():
     ic("save training data")
     if request.method == 'POST':
         form = request.form
+        # integer
+        content_column = json.loads(form['content_column'])
         source_rows = json.loads(form['source_rows'])
-        source_cols = json.loads(form['source_cols'])
         target_categories = json.loads(form['target_categories'])
-        target_cols = json.loads(form['target_cols'])
         token_labels = json.loads(form['token_labels'])
         f = request.files['file']
         filename = f.filename
         cwd = os.getcwd()
         file_path = os.path.join(cwd, CACHE, filename)
         f.save(file_path)
-        result = training.save(source_rows, source_cols, target_categories, target_cols, token_labels, file_path)
+        result = training.save(content_column, source_rows, target_categories, token_labels, file_path)
         return return_response(result)
 
     return "invalid method"
@@ -169,6 +169,16 @@ def convert_mi():
         return send_from_directory(directory, file_name, as_attachment=True)
 
     return "invalid method"
+
+@app.route("/start/training", methods=['GET'])
+# TODO make it async
+def start_training():
+    if request.method == 'GET':
+        from hubert_finetune import HubertFinetune
+        model = HubertFinetune()
+        model.train()
+        #model = None
+        return return_response(True)
 
 def get_convert_data():
     form = request.form

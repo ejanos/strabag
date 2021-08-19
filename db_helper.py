@@ -162,7 +162,7 @@ class DBHelper():
         return category_id
 
     def insert_sentences(self, data):
-        # data: első oszlop sorszám, második oszlop szöveg, 3. oszlop list of token_labels
+        # data: első oszlop kategória azonosító, második oszlop szöveg, 3. oszlop list of token_labels
         # TODO token_labels -t is be kell szúrni!!!
         sql = """INSERT INTO sentence(text, label, token_labels) VALUES(%s,%s,%s) RETURNING id;"""
         ordinals = data[0]

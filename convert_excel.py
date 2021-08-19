@@ -19,6 +19,13 @@ EXPORT_FILENAME = "pandas_converted.xlsx"
 SOURCE_FILE = './data/b1.xlsx'
 NUMERIC = "0123456789"
 
+class TopLevelCategory:
+    ordinal = ""
+    name = ""
+    def __init__(self, ordinal=None, name=None):
+        self.ordinal = ordinal
+        self.name = name
+
 class ConvertExcel():
     db = DBHelper()
     #model = HubertModel()
@@ -65,6 +72,8 @@ class ConvertExcel():
     cat_content['04'] = {'01': '0010'}
     cat_content['05'] = {'01': '0010'}
 
+    top_level_categories = []
+
     category_by_index = dict()
 
     max_index = 0
@@ -82,6 +91,10 @@ class ConvertExcel():
             id = row[0]
             name = row[1]
             category = row[2]
+            if category.contains(".") == 1 and len(category) < 4:
+                top_level_cat = TopLevelCategory(name=name, ordinal=category)
+                self.top_level_categories.append(top_level_cat)
+                continue
             self.category_by_index[id] = category
             top, sub = self.split_top_sub(category)
             if top in cat_content:
@@ -135,6 +148,7 @@ class ConvertExcel():
         df = pd.read_excel(file, header=0, sheet_name=0, engine='openpyxl')
         try:
             df_target = self.insert_rows(source_cols, df, df_target, source_rows, target_cols, target_rows)
+            df_target = self.insert_top_level_category_rows(df_target)
         except AssertionError as value_error:
             print(value_error)
         self.sort_dataframe(df_target)
@@ -176,6 +190,7 @@ class ConvertExcel():
 
         try:
             df_target = self.insert_rows(source_cols, df, df_target, source_rows, target_cols, target_categories)
+            df_target = self.insert_top_level_category_rows(df_target)
         except AssertionError as value_error:
             print(value_error)
         self.sort_dataframe(df_target)
@@ -191,6 +206,7 @@ class ConvertExcel():
             for file in files:
                 ic(file)
                 df_target = self.process_more_sheets(source_rows, source_cols, target_rows, target_cols, file, df_target)
+            df_target = self.insert_top_level_category_rows(df_target)
         except AssertionError as value_error:
             print(value_error)
         self.sort_dataframe(df_target)
@@ -203,6 +219,7 @@ class ConvertExcel():
         df_target = pd.read_csv("./data/ITWO_sablon3.csv", dtype=str)
         try:
             df_target = self.process_more_sheets(source_rows, source_cols, target_rows, target_cols, file, df_target)
+            df_target = self.insert_top_level_category_rows(df_target)
         except AssertionError as value_error:
             print(value_error)
         self.sort_dataframe(df_target)
@@ -260,6 +277,15 @@ class ConvertExcel():
                 new_row.append(x)
                 row_header.append(self.column_subset[target_cols[i]])
             row_df = pd.DataFrame([new_row], columns=row_header, dtype=str)
+            df_target = pd.concat([df_target, row_df], join='outer')
+        return df_target
+
+    def insert_top_level_category_rows(self, df_target):
+        row_header = []
+        row_header.append(self.column_subset[0])
+        row_header.append(self.column_subset[2])
+        for top in self.top_level_categories:
+            row_df = pd.DataFrame([[top.ordinal, top.name]], columns=row_header, dtype=str)
             df_target = pd.concat([df_target, row_df], join='outer')
         return df_target
 
