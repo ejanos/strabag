@@ -157,6 +157,7 @@ def convert_more_files():
 def convert_mi():
     if request.method == 'POST':
         form = request.form
+        content_col = json.loads(form['content_col'])
         source_cols = json.loads(form['source_cols'])
         target_cols = json.loads(form['target_cols'])
         f = request.files['file']
@@ -165,7 +166,7 @@ def convert_mi():
         file_path = os.path.join(cwd, CACHE, filename)
         f.save(file_path)
 
-        directory, file_name = conv.process_mi(source_cols, target_cols, file_path)
+        directory, file_name = conv.process_mi(content_col, source_cols, target_cols, file_path)
         return send_from_directory(directory, file_name, as_attachment=True)
 
     return "invalid method"

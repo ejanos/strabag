@@ -156,7 +156,7 @@ class ConvertExcel():
         cwd = os.getcwd()
         return cwd, EXPORT_FILENAME
 
-    def process_mi(self, source_cols, target_cols, file):
+    def process_mi(self, content_col, source_cols, target_cols, file):
         self.load_categories()
         df_target = pd.read_csv("./data/ITWO_sablon3.csv", dtype=str)
         df = pd.read_excel(file, header=0, sheet_name=0, engine='openpyxl')
@@ -169,14 +169,12 @@ class ConvertExcel():
 
         ic(data_slice.values.tolist())
         # index of text row, which needs to be classified by the model
-        txt_index = self.get_index_of_longest(data_slice.values.tolist())
-        ic(txt_index)
 
         target_categories = []
         source_rows = []
         first_row = 1
 
-        for i, txt in enumerate(df.iloc[first_row:,txt_index]):
+        for i, txt in enumerate(df.iloc[first_row:, content_col]):
             if txt and not np.isna(txt):
                 # TODO felhasználni cat_prob valószínűségi értéket a blokkok értelmezéséhez
                 # TODO plusz a tokenek értékét is erre lehet felhasználni
