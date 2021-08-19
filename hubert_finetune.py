@@ -72,7 +72,7 @@ class TextSamplerDataset(Dataset):
         self.mask_token_id = tokenizer.mask_token_id
 
     def load_data_ids(self):
-        self.data_ids = db.get_all_sentence_id()
+        self.data_ids = self.db.get_all_sentence_id()
         random.shuffle(self.data_ids)
 
     def tokenize(self, txt):
@@ -89,7 +89,7 @@ class TextSamplerDataset(Dataset):
         self.data_counter += 1
         if self.data_counter >= self.__len__():
             self.data_counter = 0
-        row = db.get_sentence(sentence_id)
+        row = self.db.get_sentence(sentence_id)
         ic(row)
         text = row[0]
         sen_class = row[1]
@@ -97,7 +97,7 @@ class TextSamplerDataset(Dataset):
         return text, sen_class, token_class
 
 class HubertFinetune:
-    device = torch.device('cuda')
+    device = torch.device("cuda:0" if torch.cuda.is_available() else "cpu")
 
     logging.basicConfig(filename=root_dir + 'train.log', level=logging.DEBUG)
 

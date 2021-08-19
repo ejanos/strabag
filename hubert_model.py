@@ -59,8 +59,7 @@ class HubertModel:
         self.token_ids, self.token_labels = self.get_token_labels()
         print("Token labels count: ", len(self.token_labels))
 
-
-        self.device = torch.device('cuda')
+        self.device = torch.device("cuda:0" if torch.cuda.is_available() else "cpu")
 
         self.config = transformers.BertConfig.from_json_file(MODEL_PATH + "/config.json")
         self.config.id2label = self.sentence_ids

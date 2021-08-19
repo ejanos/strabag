@@ -6,7 +6,7 @@ import csv
 import pathlib
 import icecream as ic
 from db_helper import DBHelper
-#from hubert_model import HubertModel
+from hubert_model import HubertModel
 from helpers import Helpers
 import numpy as np
 
@@ -28,7 +28,7 @@ class TopLevelCategory:
 
 class ConvertExcel():
     db = DBHelper()
-    #model = HubertModel()
+    model = HubertModel()
     test = False
     column_subset = [
             "TSZ",
@@ -181,8 +181,7 @@ class ConvertExcel():
                 # TODO felhasználni cat_prob valószínűségi értéket a blokkok értelmezéséhez
                 # TODO plusz a tokenek értékét is erre lehet felhasználni
                 # TODO token probability-t is fel lehet használni erre !!!
-                #category, cat_prob, tokens = self.model.predict(txt)
-                category, cat_prob, tokens = (0,0,0)
+                category, cat_prob, tokens = self.model.predict(txt)
                 if category and category[0] in self.category_by_index:
                     cat_name = self.category_by_index[category[0]]
                     target_categories.append(cat_name)
