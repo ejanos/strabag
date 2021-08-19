@@ -8,7 +8,7 @@ import icecream as ic
 from db_helper import DBHelper
 from hubert_model import HubertModel
 from helpers import Helpers
-import numpy as np
+import pandas as pd
 
 
 ic = ic.IceCreamDebugger()
@@ -26,9 +26,10 @@ class TopLevelCategory:
         self.ordinal = ordinal
         self.name = name
 
-class ConvertExcel():
+class ConvertExcel:
     db = DBHelper()
     model = HubertModel()
+    token_labels = dict()
     test = False
     column_subset = [
             "TSZ",
@@ -91,7 +92,7 @@ class ConvertExcel():
             id = row[0]
             name = row[1]
             category = row[2]
-            if category.contains(".") == 1 and len(category) < 4:
+            if category.count(".") == 1 and len(category) < 4:
                 top_level_cat = TopLevelCategory(name=name, ordinal=category)
                 self.top_level_categories.append(top_level_cat)
                 continue
@@ -108,12 +109,17 @@ class ConvertExcel():
         self.cat_content = cat_content
         self.cat_text = cat_text
 
+    def load_token_labels(self):
+        if self.token_labels:
+            self.token_labels.clear()
+        rows = self.db.get_all_token_label()
+        for row in rows:
+            self.token_labels[row[0]] = row[2]
 
     def split_top_sub(self, category):
         top = category[:2]
         sub = category[3:5]
         return top, sub
-
 
     def sort_indicies(self, df_target):
         df_target.sort_values(by='TSZ', inplace=True)  # sorszám alapján rendezi
@@ -156,31 +162,36 @@ class ConvertExcel():
         cwd = os.getcwd()
         return cwd, EXPORT_FILENAME
 
-    def process_mi(self, content_col, source_cols, target_cols, file):
+    def process_mi(self, content_col, source_cols, target_cols, file, no_category_id):
         self.load_categories()
+        self.load_token_labels()
         df_target = pd.read_csv("./data/ITWO_sablon3.csv", dtype=str)
         df = pd.read_excel(file, header=0, sheet_name=0, engine='openpyxl')
-
-        rows = df.shape[0]
-        max_rows = rows
-        if max_rows > 15:
-            max_rows = 15
-        data_slice = df.loc[5:max_rows]
-
-        ic(data_slice.values.tolist())
-        # index of text row, which needs to be classified by the model
 
         target_categories = []
         source_rows = []
         first_row = 1
 
         for i, txt in enumerate(df.iloc[first_row:, content_col]):
-            if txt and not np.isna(txt):
+            if txt and not pd.isna(txt):
                 # TODO felhasználni cat_prob valószínűségi értéket a blokkok értelmezéséhez
                 # TODO plusz a tokenek értékét is erre lehet felhasználni
                 # TODO token probability-t is fel lehet használni erre !!!
-                category, cat_prob, tokens = self.model.predict(txt)
-                if category and category[0] in self.category_by_index:
+                category, cat_prob, tokens, token_prob = self.model.predict(txt)
+                token_category = self.convert_token_label2category(tokens[0])
+
+                if category[0] == no_category_id and not self.there_is_no_token(token_category):
+                    categories = self.select_valid_categories(token_category)
+                    if len(categories) == 1:
+                        cat_name = self.category_by_index[categories[0]]
+                        target_categories.append(cat_name)
+                        source_rows.append(i + first_row)
+                    else:
+                        cat = self.select_max_prob_categories(token_category, token_prob)
+                        cat_name = self.category_by_index[cat]
+                        target_categories.append(cat_name)
+                        source_rows.append(i + first_row)
+                elif category and category[0] in self.category_by_index:
                     cat_name = self.category_by_index[category[0]]
                     target_categories.append(cat_name)
                     source_rows.append(i + first_row)
@@ -341,16 +352,38 @@ class ConvertExcel():
             return True
         return False
 
-    @staticmethod
-    def get_index_of_longest(data):
-        row_len = len(data[0])
-        max_rows = len(data)
-        # calculate score just small set of rows
-        if max_rows > 10:
-            max_rows = 10
-        data_slice = data[0:max_rows]
-        return Helpers.get_max_row_number(data_slice, row_len)
+    def convert_token_label2category(self, tokens):
+        token_category = []
+        for token in tokens:
+            # token = 0 padding token
+            if token:
+                token_category.append(self.token_labels[token])
+            else:
+                token_category.append(0)
+        return token_category
 
+    @staticmethod
+    def there_is_no_token(token_category):
+        if max(token_category):
+            return True  # no token label in the token category list
+        return False
+
+
+    def select_valid_categories(self, token_category):
+        filtered_categories = []
+        for token in token_category:
+            if token:
+                filtered_categories.append(token)
+        return filtered_categories
+
+    def select_max_prob_categories(self, token_category, token_prob):
+        max_prob_token = 0
+        max_prob = 0.0
+        for i, cat in enumerate(token_category):
+            if token_prob[i] > max_prob:
+                max_prob = token_prob[i]
+                max_prob_token = cat
+        return max_prob_token
 
 def test_process():
     global source_rows
@@ -361,9 +394,12 @@ def test_process():
     conv.process(source_rows, source_cols, target_rows, target_cols, SOURCE_FILE)
 
 def test_process_mi():
+    content_col = 5
     source_cols = (5, 6,)
     target_cols = (2, 4,)
-    conv.process_mi(source_cols, target_cols, SOURCE_FILE)
+    no_category_id = 0
+    conv.process_mi(content_col, source_cols, target_cols, SOURCE_FILE, no_category_id)
+
 
 
 if __name__ == '__main__':

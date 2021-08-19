@@ -160,13 +160,14 @@ def convert_mi():
         content_col = json.loads(form['content_col'])
         source_cols = json.loads(form['source_cols'])
         target_cols = json.loads(form['target_cols'])
+        no_category_id = json.loads(form['no_category_id'])
         f = request.files['file']
         filename = f.filename
         cwd = os.getcwd()
         file_path = os.path.join(cwd, CACHE, filename)
         f.save(file_path)
 
-        directory, file_name = conv.process_mi(content_col, source_cols, target_cols, file_path)
+        directory, file_name = conv.process_mi(content_col, source_cols, target_cols, file_path, no_category_id)
         return send_from_directory(directory, file_name, as_attachment=True)
 
     return "invalid method"

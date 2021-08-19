@@ -284,6 +284,31 @@ class DBHelper():
             self.connect()
             return None
 
+    def get_token_label(self, token_id):
+        try:
+            sql = f"SELECT * FROM token_label WHERE id='{token_id}'"
+            self.cur.execute(sql)
+            row = self.cur.fetchone()
+            return row
+        except(Exception, psycopg2.DatabaseError) as error:
+            print(error)
+            self.conn.close()
+            self.connect()
+            return None
+
+    def get_all_token_label(self):
+        try:
+            sql = f"SELECT * FROM token_label ORDER BY id"
+            self.cur.execute(sql)
+            rows = self.cur.fetchall()
+            return rows
+        except(Exception, psycopg2.DatabaseError) as error:
+            print(error)
+            self.conn.close()
+            self.connect()
+            return None
+
+
 
 
 

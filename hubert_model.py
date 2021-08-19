@@ -106,9 +106,17 @@ class HubertModel:
             sen_prob = out.logits[0, pred_sen[0].item()]
             ic(sen_prob)
             pred_token = torch.argmax(out.logits_token, dim=-1)
+            token_prob = self.get_token_probability(out.logits_token, pred_token)
             if not self.test:
-                return pred_sen.cpu().tolist(), sen_prob.cpu().item(), pred_token.cpu().tolist()
+                return pred_sen.cpu().tolist(), sen_prob.cpu().item(), pred_token.cpu().tolist(), token_prob
             self.print_test_params(pred_sen, pred_token)
+
+    def get_token_probability(self, logits, tokens):
+        token_prob = []
+        for i, token in enumerate(tokens[0]):
+            prob = logits[0, i, token.item()]
+            token_prob.append(prob.item())
+        return token_prob
 
     def print_test_params(self, pred_sen, pred_token):
         print(pred_sen)

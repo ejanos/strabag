@@ -75,6 +75,8 @@ def initialize():
     cur.execute(sql)
     conn.commit()
     conn.close()
+    for key, sentence_label in ORDINAL2.items():
+        db.insert_sentence_label(CATEGORY2[key], sentence_label)
 
 
 def get_sentence_label_by_ordinal_test():
@@ -263,8 +265,7 @@ def insert_headers_user_id_1_test():
 
 
 def insert_sentences():
-    for key, sentence_label in ORDINAL2.items():
-        db.insert_sentence_label(CATEGORY2[key], sentence_label)
+
     ord = [ORDINAL2[x] for x in range(4)]
     text = [TEXT2[x] for x in range(4)]
     token_labels_len = []
@@ -300,12 +301,36 @@ def get_sentence_label_test():
     sentence_label_row = db.get_sentence_label(1)
     assert sentence_label_row[1] == "Tetőszerelés"
 
+def get_token_label_test():
+    category = get_random_string(15)
+    ordinal = get_random_ordinal()
+    category_id = db.insert_sentence_label(category, ordinal)
+    name = get_random_string(15)
+    token_id = db.insert_token_label(name, category_id)
+    assert token_id > 0
+
+def get_all_token_label_test():
+    rows1 = db.get_all_token_label()
+    get_token_label_test()
+    get_token_label_test()
+    rows2 = db.get_all_token_label()
+    assert len(rows2) - len(rows1) == 2
+
 def get_random_string(length):
     result_str = ''.join(random.choice(letters) for i in range(length))
     return result_str
 
+def get_random_ordinal():
+    num1 = random.randint(15, 99)
+    num2 = random.randint(15, 99)
+    return str(num1) + "." + str(num2) + "."
+
 
 initialize()
+get_all_token_label_test()
+print("Test get all token label test is OK!")
+get_token_label_test()
+print("Test get token label is OK!")
 get_sentence_label_test()
 print("Test get sentence label test is OK")
 get_sentence_test()
