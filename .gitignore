@@ -1,7 +1,7 @@
 /__pycache__/convert_excel.cpython-38.pyc
 /__pycache__/webserver.cpython-38.pyc
 /cache/
-
+/.idea/
 
 /test_isdigit.py
 /__pycache__/db_helper.cpython-38.pyc
