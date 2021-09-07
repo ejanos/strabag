@@ -215,7 +215,7 @@ class HubertFinetune:
 
         best_loss = 1e25
 
-        device = torch.device('cuda')
+        device = torch.device("cuda:0" if torch.cuda.is_available() else "cpu")
 
         config = transformers.BertConfig.from_json_file(MODEL_PATH + "/config.json")
         config.id2label = self.sentence_ids
