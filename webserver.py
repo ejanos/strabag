@@ -54,7 +54,7 @@ def save_columns():
         targets = json.loads(form['targets'])
         ic(texts, columns, targets)
         user_id = form['user_id']
-        result = db.insert_headers(texts, columns, targets, user_id)
+        result = db.insert_headers(texts, columns, targets, user_id, actual_row)
         return return_response(result)  # subset_id
 
 @app.route("/save/user", methods=['POST'])
