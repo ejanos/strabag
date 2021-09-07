@@ -14,16 +14,17 @@ class ProcessColumns:
             if not subset_ids:
                 continue
             for subset in subset_ids:
-                rows = self.db.get_headers_by_user_subset_id(user_id, subset[0])
+                rows = self.db.get_headers_by_architect_subset_id(user_id, subset[0])
                 target_text = self.get_column_from_rows(rows, 1)
                 target_columns = self.get_column_from_rows(rows, 2)
                 target_targets = self.get_column_from_rows(rows, 3)
+                header_rows = self.get_column_from_rows(rows, 4)
 
                 score = self.get_header_similarity_score(texts, target_text)
                 if score > self.threshold:
                     scores.append(score)
                     if score not in result:
-                        result[score] = (target_columns, target_targets, user_id, subset,)
+                        result[score] = (target_columns, target_targets, user_id, subset, header_rows)
         if scores:
             scores.sort(reverse=True)
             return result[scores[0]]

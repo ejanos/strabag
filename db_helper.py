@@ -28,30 +28,30 @@ class DBHelper():
                 password="@JbhNA;g.qW3S-8H")
         self.cur = self.conn.cursor()
 
-    def insert_user(self, name):
-        sql = """INSERT INTO users("name") VALUES(%s) RETURNING id;"""
+    def insert_architect(self, name):
+        sql = """INSERT INTO architects("name") VALUES(%s) RETURNING id;"""
         try:
             self.cur.execute(sql, (name,))
-            user_id = self.cur.fetchone()[0]
+            architect_id = self.cur.fetchone()[0]
             self.conn.commit()
         except(Exception, psycopg2.DatabaseError) as error:
             print(error)
             self.conn.close()
             self.connect()
             return None
-        return user_id
+        return architect_id
 
-    def insert_headers(self, columns, col_numbers, target_numbers, user_id):
+    def insert_headers(self, columns, col_numbers, target_numbers, architect_id, header_row):
         try:
             subset_id = 1
-            old_subset = self.get_header_subset_max_id(user_id)
+            old_subset = self.get_header_subset_max_id(architect_id)
             if old_subset and old_subset[0]:
                 subset_id = old_subset[0] + 1
             col_len = len(columns)
             assert col_len == len(col_numbers)
             assert col_len == len(target_numbers)
             for i, column in enumerate(columns):
-                id = self.insert_one_header(column, col_numbers[i], target_numbers[i], user_id, subset_id)
+                id = self.insert_one_header(column, col_numbers[i], target_numbers[i], architect_id, subset_id, header_row)
                 if not id:
                     return None
         except(Exception, psycopg2.DatabaseError) as error:
@@ -61,9 +61,9 @@ class DBHelper():
             return None
         return subset_id
 
-    def get_all_user(self):
+    def get_all_architect(self):
         try:
-            sql = f"SELECT * FROM users ORDER BY id"
+            sql = f"SELECT * FROM architects ORDER BY id"
             self.cur.execute(sql)
             rows = self.cur.fetchall()
             return rows
@@ -73,9 +73,9 @@ class DBHelper():
             self.connect()
             return None
 
-    def get_user_by_name(self, name):
+    def get_architect_by_name(self, name):
         try:
-            sql = f"SELECT * FROM users WHERE name='{name}'"
+            sql = f"SELECT * FROM architects WHERE name='{name}'"
             self.cur.execute(sql)
             row = self.cur.fetchone()
             return row
@@ -85,9 +85,9 @@ class DBHelper():
             self.connect()
             return None
 
-    def get_headers_subset_ids(self, user_id):
+    def get_headers_subset_ids(self, architect_id):
         try:
-            sql = f'SELECT subset_id FROM headers WHERE user_id={user_id} GROUP BY subset_id'
+            sql = f'SELECT subset_id FROM headers WHERE architect_id={architect_id} GROUP BY subset_id'
             self.cur.execute(sql)
             rows = self.cur.fetchall()
             return rows
@@ -98,9 +98,9 @@ class DBHelper():
             return None
 
 
-    def get_headers_by_user_subset_id(self, user_id, subset_id):
+    def get_headers_by_architect_subset_id(self, architect_id, subset_id):
         try:
-            sql = f"SELECT * FROM headers WHERE user_id='{user_id}' AND subset_id='{subset_id}'"
+            sql = f"SELECT * FROM headers WHERE architect_id='{architect_id}' AND subset_id='{subset_id}'"
             self.cur.execute(sql)
             rows = self.cur.fetchall()
             return rows
@@ -110,9 +110,9 @@ class DBHelper():
             self.connect()
             return None
 
-    def get_headers_by_user(self, user_id):
+    def get_headers_by_architect(self, architect_id):
         try:
-            sql = f"SELECT * FROM headers WHERE user_id='{user_id}'"
+            sql = f"SELECT * FROM headers WHERE architect_id='{architect_id}'"
             self.cur.execute(sql)
             rows = self.cur.fetchall()
             return rows
@@ -122,9 +122,9 @@ class DBHelper():
             self.connect()
             return None
 
-    def get_header_subset_max_id(self, user_id):
+    def get_header_subset_max_id(self, architect_id):
         try:
-            sql = f'SELECT MAX(subset_id) FROM headers WHERE user_id={user_id}'
+            sql = f'SELECT MAX(subset_id) FROM headers WHERE architect_id={architect_id}'
             self.cur.execute(sql)
             row = self.cur.fetchone()
             return row
@@ -135,10 +135,10 @@ class DBHelper():
             return None
 
 
-    def insert_one_header(self, header, col_number, target_number, user_id, subset_id):
-        sql = """INSERT INTO headers(text, column_num, target_num, user_id, subset_id) VALUES(%s,%s,%s,%s,%s) RETURNING id;"""
+    def insert_one_header(self, header, col_number, target_number, architect_id, subset_id, header_row):
+        sql = """INSERT INTO headers(text, column_num, target_num, architect_id, subset_id, header_row) VALUES(%s,%s,%s,%s,%s, %s) RETURNING id;"""
         try:
-            self.cur.execute(sql, (header, col_number, target_number, user_id, subset_id,))
+            self.cur.execute(sql, (header, col_number, target_number, architect_id, subset_id, header_row,))
             header_id = self.cur.fetchone()[0]
             self.conn.commit()
         except(Exception, psycopg2.DatabaseError) as error:

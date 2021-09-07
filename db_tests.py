@@ -170,97 +170,97 @@ def insert_sentence_label_test():
 
 def insert_one_header_test():
     header = get_random_string(15)
-    username = get_random_string(15)
-    user_id = db.insert_user(username)
-    header_id = db.insert_one_header(header, 1, 3, user_id, 1)
+    architectname = get_random_string(15)
+    architect_id = db.insert_architect(architectname)
+    header_id = db.insert_one_header(header, 1, 3, architect_id, 1, 1)
     assert header_id > 0
 
 
 def get_header_subset_max_id_test():
-    username = get_random_string(15)
-    user_id = db.insert_user(username)
-    insert_headers_by_user_id(user_id)
-    insert_headers_by_user_id(user_id)
-    max_id = db.get_header_subset_max_id(user_id)
+    architectname = get_random_string(15)
+    architect_id = db.insert_architect(architectname)
+    insert_headers_by_architect_id(architect_id)
+    insert_headers_by_architect_id(architect_id)
+    max_id = db.get_header_subset_max_id(architect_id)
     assert max_id[0] >= 2
 
 
-def get_headers_by_user_test():
-    username = get_random_string(15)
-    user_id = db.insert_user(username)
-    insert_headers_by_user_id(user_id)
-    headers = db.get_headers_by_user(user_id)
+def get_headers_by_architect_test():
+    architectname = get_random_string(15)
+    architect_id = db.insert_architect(architectname)
+    insert_headers_by_architect_id(architect_id)
+    headers = db.get_headers_by_architect(architect_id)
     for i, header in enumerate(headers):
         assert header[1] == HEADERS[0][i]
 
 
-def get_headers_by_user_subset_id_test():
-    username = get_random_string(15)
-    user_id = db.insert_user(username)
-    insert_headers_by_user_id(user_id)
-    insert_headers_by_user_id(user_id)
-    headers = db.get_headers_by_user_subset_id(user_id, 2)
+def get_headers_by_architect_subset_id_test():
+    architectname = get_random_string(15)
+    architect_id = db.insert_architect(architectname)
+    insert_headers_by_architect_id(architect_id)
+    insert_headers_by_architect_id(architect_id)
+    headers = db.get_headers_by_architect_subset_id(architect_id, 2)
     for i, header in enumerate(headers):
         assert header[1] == HEADERS[0][i]
 
 
 def get_headers_subset_ids_test():
-    username = get_random_string(15)
-    user_id = db.insert_user(username)
-    insert_headers_by_user_id(user_id)
-    insert_headers_by_user_id(user_id)
-    subset_ids = db.get_headers_subset_ids(user_id)
+    architectname = get_random_string(15)
+    architect_id = db.insert_architect(architectname)
+    insert_headers_by_architect_id(architect_id)
+    insert_headers_by_architect_id(architect_id)
+    subset_ids = db.get_headers_subset_ids(architect_id)
     assert subset_ids == [(1,), (2,)]
 
 
-def get_user_by_name_test():
-    username = get_random_string(15)
-    user_id = db.insert_user(username)
-    row = db.get_user_by_name(username)
-    assert user_id > 0
-    assert row[1] == username
+def get_architect_by_name_test():
+    architectname = get_random_string(15)
+    architect_id = db.insert_architect(architectname)
+    row = db.get_architect_by_name(architectname)
+    assert architect_id > 0
+    assert row[1] == architectname
 
 
-def get_all_user_test():
-    username1 = get_random_string(15)
-    username2 = get_random_string(15)
-    db.insert_user(username1)
-    db.insert_user(username2)
-    users = db.get_all_user()
-    assert len(users) >= 2
+def get_all_architect_test():
+    architectname1 = get_random_string(15)
+    architectname2 = get_random_string(15)
+    db.insert_architect(architectname1)
+    db.insert_architect(architectname2)
+    architects = db.get_all_architect()
+    assert len(architects) >= 2
 
 
-def insert_user_test():
-    username = get_random_string(15)
-    user_id = db.insert_user(username)
-    assert user_id > 0
+def insert_architect_test():
+    architectname = get_random_string(15)
+    architect_id = db.insert_architect(architectname)
+    assert architect_id > 0
 
 
 def insert_headers_test():
     header = HEADERS[0]
     col_number = COL_NUMBERS[0]
     target_number = TARGET_NUMBERS[0]
-    username = get_random_string(15)
-    user_id = db.insert_user(username)
-    column_id = db.insert_headers(header, col_number, target_number, user_id)
+    architectname = get_random_string(15)
+    architect_id = db.insert_architect(architectname)
+    column_id = db.insert_headers(header, col_number, target_number, architect_id, 1)
     assert column_id == True
 
 
-def insert_headers_by_user_id(user_id):
+def insert_headers_by_architect_id(architect_id):
     header = HEADERS[0]
     col_number = COL_NUMBERS[0]
     target_number = TARGET_NUMBERS[0]
-    subset_id = db.insert_headers(header, col_number, target_number, user_id)
+    subset_id = db.insert_headers(header, col_number, target_number, architect_id, 1)
     assert subset_id >= 1
 
 
-def insert_headers_user_id_1_test():
+def insert_headers_architect_id_1_test():
     header = HEADERS[0]
     col_number = COL_NUMBERS[0]
     target_number = TARGET_NUMBERS[0]
-    username = get_random_string(15)
-    user_id = db.insert_user(username)
-    subset_id = db.insert_headers(header, col_number, target_number, user_id)
+    architectname = get_random_string(15)
+    architect_id = db.insert_architect(architectname)
+    subset_id = db.insert_headers(header, col_number, target_number, architect_id, 1)
     assert subset_id >= 1
 
 
@@ -353,19 +353,19 @@ insert_one_header_test()
 print("Test insert one header is OK")
 get_header_subset_max_id_test()
 print("Test get headers subset max id is OK")
-get_headers_by_user_test()
-print("Test get headers by user id is OK")
-get_headers_by_user_subset_id_test()
-print("Test get headers by user subset id is OK")
+get_headers_by_architect_test()
+print("Test get headers by architect id is OK")
+get_headers_by_architect_subset_id_test()
+print("Test get headers by architect subset id is OK")
 get_headers_subset_ids_test()
 print("Test get headers subset ids is OK")
-get_user_by_name_test()
-print("Test get user by name is OK")
-get_all_user_test()
-print("Test get all user is OK")
-insert_user_test()
-print("Test insert user is OK")
-insert_headers_user_id_1_test()
-print("Test insert headers user id=1 is OK'")
+get_architect_by_name_test()
+print("Test get architect by name is OK")
+get_all_architect_test()
+print("Test get all architect is OK")
+insert_architect_test()
+print("Test insert architect is OK")
+insert_headers_architect_id_1_test()
+print("Test insert headers architect id=1 is OK'")
 insert_headers_test()
 print("Test insert headers is OK'")

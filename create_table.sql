@@ -11,7 +11,7 @@ CREATE DATABASE train_excel
     TABLESPACE = pg_default
     CONNECTION LIMIT = -1;
 	
-CREATE TABLE public."users"
+CREATE TABLE public."architects"
 (
     id SERIAL NOT NULL,
     name character varying(64),
@@ -20,7 +20,7 @@ CREATE TABLE public."users"
 
 TABLESPACE pg_default;
 
-ALTER TABLE public."users"
+ALTER TABLE public."architects"
     OWNER to postgres;
 	
 CREATE TABLE public.headers
@@ -29,12 +29,13 @@ CREATE TABLE public.headers
     text character varying(512) NOT NULL,
     column_num integer NOT NULL,
     target_num integer NOT NULL,
-    user_id integer NOT NULL,
+    architect_id integer NOT NULL,
 	subset_id integer NOT NULL,
+	header_row integer NOT NULL,
     PRIMARY KEY (id),
 	CONSTRAINT fk_column
-   FOREIGN KEY(user_id) 
-   REFERENCES users(id)
+   FOREIGN KEY(architect_id) 
+   REFERENCES architects(id)
 )
 
 TABLESPACE pg_default;

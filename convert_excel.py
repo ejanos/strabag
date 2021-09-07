@@ -206,6 +206,38 @@ class ConvertExcel:
         cwd = os.getcwd()
         return cwd, EXPORT_FILENAME
 
+    def process_more_row(self, content_col, source_rows, file, no_category_id):
+        self.load_categories()
+        self.load_token_labels()
+        #df_target = pd.read_csv("./data/ITWO_sablon3.csv", dtype=str)
+        df = pd.read_excel(file, header=0, sheet_name=0, engine='openpyxl')
+
+        target_categories = []
+
+        for row in source_rows:
+            txt = df.iloc[row: row + 1, content_col]
+            if txt and not pd.isna(txt):
+                # TODO felhasználni cat_prob valószínűségi értéket a blokkok értelmezéséhez
+                # TODO plusz a tokenek értékét is erre lehet felhasználni
+                # TODO token probability-t is fel lehet használni erre !!!
+                category, cat_prob, tokens, token_prob = self.model.predict(txt)
+                token_category = self.convert_token_label2category(tokens[0])
+
+                if category[0] == no_category_id and not self.there_is_no_token(token_category):
+                    categories = self.select_valid_categories(token_category)
+                    if len(categories) == 1:
+                        cat_name = self.category_by_index[categories[0]]
+                        target_categories.append(cat_name)
+                    else:
+                        cat = self.select_max_prob_categories(token_category, token_prob)
+                        cat_name = self.category_by_index[cat]
+                        target_categories.append(cat_name)
+                elif category and category[0] in self.category_by_index:
+                    cat_name = self.category_by_index[category[0]]
+                    target_categories.append(cat_name)
+                else:
+                    target_categories.append("00.00.")  # nincs kategória, vagy nem besorolható
+        return target_categories
 
     def process_more_files(self, source_rows, source_cols, target_rows, target_cols, files):
         self.load_categories()

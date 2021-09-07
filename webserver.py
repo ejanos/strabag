@@ -37,11 +37,12 @@ def compare():
     if request.method == 'POST':
         form = request.form
         texts = json.loads(form['texts'])
-        target_columns, target_targets, user_id, subset_id = process_columns.compare(texts)
+        target_columns, target_targets, architect_id, subset_id, header_rows = process_columns.compare(texts)
         return {"target_columns": target_columns,
                 "target_targets": target_targets,
-                "user_id": user_id,
-                "subset_id": subset_id}
+                "architect_id": architect_id,
+                "subset_id": subset_id,
+                "header_rows": header_rows}
 
 @app.route("/save/columns", methods=['POST'])
 # TODO make it async
@@ -52,18 +53,19 @@ def save_columns():
         texts = json.loads(form['texts'])
         columns = json.loads(form['columns'])
         targets = json.loads(form['targets'])
+        header_row = json.loads(form['header_row'])
         ic(texts, columns, targets)
-        user_id = form['user_id']
-        result = db.insert_headers(texts, columns, targets, user_id, actual_row)
+        architect_id = form['architect_id']
+        result = db.insert_headers(texts, columns, targets, architect_id, header_row)
         return return_response(result)  # subset_id
 
-@app.route("/save/user", methods=['POST'])
+@app.route("/save/architect", methods=['POST'])
 # TODO make it async
-def save_user():
+def save_architect():
     if request.method == 'POST':
         form = request.form
         name = form['name']
-        result = db.insert_user(name)
+        result = db.insert_architect(name)
         return return_response(result)
 
 @app.route("/save/category", methods=['POST'])
@@ -172,6 +174,26 @@ def convert_mi():
 
     return "invalid method"
 
+@app.route("/predict", methods=['POST'])
+# TODO make it async
+def predict_more_row():
+    if request.method == 'POST':
+        form = request.form
+        content_col = json.loads(form['content_col'])
+        source_rows = json.loads(form['source_rows'])
+        no_category_id = json.loads(form['no_category_id'])
+        f = request.files['file']
+        filename = f.filename
+        cwd = os.getcwd()
+        file_path = os.path.join(cwd, CACHE, filename)
+        f.save(file_path)
+
+        target_categories = conv.process_more_row(
+            content_col, source_rows, file_path, no_category_id)
+
+        return target_categories
+    return "invalid method"
+
 @app.route("/start/training", methods=['GET'])
 # TODO make it async
 def start_training():
@@ -197,7 +219,7 @@ def get_convert_data():
 
 def return_response(result):
     if result:
-        return "ok"
+        return result
     else:
         return "Database error!"
 
