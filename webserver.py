@@ -38,11 +38,11 @@ def compare():
         form = request.form
         texts = json.loads(form['texts'])
         target_columns, target_targets, architect_id, subset_id, header_rows = process_columns.compare(texts)
-        return {"target_columns": target_columns,
+        return jsonify({"target_columns": target_columns,
                 "target_targets": target_targets,
                 "architect_id": architect_id,
                 "subset_id": subset_id,
-                "header_rows": header_rows}
+                "header_rows": header_rows})
 
 @app.route("/save/columns", methods=['POST'])
 # TODO make it async
@@ -66,6 +66,32 @@ def save_architect():
         form = request.form
         name = form['name']
         result = db.insert_architect(name)
+        return return_response(result)
+
+@app.route("/update/architect", methods=['POST'])
+# TODO make it async
+def update_architect():
+    if request.method == 'POST':
+        form = request.form
+        id = form['id']
+        name = form['name']
+        active = form['active']
+        result = db.update_architect(id, name, active)
+        return return_response(result)
+
+
+@app.route("/read/all/architect", methods=['GET'])
+# TODO make it async
+def get_all_architect():
+    if request.method == 'GET':
+        form = request.form
+        architects = db.get_all_architect()
+        result = dict()
+        for row in architects:
+            result[row[0]] = {"name": row[1],
+                "created_date": row[2],
+                "modified_date": row[3],
+                "active": row[4]}
         return return_response(result)
 
 @app.route("/save/category", methods=['POST'])
@@ -219,7 +245,7 @@ def get_convert_data():
 
 def return_response(result):
     if result:
-        return result
+        return jsonify(result)
     else:
         return "Database error!"
 

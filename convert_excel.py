@@ -209,7 +209,6 @@ class ConvertExcel:
     def process_more_row(self, content_col, source_rows, file, no_category_id):
         self.load_categories()
         self.load_token_labels()
-        #df_target = pd.read_csv("./data/ITWO_sablon3.csv", dtype=str)
         df = pd.read_excel(file, header=0, sheet_name=0, engine='openpyxl')
 
         target_categories = []

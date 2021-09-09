@@ -41,6 +41,19 @@ class DBHelper():
             return None
         return architect_id
 
+    def update_architect(self, id, name, active):
+        sql = """UPDATE architects SET "name" = %s, modified_date = CURRENT_DATE, active = %s WHERE id = %s RETURNING id;"""
+        try:
+            self.cur.execute(sql, (name, active, id,))
+            architect_id = self.cur.fetchone()[0]
+            self.conn.commit()
+        except(Exception, psycopg2.DatabaseError) as error:
+            print(error)
+            self.conn.close()
+            self.connect()
+            return None
+        return architect_id
+
     def insert_headers(self, columns, col_numbers, target_numbers, architect_id, header_row):
         try:
             subset_id = 1
