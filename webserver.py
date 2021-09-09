@@ -3,8 +3,7 @@ from convert_excel import ConvertExcel
 import aiofiles
 import requests
 from flask import Flask, request, jsonify, send_from_directory
-from flask.json import JSONEncoder
-from datetime import date
+import datetime as dt
 import os
 import yaml
 from db_helper import DBHelper
@@ -13,26 +12,13 @@ from process_columns import ProcessColumns
 import json
 from types import SimpleNamespace
 import icecream as ic
+from custom_json_encoder import CustomJSONEncoder
 
 ic = ic.IceCreamDebugger()
 #ic.disable()
 
 CACHE = "cache"
 BUFFER = 50_000
-
-
-
-class CustomJSONEncoder(JSONEncoder):
-    def default(self, obj):
-        try:
-            if isinstance(obj, date):
-                return obj.isoformat()
-            iterable = iter(obj)
-        except TypeError:
-            pass
-        else:
-            return list(iterable)
-        return JSONEncoder.default(self, obj)
 
 if not os.path.isdir(CACHE):
     os.mkdir(CACHE)
