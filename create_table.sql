@@ -14,7 +14,10 @@ CREATE DATABASE train_excel
 CREATE TABLE public."architects"
 (
     id SERIAL NOT NULL,
-    name character varying(64),
+    name character varying(64) NOT NULL,
+    created_date date DEFAULT CURRENT_DATE,
+    modified_date date DEFAULT CURRENT_DATE,
+    active boolean DEFAULT true,
     PRIMARY KEY (id)
 )
 

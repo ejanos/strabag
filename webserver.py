@@ -68,6 +68,18 @@ def save_architect():
         result = db.insert_architect(name)
         return return_response(result)
 
+@app.route("/update/architect", methods=['POST'])
+# TODO make it async
+def update_architect():
+    if request.method == 'POST':
+        form = request.form
+        id = form['id']
+        name = form['name']
+        active = form['active']
+        result = db.update_architect(id, name, active)
+        return return_response(result)
+
+
 @app.route("/read/all/architect", methods=['GET'])
 # TODO make it async
 def get_all_architect():
@@ -76,7 +88,10 @@ def get_all_architect():
         architects = db.get_all_architect()
         result = dict()
         for row in architects:
-            result[row[0]] = row[1]
+            result[row[0]] = {"name": row[1],
+                "created_date": row[2],
+                "modified_date": row[3],
+                "active": row[4]}
         return return_response(result)
 
 @app.route("/save/category", methods=['POST'])
