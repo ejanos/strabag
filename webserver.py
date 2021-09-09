@@ -3,6 +3,8 @@ from convert_excel import ConvertExcel
 import aiofiles
 import requests
 from flask import Flask, request, jsonify, send_from_directory
+from flask.json import JSONEncoder
+from datetime import date
 import os
 import yaml
 from db_helper import DBHelper
@@ -18,12 +20,27 @@ ic = ic.IceCreamDebugger()
 CACHE = "cache"
 BUFFER = 50_000
 
+
+
+class CustomJSONEncoder(JSONEncoder):
+    def default(self, obj):
+        try:
+            if isinstance(obj, date):
+                return obj.isoformat()
+            iterable = iter(obj)
+        except TypeError:
+            pass
+        else:
+            return list(iterable)
+        return JSONEncoder.default(self, obj)
+
 if not os.path.isdir(CACHE):
     os.mkdir(CACHE)
 
 Vector = List[int]
 
 app = Flask(__name__)
+app.json_encoder = CustomJSONEncoder
 app.config['UPLOAD_FOLDER'] = CACHE
 
 conv = ConvertExcel()
