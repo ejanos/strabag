@@ -8,24 +8,32 @@ ic.disable()
 class DBHelper():
     conn = ""
     cur = ""
+    password = ""
 
     def __init__(self, test=False):
         self.test = test
         self.connect()
 
+    def get_password(self):
+        with open("./password.txt", 'r', encoding='utf-8') as f:
+            self.password = f.read()
+
     def connect(self):
+        if not self.password:
+            self.get_password()
+
         if self.test:
             self.conn = psycopg2.connect(
                 host="localhost",
                 database="train_excel_test",
                 user="postgres",
-                password="@JbhNA;g.qW3S-8H")
+                password=self.password)
         else:
             self.conn = psycopg2.connect(
                 host="localhost",
                 database="train_excel",
                 user="postgres",
-                password="@JbhNA;g.qW3S-8H")
+                password=self.password)
         self.cur = self.conn.cursor()
 
     def insert_architect(self, name):
