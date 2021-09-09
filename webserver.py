@@ -38,11 +38,11 @@ def compare():
         form = request.form
         texts = json.loads(form['texts'])
         target_columns, target_targets, architect_id, subset_id, header_rows = process_columns.compare(texts)
-        return {"target_columns": target_columns,
+        return jsonify({"target_columns": target_columns,
                 "target_targets": target_targets,
                 "architect_id": architect_id,
                 "subset_id": subset_id,
-                "header_rows": header_rows}
+                "header_rows": header_rows})
 
 @app.route("/save/columns", methods=['POST'])
 # TODO make it async
@@ -219,7 +219,7 @@ def get_convert_data():
 
 def return_response(result):
     if result:
-        return result
+        return jsonify(result)
     else:
         return "Database error!"
 
