@@ -18,3 +18,15 @@
 /__pycache__/helpers.cpython-38.pyc
 /__pycache__/hubert_model.cpython-38.pyc
 /model_bert/best/pytorch_model.bin
+
+/venv/
+/__pycache__/
+db_helper.py
+/hubert_wiki_lower/config.json
+/hubert_wiki_lower/vocab.txt
+/model_bert/best/config.json
+/model_bert/best/vocab.txt
+/hubert_wiki_lower/config.json
+/requirements.txt
+/db_helper.py
+/.vscode/settings.json
