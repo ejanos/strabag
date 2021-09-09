@@ -3,6 +3,7 @@ from convert_excel import ConvertExcel
 import aiofiles
 import requests
 from flask import Flask, request, jsonify, send_from_directory
+import datetime as dt
 import os
 import yaml
 from db_helper import DBHelper
@@ -11,6 +12,7 @@ from process_columns import ProcessColumns
 import json
 from types import SimpleNamespace
 import icecream as ic
+from custom_json_encoder import CustomJSONEncoder
 
 ic = ic.IceCreamDebugger()
 #ic.disable()
@@ -24,6 +26,7 @@ if not os.path.isdir(CACHE):
 Vector = List[int]
 
 app = Flask(__name__)
+app.json_encoder = CustomJSONEncoder
 app.config['UPLOAD_FOLDER'] = CACHE
 
 conv = ConvertExcel()
