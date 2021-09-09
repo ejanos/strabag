@@ -89,14 +89,14 @@ def get_all_architect():
     if request.method == 'GET':
         form = request.form
         architects = db.get_all_architect()
-        result = dict()
+        result = []
         for row in architects:
-            result[row[0]] = {
+             result.append({
                 "id": row[0],
                 "name": row[1],
                 "created_date": row[2],
                 "modified_date": row[3],
-                "active": row[4]}
+                "active": row[4]})
         return return_response(result)
 
 @app.route("/save/category", methods=['POST'])
