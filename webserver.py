@@ -109,6 +109,32 @@ def save_category():
         result = db.insert_sentence_label(name, ordinal)
         return return_response(result)
 
+@app.route("/update/category", methods=['POST'])
+# TODO make it async
+def update_category():
+    if request.method == 'POST':
+        form = request.form
+        id = form['id']
+        name = form['name']
+        ordinal = form['ordinal']
+        result = db.update_sentence_label(name, ordinal, id)
+        return return_response(result)
+
+@app.route("/read/all/category", methods=['GET'])
+# TODO make it async
+def read_all_category():
+    if request.method == 'GET':
+        form = request.form
+        categories = db.get_all_category()
+        result = []
+        for row in categories:
+            result.append({
+                "id": row[0],
+                "category": row[1],
+                "ordinal": row[2]
+            })
+        return return_response(result)
+
 @app.route("/save/tokenlabel", methods=['POST'])
 # TODO make it async
 def save_token_label():
@@ -117,6 +143,17 @@ def save_token_label():
         name = form['name']
         category_id = form['category_id']
         result = db.insert_token_label(name, category_id)
+        return return_response(result)
+
+@app.route("/update/tokenlabel", methods=['POST'])
+# TODO make it async
+def update_tokenlabel():
+    if request.method == 'POST':
+        form = request.form
+        id = form['id']
+        name = form['name']
+        category_id = form['category_id']
+        result = db.update_token_label(name, category_id, id)
         return return_response(result)
 
 @app.route("/save/trainingdata", methods=['POST'])
