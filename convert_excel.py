@@ -27,7 +27,6 @@ class TopLevelCategory:
         self.name = name
 
 class ConvertExcel:
-    db = DBHelper()
     model = HubertModel()
     token_labels = dict()
     test = False
@@ -85,7 +84,8 @@ class ConvertExcel:
     def load_categories(self):
         if self.test:
             return
-        rows = self.db.get_all_categories()
+        with DBHelper() as db:
+            rows = db.get_all_categories()
         cat_content = dict()
         cat_text = dict()
         for row in rows:
@@ -112,7 +112,8 @@ class ConvertExcel:
     def load_token_labels(self):
         if self.token_labels:
             self.token_labels.clear()
-        rows = self.db.get_all_token_label()
+        with DBHelper() as db:
+            rows = db.get_all_token_label()
         for row in rows:
             self.token_labels[row[0]] = row[2]
 
