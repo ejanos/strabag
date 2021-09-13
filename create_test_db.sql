@@ -53,6 +53,8 @@ CREATE TABLE public.sentence_label
     id SERIAL NOT NULL,
     category character varying(128) NOT NULL,
     ordinal character varying(16) NOT NULL UNIQUE,
+    created_date date DEFAULT CURRENT_DATE,
+    modified_date date DEFAULT CURRENT_DATE,
     PRIMARY KEY (id)
 )
 
@@ -68,6 +70,8 @@ CREATE TABLE public.token_label
     id SERIAL NOT NULL,
     name character varying(128) NOT NULL,
     category_id integer,
+    created_date date DEFAULT CURRENT_DATE,
+    modified_date date DEFAULT CURRENT_DATE,
     PRIMARY KEY (id),
     CONSTRAINT fk_token_label
    FOREIGN KEY(category_id) 

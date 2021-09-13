@@ -3,6 +3,7 @@ import psycopg2
 import icecream as ic
 import random
 import string
+from datetime import date
 
 ic = ic.IceCreamDebugger()
 # ic.disable()
@@ -134,6 +135,22 @@ def insert_token_label_test():
     token_label_id = db.insert_token_label(token_label, category_id)
     assert token_label_id > 0
 
+def update_token_label_test():
+    sen_label = get_random_string(15)
+    token_label = get_random_string(15)
+    category = get_random_string(15)
+    category_id = db.insert_sentence_label(category, sen_label)
+    token_label_id = db.insert_token_label(token_label, category_id)
+    updated_token_label_id = db.update_token_label("akarmi", category_id, token_label_id)
+    assert token_label_id == updated_token_label_id
+    row = db.get_token_label(updated_token_label_id)
+    assert row[0] == updated_token_label_id
+    assert row[1] == "akarmi"
+    assert row[2] == category_id
+    assert row[3] == date.today()
+    assert row[4] == date.today()
+
+
 
 def insert_sentences_test():
     for key, sentence_label in ORDINAL.items():
@@ -162,11 +179,17 @@ def generate_token_labels(token_labels_len):
         token_labels.append(token_list)
     return token_labels
 
-
 def insert_sentence_label_test():
     category_id = db.insert_sentence_label(CATEGORY[0], ORDINAL[0])
     assert category_id >= 1
 
+def update_sentence_label_test():
+    category_id = db.insert_sentence_label(CATEGORY[0], ORDINAL[0])
+    updated_id = db.update_sentence_label("akarmi", "09.09.", category_id)
+    assert category_id == updated_id
+    sentence_label_row = db.get_sentence_label(updated_id)
+    assert sentence_label_row[1] == "akarmi"
+    assert sentence_label_row[2] == "09.09."
 
 def insert_one_header_test():
     header = get_random_string(15)
@@ -220,6 +243,15 @@ def get_architect_by_name_test():
     assert architect_id > 0
     assert row[1] == architectname
 
+def get_architect_by_id_test():
+    architectname = get_random_string(15)
+    architect_id = db.insert_architect(architectname)
+    row = db.get_architect_by_id(architect_id)
+    assert row[0] == architect_id
+    assert row[1] == architectname
+    assert row[2] == date.today()
+    assert row[3] == date.today()
+    assert row[4]
 
 def get_all_architect_test():
     architectname1 = get_random_string(15)
@@ -235,6 +267,14 @@ def insert_architect_test():
     architect_id = db.insert_architect(architectname)
     assert architect_id > 0
 
+def update_architect_test():
+    architectname = get_random_string(15)
+    architect_id = db.insert_architect(architectname)
+    architectname = get_random_string(15)
+    architect_updated_id = db.update_architect(architect_id, architectname, True)
+    assert architect_id == architect_updated_id
+    row = db.get_architect_by_id(architect_id)
+    assert row[1] == architectname
 
 def insert_headers_test():
     header = HEADERS[0]
@@ -281,10 +321,11 @@ def get_next_sentence_test():
     if not row:
         insert_sentences()
     count = 0
-    for row in db.get_next_sentence() :
+    for row in db.__get_next_sentence__():
         if not row:
             break
         count += 1
+    db.close_connection()
     assert count == 4
 
 def get_sentence_test():
@@ -307,7 +348,12 @@ def get_token_label_test():
     category_id = db.insert_sentence_label(category, ordinal)
     name = get_random_string(15)
     token_id = db.insert_token_label(name, category_id)
-    assert token_id > 0
+    row = db.get_token_label(token_id)
+    assert row[0] == token_id
+    assert row[1] == name
+    assert row[2] == category_id
+    assert row[3] == date.today()
+    assert row[4] == date.today()
 
 def get_all_token_label_test():
     rows1 = db.get_all_token_label()
@@ -327,6 +373,16 @@ def get_random_ordinal():
 
 
 initialize()
+get_architect_by_id_test()
+print("Test get architect by id test")
+update_token_label_test()
+print("Test update token label test is OK!")
+get_architect_by_name_test()
+print("Test get architect by name is OK")
+update_sentence_label_test()
+print("Test update sentence label test is OK!")
+update_architect_test()
+print("Test update architect is OK!")
 get_all_token_label_test()
 print("Test get all token label test is OK!")
 get_token_label_test()
@@ -359,8 +415,6 @@ get_headers_by_architect_subset_id_test()
 print("Test get headers by architect subset id is OK")
 get_headers_subset_ids_test()
 print("Test get headers subset ids is OK")
-get_architect_by_name_test()
-print("Test get architect by name is OK")
 get_all_architect_test()
 print("Test get all architect is OK")
 insert_architect_test()

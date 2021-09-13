@@ -12,7 +12,6 @@ class DBHelper():
 
     def __init__(self, test=False):
         self.test = test
-        self.connect()
 
     def get_password(self):
         with open("./password.txt", 'r', encoding='utf-8') as f:
@@ -21,22 +20,27 @@ class DBHelper():
     def connect(self):
         if not self.password:
             self.get_password()
+        if not self.cur:
+            if self.test:
+                self.conn = psycopg2.connect(
+                    host="localhost",
+                    database="train_excel_test",
+                    user="postgres",
+                    password=self.password)
+            else:
+                self.conn = psycopg2.connect(
+                    host="localhost",
+                    database="train_excel",
+                    user="postgres",
+                    password=self.password)
+            self.cur = self.conn.cursor()
 
-        if self.test:
-            self.conn = psycopg2.connect(
-                host="localhost",
-                database="train_excel_test",
-                user="postgres",
-                password=self.password)
-        else:
-            self.conn = psycopg2.connect(
-                host="localhost",
-                database="train_excel",
-                user="postgres",
-                password=self.password)
-        self.cur = self.conn.cursor()
+    def close_connection(self):
+        self.conn.close()
+        self.cur = None
 
     def insert_architect(self, name):
+        self.connect()
         sql = """INSERT INTO architects("name") VALUES(%s) RETURNING id;"""
         try:
             self.cur.execute(sql, (name,))
@@ -44,12 +48,13 @@ class DBHelper():
             self.conn.commit()
         except(Exception, psycopg2.DatabaseError) as error:
             print(error)
-            self.conn.close()
-            self.connect()
+            self.close_connection()
             return None
+        self.close_connection()
         return architect_id
 
     def update_architect(self, id, name, active):
+        self.connect()
         sql = """UPDATE architects SET "name" = %s, modified_date = CURRENT_DATE, active = %s WHERE id = %s RETURNING id;"""
         try:
             self.cur.execute(sql, (name, active, id,))
@@ -57,12 +62,13 @@ class DBHelper():
             self.conn.commit()
         except(Exception, psycopg2.DatabaseError) as error:
             print(error)
-            self.conn.close()
-            self.connect()
+            self.close_connection()
             return None
+        self.close_connection()
         return architect_id
 
     def insert_headers(self, columns, col_numbers, target_numbers, architect_id, header_row):
+        self.connect()
         try:
             subset_id = 1
             old_subset = self.get_header_subset_max_id(architect_id)
@@ -74,89 +80,123 @@ class DBHelper():
             for i, column in enumerate(columns):
                 id = self.insert_one_header(column, col_numbers[i], target_numbers[i], architect_id, subset_id, header_row)
                 if not id:
+                    self.close_connection()
                     return None
         except(Exception, psycopg2.DatabaseError) as error:
             print(error)
-            self.conn.close()
-            self.connect()
+            self.close_connection()
             return None
+        self.close_connection()
         return subset_id
 
     def get_all_architect(self):
+        self.connect()
         try:
             sql = f"SELECT * FROM architects ORDER BY id"
             self.cur.execute(sql)
             rows = self.cur.fetchall()
+            self.close_connection()
             return rows
         except(Exception, psycopg2.DatabaseError) as error:
             print(error)
-            self.conn.close()
-            self.connect()
+            self.close_connection()
             return None
 
     def get_architect_by_name(self, name):
+        self.connect()
         try:
             sql = f"SELECT * FROM architects WHERE name='{name}'"
             self.cur.execute(sql)
             row = self.cur.fetchone()
+            self.close_connection()
             return row
         except(Exception, psycopg2.DatabaseError) as error:
             print(error)
-            self.conn.close()
-            self.connect()
+            self.close_connection()
+            return None
+
+    def get_architect_by_id(self, id):
+        self.connect()
+        try:
+            sql = f"SELECT * FROM architects WHERE id='{id}'"
+            self.cur.execute(sql)
+            row = self.cur.fetchone()
+            self.close_connection()
+            return row
+        except(Exception, psycopg2.DatabaseError) as error:
+            print(error)
+            self.close_connection()
+            return None
+
+    def get_all_category(self):
+        self.connect()
+        try:
+            sql = f"SELECT * FROM sentence_label ORDER BY id"
+            self.cur.execute(sql)
+            rows = self.cur.fetchall()
+            self.close_connection()
+            return rows
+        except(Exception, psycopg2.DatabaseError) as error:
+            print(error)
+            self.close_connection()
             return None
 
     def get_headers_subset_ids(self, architect_id):
+        self.connect()
         try:
             sql = f'SELECT subset_id FROM headers WHERE architect_id={architect_id} GROUP BY subset_id'
             self.cur.execute(sql)
             rows = self.cur.fetchall()
+            self.close_connection()
             return rows
         except(Exception, psycopg2.DatabaseError) as error:
             print(error)
-            self.conn.close()
-            self.connect()
+            self.close_connection()
             return None
 
 
     def get_headers_by_architect_subset_id(self, architect_id, subset_id):
+        self.connect()
         try:
             sql = f"SELECT * FROM headers WHERE architect_id='{architect_id}' AND subset_id='{subset_id}'"
             self.cur.execute(sql)
             rows = self.cur.fetchall()
+            self.close_connection()
             return rows
         except(Exception, psycopg2.DatabaseError) as error:
             print(error)
-            self.conn.close()
-            self.connect()
+            self.close_connection()
             return None
 
     def get_headers_by_architect(self, architect_id):
+        self.connect()
         try:
             sql = f"SELECT * FROM headers WHERE architect_id='{architect_id}'"
             self.cur.execute(sql)
             rows = self.cur.fetchall()
+            self.close_connection()
             return rows
         except(Exception, psycopg2.DatabaseError) as error:
             print(error)
-            self.conn.close()
-            self.connect()
+            self.close_connection()
             return None
 
     def get_header_subset_max_id(self, architect_id):
+        self.connect()
         try:
             sql = f'SELECT MAX(subset_id) FROM headers WHERE architect_id={architect_id}'
             self.cur.execute(sql)
             row = self.cur.fetchone()
+            self.close_connection()
             return row
         except(Exception, psycopg2.DatabaseError) as error:
             print(error)
-            self.conn.close()
-            self.connect()
+            self.close_connection()
             return None
 
 
     def insert_one_header(self, header, col_number, target_number, architect_id, subset_id, header_row):
+        self.connect()
         sql = """INSERT INTO headers(text, column_num, target_num, architect_id, subset_id, header_row) VALUES(%s,%s,%s,%s,%s, %s) RETURNING id;"""
         try:
             self.cur.execute(sql, (header, col_number, target_number, architect_id, subset_id, header_row,))
@@ -164,12 +204,13 @@ class DBHelper():
             self.conn.commit()
         except(Exception, psycopg2.DatabaseError) as error:
             print(error)
-            self.conn.close()
-            self.connect()
+            self.close_connection()
             return None
+        self.close_connection()
         return header_id
 
     def insert_sentence_label(self, name, ordinal):
+        self.connect()
         sql = """INSERT INTO sentence_label(category, ordinal) VALUES(%s,%s) RETURNING id;"""
         try:
             self.cur.execute(sql, (name,ordinal,))
@@ -177,12 +218,27 @@ class DBHelper():
             self.conn.commit()
         except(Exception, psycopg2.DatabaseError) as error:
             print(error)
-            self.conn.close()
-            self.connect()
+            self.close_connection()
             return None
+        self.close_connection()
+        return category_id
+
+    def update_sentence_label(self, category, ordinal, id):
+        self.connect()
+        sql = """UPDATE sentence_label SET category = %s, ordinal = %s, modified_date = CURRENT_DATE WHERE id = %s RETURNING id;"""
+        try:
+            self.cur.execute(sql, (category, ordinal, id,))
+            category_id = self.cur.fetchone()[0]
+            self.conn.commit()
+        except(Exception, psycopg2.DatabaseError) as error:
+            print(error)
+            self.close_connection()
+            return None
+        self.close_connection()
         return category_id
 
     def insert_sentences(self, data):
+        self.connect()
         # data: első oszlop kategória azonosító, második oszlop szöveg, 3. oszlop list of token_labels
         # TODO token_labels -t is be kell szúrni!!!
         sql = """INSERT INTO sentence(text, label, token_labels) VALUES(%s,%s,%s) RETURNING id;"""
@@ -191,21 +247,23 @@ class DBHelper():
         token_labels = data[2]
         try:
             for i, ordinal in enumerate(ordinals):
-                id, category, ordinal = self.get_sentence_label_by_ordinal(ordinal)
+                id, category, ordinal = self.get_sentence_label_by_ordinal(ordinal, stay_open=True)
                 if id:
                     self.cur.execute(sql, (texts[i], id, token_labels[i], ))
                     sentence_id = self.cur.fetchone()[0]
                     self.conn.commit()
                 else:
+                    self.close_connection()
                     return None
         except(Exception, psycopg2.DatabaseError) as error:
             print(error)
-            self.conn.close()
-            self.connect()
+            self.close_connection()
             return None
+        self.close_connection()
         return sentence_id
 
     def insert_token_label(self, name, category_id):
+        self.connect()
         sql = """INSERT INTO token_label("name", category_id) VALUES(%s,%s) RETURNING id;"""
         try:
             self.cur.execute(sql, (name, category_id,))
@@ -213,62 +271,83 @@ class DBHelper():
             self.conn.commit()
         except(Exception, psycopg2.DatabaseError) as error:
             print(error)
-            self.conn.close()
-            self.connect()
+            self.close_connection()
             return None
+        self.close_connection()
+        return token_label_id
+
+    def update_token_label(self, name, category_id, id):
+        self.connect()
+        sql = """UPDATE token_label SET "name" = %s, category_id = %s, modified_date = CURRENT_DATE WHERE id = %s RETURNING id;"""
+        try:
+            self.cur.execute(sql, (name, category_id, id,))
+            token_label_id = self.cur.fetchone()[0]
+            self.conn.commit()
+        except(Exception, psycopg2.DatabaseError) as error:
+            print(error)
+            self.close_connection()
+            return None
+        self.close_connection()
         return token_label_id
 
     def get_all_categories(self):
+        self.connect()
         try:
             sql = f"SELECT * FROM sentence_label ORDER BY ordinal"
             self.cur.execute(sql)
             rows = self.cur.fetchall()
         except(Exception, psycopg2.DatabaseError) as error:
             print(error)
-            self.conn.close()
-            self.connect()
+            self.close_connection()
             return None
+        self.close_connection()
         return rows
 
     def get_all_sentence_id(self):
+        self.connect()
         try:
             sql = f"SELECT id FROM sentence"
             self.cur.execute(sql)
             rows = self.cur.fetchall()
         except(Exception, psycopg2.DatabaseError) as error:
             print(error)
-            self.conn.close()
-            self.connect()
+            self.close_connection()
             return None
+        self.close_connection()
         return rows
 
 
     def get_all_token_labels(self):
+        self.connect()
         try:
             sql = f"SELECT * FROM token_label"
             self.cur.execute(sql)
             rows = self.cur.fetchall()
         except(Exception, psycopg2.DatabaseError) as error:
             print(error)
-            self.conn.close()
-            self.connect()
+            self.close_connection()
             return None
+        self.close_connection()
         return rows
 
 
-    def get_sentence_label_by_ordinal(self, ordinal):
+    def get_sentence_label_by_ordinal(self, ordinal, stay_open=False):
+        self.connect()
         try:
-            sql = f"SELECT * FROM sentence_label WHERE ordinal='{ordinal}'"
+            sql = f"SELECT id, category, ordinal FROM sentence_label WHERE ordinal='{ordinal}'"
             self.cur.execute(sql)
             row = self.cur.fetchone()
+            if not stay_open:
+                self.close_connection()
             return row
         except(Exception, psycopg2.DatabaseError) as error:
             print(error)
-            self.conn.close()
-            self.connect()
+            self.close_connection()
             return None
 
-    def get_next_sentence(self):
+    def __get_next_sentence__(self):
+        if not self.cur:
+            self.connect()
         try:
             sql = f"SELECT text, label, token_labels FROM sentence"
             self.cur.execute(sql)
@@ -277,56 +356,59 @@ class DBHelper():
                 yield row
         except(Exception, psycopg2.DatabaseError) as error:
             print(error)
-            self.conn.close()
-            self.connect()
+            self.close_connection()
             return None
 
     def get_sentence(self, sentence_id):
+        self.connect()
         try:
             sql = f"SELECT text, label, token_labels FROM sentence WHERE id='{sentence_id}'"
             self.cur.execute(sql)
             row = self.cur.fetchone()
+            self.close_connection()
             return row
         except(Exception, psycopg2.DatabaseError) as error:
             print(error)
-            self.conn.close()
-            self.connect()
+            self.close_connection()
             return None
 
     def get_sentence_label(self, category_id):
+        self.connect()
         try:
             sql = f"SELECT * FROM sentence_label WHERE id='{category_id}'"
             self.cur.execute(sql)
             row = self.cur.fetchone()
+            self.close_connection()
             return row
         except(Exception, psycopg2.DatabaseError) as error:
             print(error)
-            self.conn.close()
-            self.connect()
+            self.close_connection()
             return None
 
     def get_token_label(self, token_id):
+        self.connect()
         try:
             sql = f"SELECT * FROM token_label WHERE id='{token_id}'"
             self.cur.execute(sql)
             row = self.cur.fetchone()
+            self.close_connection()
             return row
         except(Exception, psycopg2.DatabaseError) as error:
             print(error)
-            self.conn.close()
-            self.connect()
+            self.close_connection()
             return None
 
     def get_all_token_label(self):
+        self.connect()
         try:
             sql = f"SELECT * FROM token_label ORDER BY id"
             self.cur.execute(sql)
             rows = self.cur.fetchall()
+            self.close_connection()
             return rows
         except(Exception, psycopg2.DatabaseError) as error:
             print(error)
-            self.conn.close()
-            self.connect()
+            self.close_connection()
             return None
 
 
