@@ -156,6 +156,22 @@ def update_tokenlabel():
         result = db.update_token_label(name, category_id, id)
         return return_response(result)
 
+@app.route("/read/all/tokenlabel", methods=['GET'])
+# TODO make it async
+def read_all_tokenlabel():
+    if request.method == 'GET':
+        token_labels = db.get_all_token_label()
+        result = []
+        for row in token_labels:
+            result.append({
+                "id": row[0],
+                "name": row[1],
+                "category_id": row[2],
+                "created_date": row[3],
+                "modified_date": row[4]
+            })
+        return jsonify(result)
+
 @app.route("/save/trainingdata", methods=['POST'])
 # TODO make it async
 def save_training_data():

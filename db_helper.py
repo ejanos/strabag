@@ -4,14 +4,24 @@ import icecream as ic
 ic = ic.IceCreamDebugger()
 ic.disable()
 
+HOST = "localhost"
+TRAIN_EXCEL_TEST = "train_excel_test"
+TRAIN_EXCEL = "train_excel"
+USER = "postgres"
 
-class DBHelper():
+class DBHelper:
     conn = ""
     cur = ""
     password = ""
 
     def __init__(self, test=False):
         self.test = test
+
+    def __enter__(self):
+        self.connect()
+
+    def __exit__(self):
+        self.close_connection()
 
     def get_password(self):
         with open("./password.txt", 'r', encoding='utf-8') as f:
@@ -23,15 +33,15 @@ class DBHelper():
         if not self.cur:
             if self.test:
                 self.conn = psycopg2.connect(
-                    host="localhost",
-                    database="train_excel_test",
-                    user="postgres",
+                    host=HOST,
+                    database=TRAIN_EXCEL_TEST,
+                    user=USER,
                     password=self.password)
             else:
                 self.conn = psycopg2.connect(
-                    host="localhost",
-                    database="train_excel",
-                    user="postgres",
+                    host=HOST,
+                    database=TRAIN_EXCEL,
+                    user=USER,
                     password=self.password)
             self.cur = self.conn.cursor()
 
@@ -316,21 +326,6 @@ class DBHelper():
         self.close_connection()
         return rows
 
-
-    def get_all_token_labels(self):
-        self.connect()
-        try:
-            sql = f"SELECT * FROM token_label"
-            self.cur.execute(sql)
-            rows = self.cur.fetchall()
-        except(Exception, psycopg2.DatabaseError) as error:
-            print(error)
-            self.close_connection()
-            return None
-        self.close_connection()
-        return rows
-
-
     def get_sentence_label_by_ordinal(self, ordinal, stay_open=False):
         self.connect()
         try:
@@ -410,6 +405,8 @@ class DBHelper():
             print(error)
             self.close_connection()
             return None
+
+
 
 
 

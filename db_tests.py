@@ -102,7 +102,7 @@ def get_all_token_labels_test():
     category_id2 = db.insert_sentence_label(sen_label2, str(ordinal2))
     token_id1 = db.insert_token_label(label1, category_id1)
     token_id2 = db.insert_token_label(label2, category_id2)
-    token_labels = db.get_all_token_labels()
+    token_labels = db.get_all_token_label()
     assert len(token_labels) > 1
     for label in token_labels:
         if label[0] == token_id1:
