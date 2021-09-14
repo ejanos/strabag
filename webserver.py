@@ -62,6 +62,19 @@ def save_columns():
             result = db.insert_headers(texts, columns, targets, architect_id, header_row)
         return return_response(result)  # subset_id
 
+    #delete_headers_by_architect_subset_id
+
+@app.route("/delete/columns", methods=['DELETE'])
+# TODO make it async
+def delete_columns():
+    if request.method == 'POST':
+        form = request.form
+        architect_id = json.loads(form['architect_id'])
+        subset_id = json.loads(form['subset_id'])
+        with DBHelper() as db:
+            result = db.delete_headers_by_architect_subset_id(architect_id, subset_id)
+        return return_response(result)  # subset_id
+
 @app.route("/save/architect", methods=['POST'])
 # TODO make it async
 def save_architect():
@@ -99,6 +112,21 @@ def get_all_architect():
                 "created_date": row[2],
                 "modified_date": row[3],
                 "active": row[4]})
+        return return_response(result)
+
+@app.route("/read/architect", methods=['GET'])
+# TODO make it async
+def get_architect():
+    if request.method == 'GET':
+        architect_id = request.args.get('id')
+        with DBHelper() as db:
+            architect = db.get_architect_by_id(architect_id)
+        result = {
+                "id": architect[0],
+                "name": architect[1],
+                "created_date": architect[2],
+                "modified_date": architect[3],
+                "active": architect[4]}
         return return_response(result)
 
 @app.route("/save/category", methods=['POST'])

@@ -159,6 +159,15 @@ class DBHelper:
             print(error)
             return None
 
+    def delete_headers_by_architect_subset_id(self, architect_id, subset_id):
+        try:
+            sql = f"DELETE FROM headers WHERE architect_id='{architect_id}' AND subset_id='{subset_id}'"
+            self.cur.execute(sql)
+            return True
+        except(Exception, psycopg2.DatabaseError) as error:
+            print(error)
+            return None
+
     def get_headers_by_architect(self, architect_id):
         try:
             sql = f"SELECT * FROM headers WHERE architect_id='{architect_id}'"
