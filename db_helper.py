@@ -74,7 +74,7 @@ class DBHelper:
         return architect_id
 
     def update_architect(self, id, name, active):
-        sql = """UPDATE architects SET "name" = %s, modified_date = CURRENT_DATE, active = %s WHERE architect_id = %s RETURNING id;"""
+        sql = """UPDATE architects SET "name" = %s, modified_date = CURRENT_DATE, active = %s WHERE architect_id = %s RETURNING architect_id;"""
         try:
             self.cur.execute(sql, (name, active, id,))
             architect_id = self.cur.fetchone()[0]

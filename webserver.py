@@ -122,7 +122,7 @@ def get_architect():
         with DBHelper() as db:
             architect = db.get_architect_by_id(architect_id)
         result = {
-                "id": architect[0],
+                "architect_id": architect[0],
                 "name": architect[1],
                 "created_date": architect[2],
                 "modified_date": architect[3],
