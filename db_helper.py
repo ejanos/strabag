@@ -1,14 +1,18 @@
 import psycopg2
 import icecream as ic
 from contextlib import contextmanager
+import json
 
 ic = ic.IceCreamDebugger()
 ic.disable()
 
-HOST = "localhost"
-TRAIN_EXCEL_TEST = "train_excel_test"
-TRAIN_EXCEL = "train_excel"
-USER = "postgres"
+with open('connect_string.json', 'r', encoding='utf-8') as f:
+    DATA = json.load(f)
+
+#HOST = "localhost"
+#TRAIN_EXCEL_TEST = "train_excel_test"
+#TRAIN_EXCEL = "train_excel"
+#USER = "postgres"
 
 class DBHelper:
     conn = ""
@@ -42,15 +46,15 @@ class DBHelper:
         if not self.cur:
             if self.test:
                 self.conn = psycopg2.connect(
-                    host=HOST,
-                    database=TRAIN_EXCEL_TEST,
-                    user=USER,
+                    host=DATA["HOST"],
+                    database=DATA["TRAIN_EXCEL_TEST"],
+                    user=DATA["USER"],
                     password=self.password)
             else:
                 self.conn = psycopg2.connect(
-                    host=HOST,
-                    database=TRAIN_EXCEL,
-                    user=USER,
+                    host=DATA["HOST"],
+                    database=DATA["TRAIN_EXCEL"],
+                    user=DATA["USER"],
                     password=self.password)
             self.cur = self.conn.cursor()
 

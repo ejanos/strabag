@@ -90,7 +90,7 @@ def save_architect():
 def update_architect():
     if request.method == 'POST':
         form = request.form
-        id = form['id']
+        id = form['architect_id']
         name = form['name']
         active = form['active']
         with DBHelper() as db:

@@ -1,0 +1,4 @@
+{"HOST": "localhost",
+"TRAIN_EXCEL_TEST": "train_excel_test",
+"TRAIN_EXCEL": "train_excel",
+"USER": "postgres"}
