@@ -107,7 +107,7 @@ def get_all_architect():
         result = []
         for row in architects:
              result.append({
-                "id": row[0],
+                "architect_id": row[0],
                 "name": row[1],
                 "created_date": row[2],
                 "modified_date": row[3],
