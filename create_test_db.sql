@@ -55,6 +55,10 @@ CREATE TABLE public.sentence_label
     ordinal character varying(16) NOT NULL UNIQUE,
     created_date date DEFAULT CURRENT_DATE,
     modified_date date DEFAULT CURRENT_DATE,
+	type_identity integer NOT NULL,
+	main_cat_id integer NOT NULL,
+	sub_cat_id integer NOT NULL,
+	category_order DEFAULT 0,
     PRIMARY KEY (id)
 )
 
@@ -89,11 +93,13 @@ CREATE TABLE public.sentence
 (
     id SERIAL NOT NULL,
     text character varying(1024) NOT NULL,
-    label integer NOT NULL,
+    sentence_label_id integer NOT NULL,
     token_labels integer[],
+	result_id integer NOT NULL,
+	user_identity integer NOT NULL,
     PRIMARY KEY (id),
     CONSTRAINT fk_label
-   FOREIGN KEY(label) 
+   FOREIGN KEY(sentence_label_id) 
    REFERENCES sentence_label(id)
 )
 
