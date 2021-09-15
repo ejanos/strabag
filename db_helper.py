@@ -66,6 +66,64 @@ class DBHelper:
             return None
         return architect_id
 
+    def insert_column(self, project_id, result_id, architect_id, content_value, content_text, quantity_value,
+                quantity_text, unit_value, unit_text, material_value, material_text,
+                wage_value, wage_text, sum_value, sum_text, column_row):
+        sql = """INSERT INTO pandas_columns(project_id, result_id, architect_id, content_value, content_text, quantity_value,
+                quantity_text, unit_value, unit_text, material_value, material_text,
+                wage_value, wage_text, sum_value, sum_text, column_row) VALUES(%s,%s,%s,%s,%s,%s,%s,%s,%s,%s, %s,%s,%s,%s,%s,%s) RETURNING pandas_column_id;"""
+        try:
+            self.cur.execute(sql, (project_id, result_id, architect_id, content_value, content_text, quantity_value,
+                quantity_text, unit_value, unit_text, material_value, material_text,
+                wage_value, wage_text, sum_value, sum_text, column_row,))
+            column_id = self.cur.fetchone()[0]
+            self.conn.commit()
+        except(Exception, psycopg2.DatabaseError) as error:
+            print(error)
+            return None
+        return column_id
+
+    def update_column(self, pandas_column_id, project_id, result_id, architect_id, content_value, content_text, quantity_value,
+                quantity_text, unit_value, unit_text, material_value, material_text,
+                wage_value, wage_text, sum_value, sum_text, column_row):
+        sql = """UPDATE pandas_columns SET pandas_column_id=%s, project_id=%s, result_id=%s, architect_id=%s, content_value=%s, content_text=%s, quantity_value=%s,
+                quantity_text=%s, unit_value=%s, unit_text=%s, material_value=%s, material_text=%s,
+                wage_value=%s, wage_text=%s, sum_value=%s, sum_text=%s, column_row=%s WHERE pandas_column_id=%s VALUES(%s,%s,%s,%s,%s,%s,%s,%s,%s,%s, %s,%s,%s,%s,%s,%s,%s) RETURNING pandas_column_id;"""
+        try:
+            self.cur.execute(sql, (project_id, result_id, architect_id, content_value, content_text, quantity_value,
+                quantity_text, unit_value, unit_text, material_value, material_text,
+                wage_value, wage_text, sum_value, sum_text, column_row,pandas_column_id,))
+            column_id = self.cur.fetchone()[0]
+            self.conn.commit()
+        except(Exception, psycopg2.DatabaseError) as error:
+            print(error)
+            return None
+        return column_id
+
+    def insert_sentence_label(self, category, ordinal, type_id, main_cat_id, sub_cat_id, category_order):
+        sql = """INSERT INTO sentence_label(category, ordinal, type_id, main_cat_id, sub_cat_id, category_order) VALUES(%s,%s,%s,%s,%s,%s) RETURNING id;"""
+        try:
+            self.cur.execute(sql, (category, ordinal, type_id, main_cat_id, sub_cat_id, category_order,))
+            sentence_label_id = self.cur.fetchone()[0]
+            self.conn.commit()
+        except(Exception, psycopg2.DatabaseError) as error:
+            print(error)
+            return None
+        return sentence_label_id
+
+
+    def insert_sentence(self, text, sentence_label_id, token_labels, result_id, user_id):
+        sql = """INSERT INTO sentence(text, sentence_label_id, token_labels, result_id, user_id) VALUES(%s,%s,%s,%s,%s) RETURNING id;"""
+        try:
+            self.cur.execute(sql, (text, sentence_label_id, token_labels, result_id, user_id,))
+            sentence_id = self.cur.fetchone()[0]
+            self.conn.commit()
+        except(Exception, psycopg2.DatabaseError) as error:
+            print(error)
+            return None
+        return sentence_id
+
+
     def insert_project(self, user_id, architect_id, project_name):
         sql = """INSERT INTO pandas_project(project_id, user_id, architect_id, project_name) VALUES(%s,%s,%s) RETURNING project_id;"""
         try:
@@ -76,6 +134,55 @@ class DBHelper:
             print(error)
             return None
         return project_id
+
+    def insert_result(self, project_id, file_id, result_name, result_count, result_finish, result_table):
+        sql = """INSERT INTO pandas_result(project_id, file_id, result_name, result_count, result_finish, result_table) VALUES(%s,%s,%s,%s,%s,%s) RETURNING result_id;"""
+        try:
+            self.cur.execute(sql, (project_id, file_id, result_name, result_count, result_finish, result_table,))
+            result_id = self.cur.fetchone()[0]
+            self.conn.commit()
+        except(Exception, psycopg2.DatabaseError) as error:
+            print(error)
+            return None
+        return result_id
+
+    def update_result(self, result_id, project_id, file_id, result_name, result_count, result_finish, result_table):
+        sql = """UPDATE pandas_result SET project_id=%s, file_id=%s, result_name=%s, result_count=%s, result_finish=%s, 
+        result_table=%s WHERE pandas_result_id=%s RETURNING result_id;"""
+        try:
+            self.cur.execute(sql, (project_id, file_id, result_name, result_count, result_finish, result_table, result_id,))
+            result_id = self.cur.fetchone()[0]
+            self.conn.commit()
+        except(Exception, psycopg2.DatabaseError) as error:
+            print(error)
+            return None
+        return result_id
+
+    def update_sentence(self, id, text, sentence_label_id, token_labels, result_id, user_id):
+        sql = """UPDATE sentence SET text=%s, sentence_label=%s, token_labels=%s, result_id=%s, user_id=%s WHERE id=%s RETURNING id;"""
+        try:
+            self.cur.execute(sql, (text, sentence_label_id, token_labels, result_id, user_id, id,))
+            sentence_id = self.cur.fetchone()[0]
+            self.conn.commit()
+        except(Exception, psycopg2.DatabaseError) as error:
+            print(error)
+            return None
+        return sentence_id
+
+    def update_sentence_label(self, id, category, ordinal, type_id, main_cat_id, sub_cat_id, category_order):
+        sql = """UPDATE sentence_label SET category=%s, ordinal=%s, type_id=%s, main_cat_id=%s, sub_cat_id=%s, category_order=%s WHERE id=%s RETURNING id;"""
+        try:
+            self.cur.execute(sql, (category, ordinal, type_id, main_cat_id, sub_cat_id, category_order,id,))
+            sentence_id = self.cur.fetchone()[0]
+            self.conn.commit()
+        except(Exception, psycopg2.DatabaseError) as error:
+            print(error)
+            return None
+        return sentence_id
+
+
+
+
 
     def update_architect(self, id, name, active):
         sql = """UPDATE architects SET "name" = %s, modified_date = CURRENT_DATE, active = %s WHERE architect_id = %s RETURNING architect_id;"""
@@ -127,6 +234,29 @@ class DBHelper:
             print(error)
             return None
 
+    def get_columns(self, project_id, result_id, architect_id):
+        try:
+            sql = f"SELECT * FROM pandas_column WHERE project_id='{project_id}' AND result_id='{result_id}' " \
+                  f"AND architect_id='{architect_id}'"
+            self.cur.execute(sql)
+            rows = self.cur.fetchall()
+            return rows
+        except(Exception, psycopg2.DatabaseError) as error:
+            print(error)
+            return None
+
+
+    def get_all_sentence_label(self):
+        try:
+            sql = f"SELECT * FROM sentence_label"
+            self.cur.execute(sql)
+            rows = self.cur.fetchall()
+            return rows
+        except(Exception, psycopg2.DatabaseError) as error:
+            print(error)
+            return None
+
+
     def get_projects(self, user_id):
         try:
             sql = f"SELECT * FROM pandas_project WHERE user_id='{user_id}'"
@@ -136,6 +266,18 @@ class DBHelper:
         except(Exception, psycopg2.DatabaseError) as error:
             print(error)
             return None
+
+    def get_results(self, project_id):
+        try:
+            sql = f"SELECT * FROM pandas_result WHERE project_id='{project_id}'"
+            self.cur.execute(sql)
+            rows = self.cur.fetchall()
+            return rows
+        except(Exception, psycopg2.DatabaseError) as error:
+            print(error)
+            return None
+
+
 
     def get_architect_by_name(self, name):
         try:
@@ -197,9 +339,55 @@ class DBHelper:
             print(error)
             return None
 
+    def delete_column(self, pandas_column_id):
+        try:
+            sql = f"DELETE FROM pandas_column WHERE pandas_column_id='{pandas_column_id}'"
+            self.cur.execute(sql)
+            return True
+        except(Exception, psycopg2.DatabaseError) as error:
+            print(error)
+            return None
+
+    def delete_all_column(self, project_id):
+        try:
+            sql = f"DELETE FROM pandas_column WHERE project_id='{project_id}'"
+            self.cur.execute(sql)
+            return True
+        except(Exception, psycopg2.DatabaseError) as error:
+            print(error)
+            return None
+
+    def delete_sentence(self, id):
+        try:
+            sql = f"DELETE FROM sentence WHERE id='{id}'"
+            self.cur.execute(sql)
+            return True
+        except(Exception, psycopg2.DatabaseError) as error:
+            print(error)
+            return None
+
+
     def delete_project(self, project_id):
         try:
             sql = f"DELETE FROM pandas_project WHERE architect_id='{project_id}'"
+            self.cur.execute(sql)
+            return True
+        except(Exception, psycopg2.DatabaseError) as error:
+            print(error)
+            return None
+
+    def delete_result(self, result_id):
+        try:
+            sql = f"DELETE FROM pandas_result WHERE pandas_result_id='{result_id}'"
+            self.cur.execute(sql)
+            return True
+        except(Exception, psycopg2.DatabaseError) as error:
+            print(error)
+            return None
+
+    def delete_all_result(self, project_id):
+        try:
+            sql = f"DELETE FROM pandas_result WHERE project_id='{project_id}'"
             self.cur.execute(sql)
             return True
         except(Exception, psycopg2.DatabaseError) as error:

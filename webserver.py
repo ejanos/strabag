@@ -1,8 +1,11 @@
 from typing import (Deque, Dict, FrozenSet, List, Optional, Sequence, Set, Tuple, Union)
+
+import flask
+
 from convert_excel import ConvertExcel
 import aiofiles
 import requests
-from flask import Flask, request, jsonify, send_from_directory
+from flask import Flask, request, jsonify, send_from_directory,  make_response, stream_with_context
 import datetime as dt
 import os
 import yaml
@@ -180,7 +183,7 @@ def update_project():
 
 @app.route("/delete/project", methods=['DELETE'])
 # TODO make it async
-def update_project():
+def delete_project():
     if request.method == 'DELETE':
         form = request.form
         project_id = form['project_id']
@@ -205,17 +208,283 @@ def get_file():
                 "file_type": row[4],
                 "file_data": row[5]
             })
+
+        response = make_response()
+        response.headers["Content-type"] = "application/json"
+        directory = "./cache/"
+        file_name = "test.xlsx"
         return send_from_directory(directory, file_name, as_attachment=True)
 
+@app.route("/read/results", methods=['GET'])
+# TODO make it async
+def get_results():
+    if request.method == 'GET':
+        project_id = request.args.get('project_id')
+        with DBHelper() as db:
+            rows = db.get_results(project_id)
+        result = []
+        for row in rows:
+            result.append({
+                "pandas_result_id": row[0],
+                "project_id": row[1],
+                "file_id": row[2],
+                "result_name":  row[3],
+                "result_count": row[4],
+                "result_finish": row[5],
+                "result_table": json.dumps(row[6])})
+        return return_response(result)
 
+@app.route("/add/result", methods=['POST'])
+# TODO make it async
+def add_result():
+    if request.method == 'POST':
+        form = request.form
+        project_id = form['project_id']
+        file_id = form['file_id']
+        result_name = form['result_name']
+        result_count = form['result_count']
+        result_finish = form['result_finish']
+        result_table = json.loads(form['result_table'])
+        with DBHelper() as db:
+            result = db.insert_result(
+                project_id, file_id, result_name, result_count, result_finish, result_table)
+        return return_response(result)
 
+@app.route("/update/result", methods=['POST'])
+# TODO make it async
+def update_result():
+    if request.method == 'POST':
+        form = request.form
+        result_id = form['pandas_result_id']
+        project_id = form['project_id']
+        file_id = form['file_id']
+        result_name = form['result_name']
+        result_count = form['result_count']
+        result_finish = form['result_finish']
+        result_table = json.loads(form['result_table'])
+        with DBHelper() as db:
+            result = db.update_result(
+                result_id, project_id, file_id, result_name, result_count, result_finish, result_table)
+        return return_response(result)
 
+@app.route("/delete/result", methods=['DELETE'])
+# TODO make it async
+def delete_result():
+    if request.method == 'DELETE':
+        form = request.form
+        result_id = form['pandas_result_id']
+        with DBHelper() as db:
+            result = db.delete_result(result_id)
+        return return_response(result)
 
+@app.route("/delete/all/result", methods=['DELETE'])
+# TODO make it async
+def delete_all_result():
+    if request.method == 'DELETE':
+        form = request.form
+        project_id = form['project_id']
+        with DBHelper() as db:
+            result = db.delete_all_result(project_id)
+        return return_response(result)
 
+@app.route("/add/sentence", methods=['POST'])
+# TODO make it async
+def add_sentence():
+    if request.method == 'POST':
+        form = request.form
+        text = form['text']
+        sentence_label_id = form['sentence_label_id']
+        token_labels = json.loads(form['token_labels'])
+        result_id = form['result_id']
+        user_id = form['user_id']
+        with DBHelper() as db:
+            result = db.insert_sentence(text, sentence_label_id, token_labels, result_id, user_id)
+        return return_response(result)
 
+@app.route("/update/sentence", methods=['POST'])
+# TODO make it async
+def update_sentence():
+    if request.method == 'POST':
+        form = request.form
+        id = form['id']
+        text = form['text']
+        sentence_label_id = form['sentence_label_id']
+        token_labels = json.loads(form['token_labels'])
+        result_id = form['result_id']
+        user_id = form['user_id']
+        with DBHelper() as db:
+            result = db.update_sentence(id, text, sentence_label_id, token_labels, result_id, user_id)
+        return return_response(result)
 
+@app.route("/delete/sentence", methods=['DELETE'])
+# TODO make it async
+def delete_sentence():
+    if request.method == 'DELETE':
+        form = request.form
+        id = form['id']
+        with DBHelper() as db:
+            result = db.delete_sentence(id)
+        return return_response(result)
 
+@app.route("/add/sentencelabel", methods=['POST'])
+# TODO make it async
+def add_sentence_label():
+    if request.method == 'POST':
+        form = request.form
+        category = form['category']
+        ordinal = form['ordinal']
+        type_id = form['type_id']
+        main_cat_id = form['main_cat_id']
+        sub_cat_id = form['sub_cat_id']
+        category_order = form['category_order']
+        with DBHelper() as db:
+            result = db.insert_sentence_label(category, ordinal, type_id, main_cat_id, sub_cat_id, category_order)
+        return return_response(result)
 
+@app.route("/update/sentencelabel", methods=['POST'])
+# TODO make it async
+def update_sentence_label():
+    if request.method == 'POST':
+        form = request.form
+        id = form['id']
+        category = form['category']
+        ordinal = form['ordinal']
+        type_id = form['type_id']
+        main_cat_id = form['main_cat_id']
+        sub_cat_id = form['sub_cat_id']
+        category_order = form['category_order']
+        with DBHelper() as db:
+            result = db.update_sentence_label(id, category, ordinal, type_id, main_cat_id, sub_cat_id, category_order)
+        return return_response(result)
+
+@app.route("/read/all/sentencelabel", methods=['GET'])
+# TODO make it async
+def get_all_sentence_label():
+    if request.method == 'GET':
+        with DBHelper() as db:
+            sentence_labels = db.get_all_sentence_label()
+        result = []
+        for row in sentence_labels:
+            result.append({
+                "id": row[0],
+                "category": row[1],
+                "ordinal": row[2],
+                "created_date": row[3],
+                "modified_date": row[4],
+                 "type_id": row[5],
+                 "main_cat_id": row[6],
+                 "sub_cat_id": row[7],
+                 "category_order": row[8],
+            })
+        return return_response(result)
+
+@app.route("/read/columns", methods=['GET'])
+# TODO make it async
+def get_columns():
+    if request.method == 'GET':
+        project_id = request.args.get('project_id')
+        result_id = request.args.get('result_id')
+        architect_id = request.args.get('architect_id')
+        with DBHelper() as db:
+            columns = db.get_columns(project_id, result_id, architect_id)
+        result = []
+        for row in columns:
+            result.append({
+                "pandas_column_id": row[0],
+                "project_id": row[1],
+                "result_id": row[2],
+                "architect_id": row[3],
+                "content_value": row[4],
+                 "content_text": row[5],
+                 "quantity_value": row[6],
+                 "quantity_text": row[7],
+                 "unit_value": row[8],
+                "unit_text": row[9],
+                "material_value": row[10],
+                "material_text": row[11],
+                "wage_value": row[12],
+                "wage_text": row[13],
+                "sum_value": row[14],
+                "sum_text": row[15],
+                "created_date": row[16],
+                "column_row": row[17]
+            })
+        return return_response(result)
+
+@app.route("/add/column", methods=['POST'])
+# TODO make it async
+def add_column():
+    if request.method == 'POST':
+        form = request.form
+        project_id = form['project_id']
+        result_id = form['result_id']
+        architect_id = form['architect_id']
+        content_value = form['content_value']
+        content_text = form['content_text']
+        quantity_value = form['quantity_value']
+        quantity_text = form['quantity_text']
+        unit_value = form['unit_value']
+        unit_text = form['unit_text']
+        material_value = form['material_value']
+        material_text = form['material_text']
+        wage_value = form['wage_value']
+        wage_text = form['wage_text']
+        sum_value = form['sum_value']
+        sum_text = form['sum_text']
+        column_row = form['column_row']
+        with DBHelper() as db:
+            result = db.insert_column(project_id, result_id, architect_id, content_value, content_text, quantity_value,
+                                    quantity_text, unit_value, unit_text, material_value, material_text,
+                                    wage_value, wage_text, sum_value, sum_text, column_row)
+        return return_response(result)
+
+@app.route("/update/column", methods=['POST'])
+# TODO make it async
+def update_column():
+    if request.method == 'POST':
+        form = request.form
+        pandas_column_id = form['pandas_column_id']
+        project_id = form['project_id']
+        result_id = form['result_id']
+        architect_id = form['architect_id']
+        content_value = form['content_value']
+        content_text = form['content_text']
+        quantity_value = form['quantity_value']
+        quantity_text = form['quantity_text']
+        unit_value = form['unit_value']
+        unit_text = form['unit_text']
+        material_value = form['material_value']
+        material_text = form['material_text']
+        wage_value = form['wage_value']
+        wage_text = form['wage_text']
+        sum_value = form['sum_value']
+        sum_text = form['sum_text']
+        column_row = form['column_row']
+        with DBHelper() as db:
+            result = db.update_column(pandas_column_id, project_id, result_id, architect_id, content_value, content_text, quantity_value,
+                                    quantity_text, unit_value, unit_text, material_value, material_text,
+                                    wage_value, wage_text, sum_value, sum_text, column_row)
+        return return_response(result)
+
+@app.route("/delete/column", methods=['DELETE'])
+# TODO make it async
+def delete_column():
+    if request.method == 'DELETE':
+        form = request.form
+        pandas_column_id = form['pandas_column_id']
+        with DBHelper() as db:
+            result = db.delete_column(pandas_column_id)
+        return return_response(result)
+
+@app.route("/delete/all/column", methods=['DELETE'])
+# TODO make it async
+def delete_all_column_from_project():
+    if request.method == 'DELETE':
+        form = request.form
+        project_id = form['project_id']
+        with DBHelper() as db:
+            result = db.delete_all_column(project_id)
+        return return_response(result)
 
 
 @app.route("/save/category", methods=['POST'])

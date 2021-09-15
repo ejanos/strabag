@@ -103,44 +103,11 @@ TABLESPACE pg_default;
 ALTER TABLE public.sentence
     OWNER to postgres;
 
-CREATE TABLE public.pandas_project
-(
-    project_id SERIAL NOT NULL,
-	user_id integer REFERENCES users,
-	architect_id integer REFERENCES architects,
-	project_name character varying(256) NOT NULL,
-	created_date date DEFAULT CURRENT_DATE,
-	modified_date date DEFAULT CURRENT_DATE,
-	active boolean DEFAULT true,
-    PRIMARY KEY (project_id)
-)
-
-TABLESPACE pg_default;
-
-ALTER TABLE public.pandas_project
-    OWNER to postgres;
-	
-CREATE TABLE public.pandas_file
-(
-    file_id SERIAL NOT NULL,
-	project_id integer REFERENCES pandas_project,
-	file_name character varying(256) NOT NULL,
-	file_size integer NOT NULL,
-	file_type character varying(128) NOT NULL,
-	file_data bytea,
-    PRIMARY KEY (file_id)
-)
-
-TABLESPACE pg_default;
-
-ALTER TABLE public.pandas_file
-    OWNER to postgres;
-
 CREATE TABLE public.pandas_result
 (
     pandas_result_id SERIAL NOT NULL,
-    project_id integer REFERENCES pandas_project,
-    file_id integer REFERENCES  pandas_file,
+    project_id integer,
+    file_id integer,
     result_name character varying(128) NOT NULL,
     result_count integer,
     result_finish integer,
@@ -153,29 +120,10 @@ TABLESPACE pg_default;
 ALTER TABLE public.pandas_result
     OWNER to postgres;
 
-CREATE TABLE public.users
-(
-    user_id SERIAL NOT NULL,
-    first_name character varying(128),
-    last_name character varying(128),
-    email character varying(128),
-    password character varying(128),
-    created_at date DEFAULT CURRENT_DATE,
-    active boolean DEFAULT true,
-    confirmed boolean DEFAULT false,
-    expire_at date DEFAULT CURRENT_DATE,
-    PRIMARY KEY (user_id)
-)
-
-TABLESPACE pg_default;
-
-ALTER TABLE public.users
-    OWNER to postgres;
-
 CREATE TABLE public.pandas_column
 (
     pandas_column_id SERIAL NOT NULL,
-    project_id integer REFERENCES pandas_project,
+    project_id integer,
     result_id integer REFERENCES pandas_result,
     architect_id integer REFERENCES architects,
     content_value integer,
