@@ -66,6 +66,17 @@ class DBHelper:
             return None
         return architect_id
 
+    def insert_project(self, user_id, architect_id, project_name):
+        sql = """INSERT INTO pandas_project(project_id, user_id, architect_id, project_name) VALUES(%s,%s,%s) RETURNING project_id;"""
+        try:
+            self.cur.execute(sql, (user_id, architect_id, project_name,))
+            project_id = self.cur.fetchone()[0]
+            self.conn.commit()
+        except(Exception, psycopg2.DatabaseError) as error:
+            print(error)
+            return None
+        return project_id
+
     def update_architect(self, id, name, active):
         sql = """UPDATE architects SET "name" = %s, modified_date = CURRENT_DATE, active = %s WHERE architect_id = %s RETURNING architect_id;"""
         try:
@@ -76,6 +87,17 @@ class DBHelper:
             print(error)
             return None
         return architect_id
+
+    def update_project(self, project_id, user_id, architect_id, project_name, active):
+        sql = """UPDATE pandas_project SET user_id = %s, architect_id = %s, project_name = %s, modified_date = CURRENT_DATE, active = %s WHERE project_id = %s RETURNING project_id;"""
+        try:
+            self.cur.execute(sql, (user_id, architect_id, project_name, active, project_id,))
+            project_id = self.cur.fetchone()[0]
+            self.conn.commit()
+        except(Exception, psycopg2.DatabaseError) as error:
+            print(error)
+            return None
+        return project_id
 
     def insert_headers(self, columns, col_numbers, target_numbers, architect_id, header_row):
         try:
@@ -98,6 +120,16 @@ class DBHelper:
     def get_all_architect(self):
         try:
             sql = f"SELECT * FROM architects ORDER BY architect_id"
+            self.cur.execute(sql)
+            rows = self.cur.fetchall()
+            return rows
+        except(Exception, psycopg2.DatabaseError) as error:
+            print(error)
+            return None
+
+    def get_projects(self, user_id):
+        try:
+            sql = f"SELECT * FROM pandas_project WHERE user_id='{user_id}'"
             self.cur.execute(sql)
             rows = self.cur.fetchall()
             return rows
@@ -159,6 +191,15 @@ class DBHelper:
     def delete_headers_by_architect_subset_id(self, architect_id, subset_id):
         try:
             sql = f"DELETE FROM headers WHERE architect_id='{architect_id}' AND subset_id='{subset_id}'"
+            self.cur.execute(sql)
+            return True
+        except(Exception, psycopg2.DatabaseError) as error:
+            print(error)
+            return None
+
+    def delete_project(self, project_id):
+        try:
+            sql = f"DELETE FROM pandas_project WHERE architect_id='{project_id}'"
             self.cur.execute(sql)
             return True
         except(Exception, psycopg2.DatabaseError) as error:
