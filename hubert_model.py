@@ -51,8 +51,6 @@ class HubertModel:
     eos_token_id = tokenizer.cls_token_id
     mask_token_id = tokenizer.mask_token_id
 
-    db = DBHelper()
-
     def __init__(self, test=False):
         self.test = test
         self.sentence_ids, self.labels = self.get_sentence_labels()
@@ -80,7 +78,8 @@ class HubertModel:
     def get_sentence_labels(self):
         sentence_labels = []
         label_ids = []
-        rows = self.db.get_all_categories()
+        with DBHelper() as db:
+            rows = db.get_all_categories()
         for row in rows:
             label_ids.append(row[0])
             sentence_labels.append(row[2])
@@ -89,7 +88,8 @@ class HubertModel:
     def get_token_labels(self, ):
         token_labels = []
         label_ids = []
-        rows = self.db.get_all_token_labels()
+        with DBHelper() as db:
+            rows = db.get_all_token_label()
         for row in rows:
             label_ids.append(row[0])
             token_labels.append(row[1])

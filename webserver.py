@@ -30,7 +30,6 @@ app.json_encoder = CustomJSONEncoder
 app.config['UPLOAD_FOLDER'] = CACHE
 
 conv = ConvertExcel()
-db = DBHelper()
 training = TrainingDataset()
 process_columns = ProcessColumns()
 
@@ -59,7 +58,21 @@ def save_columns():
         header_row = json.loads(form['header_row'])
         ic(texts, columns, targets)
         architect_id = form['architect_id']
-        result = db.insert_headers(texts, columns, targets, architect_id, header_row)
+        with DBHelper() as db:
+            result = db.insert_headers(texts, columns, targets, architect_id, header_row)
+        return return_response(result)  # subset_id
+
+    #delete_headers_by_architect_subset_id
+
+@app.route("/delete/columns", methods=['DELETE'])
+# TODO make it async
+def delete_columns():
+    if request.method == 'POST':
+        form = request.form
+        architect_id = json.loads(form['architect_id'])
+        subset_id = json.loads(form['subset_id'])
+        with DBHelper() as db:
+            result = db.delete_headers_by_architect_subset_id(architect_id, subset_id)
         return return_response(result)  # subset_id
 
 @app.route("/save/architect", methods=['POST'])
@@ -68,7 +81,8 @@ def save_architect():
     if request.method == 'POST':
         form = request.form
         name = form['name']
-        result = db.insert_architect(name)
+        with DBHelper() as db:
+            result = db.insert_architect(name)
         return return_response(result)
 
 @app.route("/update/architect", methods=['POST'])
@@ -79,7 +93,8 @@ def update_architect():
         id = form['id']
         name = form['name']
         active = form['active']
-        result = db.update_architect(id, name, active)
+        with DBHelper() as db:
+            result = db.update_architect(id, name, active)
         return return_response(result)
 
 
@@ -87,8 +102,8 @@ def update_architect():
 # TODO make it async
 def get_all_architect():
     if request.method == 'GET':
-        form = request.form
-        architects = db.get_all_architect()
+        with DBHelper() as db:
+            architects = db.get_all_architect()
         result = []
         for row in architects:
              result.append({
@@ -99,6 +114,21 @@ def get_all_architect():
                 "active": row[4]})
         return return_response(result)
 
+@app.route("/read/architect", methods=['GET'])
+# TODO make it async
+def get_architect():
+    if request.method == 'GET':
+        architect_id = request.args.get('id')
+        with DBHelper() as db:
+            architect = db.get_architect_by_id(architect_id)
+        result = {
+                "id": architect[0],
+                "name": architect[1],
+                "created_date": architect[2],
+                "modified_date": architect[3],
+                "active": architect[4]}
+        return return_response(result)
+
 @app.route("/save/category", methods=['POST'])
 # TODO make it async
 def save_category():
@@ -106,7 +136,8 @@ def save_category():
         form = request.form
         name = form['name']
         ordinal = form['ordinal']
-        result = db.insert_sentence_label(name, ordinal)
+        with DBHelper() as db:
+            result = db.insert_sentence_label(name, ordinal)
         return return_response(result)
 
 @app.route("/update/category", methods=['POST'])
@@ -117,15 +148,16 @@ def update_category():
         id = form['id']
         name = form['name']
         ordinal = form['ordinal']
-        result = db.update_sentence_label(name, ordinal, id)
+        with DBHelper() as db:
+            result = db.update_sentence_label(name, ordinal, id)
         return return_response(result)
 
 @app.route("/read/all/category", methods=['GET'])
 # TODO make it async
 def read_all_category():
     if request.method == 'GET':
-        form = request.form
-        categories = db.get_all_category()
+        with DBHelper() as db:
+            categories = db.get_all_category()
         result = []
         for row in categories:
             result.append({
@@ -142,7 +174,8 @@ def save_token_label():
         form = request.form
         name = form['name']
         category_id = form['category_id']
-        result = db.insert_token_label(name, category_id)
+        with DBHelper() as db:
+            result = db.insert_token_label(name, category_id)
         return return_response(result)
 
 @app.route("/update/tokenlabel", methods=['POST'])
@@ -153,8 +186,26 @@ def update_tokenlabel():
         id = form['id']
         name = form['name']
         category_id = form['category_id']
-        result = db.update_token_label(name, category_id, id)
+        with DBHelper() as db:
+            result = db.update_token_label(name, category_id, id)
         return return_response(result)
+
+@app.route("/read/all/tokenlabel", methods=['GET'])
+# TODO make it async
+def read_all_tokenlabel():
+    if request.method == 'GET':
+        with DBHelper() as db:
+            token_labels = db.get_all_token_label()
+        result = []
+        for row in token_labels:
+            result.append({
+                "id": row[0],
+                "name": row[1],
+                "category_id": row[2],
+                "created_date": row[3],
+                "modified_date": row[4]
+            })
+        return jsonify(result)
 
 @app.route("/save/trainingdata", methods=['POST'])
 # TODO make it async
@@ -292,4 +343,4 @@ def return_response(result):
         return "Database error!"
 
 if __name__ == "__main__":
-    app.run(threaded=True, port=5000)
+    app.run(threaded=True, port=3000)
