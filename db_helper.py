@@ -35,27 +35,20 @@ class DBHelper:
     def __exit__(self, exc_type, exc_val, exc_tb):
         self.close_connection()
 
-
-    def get_password(self):
-        with open("./password.txt", 'r', encoding='utf-8') as f:
-            self.password = f.read()
-
     def connect(self):
-        if not self.password:
-            self.get_password()
         if not self.cur:
             if self.test:
                 self.conn = psycopg2.connect(
                     host=DATA["HOST"],
                     database=DATA["TRAIN_EXCEL_TEST"],
                     user=DATA["USER"],
-                    password=self.password)
+                    password=DATA["PASSWORD"])
             else:
                 self.conn = psycopg2.connect(
                     host=DATA["HOST"],
                     database=DATA["TRAIN_EXCEL"],
                     user=DATA["USER"],
-                    password=self.password)
+                    password=DATA["PASSWORD"])
             self.cur = self.conn.cursor()
 
     def close_connection(self):
