@@ -188,6 +188,36 @@ def update_project():
             result = db.delete_project(project_id)
         return return_response(result)
 
+@app.route("/read/file", methods=['GET'])
+# TODO make it async
+def get_file():
+    if request.method == 'GET':
+        project_id = request.args.get('project_id')
+        with DBHelper() as db:
+            rows = db.get_projects(project_id)
+        result = []
+        for row in rows:
+            result.append({
+                "file_id": row[0],
+                "project_id": row[1],
+                "file_name": row[2],
+                "file_size":  row[3],
+                "file_type": row[4],
+                "file_data": row[5]
+            })
+        return send_from_directory(directory, file_name, as_attachment=True)
+
+
+
+
+
+
+
+
+
+
+
+
 @app.route("/save/category", methods=['POST'])
 # TODO make it async
 def save_category():
