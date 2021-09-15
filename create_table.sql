@@ -10,15 +10,16 @@ CREATE DATABASE train_excel
     LC_CTYPE = 'Hungarian_Hungary.1250'
     TABLESPACE = pg_default
     CONNECTION LIMIT = -1;
-	
+
+DROP TABLE IF EXISTS public.architects;
 CREATE TABLE public."architects"
 (
-    id SERIAL NOT NULL,
+    architect_id SERIAL NOT NULL,
     name character varying(64) NOT NULL,
     created_date date DEFAULT CURRENT_DATE,
     modified_date date DEFAULT CURRENT_DATE,
     active boolean DEFAULT true,
-    PRIMARY KEY (id)
+    PRIMARY KEY (architect_id)
 )
 
 TABLESPACE pg_default;
@@ -38,7 +39,7 @@ CREATE TABLE public.headers
     PRIMARY KEY (id),
 	CONSTRAINT fk_column
    FOREIGN KEY(architect_id) 
-   REFERENCES architects(id)
+   REFERENCES architects(architect_id)
 )
 
 TABLESPACE pg_default;
@@ -53,6 +54,10 @@ CREATE TABLE public.sentence_label
     ordinal character varying(16) NOT NULL UNIQUE,
     created_date date DEFAULT CURRENT_DATE,
     modified_date date DEFAULT CURRENT_DATE,
+	type_id integer NOT NULL,
+	main_cat_id integer NOT NULL,
+	sub_cat_id integer NOT NULL,
+	category_order integer DEFAULT 0,
     PRIMARY KEY (id)
 )
 
@@ -83,11 +88,13 @@ CREATE TABLE public.sentence
 (
     id SERIAL NOT NULL,
     text character varying(1024) NOT NULL,
-    label integer NOT NULL,
+    sentence_label_id integer NOT NULL,
     token_labels integer[],
+	result_id integer NOT NULL,
+	user_id integer NOT NULL,
     PRIMARY KEY (id),
     CONSTRAINT fk_label
-   FOREIGN KEY(label) 
+   FOREIGN KEY(sentence_label_id) 
    REFERENCES sentence_label(id)
 )
 
@@ -95,4 +102,103 @@ TABLESPACE pg_default;
 
 ALTER TABLE public.sentence
     OWNER to postgres;
+
+CREATE TABLE public.pandas_project
+(
+    project_id SERIAL NOT NULL,
+	user_id integer REFERENCES users,
+	architect_id integer REFERENCES architects,
+	project_name character varying(256) NOT NULL,
+	created_date date DEFAULT CURRENT_DATE,
+	modified_date date DEFAULT CURRENT_DATE,
+	active boolean DEFAULT true,
+    PRIMARY KEY (project_id)
+)
+
+TABLESPACE pg_default;
+
+ALTER TABLE public.pandas_project
+    OWNER to postgres;
+	
+CREATE TABLE public.pandas_file
+(
+    file_id SERIAL NOT NULL,
+	project_id integer REFERENCES pandas_project,
+	file_name character varying(256) NOT NULL,
+	file_size integer NOT NULL,
+	file_type character varying(128) NOT NULL,
+	file_data bytea,
+    PRIMARY KEY (file_id)
+)
+
+TABLESPACE pg_default;
+
+ALTER TABLE public.pandas_file
+    OWNER to postgres;
+
+CREATE TABLE public.pandas_result
+(
+    pandas_result_id SERIAL NOT NULL,
+    project_id integer REFERENCES pandas_project,
+    file_id integer REFERENCES  pandas_file,
+    result_name character varying(128) NOT NULL,
+    result_count integer,
+    result_finish integer,
+    result_table integer[][],
+    PRIMARY KEY (pandas_result_id)
+)
+
+TABLESPACE pg_default;
+
+ALTER TABLE public.pandas_result
+    OWNER to postgres;
+
+CREATE TABLE public.users
+(
+    user_id SERIAL NOT NULL,
+    first_name character varying(128),
+    last_name character varying(128),
+    email character varying(128),
+    password character varying(128),
+    created_at date DEFAULT CURRENT_DATE,
+    active boolean DEFAULT true,
+    confirmed boolean DEFAULT false,
+    expire_at date DEFAULT CURRENT_DATE,
+    PRIMARY KEY (user_id)
+)
+
+TABLESPACE pg_default;
+
+ALTER TABLE public.users
+    OWNER to postgres;
+
+CREATE TABLE public.pandas_column
+(
+    pandas_column_id SERIAL NOT NULL,
+    project_id integer REFERENCES pandas_project,
+    result_id integer REFERENCES pandas_result,
+    architect_id integer REFERENCES architects,
+    content_value integer,
+    content_text character varying(256),
+    quantity_value integer,
+    quantity_text character varying(256),
+    unit_value integer,
+    unit_text character varying(256),
+    material_value integer,
+    material_text character varying(256),
+    wage_value integer,
+    wage_text character varying(256),
+    sum_value integer,
+    sum_text character varying(256),
+    created_date date DEFAULT CURRENT_DATE,
+    column_row json NOT NULL,
+    PRIMARY KEY (pandas_column_id)
+)
+
+TABLESPACE pg_default;
+
+ALTER TABLE public.pandas_column
+    OWNER to postgres;
+
+
     

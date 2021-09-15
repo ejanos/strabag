@@ -59,7 +59,7 @@ class DBHelper:
         self.cur = None
 
     def insert_architect(self, name):
-        sql = """INSERT INTO architects("name") VALUES(%s) RETURNING id;"""
+        sql = """INSERT INTO architects("name") VALUES(%s) RETURNING architect_id;"""
         try:
             self.cur.execute(sql, (name,))
             architect_id = self.cur.fetchone()[0]
@@ -70,7 +70,7 @@ class DBHelper:
         return architect_id
 
     def update_architect(self, id, name, active):
-        sql = """UPDATE architects SET "name" = %s, modified_date = CURRENT_DATE, active = %s WHERE id = %s RETURNING id;"""
+        sql = """UPDATE architects SET "name" = %s, modified_date = CURRENT_DATE, active = %s WHERE architect_id = %s RETURNING id;"""
         try:
             self.cur.execute(sql, (name, active, id,))
             architect_id = self.cur.fetchone()[0]
@@ -100,7 +100,7 @@ class DBHelper:
 
     def get_all_architect(self):
         try:
-            sql = f"SELECT * FROM architects ORDER BY id"
+            sql = f"SELECT * FROM architects ORDER BY architect_id"
             self.cur.execute(sql)
             rows = self.cur.fetchall()
             return rows
@@ -120,7 +120,7 @@ class DBHelper:
 
     def get_architect_by_id(self, id):
         try:
-            sql = f"SELECT * FROM architects WHERE id='{id}'"
+            sql = f"SELECT * FROM architects WHERE architect_id='{id}'"
             self.cur.execute(sql)
             row = self.cur.fetchone()
             return row
@@ -225,7 +225,7 @@ class DBHelper:
     def insert_sentences(self, data):
         # data: első oszlop kategória azonosító, második oszlop szöveg, 3. oszlop list of token_labels
         # TODO token_labels -t is be kell szúrni!!!
-        sql = """INSERT INTO sentence(text, label, token_labels) VALUES(%s,%s,%s) RETURNING id;"""
+        sql = """INSERT INTO sentence(text, sentence_label_id, token_labels) VALUES(%s,%s,%s) RETURNING id;"""
         ordinals = data[0]
         texts = data[1]
         token_labels = data[2]
@@ -297,7 +297,7 @@ class DBHelper:
 
     def __get_next_sentence__(self):
         try:
-            sql = f"SELECT text, label, token_labels FROM sentence"
+            sql = f"SELECT text, sentence_label_id, token_labels FROM sentence"
             self.cur.execute(sql)
             while True:
                 row = self.cur.fetchone()
@@ -308,7 +308,7 @@ class DBHelper:
 
     def get_sentence(self, sentence_id):
         try:
-            sql = f"SELECT text, label, token_labels FROM sentence WHERE id='{sentence_id}'"
+            sql = f"SELECT text, sentence_label_id, token_labels FROM sentence WHERE id='{sentence_id}'"
             self.cur.execute(sql)
             row = self.cur.fetchone()
             return row
