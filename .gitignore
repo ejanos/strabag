@@ -30,3 +30,4 @@ db_helper.py
 /db_helper.py
 /.vscode/settings.json
 /password.txt
+/connect_string.json
