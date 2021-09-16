@@ -8,6 +8,9 @@ from datetime import date
 ic = ic.IceCreamDebugger()
 # ic.disable()
 
+with open('connect_string.json', 'r', encoding='utf-8') as f:
+    CONNECTION = json.load(f)
+
 # choose from all lowercase letter
 letters = string.ascii_lowercase
 

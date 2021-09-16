@@ -9,11 +9,6 @@ ic.disable()
 with open('connect_string.json', 'r', encoding='utf-8') as f:
     DATA = json.load(f)
 
-#HOST = "localhost"
-#TRAIN_EXCEL_TEST = "train_excel_test"
-#TRAIN_EXCEL = "train_excel"
-#USER = "postgres"
-
 class DBHelper:
     conn = ""
     cur = ""
@@ -56,7 +51,7 @@ class DBHelper:
         self.cur = None
 
     def insert_architect(self, name):
-        sql = """INSERT INTO architects("name") VALUES(%s) RETURNING architect_id;"""
+        sql = """INSERT INTO PandasArchitect(ArchitectName) VALUES(%s) RETURNING PandasArchitectId;"""
         try:
             self.cur.execute(sql, (name,))
             architect_id = self.cur.fetchone()[0]
@@ -69,9 +64,9 @@ class DBHelper:
     def insert_column(self, project_id, result_id, architect_id, content_value, content_text, quantity_value,
                 quantity_text, unit_value, unit_text, material_value, material_text,
                 wage_value, wage_text, sum_value, sum_text, column_row):
-        sql = """INSERT INTO pandas_columns(project_id, result_id, architect_id, content_value, content_text, quantity_value,
-                quantity_text, unit_value, unit_text, material_value, material_text,
-                wage_value, wage_text, sum_value, sum_text, column_row) VALUES(%s,%s,%s,%s,%s,%s,%s,%s,%s,%s, %s,%s,%s,%s,%s,%s) RETURNING pandas_column_id;"""
+        sql = """INSERT INTO PandasColumn(PandasProjectId, PandasResultId, PandasArchitectId, ContentValue, ContentText, QuantityValue,
+                QuantityText, UnitValue, UnitText, MaterialValue, MaterialText,
+                WageValue, WageText, SumValue, SumText, ColumnRow) VALUES(%s,%s,%s,%s,%s,%s,%s,%s,%s,%s, %s,%s,%s,%s,%s,%s) RETURNING PandasColumnId;"""
         try:
             self.cur.execute(sql, (project_id, result_id, architect_id, content_value, content_text, quantity_value,
                 quantity_text, unit_value, unit_text, material_value, material_text,
@@ -86,9 +81,9 @@ class DBHelper:
     def update_column(self, pandas_column_id, project_id, result_id, architect_id, content_value, content_text, quantity_value,
                 quantity_text, unit_value, unit_text, material_value, material_text,
                 wage_value, wage_text, sum_value, sum_text, column_row):
-        sql = """UPDATE pandas_columns SET pandas_column_id=%s, project_id=%s, result_id=%s, architect_id=%s, content_value=%s, content_text=%s, quantity_value=%s,
-                quantity_text=%s, unit_value=%s, unit_text=%s, material_value=%s, material_text=%s,
-                wage_value=%s, wage_text=%s, sum_value=%s, sum_text=%s, column_row=%s WHERE pandas_column_id=%s VALUES(%s,%s,%s,%s,%s,%s,%s,%s,%s,%s, %s,%s,%s,%s,%s,%s,%s) RETURNING pandas_column_id;"""
+        sql = """UPDATE PandasColumn SET PandasColumnId=%s, PandasProjectId=%s, PandasResultId=%s, PandasArchitectId=%s, ContentValue=%s, ContentText=%s, QuantityValue=%s,
+                QuantityText=%s, UnitValue=%s, UnitText=%s, MaterialValue=%s, MaterialText=%s,
+                WageValue=%s, WageText=%s, SumValue=%s, SumText=%s, ColumnRow=%s WHERE PandasColumnId=%s VALUES(%s,%s,%s,%s,%s,%s,%s,%s,%s,%s, %s,%s,%s,%s,%s,%s,%s) RETURNING PandasColumnId;"""
         try:
             self.cur.execute(sql, (project_id, result_id, architect_id, content_value, content_text, quantity_value,
                 quantity_text, unit_value, unit_text, material_value, material_text,
@@ -101,7 +96,7 @@ class DBHelper:
         return column_id
 
     def insert_sentence_label(self, category, ordinal, type_id, main_cat_id, sub_cat_id, category_order):
-        sql = """INSERT INTO sentence_label(category, ordinal, type_id, main_cat_id, sub_cat_id, category_order) VALUES(%s,%s,%s,%s,%s,%s) RETURNING id;"""
+        sql = """INSERT INTO sentence_label(CategoryName, Ordinal, TypeId, MainCatId, SubCatId, CategoryOrder) VALUES(%s,%s,%s,%s,%s,%s) RETURNING PandasCategoryId;"""
         try:
             self.cur.execute(sql, (category, ordinal, type_id, main_cat_id, sub_cat_id, category_order,))
             sentence_label_id = self.cur.fetchone()[0]
@@ -113,7 +108,7 @@ class DBHelper:
 
 
     def insert_sentence(self, text, sentence_label_id, token_labels, result_id, user_id):
-        sql = """INSERT INTO sentence(text, sentence_label_id, token_labels, result_id, user_id) VALUES(%s,%s,%s,%s,%s) RETURNING id;"""
+        sql = """INSERT INTO sentence(text, sentence_label_id, token_labels, PandasResultId, UserId) VALUES(%s,%s,%s,%s,%s) RETURNING id;"""
         try:
             self.cur.execute(sql, (text, sentence_label_id, token_labels, result_id, user_id,))
             sentence_id = self.cur.fetchone()[0]
@@ -123,9 +118,8 @@ class DBHelper:
             return None
         return sentence_id
 
-
     def insert_project(self, user_id, architect_id, project_name):
-        sql = """INSERT INTO pandas_project(project_id, user_id, architect_id, project_name) VALUES(%s,%s,%s) RETURNING project_id;"""
+        sql = """INSERT INTO PandasProject(UserId, PandasArchitectId, PandasProjectName) VALUES(%s,%s,%s) RETURNING PandasProjectId;"""
         try:
             self.cur.execute(sql, (user_id, architect_id, project_name,))
             project_id = self.cur.fetchone()[0]
@@ -136,7 +130,7 @@ class DBHelper:
         return project_id
 
     def insert_result(self, project_id, file_id, result_name, result_count, result_finish, result_table):
-        sql = """INSERT INTO pandas_result(project_id, file_id, result_name, result_count, result_finish, result_table) VALUES(%s,%s,%s,%s,%s,%s) RETURNING result_id;"""
+        sql = """INSERT INTO PandasResult(PandasProjectId, PandasFileId, ResultName, ResultCount, ResultFinish, ResultTable) VALUES(%s,%s,%s,%s,%s,%s) RETURNING PandasResultId;"""
         try:
             self.cur.execute(sql, (project_id, file_id, result_name, result_count, result_finish, result_table,))
             result_id = self.cur.fetchone()[0]
@@ -146,9 +140,10 @@ class DBHelper:
             return None
         return result_id
 
+
     def update_result(self, result_id, project_id, file_id, result_name, result_count, result_finish, result_table):
-        sql = """UPDATE pandas_result SET project_id=%s, file_id=%s, result_name=%s, result_count=%s, result_finish=%s, 
-        result_table=%s WHERE pandas_result_id=%s RETURNING result_id;"""
+        sql = """UPDATE PandasResult SET PandasProjectId=%s, PandasFileId=%s, ResultName=%s, ResultCount=%s, ResultFinish=%s, 
+        ResultTable=%s WHERE PandasResultId=%s RETURNING PandasResultId;"""
         try:
             self.cur.execute(sql, (project_id, file_id, result_name, result_count, result_finish, result_table, result_id,))
             result_id = self.cur.fetchone()[0]
@@ -159,7 +154,7 @@ class DBHelper:
         return result_id
 
     def update_sentence(self, id, text, sentence_label_id, token_labels, result_id, user_id):
-        sql = """UPDATE sentence SET text=%s, sentence_label=%s, token_labels=%s, result_id=%s, user_id=%s WHERE id=%s RETURNING id;"""
+        sql = """UPDATE sentence SET text=%s, sentence_label=%s, token_labels=%s, PandasResultId=%s, UserId=%s WHERE id=%s RETURNING id;"""
         try:
             self.cur.execute(sql, (text, sentence_label_id, token_labels, result_id, user_id, id,))
             sentence_id = self.cur.fetchone()[0]
@@ -170,7 +165,7 @@ class DBHelper:
         return sentence_id
 
     def update_sentence_label(self, id, category, ordinal, type_id, main_cat_id, sub_cat_id, category_order):
-        sql = """UPDATE sentence_label SET category=%s, ordinal=%s, type_id=%s, main_cat_id=%s, sub_cat_id=%s, category_order=%s WHERE id=%s RETURNING id;"""
+        sql = """UPDATE sentence_label SET CategoryName=%s, Ordinal=%s, TypeId=%s, MainCatId=%s, SubCatId=%s, CategoryOrder=%s WHERE PandasCategoryId=%s RETURNING PandasCategoryId;"""
         try:
             self.cur.execute(sql, (category, ordinal, type_id, main_cat_id, sub_cat_id, category_order,id,))
             sentence_id = self.cur.fetchone()[0]
@@ -185,7 +180,7 @@ class DBHelper:
 
 
     def update_architect(self, id, name, active):
-        sql = """UPDATE architects SET "name" = %s, modified_date = CURRENT_DATE, active = %s WHERE architect_id = %s RETURNING architect_id;"""
+        sql = """UPDATE PandasArchitect SET ArchitectName = %s, ModifiedDate = CURRENT_DATE, Active = %s WHERE PandasArchitectId = %s RETURNING PandasArchitectId;"""
         try:
             self.cur.execute(sql, (name, active, id,))
             architect_id = self.cur.fetchone()[0]
@@ -196,7 +191,7 @@ class DBHelper:
         return architect_id
 
     def update_project(self, project_id, user_id, architect_id, project_name, active):
-        sql = """UPDATE pandas_project SET user_id = %s, architect_id = %s, project_name = %s, modified_date = CURRENT_DATE, active = %s WHERE project_id = %s RETURNING project_id;"""
+        sql = """UPDATE PandasProject SET UserId = %s, PandasArchitectId = %s, PandasProjectName = %s, ModifyDate = CURRENT_DATE, Active = %s WHERE PandasProjectId = %s RETURNING PandasProjectId;"""
         try:
             self.cur.execute(sql, (user_id, architect_id, project_name, active, project_id,))
             project_id = self.cur.fetchone()[0]
@@ -226,7 +221,7 @@ class DBHelper:
 
     def get_all_architect(self):
         try:
-            sql = f"SELECT * FROM architects ORDER BY architect_id"
+            sql = f"SELECT * FROM PandasArchitect"
             self.cur.execute(sql)
             rows = self.cur.fetchall()
             return rows
@@ -236,8 +231,8 @@ class DBHelper:
 
     def get_columns(self, project_id, result_id, architect_id):
         try:
-            sql = f"SELECT * FROM pandas_column WHERE project_id='{project_id}' AND result_id='{result_id}' " \
-                  f"AND architect_id='{architect_id}'"
+            sql = f"SELECT * FROM PandasColumn WHERE PandasProjectId='{project_id}' AND PandasResultId='{result_id}' " \
+                  f"AND PandasArchitectId='{architect_id}'"
             self.cur.execute(sql)
             rows = self.cur.fetchall()
             return rows
@@ -259,7 +254,7 @@ class DBHelper:
 
     def get_projects(self, user_id):
         try:
-            sql = f"SELECT * FROM pandas_project WHERE user_id='{user_id}'"
+            sql = f"SELECT * FROM PandasProject WHERE UserId='{user_id}'"
             self.cur.execute(sql)
             rows = self.cur.fetchall()
             return rows
@@ -269,7 +264,7 @@ class DBHelper:
 
     def get_results(self, project_id):
         try:
-            sql = f"SELECT * FROM pandas_result WHERE project_id='{project_id}'"
+            sql = f"SELECT * FROM PandasResult WHERE PandasProjectId='{project_id}'"
             self.cur.execute(sql)
             rows = self.cur.fetchall()
             return rows
@@ -281,7 +276,7 @@ class DBHelper:
 
     def get_architect_by_name(self, name):
         try:
-            sql = f"SELECT * FROM architects WHERE name='{name}'"
+            sql = f"SELECT * FROM PandasArchitect WHERE ArchitectName = '{name}'"
             self.cur.execute(sql)
             row = self.cur.fetchone()
             return row
@@ -291,7 +286,7 @@ class DBHelper:
 
     def get_architect_by_id(self, id):
         try:
-            sql = f"SELECT * FROM architects WHERE architect_id='{id}'"
+            sql = f"SELECT * FROM PandasArchitect WHERE PandasArchitectId ='{id}'"
             self.cur.execute(sql)
             row = self.cur.fetchone()
             return row
@@ -301,7 +296,7 @@ class DBHelper:
 
     def get_all_category(self):
         try:
-            sql = f"SELECT * FROM sentence_label ORDER BY id"
+            sql = f"SELECT * FROM sentence_label"
             self.cur.execute(sql)
             rows = self.cur.fetchall()
             return rows
@@ -341,7 +336,7 @@ class DBHelper:
 
     def delete_column(self, pandas_column_id):
         try:
-            sql = f"DELETE FROM pandas_column WHERE pandas_column_id='{pandas_column_id}'"
+            sql = f"DELETE FROM PandasColumn WHERE PandasColumnId='{pandas_column_id}'"
             self.cur.execute(sql)
             return True
         except(Exception, psycopg2.DatabaseError) as error:
@@ -350,7 +345,7 @@ class DBHelper:
 
     def delete_all_column(self, project_id):
         try:
-            sql = f"DELETE FROM pandas_column WHERE project_id='{project_id}'"
+            sql = f"DELETE FROM PandasColumn WHERE PandasProjectId='{project_id}'"
             self.cur.execute(sql)
             return True
         except(Exception, psycopg2.DatabaseError) as error:
@@ -369,7 +364,7 @@ class DBHelper:
 
     def delete_project(self, project_id):
         try:
-            sql = f"DELETE FROM pandas_project WHERE architect_id='{project_id}'"
+            sql = f"DELETE FROM PandasProject WHERE PandasProjectId='{project_id}'"
             self.cur.execute(sql)
             return True
         except(Exception, psycopg2.DatabaseError) as error:
@@ -378,7 +373,7 @@ class DBHelper:
 
     def delete_result(self, result_id):
         try:
-            sql = f"DELETE FROM pandas_result WHERE pandas_result_id='{result_id}'"
+            sql = f"DELETE FROM PandasResult WHERE PandasResultId='{result_id}'"
             self.cur.execute(sql)
             return True
         except(Exception, psycopg2.DatabaseError) as error:
@@ -387,7 +382,7 @@ class DBHelper:
 
     def delete_all_result(self, project_id):
         try:
-            sql = f"DELETE FROM pandas_result WHERE project_id='{project_id}'"
+            sql = f"DELETE FROM PandasResult WHERE PandasProjectId='{project_id}'"
             self.cur.execute(sql)
             return True
         except(Exception, psycopg2.DatabaseError) as error:
@@ -426,10 +421,10 @@ class DBHelper:
             return None
         return header_id
 
-    def insert_sentence_label(self, name, ordinal):
-        sql = """INSERT INTO sentence_label(category, ordinal) VALUES(%s,%s) RETURNING id;"""
+    def insert_sentence_label(self, name, ordinal, type_id, main_cat_id, sub_cat_id, category_order):
+        sql = """INSERT INTO sentence_label(CategoryName, Ordinal, TypeId, MainCatId, SubCatId, CategoryOrder) VALUES(%s,%s,%s,%s,%s,%s) RETURNING PandasCategoryId;"""
         try:
-            self.cur.execute(sql, (name,ordinal,))
+            self.cur.execute(sql, (name,ordinal,type_id, main_cat_id, sub_cat_id, category_order,))
             category_id = self.cur.fetchone()[0]
             self.conn.commit()
         except(Exception, psycopg2.DatabaseError) as error:
@@ -438,7 +433,7 @@ class DBHelper:
         return category_id
 
     def update_sentence_label(self, category, ordinal, id):
-        sql = """UPDATE sentence_label SET category = %s, ordinal = %s, modified_date = CURRENT_DATE WHERE id = %s RETURNING id;"""
+        sql = """UPDATE sentence_label SET CategoryName = %s, Ordinal = %s, ModifiedDate = CURRENT_DATE WHERE PandasCategoryId = %s RETURNING PandasCategoryId;"""
         try:
             self.cur.execute(sql, (category, ordinal, id,))
             category_id = self.cur.fetchone()[0]
@@ -451,7 +446,7 @@ class DBHelper:
     def insert_sentences(self, data):
         # data: első oszlop kategória azonosító, második oszlop szöveg, 3. oszlop list of token_labels
         # TODO token_labels -t is be kell szúrni!!!
-        sql = """INSERT INTO sentence(text, sentence_label_id, token_labels) VALUES(%s,%s,%s) RETURNING id;"""
+        sql = """INSERT INTO sentence(text, sentence_label_id, token_labels, PandasResultId, UserId) VALUES(%s,%s,%s) RETURNING id;"""
         ordinals = data[0]
         texts = data[1]
         token_labels = data[2]
@@ -493,7 +488,7 @@ class DBHelper:
 
     def get_all_categories(self):
         try:
-            sql = f"SELECT * FROM sentence_label ORDER BY ordinal"
+            sql = f"SELECT * FROM sentence_label ORDER BY Ordinal"
             self.cur.execute(sql)
             rows = self.cur.fetchall()
         except(Exception, psycopg2.DatabaseError) as error:
@@ -513,7 +508,7 @@ class DBHelper:
 
     def get_sentence_label_by_ordinal(self, ordinal):
         try:
-            sql = f"SELECT id, category, ordinal FROM sentence_label WHERE ordinal='{ordinal}'"
+            sql = f"SELECT * FROM sentence_label WHERE Ordinal='{ordinal}'"
             self.cur.execute(sql)
             row = self.cur.fetchone()
             return row
@@ -523,7 +518,7 @@ class DBHelper:
 
     def __get_next_sentence__(self):
         try:
-            sql = f"SELECT text, sentence_label_id, token_labels FROM sentence"
+            sql = f"SELECT * FROM sentence"
             self.cur.execute(sql)
             while True:
                 row = self.cur.fetchone()
@@ -534,7 +529,7 @@ class DBHelper:
 
     def get_sentence(self, sentence_id):
         try:
-            sql = f"SELECT text, sentence_label_id, token_labels FROM sentence WHERE id='{sentence_id}'"
+            sql = f"SELECT * FROM sentence WHERE id='{sentence_id}'"
             self.cur.execute(sql)
             row = self.cur.fetchone()
             return row
@@ -544,7 +539,7 @@ class DBHelper:
 
     def get_sentence_label(self, category_id):
         try:
-            sql = f"SELECT * FROM sentence_label WHERE id='{category_id}'"
+            sql = f"SELECT * FROM sentence_label WHERE PandasCategoryId='{category_id}'"
             self.cur.execute(sql)
             row = self.cur.fetchone()
             return row
