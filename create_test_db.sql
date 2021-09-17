@@ -150,6 +150,7 @@ CREATE TABLE public.PandasResult
     ResultCount integer,
     ResultFinish integer,
     ResultTable integer[][],
+    FirstRowNumber integer NOT NULL,
     PRIMARY KEY (PandasResultId)
 )
 
@@ -178,7 +179,7 @@ CREATE TABLE public.PandasColumn
     SumValue integer,
     SumText character varying(256),
     CreateDate date DEFAULT CURRENT_DATE,
-    ColumnRow json NOT NULL,
+    ColumnRow text NOT NULL,
     PRIMARY KEY (PandasColumnId)
 )
 

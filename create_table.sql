@@ -13,7 +13,6 @@ CREATE DATABASE merkbau
 
 
 DROP TABLE IF EXISTS public.PandasColumn;
-DROP TABLE IF EXISTS public.PandasResult;
 DROP TABLE IF EXISTS public.PandasFile;
 DROP TABLE IF EXISTS public.PandasProject;
 DROP TABLE IF EXISTS public.sentence;
@@ -21,6 +20,7 @@ DROP TABLE IF EXISTS public.token_label;
 DROP TABLE IF EXISTS public.sentence_label;
 DROP TABLE IF EXISTS public.headers;
 DROP TABLE IF EXISTS public.PandasArchitect;
+DROP TABLE IF EXISTS public.PandasResult;
 DROP TABLE IF EXISTS public.Users;
 
 
@@ -49,7 +49,7 @@ CREATE TABLE public.PandasArchitect
     PandasArchitectId SERIAL NOT NULL,
     ArchitectName character varying(64) NOT NULL,
     CreateDate date DEFAULT CURRENT_DATE,
-    ModifiedDate date DEFAULT CURRENT_DATE,
+    ModifyDate date DEFAULT CURRENT_DATE,
     Active boolean DEFAULT true,
     PRIMARY KEY (PandasArchitectId)
 )
@@ -158,7 +158,8 @@ CREATE TABLE public.PandasResult
     ResultName character varying(128) NOT NULL,
     ResultCount integer,
     ResultFinish integer,
-    ResultTable integer[][],
+    ResultTable text,
+    FirstRowNumber integer NOT NULL ,
     PRIMARY KEY (PandasResultId)
 )
 
@@ -187,7 +188,7 @@ CREATE TABLE public.PandasColumn
     SumValue integer,
     SumText character varying(256),
     CreateDate date DEFAULT CURRENT_DATE,
-    ColumnRow json NOT NULL,
+    ColumnRow text NOT NULL,
     PRIMARY KEY (PandasColumnId)
 )
 

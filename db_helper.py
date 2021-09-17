@@ -83,7 +83,7 @@ class DBHelper:
                 wage_value, wage_text, sum_value, sum_text, column_row):
         sql = """UPDATE PandasColumn SET PandasColumnId=%s, PandasProjectId=%s, PandasResultId=%s, PandasArchitectId=%s, ContentValue=%s, ContentText=%s, QuantityValue=%s,
                 QuantityText=%s, UnitValue=%s, UnitText=%s, MaterialValue=%s, MaterialText=%s,
-                WageValue=%s, WageText=%s, SumValue=%s, SumText=%s, ColumnRow=%s WHERE PandasColumnId=%s VALUES(%s,%s,%s,%s,%s,%s,%s,%s,%s,%s, %s,%s,%s,%s,%s,%s,%s) RETURNING PandasColumnId;"""
+                WageValue=%s, WageText=%s, SumValue=%s, SumText=%s, ColumnRow=%s WHERE PandasColumnId=%s RETURNING PandasColumnId;"""
         try:
             self.cur.execute(sql, (project_id, result_id, architect_id, content_value, content_text, quantity_value,
                 quantity_text, unit_value, unit_text, material_value, material_text,
@@ -191,7 +191,8 @@ class DBHelper:
         return architect_id
 
     def update_project(self, project_id, user_id, architect_id, project_name, active):
-        sql = """UPDATE PandasProject SET UserId = %s, PandasArchitectId = %s, PandasProjectName = %s, ModifyDate = CURRENT_DATE, Active = %s WHERE PandasProjectId = %s RETURNING PandasProjectId;"""
+        sql = """UPDATE PandasProject SET UserId = %s, PandasArchitectId = %s, PandasProjectName = %s, 
+        ModifyDate = CURRENT_DATE, Active = %s WHERE PandasProjectId = %s RETURNING PandasProjectId;"""
         try:
             self.cur.execute(sql, (user_id, architect_id, project_name, active, project_id,))
             project_id = self.cur.fetchone()[0]
