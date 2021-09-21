@@ -1,27 +1,53 @@
--- Database: train_excel_test
+-- Database: merkbau_test
 
--- DROP DATABASE train_excel_test
+-- DROP DATABASE merkbau_test;
 
-DROP TABLE public.pandas_column
-DROP TABLE public.pandas_result
-DROP TABLE public.headers;
-DROP TABLE public.sentence;
-DROP TABLE public.token_label;
-DROP TABLE public.sentence_label;
-DROP TABLE public.architects;
-CREATE TABLE public."architects"
+DROP TABLE IF EXISTS public.PandasColumn;
+DROP TABLE IF EXISTS public.PandasResult;
+DROP TABLE IF EXISTS public.PandasFile;
+DROP TABLE IF EXISTS public.PandasProject;
+DROP TABLE IF EXISTS public.sentence;
+DROP TABLE IF EXISTS public.token_label;
+DROP TABLE IF EXISTS public.sentence_label;
+DROP TABLE IF EXISTS public.headers;
+DROP TABLE IF EXISTS public.PandasArchitect;
+DROP TABLE IF EXISTS public.Users;
+
+
+
+CREATE TABLE public.Users
 (
-    architect_id SERIAL NOT NULL,
-    name character varying(64) NOT NULL,
-    created_date date DEFAULT CURRENT_DATE,
-    modified_date date DEFAULT CURRENT_DATE,
-    active boolean DEFAULT true,
-    PRIMARY KEY (architect_id)
+    UserId SERIAL NOT NULL,
+    FirstName character varying(128),
+    LastName character varying(128),
+    Email character varying(128),
+    Password character varying(128),
+    CreatedAt date DEFAULT CURRENT_DATE,
+    Active boolean DEFAULT true,
+    Confirmed boolean DEFAULT false,
+    ExpireAt date DEFAULT CURRENT_DATE,
+    PRIMARY KEY (UserId)
 )
 
 TABLESPACE pg_default;
 
-ALTER TABLE public."architects"
+ALTER TABLE public.Users
+    OWNER to postgres;
+
+
+CREATE TABLE public.PandasArchitect
+(
+    PandasArchitectId SERIAL NOT NULL,
+    ArchitectName character varying(64) NOT NULL,
+    CreateDate date DEFAULT CURRENT_DATE,
+    ModifiedDate date DEFAULT CURRENT_DATE,
+    Active boolean DEFAULT true,
+    PRIMARY KEY (PandasArchitectId)
+)
+
+TABLESPACE pg_default;
+
+ALTER TABLE public.PandasArchitect
     OWNER to postgres;
 
 CREATE TABLE public.headers
@@ -36,7 +62,7 @@ CREATE TABLE public.headers
     PRIMARY KEY (id),
 	CONSTRAINT fk_column
    FOREIGN KEY(architect_id)
-   REFERENCES architects(architect_id)
+   REFERENCES PandasArchitect(PandasArchitectId)
 )
 
 TABLESPACE pg_default;
@@ -46,16 +72,16 @@ ALTER TABLE public.headers
 
 CREATE TABLE public.sentence_label
 (
-    id SERIAL NOT NULL,
-    category character varying(128) NOT NULL,
-    ordinal character varying(16) NOT NULL UNIQUE,
-    created_date date DEFAULT CURRENT_DATE,
-    modified_date date DEFAULT CURRENT_DATE,
-	type_id integer NOT NULL,
-	main_cat_id integer NOT NULL,
-	sub_cat_id integer NOT NULL,
-	category_order integer DEFAULT 0,
-    PRIMARY KEY (id)
+    PandasCategoryId SERIAL NOT NULL,
+    CategoryName character varying(128) NOT NULL,
+    Ordinal character varying(16) NOT NULL UNIQUE,
+    CreateDate date DEFAULT CURRENT_DATE,
+    ModifiedDate date DEFAULT CURRENT_DATE,
+	TypeId integer NOT NULL,
+	MainCatId integer NOT NULL,
+	SubCatId integer NOT NULL,
+	CategoryOrder integer DEFAULT 0,
+    PRIMARY KEY (PandasCategoryId)
 )
 
 TABLESPACE pg_default;
@@ -73,7 +99,7 @@ CREATE TABLE public.token_label
     PRIMARY KEY (id),
     CONSTRAINT fk_token_label
    FOREIGN KEY(category_id)
-   REFERENCES sentence_label(id)
+   REFERENCES sentence_label(PandasCategoryId)
 )
 
 TABLESPACE pg_default;
@@ -81,69 +107,102 @@ TABLESPACE pg_default;
 ALTER TABLE public.token_label
     OWNER to postgres;
 
+CREATE TABLE public.PandasProject
+(
+    PandasProjectId SERIAL NOT NULL,
+	UserId integer REFERENCES Users,
+	PandasArchitectId integer REFERENCES PandasArchitect,
+	PandasProjectName character varying(256) NOT NULL,
+	CreateDate date DEFAULT CURRENT_DATE,
+	ModifyDate date DEFAULT CURRENT_DATE,
+	Active boolean DEFAULT true,
+    PRIMARY KEY (PandasProjectId)
+)
+
+TABLESPACE pg_default;
+
+ALTER TABLE public.PandasProject
+    OWNER to postgres;
+
+CREATE TABLE public.PandasFile
+(
+    PandasFileId SERIAL NOT NULL,
+	PandasProjectId integer REFERENCES PandasProject,
+	FileName character varying(256) NOT NULL,
+	FileSize integer NOT NULL,
+	FileType character varying(128) NOT NULL,
+	FileData bytea,
+    PRIMARY KEY (PandasFileId)
+)
+
+TABLESPACE pg_default;
+
+ALTER TABLE public.PandasFile
+    OWNER to postgres;
+
+
+CREATE TABLE public.PandasResult
+(
+    PandasResultId SERIAL NOT NULL,
+    PandasProjectId integer,
+    PandasFileId integer,
+    ResultName character varying(128) NOT NULL,
+    ResultCount integer,
+    ResultFinish integer,
+    ResultTable integer[][],
+    PRIMARY KEY (PandasResultId)
+)
+
+TABLESPACE pg_default;
+
+ALTER TABLE public.PandasResult
+    OWNER to postgres;
+
+
+CREATE TABLE public.PandasColumn
+(
+    PandasColumnId SERIAL NOT NULL,
+    PandasProjectId integer,
+    PandasResultId integer REFERENCES PandasResult,
+    PandasArchitectId integer REFERENCES PandasArchitect,
+    ContentValue integer,
+    ContentText character varying(256),
+    QuantityValue integer,
+    QuantityText character varying(256),
+    UnitValue integer,
+    UnitText character varying(256),
+    MaterialValue integer,
+    MaterialText character varying(256),
+    WageValue integer,
+    WageText character varying(256),
+    SumValue integer,
+    SumText character varying(256),
+    CreateDate date DEFAULT CURRENT_DATE,
+    ColumnRow json NOT NULL,
+    PRIMARY KEY (PandasColumnId)
+)
+
+TABLESPACE pg_default;
+
+ALTER TABLE public.PandasColumn
+    OWNER to postgres;
+
+
 CREATE TABLE public.sentence
 (
     id SERIAL NOT NULL,
     text character varying(1024) NOT NULL,
     sentence_label_id integer NOT NULL,
     token_labels integer[],
-	result_id integer NOT NULL,
-	user_id integer NOT NULL,
+	PandasResultId integer REFERENCES PandasResult,
+	UserId integer REFERENCES Users,
     PRIMARY KEY (id),
     CONSTRAINT fk_label
    FOREIGN KEY(sentence_label_id)
-   REFERENCES sentence_label(id)
+   REFERENCES sentence_label(PandasCategoryId)
 )
 
 TABLESPACE pg_default;
 
 ALTER TABLE public.sentence
     OWNER to postgres;
-
-CREATE TABLE public.pandas_result
-(
-    pandas_result_id SERIAL NOT NULL,
-    project_id integer,
-    file_id integer,
-    result_name character varying(128) NOT NULL,
-    result_count integer,
-    result_finish integer,
-    result_table integer[][],
-    PRIMARY KEY (pandas_result_id)
-)
-
-TABLESPACE pg_default;
-
-ALTER TABLE public.pandas_result
-    OWNER to postgres;
-
-CREATE TABLE public.pandas_column
-(
-    pandas_column_id SERIAL NOT NULL,
-    project_id integer,
-    result_id integer REFERENCES pandas_result,
-    architect_id integer REFERENCES architects,
-    content_value integer,
-    content_text character varying(256),
-    quantity_value integer,
-    quantity_text character varying(256),
-    unit_value integer,
-    unit_text character varying(256),
-    material_value integer,
-    material_text character varying(256),
-    wage_value integer,
-    wage_text character varying(256),
-    sum_value integer,
-    sum_text character varying(256),
-    created_date date DEFAULT CURRENT_DATE,
-    column_row json NOT NULL,
-    PRIMARY KEY (pandas_column_id)
-)
-
-TABLESPACE pg_default;
-
-ALTER TABLE public.pandas_column
-    OWNER to postgres;
-
-
-    
