@@ -49,7 +49,7 @@ CREATE TABLE public.PandasArchitect
     PandasArchitectId SERIAL NOT NULL,
     ArchitectName character varying(64) NOT NULL,
     CreateDate date DEFAULT CURRENT_DATE,
-    ModifiedDate date DEFAULT CURRENT_DATE,
+    ModifyDate date DEFAULT CURRENT_DATE,
     Active boolean DEFAULT true,
     PRIMARY KEY (PandasArchitectId)
 )
