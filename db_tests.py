@@ -4,6 +4,7 @@ import icecream as ic
 import random
 import string
 from datetime import date
+import json
 
 ic = ic.IceCreamDebugger()
 # ic.disable()
@@ -73,10 +74,10 @@ def initialize():
     password = get_password()
     # drop test database and create database
     conn = psycopg2.connect(
-        host="localhost",
-        database="train_excel_test",
-        user="postgres",
-        password=password)
+        host=CONNECTION['HOST'],
+        database=CONNECTION['TRAIN_EXCEL_TEST'],
+        user=CONNECTION['USER'],
+        password=CONNECTION['PASSWORD'])
 
     cur = conn.cursor()
     with open("create_test_db.sql", 'r') as f:
@@ -365,7 +366,7 @@ def get_sentence_test():
         if not row:
             insert_sentences()
         row = db.get_sentence(1)
-        assert len(row[0]) >= 10
+        assert row[0] == 1
 
 def get_sentence_label_test():
     with DBHelper(test=True) as db:
@@ -408,6 +409,8 @@ def get_random_ordinal():
 
 
 initialize()
+get_sentence_test()
+print("Test get sentence test is OK")
 get_architect_by_id_test()
 print("Test get architect by id test")
 update_token_label_test()
@@ -424,8 +427,7 @@ get_token_label_test()
 print("Test get token label is OK!")
 get_sentence_label_test()
 print("Test get sentence label test is OK")
-get_sentence_test()
-print("Test get sentence test is OK")
+
 get_next_sentence_test()
 print("Test get next sentence test is OK")
 get_sentence_label_by_ordinal_test()

@@ -303,7 +303,7 @@ class DBHelper:
         token_labels = data[2]
         try:
             for i, ordinal in enumerate(ordinals):
-                id, category, ordinal = self.get_sentence_label_by_ordinal(ordinal)
+                id, category, ordinal, created_date, modified_date = self.get_sentence_label_by_ordinal(ordinal)
                 if id:
                     self.cur.execute(sql, (texts[i], id, token_labels[i], ))
                     sentence_id = self.cur.fetchone()[0]
