@@ -9,13 +9,6 @@ DROP TABLE IF EXISTS public.headers;
 DROP TABLE IF EXISTS public.PandasArchitect;
 
 
-DROP TABLE IF EXISTS public.sentence;
-DROP TABLE IF EXISTS public.token_label;
-DROP TABLE IF EXISTS public.sentence_label;
-DROP TABLE IF EXISTS public.headers;
-DROP TABLE IF EXISTS public.PandasArchitect;
-
-
 CREATE TABLE public.PandasArchitect
 (
     PandasArchitectId SERIAL NOT NULL,
@@ -58,10 +51,6 @@ CREATE TABLE public.sentence_label
     Ordinal character varying(16) NOT NULL UNIQUE,
     CreateDate date DEFAULT CURRENT_DATE,
     ModifiedDate date DEFAULT CURRENT_DATE,
-	TypeId integer NOT NULL,
-	MainCatId integer NOT NULL,
-	SubCatId integer NOT NULL,
-	CategoryOrder integer DEFAULT 0,
     PRIMARY KEY (PandasCategoryId)
 )
 
@@ -94,8 +83,6 @@ CREATE TABLE public.sentence
     text character varying(1024) NOT NULL,
     sentence_label_id integer NOT NULL,
     token_labels integer[],
-	PandasResultId integer REFERENCES PandasResult,
-	UserId integer REFERENCES Users,
     PRIMARY KEY (id),
     CONSTRAINT fk_label
    FOREIGN KEY(sentence_label_id)

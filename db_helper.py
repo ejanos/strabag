@@ -61,44 +61,10 @@ class DBHelper:
             return None
         return architect_id
 
-    def insert_column(self, project_id, result_id, architect_id, content_value, content_text, quantity_value,
-                quantity_text, unit_value, unit_text, material_value, material_text,
-                wage_value, wage_text, sum_value, sum_text, column_row):
-        sql = """INSERT INTO PandasColumn(PandasProjectId, PandasResultId, PandasArchitectId, ContentValue, ContentText, QuantityValue,
-                QuantityText, UnitValue, UnitText, MaterialValue, MaterialText,
-                WageValue, WageText, SumValue, SumText, ColumnRow) VALUES(%s,%s,%s,%s,%s,%s,%s,%s,%s,%s, %s,%s,%s,%s,%s,%s) RETURNING PandasColumnId;"""
+    def insert_sentence_label(self, category, ordinal):
+        sql = """INSERT INTO sentence_label(CategoryName, Ordinal) VALUES(%s,%s) RETURNING PandasCategoryId;"""
         try:
-            self.cur.execute(sql, (project_id, result_id, architect_id, content_value, content_text, quantity_value,
-                quantity_text, unit_value, unit_text, material_value, material_text,
-                wage_value, wage_text, sum_value, sum_text, column_row,))
-            column_id = self.cur.fetchone()[0]
-            self.conn.commit()
-        except(Exception, psycopg2.DatabaseError) as error:
-            print(error)
-            return None
-        return column_id
-
-    def update_column(self, pandas_column_id, project_id, result_id, architect_id, content_value, content_text, quantity_value,
-                quantity_text, unit_value, unit_text, material_value, material_text,
-                wage_value, wage_text, sum_value, sum_text, column_row):
-        sql = """UPDATE PandasColumn SET PandasColumnId=%s, PandasProjectId=%s, PandasResultId=%s, PandasArchitectId=%s, ContentValue=%s, ContentText=%s, QuantityValue=%s,
-                QuantityText=%s, UnitValue=%s, UnitText=%s, MaterialValue=%s, MaterialText=%s,
-                WageValue=%s, WageText=%s, SumValue=%s, SumText=%s, ColumnRow=%s WHERE PandasColumnId=%s VALUES(%s,%s,%s,%s,%s,%s,%s,%s,%s,%s, %s,%s,%s,%s,%s,%s,%s) RETURNING PandasColumnId;"""
-        try:
-            self.cur.execute(sql, (project_id, result_id, architect_id, content_value, content_text, quantity_value,
-                quantity_text, unit_value, unit_text, material_value, material_text,
-                wage_value, wage_text, sum_value, sum_text, column_row,pandas_column_id,))
-            column_id = self.cur.fetchone()[0]
-            self.conn.commit()
-        except(Exception, psycopg2.DatabaseError) as error:
-            print(error)
-            return None
-        return column_id
-
-    def insert_sentence_label(self, category, ordinal, type_id, main_cat_id, sub_cat_id, category_order):
-        sql = """INSERT INTO sentence_label(CategoryName, Ordinal, TypeId, MainCatId, SubCatId, CategoryOrder) VALUES(%s,%s,%s,%s,%s,%s) RETURNING PandasCategoryId;"""
-        try:
-            self.cur.execute(sql, (category, ordinal, type_id, main_cat_id, sub_cat_id, category_order,))
+            self.cur.execute(sql, (category, ordinal,))
             sentence_label_id = self.cur.fetchone()[0]
             self.conn.commit()
         except(Exception, psycopg2.DatabaseError) as error:
@@ -107,67 +73,10 @@ class DBHelper:
         return sentence_label_id
 
 
-    def insert_sentence(self, text, sentence_label_id, token_labels, result_id, user_id):
-        sql = """INSERT INTO sentence(text, sentence_label_id, token_labels, PandasResultId, UserId) VALUES(%s,%s,%s,%s,%s) RETURNING id;"""
+    def insert_sentence(self, text, sentence_label_id, token_labels):
+        sql = """INSERT INTO sentence(text, sentence_label_id, token_labels) VALUES(%s,%s,%s) RETURNING id;"""
         try:
-            self.cur.execute(sql, (text, sentence_label_id, token_labels, result_id, user_id,))
-            sentence_id = self.cur.fetchone()[0]
-            self.conn.commit()
-        except(Exception, psycopg2.DatabaseError) as error:
-            print(error)
-            return None
-        return sentence_id
-
-    def insert_project(self, user_id, architect_id, project_name):
-        sql = """INSERT INTO PandasProject(UserId, PandasArchitectId, PandasProjectName) VALUES(%s,%s,%s) RETURNING PandasProjectId;"""
-        try:
-            self.cur.execute(sql, (user_id, architect_id, project_name,))
-            project_id = self.cur.fetchone()[0]
-            self.conn.commit()
-        except(Exception, psycopg2.DatabaseError) as error:
-            print(error)
-            return None
-        return project_id
-
-    def insert_result(self, project_id, file_id, result_name, result_count, result_finish, result_table):
-        sql = """INSERT INTO PandasResult(PandasProjectId, PandasFileId, ResultName, ResultCount, ResultFinish, ResultTable) VALUES(%s,%s,%s,%s,%s,%s) RETURNING PandasResultId;"""
-        try:
-            self.cur.execute(sql, (project_id, file_id, result_name, result_count, result_finish, result_table,))
-            result_id = self.cur.fetchone()[0]
-            self.conn.commit()
-        except(Exception, psycopg2.DatabaseError) as error:
-            print(error)
-            return None
-        return result_id
-
-
-    def update_result(self, result_id, project_id, file_id, result_name, result_count, result_finish, result_table):
-        sql = """UPDATE PandasResult SET PandasProjectId=%s, PandasFileId=%s, ResultName=%s, ResultCount=%s, ResultFinish=%s, 
-        ResultTable=%s WHERE PandasResultId=%s RETURNING PandasResultId;"""
-        try:
-            self.cur.execute(sql, (project_id, file_id, result_name, result_count, result_finish, result_table, result_id,))
-            result_id = self.cur.fetchone()[0]
-            self.conn.commit()
-        except(Exception, psycopg2.DatabaseError) as error:
-            print(error)
-            return None
-        return result_id
-
-    def update_sentence(self, id, text, sentence_label_id, token_labels, result_id, user_id):
-        sql = """UPDATE sentence SET text=%s, sentence_label=%s, token_labels=%s, PandasResultId=%s, UserId=%s WHERE id=%s RETURNING id;"""
-        try:
-            self.cur.execute(sql, (text, sentence_label_id, token_labels, result_id, user_id, id,))
-            sentence_id = self.cur.fetchone()[0]
-            self.conn.commit()
-        except(Exception, psycopg2.DatabaseError) as error:
-            print(error)
-            return None
-        return sentence_id
-
-    def update_sentence_label(self, id, category, ordinal, type_id, main_cat_id, sub_cat_id, category_order):
-        sql = """UPDATE sentence_label SET CategoryName=%s, Ordinal=%s, TypeId=%s, MainCatId=%s, SubCatId=%s, CategoryOrder=%s WHERE PandasCategoryId=%s RETURNING PandasCategoryId;"""
-        try:
-            self.cur.execute(sql, (category, ordinal, type_id, main_cat_id, sub_cat_id, category_order,id,))
+            self.cur.execute(sql, (text, sentence_label_id, token_labels))
             sentence_id = self.cur.fetchone()[0]
             self.conn.commit()
         except(Exception, psycopg2.DatabaseError) as error:
@@ -176,7 +85,27 @@ class DBHelper:
         return sentence_id
 
 
+    def update_sentence(self, id, text, sentence_label_id, token_labels):
+        sql = """UPDATE sentence SET text=%s, sentence_label=%s, token_labels=%s WHERE id=%s RETURNING id;"""
+        try:
+            self.cur.execute(sql, (text, sentence_label_id, token_labels, id,))
+            sentence_id = self.cur.fetchone()[0]
+            self.conn.commit()
+        except(Exception, psycopg2.DatabaseError) as error:
+            print(error)
+            return None
+        return sentence_id
 
+    def update_sentence_label(self, id, category, ordinal):
+        sql = """UPDATE sentence_label SET CategoryName=%s, Ordinal=%s WHERE PandasCategoryId=%s RETURNING PandasCategoryId;"""
+        try:
+            self.cur.execute(sql, (category, ordinal,))
+            sentence_id = self.cur.fetchone()[0]
+            self.conn.commit()
+        except(Exception, psycopg2.DatabaseError) as error:
+            print(error)
+            return None
+        return sentence_id
 
 
     def update_architect(self, id, name, active):
@@ -229,18 +158,6 @@ class DBHelper:
             print(error)
             return None
 
-    def get_columns(self, project_id, result_id, architect_id):
-        try:
-            sql = f"SELECT * FROM PandasColumn WHERE PandasProjectId='{project_id}' AND PandasResultId='{result_id}' " \
-                  f"AND PandasArchitectId='{architect_id}'"
-            self.cur.execute(sql)
-            rows = self.cur.fetchall()
-            return rows
-        except(Exception, psycopg2.DatabaseError) as error:
-            print(error)
-            return None
-
-
     def get_all_sentence_label(self):
         try:
             sql = f"SELECT * FROM sentence_label"
@@ -250,28 +167,6 @@ class DBHelper:
         except(Exception, psycopg2.DatabaseError) as error:
             print(error)
             return None
-
-
-    def get_projects(self, user_id):
-        try:
-            sql = f"SELECT * FROM PandasProject WHERE UserId='{user_id}'"
-            self.cur.execute(sql)
-            rows = self.cur.fetchall()
-            return rows
-        except(Exception, psycopg2.DatabaseError) as error:
-            print(error)
-            return None
-
-    def get_results(self, project_id):
-        try:
-            sql = f"SELECT * FROM PandasResult WHERE PandasProjectId='{project_id}'"
-            self.cur.execute(sql)
-            rows = self.cur.fetchall()
-            return rows
-        except(Exception, psycopg2.DatabaseError) as error:
-            print(error)
-            return None
-
 
 
     def get_architect_by_name(self, name):
@@ -334,24 +229,6 @@ class DBHelper:
             print(error)
             return None
 
-    def delete_column(self, pandas_column_id):
-        try:
-            sql = f"DELETE FROM PandasColumn WHERE PandasColumnId='{pandas_column_id}'"
-            self.cur.execute(sql)
-            return True
-        except(Exception, psycopg2.DatabaseError) as error:
-            print(error)
-            return None
-
-    def delete_all_column(self, project_id):
-        try:
-            sql = f"DELETE FROM PandasColumn WHERE PandasProjectId='{project_id}'"
-            self.cur.execute(sql)
-            return True
-        except(Exception, psycopg2.DatabaseError) as error:
-            print(error)
-            return None
-
     def delete_sentence(self, id):
         try:
             sql = f"DELETE FROM sentence WHERE id='{id}'"
@@ -362,32 +239,6 @@ class DBHelper:
             return None
 
 
-    def delete_project(self, project_id):
-        try:
-            sql = f"DELETE FROM PandasProject WHERE PandasProjectId='{project_id}'"
-            self.cur.execute(sql)
-            return True
-        except(Exception, psycopg2.DatabaseError) as error:
-            print(error)
-            return None
-
-    def delete_result(self, result_id):
-        try:
-            sql = f"DELETE FROM PandasResult WHERE PandasResultId='{result_id}'"
-            self.cur.execute(sql)
-            return True
-        except(Exception, psycopg2.DatabaseError) as error:
-            print(error)
-            return None
-
-    def delete_all_result(self, project_id):
-        try:
-            sql = f"DELETE FROM PandasResult WHERE PandasProjectId='{project_id}'"
-            self.cur.execute(sql)
-            return True
-        except(Exception, psycopg2.DatabaseError) as error:
-            print(error)
-            return None
 
     def get_headers_by_architect(self, architect_id):
         try:
@@ -421,10 +272,10 @@ class DBHelper:
             return None
         return header_id
 
-    def insert_sentence_label(self, name, ordinal, type_id, main_cat_id, sub_cat_id, category_order):
-        sql = """INSERT INTO sentence_label(CategoryName, Ordinal, TypeId, MainCatId, SubCatId, CategoryOrder) VALUES(%s,%s,%s,%s,%s,%s) RETURNING PandasCategoryId;"""
+    def insert_sentence_label(self, name, ordinal):
+        sql = """INSERT INTO sentence_label(CategoryName, Ordinal) VALUES(%s,%s) RETURNING PandasCategoryId;"""
         try:
-            self.cur.execute(sql, (name,ordinal,type_id, main_cat_id, sub_cat_id, category_order,))
+            self.cur.execute(sql, (name,ordinal,))
             category_id = self.cur.fetchone()[0]
             self.conn.commit()
         except(Exception, psycopg2.DatabaseError) as error:
@@ -446,7 +297,7 @@ class DBHelper:
     def insert_sentences(self, data):
         # data: első oszlop kategória azonosító, második oszlop szöveg, 3. oszlop list of token_labels
         # TODO token_labels -t is be kell szúrni!!!
-        sql = """INSERT INTO sentence(text, sentence_label_id, token_labels, PandasResultId, UserId) VALUES(%s,%s,%s) RETURNING id;"""
+        sql = """INSERT INTO sentence(text, sentence_label_id, token_labels) VALUES(%s,%s,%s) RETURNING id;"""
         ordinals = data[0]
         texts = data[1]
         token_labels = data[2]
