@@ -440,5 +440,5 @@ if __name__ == '__main__':
 
     #conv = ConvertExcel(test=True)
     conv = ConvertExcel(test=False)
-    #test_process()
-    test_process_mi()
+    test_process()
+    #test_process_mi()
