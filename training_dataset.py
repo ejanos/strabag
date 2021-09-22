@@ -1,4 +1,3 @@
-import db_tests
 from db_helper import DBHelper
 import pandas as pd
 from convert_excel import ConvertExcel
