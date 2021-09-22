@@ -1,3 +1,4 @@
+import db_tests
 from db_helper import DBHelper
 import pandas as pd
 from convert_excel import ConvertExcel
@@ -7,7 +8,6 @@ from helpers import Helpers
 class TrainingDataset():
     NUMERIC = "01234567890.,"
     BUFFER_SIZE = 10
-    db = DBHelper()
     conv = ConvertExcel()
     buffer = []
 
@@ -26,15 +26,33 @@ class TrainingDataset():
             if not self.save_row(target_categories[j], text_content, token_labels[j]):
                 return None
             row_index += 1
+        sentence_id = self.process_buffer()
+        return sentence_id
 
     def save_row(self, target_category, content, token_labels):
         sentence_id = 1
         if len(self.buffer) > self.BUFFER_SIZE:
             self.buffer.append((target_category, content, token_labels,))
-            sentence_id = self.db.insert_sentences(self.buffer)
+            with DBHelper() as db:
+                sentence_id = db.insert_sentences(self.buffer)
+            self.buffer.clear()
         else:
             self.buffer.append((target_category, content, token_labels,))
         return sentence_id
+
+    def process_buffer(self):
+        if len(self.buffer):
+            with DBHelper() as db:
+                sentence_id = db.insert_sentences(self.buffer)
+                return sentence_id
+        return 1
+
+    def save_one_row(self, target_category, content, token_labels):
+        with DBHelper() as db:
+            category_id = db.get_sentence_label_id_by_ordinal(target_category)
+            sentence_id = db.insert_sentence(content, category_id, token_labels)
+        return sentence_id
+
 
 
 

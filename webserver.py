@@ -228,6 +228,20 @@ def save_training_data():
 
     return "invalid method"
 
+@app.route("/save/sentence", methods=['POST'])
+# TODO make it async
+def save_sentence():
+    ic("save training data")
+    if request.method == 'POST':
+        form = request.form
+        content = form['content']
+        target_category = form['target_category']
+        token_labels = json.loads(form['token_labels'])
+        result = training.save_one_row(target_category, content, token_labels)
+        return return_response(result)
+
+    return "invalid method"
+
 @app.route("/convert", methods=['POST'])
 # TODO make it async
 def convert():

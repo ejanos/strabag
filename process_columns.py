@@ -1,24 +1,26 @@
 from db_helper import DBHelper
 
 class ProcessColumns:
-    db = DBHelper()
     threshold = 0.6
 
     # megnézi, az adatbázisban már található ilyen header összeállítás?
     def compare(self, texts):
         result = dict()
-        users = self.db.get_all_user()
+        with DBHelper() as db:
+            users = db.get_all_user()
         for user_id, _ in users:
             scores = []
-            subset_ids = self.db.get_headers_subset_ids(user_id)
+            with DBHelper() as db:
+                subset_ids = db.get_headers_subset_ids(user_id)
             if not subset_ids:
                 continue
             for subset in subset_ids:
-                rows = self.db.get_headers_by_architect_subset_id(user_id, subset[0])
-                target_text = self.get_column_from_rows(rows, 1)
-                target_columns = self.get_column_from_rows(rows, 2)
-                target_targets = self.get_column_from_rows(rows, 3)
-                header_rows = self.get_column_from_rows(rows, 4)
+                with DBHelper() as db:
+                    rows = db.get_headers_by_architect_subset_id(user_id, subset[0])
+                    target_text = self.get_column_from_rows(rows, 1)
+                    target_columns = self.get_column_from_rows(rows, 2)
+                    target_targets = self.get_column_from_rows(rows, 3)
+                    header_rows = self.get_column_from_rows(rows, 4)
 
                 score = self.get_header_similarity_score(texts, target_text)
                 if score > self.threshold:

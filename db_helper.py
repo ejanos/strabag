@@ -367,6 +367,16 @@ class DBHelper:
             print(error)
             return None
 
+    def get_sentence_label_id_by_ordinal(self, ordinal):
+        try:
+            sql = f"SELECT PandasCategoryId FROM sentence_label WHERE Ordinal='{ordinal}'"
+            self.cur.execute(sql)
+            category_id = self.cur.fetchone()[0]
+            return category_id
+        except(Exception, psycopg2.DatabaseError) as error:
+            print(error)
+            return None
+
     def __get_next_sentence__(self):
         try:
             sql = f"SELECT * FROM sentence"
