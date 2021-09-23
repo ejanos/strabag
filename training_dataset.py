@@ -49,15 +49,19 @@ class TrainingDataset():
     def save_one_row(self, target_category, content, token_labels):
         with DBHelper() as db:
             category_id = db.get_sentence_label_id_by_ordinal(target_category)
-            sentence_id = db.insert_sentence(content, category_id, token_labels)
-        return sentence_id
+            if category_id:
+                sentence_id = db.insert_sentence(content, category_id, token_labels)
+                return sentence_id
+            return 0
 
     def update_one_row(self, target_category, content, token_labels):
         with DBHelper() as db:
             category_id = db.get_sentence_label_id_by_ordinal(target_category)
             sentence_id = db.get_sentence_id_by_text(content)
-            sentence_id = db.update_sentence(sentence_id, content, category_id, token_labels)
-        return sentence_id
+            if category_id and sentence_id:
+                sentence_id = db.update_sentence(sentence_id, content, category_id, token_labels)
+                return sentence_id
+            return 0
 
 
 
