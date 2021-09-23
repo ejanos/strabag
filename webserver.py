@@ -45,6 +45,7 @@ def compare():
                 "architect_id": architect_id,
                 "subset_id": subset_id,
                 "header_rows": header_rows})
+    return "Not allowed method", 405
 
 @app.route("/save/columns", methods=['POST'])
 # TODO make it async
@@ -61,6 +62,7 @@ def save_columns():
         with DBHelper() as db:
             result = db.insert_headers(texts, columns, targets, architect_id, header_row)
         return return_response(result)  # subset_id
+    return "Not allowed method", 405
 
     #delete_headers_by_architect_subset_id
 
@@ -74,6 +76,7 @@ def delete_columns():
         with DBHelper() as db:
             result = db.delete_headers_by_architect_subset_id(architect_id, subset_id)
         return return_response(result)  # subset_id
+    return "Not allowed method", 405
 
 @app.route("/save/architect", methods=['POST'])
 # TODO make it async
@@ -84,6 +87,7 @@ def save_architect():
         with DBHelper() as db:
             result = db.insert_architect(name)
         return return_response(result)
+    return "Not allowed method", 405
 
 @app.route("/update/architect", methods=['POST'])
 # TODO make it async
@@ -96,6 +100,7 @@ def update_architect():
         with DBHelper() as db:
             result = db.update_architect(id, name, active)
         return return_response(result)
+    return "Not allowed method", 405
 
 
 @app.route("/read/all/architect", methods=['GET'])
@@ -113,6 +118,7 @@ def get_all_architect():
                 "modified_date": row[3],
                 "active": row[4]})
         return return_response(result)
+    return "Not allowed method", 405
 
 @app.route("/read/architect", methods=['GET'])
 # TODO make it async
@@ -128,6 +134,7 @@ def get_architect():
                 "modified_date": architect[3],
                 "active": architect[4]}
         return return_response(result)
+    return "Not allowed method", 405
 
 @app.route("/save/category", methods=['POST'])
 # TODO make it async
@@ -139,6 +146,7 @@ def save_category():
         with DBHelper() as db:
             result = db.insert_sentence_label(name, ordinal)
         return return_response(result)
+    return "Not allowed method", 405
 
 @app.route("/update/category", methods=['POST'])
 # TODO make it async
@@ -151,6 +159,7 @@ def update_category():
         with DBHelper() as db:
             result = db.update_sentence_label(name, ordinal, id)
         return return_response(result)
+    return "Not allowed method", 405
 
 @app.route("/read/all/category", methods=['GET'])
 # TODO make it async
@@ -166,6 +175,7 @@ def read_all_category():
                 "ordinal": row[2]
             })
         return return_response(result)
+    return "Not allowed method", 405
 
 @app.route("/save/tokenlabel", methods=['POST'])
 # TODO make it async
@@ -177,6 +187,7 @@ def save_token_label():
         with DBHelper() as db:
             result = db.insert_token_label(name, category_id)
         return return_response(result)
+    return "Not allowed method", 405
 
 @app.route("/update/tokenlabel", methods=['POST'])
 # TODO make it async
@@ -189,6 +200,7 @@ def update_tokenlabel():
         with DBHelper() as db:
             result = db.update_token_label(name, category_id, id)
         return return_response(result)
+    return "Not allowed method", 405
 
 @app.route("/read/all/tokenlabel", methods=['GET'])
 # TODO make it async
@@ -206,6 +218,7 @@ def read_all_tokenlabel():
                 "modified_date": row[4]
             })
         return jsonify(result)
+    return "Not allowed method", 405
 
 @app.route("/save/trainingdata", methods=['POST'])
 # TODO make it async
@@ -226,7 +239,7 @@ def save_training_data():
         result = training.save(content_column, source_rows, target_categories, token_labels, file_path)
         return return_response(result)
 
-    return "invalid method"
+    return "Not allowed method", 405
 
 @app.route("/save/sentence", methods=['POST'])
 # TODO make it async
@@ -240,7 +253,7 @@ def save_sentence():
         result = training.save_one_row(target_category, content, token_labels)
         return return_response(result)
 
-    return "invalid method"
+    return "Not allowed method", 405
 
 @app.route("/convert", methods=['POST'])
 # TODO make it async
@@ -251,7 +264,7 @@ def convert():
         directory, file_name = conv.process(source_rows, source_cols, target_categories, target_cols, file_path)
         return send_from_directory(directory, file_name, as_attachment=True)
 
-    return "invalid method"
+    return "Not allowed method", 405
 
 
 @app.route("/convert/more/sheets", methods=['POST'])
@@ -263,7 +276,7 @@ def convert_more_sheets():
         directory, file_name = conv.process_more_sheets_and_save(source_rows, source_cols, target_categories, target_cols, file_path)
         return send_from_directory(directory, file_name, as_attachment=True)
 
-    return "invalid method"
+    return "Not allowed method", 405
 
 @app.route("/convert/more/files", methods=['POST'])
 # TODO make it async
@@ -285,7 +298,7 @@ def convert_more_files():
             file.save(file_path)
         directory, file_name = conv.process_more_files(source_rows, source_cols, target_categories, target_cols, cached_files)
         return send_from_directory(directory, file_name, as_attachment=True)
-    return "invalid method"
+    return "Not allowed method", 405
 
 @app.route("/convert/mi", methods=['POST'])
 # TODO make it async
@@ -305,7 +318,7 @@ def convert_mi():
         directory, file_name = conv.process_mi(content_col, source_cols, target_cols, file_path, no_category_id)
         return send_from_directory(directory, file_name, as_attachment=True)
 
-    return "invalid method"
+    return "Not allowed method", 405
 
 @app.route("/predict", methods=['POST'])
 # TODO make it async
@@ -325,7 +338,7 @@ def predict_more_row():
             content_col, source_rows, file_path, no_category_id)
 
         return target_categories
-    return "invalid method"
+    return "Not allowed method", 405
 
 @app.route("/start/training", methods=['GET'])
 # TODO make it async
