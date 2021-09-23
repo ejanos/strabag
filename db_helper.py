@@ -199,6 +199,16 @@ class DBHelper:
             print(error)
             return None
 
+    def get_category_id_by_ordinal(self, ordinal):
+        try:
+            sql = f"SELECT pandascategoryid FROM sentence_label WHERE ordinal='{ordinal}'"
+            self.cur.execute(sql)
+            category_id = self.cur.fetchone()[0]
+            return category_id
+        except(Exception, psycopg2.DatabaseError) as error:
+            print(error)
+            return None
+
     def get_headers_subset_ids(self, architect_id):
         try:
             sql = f'SELECT subset_id FROM headers WHERE architect_id={architect_id} GROUP BY subset_id'
@@ -315,9 +325,10 @@ class DBHelper:
             return None
         return sentence_id
 
-    def insert_token_label(self, name, category_id):
+    def insert_token_label(self, name, category_ordinal):
         sql = """INSERT INTO token_label("name", category_id) VALUES(%s,%s) RETURNING id;"""
         try:
+            category_id = self.get_category_id_by_ordinal(category_ordinal)
             self.cur.execute(sql, (name, category_id,))
             token_label_id = self.cur.fetchone()[0]
             self.conn.commit()
@@ -326,9 +337,10 @@ class DBHelper:
             return None
         return token_label_id
 
-    def update_token_label(self, name, category_id, id):
+    def update_token_label(self, name, category_ordinal, id):
         sql = """UPDATE token_label SET "name" = %s, category_id = %s, modified_date = CURRENT_DATE WHERE id = %s RETURNING id;"""
         try:
+            category_id = self.get_category_id_by_ordinal(category_ordinal)
             self.cur.execute(sql, (name, category_id, id,))
             token_label_id = self.cur.fetchone()[0]
             self.conn.commit()

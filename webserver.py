@@ -183,9 +183,9 @@ def save_token_label():
     if request.method == 'POST':
         form = request.form
         name = form['name']
-        category_id = form['category_id']
+        category_ordinal = form['category_ordinal']
         with DBHelper() as db:
-            result = db.insert_token_label(name, category_id)
+            result = db.insert_token_label(name, category_ordinal)
         return return_response(result)
     return "Not allowed method", 405
 
@@ -196,9 +196,9 @@ def update_tokenlabel():
         form = request.form
         id = form['id']
         name = form['name']
-        category_id = form['category_id']
+        category_ordinal = form['category_ordinal']
         with DBHelper() as db:
-            result = db.update_token_label(name, category_id, id)
+            result = db.update_token_label(name, category_ordinal, id)
         return return_response(result)
     return "Not allowed method", 405
 
@@ -217,7 +217,7 @@ def read_all_tokenlabel():
                 "created_date": row[3],
                 "modified_date": row[4]
             })
-        return jsonify(result)
+        return return_response(result)
     return "Not allowed method", 405
 
 @app.route("/save/trainingdata", methods=['POST'])
