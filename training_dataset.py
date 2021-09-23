@@ -55,7 +55,8 @@ class TrainingDataset():
     def update_one_row(self, target_category, content, token_labels):
         with DBHelper() as db:
             category_id = db.get_sentence_label_id_by_ordinal(target_category)
-            sentence_id = db.update_sentence(content, category_id, token_labels)
+            sentence_id = db.get_sentence_id_by_text(content)
+            sentence_id = db.update_sentence(sentence_id, content, category_id, token_labels)
         return sentence_id
 
 

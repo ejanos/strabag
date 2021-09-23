@@ -86,7 +86,7 @@ class DBHelper:
 
 
     def update_sentence(self, id, text, sentence_label_id, token_labels):
-        sql = """UPDATE sentence SET text=%s, sentence_label=%s, token_labels=%s WHERE id=%s RETURNING id;"""
+        sql = """UPDATE sentence SET text=%s, sentence_label_id=%s, token_labels=%s WHERE id=%s RETURNING id;"""
         try:
             self.cur.execute(sql, (text, sentence_label_id, token_labels, id,))
             sentence_id = self.cur.fetchone()[0]
@@ -391,6 +391,16 @@ class DBHelper:
     def get_sentence(self, sentence_id):
         try:
             sql = f"SELECT * FROM sentence WHERE id='{sentence_id}'"
+            self.cur.execute(sql)
+            row = self.cur.fetchone()
+            return row
+        except(Exception, psycopg2.DatabaseError) as error:
+            print(error)
+            return None
+
+    def get_sentence_id_by_text(self, text):
+        try:
+            sql = f"SELECT id FROM sentence WHERE text='{text}'"
             self.cur.execute(sql)
             row = self.cur.fetchone()
             return row

@@ -90,7 +90,7 @@ ALTER TABLE public.token_label
 CREATE TABLE public.sentence
 (
     id SERIAL NOT NULL,
-    text character varying(1024) NOT NULL,
+    text character varying(1024) NOT NULL UNIQUE,
     sentence_label_id integer NOT NULL,
     token_labels integer[],
     PRIMARY KEY (id),
