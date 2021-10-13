@@ -152,6 +152,22 @@ def insert_token_label_test():
         token_label_id = db.insert_token_label(frontend_id, token_label, ordinal)
         assert token_label_id > 0
 
+def insert_project_test():
+    with DBHelper(test=True) as db:
+        project_id = random.randint(0, 99999)
+        trained = True
+        is_trained = db.insert_project(project_id, trained)
+        result = db.get_project_trained(project_id)
+        assert result
+
+def update_project_test():
+    with DBHelper(test=True) as db:
+        project_id = random.randint(0, 99999)
+        is_trained = db.insert_project(project_id, True)
+        is_trained = db.update_project(project_id, False)
+        result = db.get_project_trained(project_id)
+        assert not result
+
 def update_token_label_test():
     with DBHelper(test=True) as db:
         ordinal = get_random_string(15)
@@ -416,6 +432,11 @@ def get_random_ordinal():
 
 
 initialize()
+update_project_test()
+print("Test update project test is OK")
+
+insert_project_test()
+print("Test insert project test is OK")
 insert_token_label_test()
 print("Test insert token label is OK")
 get_sentence_test()

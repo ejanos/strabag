@@ -119,17 +119,6 @@ class DBHelper:
             return None
         return architect_id
 
-    def update_project(self, project_id, user_id, architect_id, project_name, active):
-        sql = """UPDATE PandasProject SET UserId = %s, PandasArchitectId = %s, PandasProjectName = %s, ModifyDate = CURRENT_DATE, Active = %s WHERE PandasProjectId = %s RETURNING PandasProjectId;"""
-        try:
-            self.cur.execute(sql, (user_id, architect_id, project_name, active, project_id,))
-            project_id = self.cur.fetchone()[0]
-            self.conn.commit()
-        except(Exception, psycopg2.DatabaseError) as error:
-            print(error)
-            return None
-        return project_id
-
     def insert_headers(self, columns, col_numbers, target_numbers, architect_id, header_row):
         try:
             subset_id = 1
@@ -158,6 +147,39 @@ class DBHelper:
             print(error)
             return None
 
+    def get_project_trained(self, project_id):
+        try:
+            sql = f"SELECT Trained FROM TrainedProjects WHERE  TrainedProjectId={project_id}"
+            self.cur.execute(sql)
+            is_trained = self.cur.fetchone()[0]
+            return is_trained
+        except(Exception, psycopg2.DatabaseError) as error:
+            print(error)
+            return None
+
+    def insert_project(self, project_id, trained):
+        sql = """INSERT INTO TrainedProjects(TrainedProjectId, Trained) VALUES(%s, %s) RETURNING TrainedProjectId;"""
+        try:
+            self.cur.execute(sql, (project_id, trained,))
+            project_id = self.cur.fetchone()[0]
+            self.conn.commit()
+        except(Exception, psycopg2.DatabaseError) as error:
+            print(error)
+            return None
+        return project_id
+
+    def update_project(self, project_id, trained):
+        sql = """UPDATE TrainedProjects SET Trained=%s WHERE TrainedProjectId=%s RETURNING TrainedProjectId;"""
+        try:
+            self.cur.execute(sql, (trained, project_id,))
+            project_id = self.cur.fetchone()[0]
+            self.conn.commit()
+        except(Exception, psycopg2.DatabaseError) as error:
+            print(error)
+            return None
+        return project_id
+
+
     def get_all_sentence_label(self):
         try:
             sql = f"SELECT * FROM sentence_label"
@@ -181,7 +203,7 @@ class DBHelper:
 
     def get_architect_by_id(self, id):
         try:
-            sql = f"SELECT * FROM PandasArchitect WHERE PandasArchitectId ='{id}'"
+            sql = f"SELECT * FROM PandasArchitect WHERE PandasArchitectId ={id}"
             self.cur.execute(sql)
             row = self.cur.fetchone()
             return row
@@ -222,7 +244,7 @@ class DBHelper:
 
     def get_headers_by_architect_subset_id(self, architect_id, subset_id):
         try:
-            sql = f"SELECT * FROM headers WHERE architect_id='{architect_id}' AND subset_id='{subset_id}'"
+            sql = f"SELECT * FROM headers WHERE architect_id={architect_id} AND subset_id={subset_id}"
             self.cur.execute(sql)
             rows = self.cur.fetchall()
             return rows
@@ -232,7 +254,7 @@ class DBHelper:
 
     def delete_headers_by_architect_subset_id(self, architect_id, subset_id):
         try:
-            sql = f"DELETE FROM headers WHERE architect_id='{architect_id}' AND subset_id='{subset_id}'"
+            sql = f"DELETE FROM headers WHERE architect_id={architect_id} AND subset_id={subset_id}"
             self.cur.execute(sql)
             return True
         except(Exception, psycopg2.DatabaseError) as error:
@@ -241,7 +263,7 @@ class DBHelper:
 
     def delete_sentence(self, id):
         try:
-            sql = f"DELETE FROM sentence WHERE id='{id}'"
+            sql = f"DELETE FROM sentence WHERE id={id}"
             self.cur.execute(sql)
             return True
         except(Exception, psycopg2.DatabaseError) as error:
@@ -252,7 +274,7 @@ class DBHelper:
 
     def get_headers_by_architect(self, architect_id):
         try:
-            sql = f"SELECT * FROM headers WHERE architect_id='{architect_id}'"
+            sql = f"SELECT * FROM headers WHERE architect_id={architect_id}"
             self.cur.execute(sql)
             rows = self.cur.fetchall()
             return rows
@@ -402,7 +424,7 @@ class DBHelper:
 
     def get_sentence(self, sentence_id):
         try:
-            sql = f"SELECT * FROM sentence WHERE id='{sentence_id}'"
+            sql = f"SELECT * FROM sentence WHERE id={sentence_id}"
             self.cur.execute(sql)
             row = self.cur.fetchone()
             return row
@@ -422,7 +444,7 @@ class DBHelper:
 
     def get_sentence_label(self, category_id):
         try:
-            sql = f"SELECT * FROM sentence_label WHERE PandasCategoryId='{category_id}'"
+            sql = f"SELECT * FROM sentence_label WHERE PandasCategoryId={category_id}"
             self.cur.execute(sql)
             row = self.cur.fetchone()
             return row
@@ -432,7 +454,7 @@ class DBHelper:
 
     def get_token_label(self, token_id):
         try:
-            sql = f"SELECT * FROM token_label WHERE id='{token_id}'"
+            sql = f"SELECT * FROM token_label WHERE id={token_id}"
             self.cur.execute(sql)
             row = self.cur.fetchone()
             return row

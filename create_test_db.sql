@@ -7,6 +7,18 @@ DROP TABLE IF EXISTS public.token_label;
 DROP TABLE IF EXISTS public.sentence_label;
 DROP TABLE IF EXISTS public.headers;
 DROP TABLE IF EXISTS public.PandasArchitect;
+DROP TABLE  IF EXISTS public.TrainedProjects;
+
+CREATE TABLE public.TrainedProjects
+(
+    TrainedProjectId integer PRIMARY KEY NOT NULL,
+    Trained boolean
+)
+
+TABLESPACE pg_default;
+
+ALTER TABLE public.TrainedProjects
+    OWNER to postgres;
 
 CREATE TABLE public.PandasArchitect
 (

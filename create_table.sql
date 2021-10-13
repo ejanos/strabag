@@ -19,6 +19,17 @@ DROP TABLE IF EXISTS public.headers;
 DROP TABLE IF EXISTS public.PandasArchitect;
 
 
+CREATE TABLE public.TrainedProjects
+(
+    TrainedProjectId integer PRIMARY KEY NOT NULL,
+    Trained boolean
+)
+
+TABLESPACE pg_default;
+
+ALTER TABLE public.TrainedProjects
+    OWNER to postgres;
+
 CREATE TABLE public.PandasArchitect
 (
     PandasArchitectId SERIAL NOT NULL,

@@ -61,6 +61,8 @@ def save_columns():
         architect_id = form['architect_id']
         with DBHelper() as db:
             result = db.insert_headers(texts, columns, targets, architect_id, header_row)
+            if not result:
+                return "Invalid DB operation", 500
         return return_response(result)  # subset_id
     return "Not allowed method", 405
 
@@ -86,6 +88,8 @@ def save_architect():
         name = form['name']
         with DBHelper() as db:
             result = db.insert_architect(name)
+            if not result:
+                return "Invalid DB operation", 500
         return return_response(result)
     return "Not allowed method", 405
 
@@ -145,6 +149,8 @@ def save_category():
         ordinal = form['ordinal']
         with DBHelper() as db:
             result = db.insert_sentence_label(name, ordinal)
+            if not result:
+                return "Invalid DB operation", 500
         return return_response(result)
     return "Not allowed method", 405
 
@@ -187,6 +193,8 @@ def save_token_label():
         category_ordinal = form['category_ordinal']
         with DBHelper() as db:
             result = db.insert_token_label(id, name, category_ordinal)
+            if not result:
+                return "Invalid DB operation", 500
         return return_response(result)
     return "Not allowed method", 405
 
@@ -364,6 +372,45 @@ def start_training():
         model.train()
         #model = None
         return return_response(True)
+    return "Not allowed method", 405
+
+@app.route("/project/status", methods=['GET'])
+# TODO make it async
+def project_trained():
+    if request.method == 'GET':
+        project_id = request.args.get('id')
+        with DBHelper() as db:
+            is_trained = db.get_project_trained(project_id)
+        return return_response(is_trained)
+    return "Not allowed method", 405
+
+@app.route("/save/project", methods=['POST'])
+# TODO make it async
+def save_project_status():
+    if request.method == 'POST':
+        form = request.form
+        project_id = form['id']
+        is_trained = json.loads(form['trained'])
+        with DBHelper() as db:
+            result = db.insert_project(project_id, is_trained)
+            if result != project_id:
+                return "Invalid DB operation", 500
+        return return_response(result)
+    return "Not allowed method", 405
+
+@app.route("/update/project", methods=['POST'])
+# TODO make it async
+def update_project_status():
+    if request.method == 'POST':
+        form = request.form
+        project_id = form['id']
+        is_trained = json.loads(form['trained'])
+        with DBHelper() as db:
+            result = db.update_project(project_id, is_trained)
+            if result != project_id:
+                return "Invalid DB operation", 500
+        return return_response(result)
+    return "Not allowed method", 405
 
 def get_convert_data():
     form = request.form
