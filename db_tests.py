@@ -105,21 +105,23 @@ def get_all_token_labels_test():
     with DBHelper(test=True) as db:
         label1 = get_random_string(15)
         label2 = get_random_string(15)
+        frontend_id1 = random.randint(0, 99999)
+        frontend_id2 = random.randint(0, 99999)
         sen_label1 = get_random_string(15)
         sen_label2 = get_random_string(15)
-        ordinal1 = random.randint(0, 9999)
-        category_id1 = db.insert_sentence_label(sen_label1, str(ordinal1))
-        ordinal2 = random.randint(0, 9999)
-        category_id2 = db.insert_sentence_label(sen_label2, str(ordinal2))
-        token_id1 = db.insert_token_label(label1, category_id1)
-        token_id2 = db.insert_token_label(label2, category_id2)
+        ordinal1 = get_random_string(15)
+        category_id1 = db.insert_sentence_label(sen_label1, ordinal1)
+        ordinal2 = get_random_string(15)
+        category_id2 = db.insert_sentence_label(sen_label2, ordinal2)
+        token_id1 = db.insert_token_label(frontend_id1, label1, ordinal1)
+        token_id2 = db.insert_token_label(frontend_id1, label2, ordinal2)
         token_labels = db.get_all_token_label()
         assert len(token_labels) > 1
         for label in token_labels:
             if label[0] == token_id1:
-                assert label[1] == label1
+                assert label[2] == label1
             if label[0] == token_id2:
-                assert label[1] == label2
+                assert label[2] == label2
 
 
 def get_all_categories_test():
@@ -142,27 +144,31 @@ def get_all_categories_test():
 def insert_token_label_test():
     with DBHelper(test=True) as db:
         sen_label = get_random_string(15)
+        frontend_id = random.randint(0, 99999)
+        ordinal = get_random_string(15)
         token_label = get_random_string(15)
         category = get_random_string(15)
-        category_id = db.insert_sentence_label(category, sen_label)
-        token_label_id = db.insert_token_label(token_label, category_id)
+        category_id = db.insert_sentence_label(category, ordinal)
+        token_label_id = db.insert_token_label(frontend_id, token_label, ordinal)
         assert token_label_id > 0
 
 def update_token_label_test():
     with DBHelper(test=True) as db:
-        sen_label = get_random_string(15)
+        ordinal = get_random_string(15)
         token_label = get_random_string(15)
+        frontend_id = random.randint(0, 99999)
         category = get_random_string(15)
-        category_id = db.insert_sentence_label(category, sen_label)
-        token_label_id = db.insert_token_label(token_label, category_id)
-        updated_token_label_id = db.update_token_label("akarmi", category_id, token_label_id)
+
+        category_id = db.insert_sentence_label(category, ordinal)
+        token_label_id = db.insert_token_label(frontend_id,token_label, ordinal)
+        updated_token_label_id = db.update_token_label("akarmi", ordinal, frontend_id)
         assert token_label_id == updated_token_label_id
         row = db.get_token_label(updated_token_label_id)
         assert row[0] == updated_token_label_id
-        assert row[1] == "akarmi"
-        assert row[2] == category_id
-        assert row[3] == date.today()
+        assert row[2] == "akarmi"
+        assert row[3] == category_id
         assert row[4] == date.today()
+        assert row[5] == date.today()
 
 
 
@@ -379,16 +385,17 @@ def get_sentence_label_test():
 def get_token_label_test():
     with DBHelper(test=True) as db:
         category = get_random_string(15)
-        ordinal = get_random_ordinal()
+        ordinal = get_random_string(15)
+        frontend_id = random.randint(0, 99999)
         category_id = db.insert_sentence_label(category, ordinal)
         name = get_random_string(15)
-        token_id = db.insert_token_label(name, category_id)
+        token_id = db.insert_token_label(frontend_id, name, ordinal)
         row = db.get_token_label(token_id)
         assert row[0] == token_id
-        assert row[1] == name
-        assert row[2] == category_id
-        assert row[3] == date.today()
+        assert row[2] == name
+        assert row[3] == category_id
         assert row[4] == date.today()
+        assert row[5] == date.today()
 
 def get_all_token_label_test():
     with DBHelper(test=True) as db:
@@ -409,10 +416,12 @@ def get_random_ordinal():
 
 
 initialize()
+insert_token_label_test()
+print("Test insert token label is OK")
 get_sentence_test()
 print("Test get sentence test is OK")
 get_architect_by_id_test()
-print("Test get architect by id test")
+print("Test get architect by id test is OK")
 update_token_label_test()
 print("Test update token label test is OK!")
 get_architect_by_name_test()
@@ -436,8 +445,7 @@ get_all_token_labels_test()
 print("Test get all token labels is OK")
 get_all_categories_test()
 print("Test get all categories is OK")
-insert_token_label_test()
-print("Test insert token label is OK")
+
 insert_sentences_test()
 print("Test insert sentences is OK")
 insert_sentence_label_test

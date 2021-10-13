@@ -72,6 +72,7 @@ ALTER TABLE public.sentence_label
 CREATE TABLE public.token_label
 (
     id SERIAL NOT NULL,
+    frontend_id integer NOT NULL,
     name character varying(128) NOT NULL UNIQUE,
     category_id integer,
     created_date date DEFAULT CURRENT_DATE,

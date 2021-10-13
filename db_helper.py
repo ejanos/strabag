@@ -325,11 +325,11 @@ class DBHelper:
             return None
         return sentence_id
 
-    def insert_token_label(self, name, category_ordinal):
-        sql = """INSERT INTO token_label("name", category_id) VALUES(%s,%s) RETURNING id;"""
+    def insert_token_label(self, frontend_id, name, category_ordinal):
+        sql = """INSERT INTO token_label(frontend_id, "name", category_id) VALUES(%s, %s,%s) RETURNING id;"""
         try:
             category_id = self.get_category_id_by_ordinal(category_ordinal)
-            self.cur.execute(sql, (name, category_id,))
+            self.cur.execute(sql, (frontend_id, name, category_id,))
             token_label_id = self.cur.fetchone()[0]
             self.conn.commit()
         except(Exception, psycopg2.DatabaseError) as error:
@@ -337,11 +337,11 @@ class DBHelper:
             return None
         return token_label_id
 
-    def update_token_label(self, name, category_ordinal, id):
-        sql = """UPDATE token_label SET "name" = %s, category_id = %s, modified_date = CURRENT_DATE WHERE id = %s RETURNING id;"""
+    def update_token_label(self, name, category_ordinal, frontend_id):
+        sql = """UPDATE token_label SET "name" = %s, category_id = %s, modified_date = CURRENT_DATE WHERE frontend_id = %s RETURNING id;"""
         try:
             category_id = self.get_category_id_by_ordinal(category_ordinal)
-            self.cur.execute(sql, (name, category_id, id,))
+            self.cur.execute(sql, (name, category_id, frontend_id,))
             token_label_id = self.cur.fetchone()[0]
             self.conn.commit()
         except(Exception, psycopg2.DatabaseError) as error:

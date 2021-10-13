@@ -182,10 +182,11 @@ def read_all_category():
 def save_token_label():
     if request.method == 'POST':
         form = request.form
+        id = form['id']
         name = form['name']
         category_ordinal = form['category_ordinal']
         with DBHelper() as db:
-            result = db.insert_token_label(name, category_ordinal)
+            result = db.insert_token_label(id, name, category_ordinal)
         return return_response(result)
     return "Not allowed method", 405
 
@@ -211,11 +212,11 @@ def read_all_tokenlabel():
         result = []
         for row in token_labels:
             result.append({
-                "id": row[0],
-                "name": row[1],
-                "category_id": row[2],
-                "created_date": row[3],
-                "modified_date": row[4]
+                "frontend_id": row[1],
+                "name": row[2],
+                "category_id": row[3],
+                "created_date": row[4],
+                "modified_date": row[5]
             })
         return return_response(result)
     return "Not allowed method", 405

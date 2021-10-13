@@ -8,7 +8,6 @@ DROP TABLE IF EXISTS public.sentence_label;
 DROP TABLE IF EXISTS public.headers;
 DROP TABLE IF EXISTS public.PandasArchitect;
 
-
 CREATE TABLE public.PandasArchitect
 (
     PandasArchitectId SERIAL NOT NULL,
@@ -62,7 +61,8 @@ ALTER TABLE public.sentence_label
 CREATE TABLE public.token_label
 (
     id SERIAL NOT NULL,
-    name character varying(128) NOT NULL,
+    frontend_id integer NOT NULL,
+    name character varying(128) NOT NULL UNIQUE,
     category_id integer,
     created_date date DEFAULT CURRENT_DATE,
     modified_date date DEFAULT CURRENT_DATE,
@@ -80,7 +80,7 @@ ALTER TABLE public.token_label
 CREATE TABLE public.sentence
 (
     id SERIAL NOT NULL,
-    text character varying(1024) NOT NULL,
+    text character varying(1024) NOT NULL UNIQUE,
     sentence_label_id integer NOT NULL,
     token_labels integer[],
     PRIMARY KEY (id),
