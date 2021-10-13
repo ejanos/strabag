@@ -57,7 +57,7 @@ class DBHelper:
             architect_id = self.cur.fetchone()[0]
             self.conn.commit()
         except(Exception, psycopg2.DatabaseError) as error:
-            print(error)
+            print("insert architect", error)
             return None
         return architect_id
 
@@ -68,7 +68,7 @@ class DBHelper:
             sentence_label_id = self.cur.fetchone()[0]
             self.conn.commit()
         except(Exception, psycopg2.DatabaseError) as error:
-            print(error)
+            print("insert sentence label", error)
             return None
         return sentence_label_id
 
@@ -80,7 +80,7 @@ class DBHelper:
             sentence_id = self.cur.fetchone()[0]
             self.conn.commit()
         except(Exception, psycopg2.DatabaseError) as error:
-            print(error)
+            print("insert sentence", error)
             return None
         return sentence_id
 
@@ -92,7 +92,7 @@ class DBHelper:
             sentence_id = self.cur.fetchone()[0]
             self.conn.commit()
         except(Exception, psycopg2.DatabaseError) as error:
-            print(error)
+            print("update sentence", error)
             return None
         return sentence_id
 
@@ -103,7 +103,7 @@ class DBHelper:
             sentence_id = self.cur.fetchone()[0]
             self.conn.commit()
         except(Exception, psycopg2.DatabaseError) as error:
-            print(error)
+            print("update sentence label", error)
             return None
         return sentence_id
 
@@ -115,7 +115,7 @@ class DBHelper:
             architect_id = self.cur.fetchone()[0]
             self.conn.commit()
         except(Exception, psycopg2.DatabaseError) as error:
-            print(error)
+            print("update architect", error)
             return None
         return architect_id
 
@@ -126,7 +126,7 @@ class DBHelper:
             project_id = self.cur.fetchone()[0]
             self.conn.commit()
         except(Exception, psycopg2.DatabaseError) as error:
-            print(error)
+            print("update project", error)
             return None
         return project_id
 
@@ -144,7 +144,7 @@ class DBHelper:
                 if not id:
                     return None
         except(Exception, psycopg2.DatabaseError) as error:
-            print(error)
+            print("insert header", error)
             return None
         return subset_id
 
@@ -155,7 +155,7 @@ class DBHelper:
             rows = self.cur.fetchall()
             return rows
         except(Exception, psycopg2.DatabaseError) as error:
-            print(error)
+            print("get all architect", error)
             return None
 
     def get_all_sentence_label(self):
@@ -165,7 +165,7 @@ class DBHelper:
             rows = self.cur.fetchall()
             return rows
         except(Exception, psycopg2.DatabaseError) as error:
-            print(error)
+            print("get all sentence label", error)
             return None
 
 
@@ -176,7 +176,7 @@ class DBHelper:
             row = self.cur.fetchone()
             return row
         except(Exception, psycopg2.DatabaseError) as error:
-            print(error)
+            print("get architect by name", error)
             return None
 
     def get_architect_by_id(self, id):
@@ -186,7 +186,7 @@ class DBHelper:
             row = self.cur.fetchone()
             return row
         except(Exception, psycopg2.DatabaseError) as error:
-            print(error)
+            print("get architect by id", error)
             return None
 
     def get_all_category(self):
@@ -196,7 +196,7 @@ class DBHelper:
             rows = self.cur.fetchall()
             return rows
         except(Exception, psycopg2.DatabaseError) as error:
-            print(error)
+            print("get all category", error)
             return None
 
     def get_category_id_by_ordinal(self, ordinal):
@@ -206,7 +206,7 @@ class DBHelper:
             category_id = self.cur.fetchone()[0]
             return category_id
         except(Exception, psycopg2.DatabaseError) as error:
-            print(error)
+            print("get category id by ordinal", error)
             return None
 
     def get_headers_subset_ids(self, architect_id):
@@ -216,7 +216,7 @@ class DBHelper:
             rows = self.cur.fetchall()
             return rows
         except(Exception, psycopg2.DatabaseError) as error:
-            print(error)
+            print("get headers subset id", error)
             return None
 
 
@@ -227,7 +227,7 @@ class DBHelper:
             rows = self.cur.fetchall()
             return rows
         except(Exception, psycopg2.DatabaseError) as error:
-            print(error)
+            print("get headers by architext subset id", error)
             return None
 
     def delete_headers_by_architect_subset_id(self, architect_id, subset_id):
@@ -236,7 +236,7 @@ class DBHelper:
             self.cur.execute(sql)
             return True
         except(Exception, psycopg2.DatabaseError) as error:
-            print(error)
+            print("delete headers by architext subset id", error)
             return None
 
     def delete_sentence(self, id):
@@ -245,7 +245,7 @@ class DBHelper:
             self.cur.execute(sql)
             return True
         except(Exception, psycopg2.DatabaseError) as error:
-            print(error)
+            print("delete sentence", error)
             return None
 
 
@@ -257,7 +257,7 @@ class DBHelper:
             rows = self.cur.fetchall()
             return rows
         except(Exception, psycopg2.DatabaseError) as error:
-            print(error)
+            print("get headers by architect", error)
             return None
 
     def get_header_subset_max_id(self, architect_id):
@@ -267,7 +267,7 @@ class DBHelper:
             row = self.cur.fetchone()
             return row
         except(Exception, psycopg2.DatabaseError) as error:
-            print(error)
+            print("get header subset max id", error)
             return None
 
 
@@ -278,7 +278,7 @@ class DBHelper:
             header_id = self.cur.fetchone()[0]
             self.conn.commit()
         except(Exception, psycopg2.DatabaseError) as error:
-            print(error)
+            print("insert one header", error)
             return None
         return header_id
 
@@ -289,7 +289,7 @@ class DBHelper:
             category_id = self.cur.fetchone()[0]
             self.conn.commit()
         except(Exception, psycopg2.DatabaseError) as error:
-            print(error)
+            print("insert sentence label", error)
             return None
         return category_id
 
@@ -300,7 +300,7 @@ class DBHelper:
             category_id = self.cur.fetchone()[0]
             self.conn.commit()
         except(Exception, psycopg2.DatabaseError) as error:
-            print(error)
+            print("update sentence label", error)
             return None
         return category_id
 
@@ -321,31 +321,31 @@ class DBHelper:
                 else:
                     return None
         except(Exception, psycopg2.DatabaseError) as error:
-            print(error)
+            print("insert sentences", error)
             return None
         return sentence_id
 
-    def insert_token_label(self, name, category_ordinal):
-        sql = """INSERT INTO token_label("name", category_id) VALUES(%s,%s) RETURNING id;"""
+    def insert_token_label(self, category_ordinal):
+        sql = """INSERT INTO token_label(category_id) VALUES(%s) RETURNING id;"""
         try:
             category_id = self.get_category_id_by_ordinal(category_ordinal)
-            self.cur.execute(sql, (name, category_id,))
+            self.cur.execute(sql, (category_id,))
             token_label_id = self.cur.fetchone()[0]
             self.conn.commit()
         except(Exception, psycopg2.DatabaseError) as error:
-            print(error)
+            print("insert token label", error)
             return None
         return token_label_id
 
-    def update_token_label(self, name, category_ordinal, id):
-        sql = """UPDATE token_label SET "name" = %s, category_id = %s, modified_date = CURRENT_DATE WHERE id = %s RETURNING id;"""
+    def update_token_label(self, category_ordinal, id):
+        sql = """UPDATE token_label SET category_id = %s, modified_date = CURRENT_DATE WHERE id = %s RETURNING id;"""
         try:
             category_id = self.get_category_id_by_ordinal(category_ordinal)
-            self.cur.execute(sql, (name, category_id, id,))
+            self.cur.execute(sql, (category_id, id,))
             token_label_id = self.cur.fetchone()[0]
             self.conn.commit()
         except(Exception, psycopg2.DatabaseError) as error:
-            print(error)
+            print("update token label", error)
             return None
         return token_label_id
 
@@ -355,7 +355,7 @@ class DBHelper:
             self.cur.execute(sql)
             rows = self.cur.fetchall()
         except(Exception, psycopg2.DatabaseError) as error:
-            print(error)
+            print("get all categories", error)
             return None
         return rows
 
@@ -365,7 +365,7 @@ class DBHelper:
             self.cur.execute(sql)
             rows = self.cur.fetchall()
         except(Exception, psycopg2.DatabaseError) as error:
-            print(error)
+            print("get all sentence id", error)
             return None
         return rows
 
@@ -376,7 +376,7 @@ class DBHelper:
             row = self.cur.fetchone()
             return row
         except(Exception, psycopg2.DatabaseError) as error:
-            print(error)
+            print("get sentence label by ordinal", error)
             return None
 
     def get_sentence_label_id_by_ordinal(self, ordinal):
@@ -386,7 +386,7 @@ class DBHelper:
             category_id = self.cur.fetchone()[0]
             return category_id
         except(Exception, psycopg2.DatabaseError) as error:
-            print(error)
+            print("get sentence label id by ordinal", error)
             return None
 
     def __get_next_sentence__(self):
@@ -397,7 +397,7 @@ class DBHelper:
                 row = self.cur.fetchone()
                 yield row
         except(Exception, psycopg2.DatabaseError) as error:
-            print(error)
+            print("get next sentence", error)
             return None
 
     def get_sentence(self, sentence_id):
@@ -417,7 +417,7 @@ class DBHelper:
             row = self.cur.fetchone()
             return row
         except(Exception, psycopg2.DatabaseError) as error:
-            print(error)
+            print("get sentence id by text", error)
             return None
 
     def get_sentence_label(self, category_id):
@@ -427,7 +427,7 @@ class DBHelper:
             row = self.cur.fetchone()
             return row
         except(Exception, psycopg2.DatabaseError) as error:
-            print(error)
+            print("get sentence label", error)
             return None
 
     def get_token_label(self, token_id):
@@ -437,7 +437,7 @@ class DBHelper:
             row = self.cur.fetchone()
             return row
         except(Exception, psycopg2.DatabaseError) as error:
-            print(error)
+            print("get token label", error)
             return None
 
     def get_all_token_label(self):
@@ -447,5 +447,5 @@ class DBHelper:
             rows = self.cur.fetchall()
             return rows
         except(Exception, psycopg2.DatabaseError) as error:
-            print(error)
+            print("get all token label", error)
             return None
