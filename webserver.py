@@ -17,6 +17,8 @@ from custom_json_encoder import CustomJSONEncoder
 ic = ic.IceCreamDebugger()
 #ic.disable()
 
+training_is_running = False
+
 CACHE = "cache"
 BUFFER = 50_000
 
@@ -367,11 +369,20 @@ def predict_more_row():
 # TODO make it async
 def start_training():
     if request.method == 'GET':
+        training_is_running = True
         from hubert_finetune import HubertFinetune
         model = HubertFinetune()
         model.train()
         #model = None
+        training_is_running = False
         return return_response(True)
+    return "Not allowed method", 405
+
+@app.route("/check/training", methods=['GET'])
+# TODO make it async
+def check_training():
+    if request.method == 'GET':
+        return return_response(training_is_running)
     return "Not allowed method", 405
 
 @app.route("/project/status", methods=['GET'])
