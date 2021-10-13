@@ -379,7 +379,6 @@ def get_next_sentence_test():
             if not row:
                 break
             count += 1
-        db.close_connection()
         assert count == 4
 
 def get_sentence_test():

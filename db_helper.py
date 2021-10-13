@@ -464,10 +464,20 @@ class DBHelper:
 
     def get_all_token_label(self):
         try:
-            sql = f"SELECT * FROM token_label ORDER BY id"
+            sql = f"SELECT * FROM token_label"
             self.cur.execute(sql)
             rows = self.cur.fetchall()
             return rows
         except(Exception, psycopg2.DatabaseError) as error:
             print(error)
             return None
+
+        def get_all_token_label_frontend_ids(self):
+            try:
+                sql = f"SELECT frontend_id FROM token_label"
+                self.cur.execute(sql)
+                rows = self.cur.fetchall()
+                return rows
+            except(Exception, psycopg2.DatabaseError) as error:
+                print(error)
+                return None

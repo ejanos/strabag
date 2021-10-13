@@ -50,9 +50,8 @@ class TextSamplerDataset(Dataset):
     save_conf = False
     data_ids = []
 
-    def __init__(self, seq_len, device, tokenizer, db, test=False):
+    def __init__(self, seq_len, device, tokenizer, test=False):
         super().__init__()
-        self.db = db
         self.tokenizer = tokenizer
         self.training_conf = {}
         self.seq_len = seq_len
@@ -72,7 +71,8 @@ class TextSamplerDataset(Dataset):
         self.mask_token_id = tokenizer.mask_token_id
 
     def load_data_ids(self):
-        self.data_ids = self.db.get_all_sentence_id()
+        with DBHelper() as db:
+            self.data_ids = self.db.get_all_sentence_id()
         random.shuffle(self.data_ids)
 
     def tokenize(self, txt):
@@ -85,15 +85,17 @@ class TextSamplerDataset(Dataset):
         return len(self.data_ids)
 
     def __getitem__(self, idx):
-        sentence_id = self.data_ids[self.data_counter]
-        self.data_counter += 1
-        if self.data_counter >= self.__len__():
-            self.data_counter = 0
-        row = self.db.get_sentence(sentence_id)
+        #sentence_id = self.data_ids[self.data_counter]
+        sentence_id = self.data_ids[idx]
+        #self.data_counter += 1
+        #if self.data_counter >= self.__len__():
+        #    self.data_counter = 0
+        with DBHelper() as db:
+            row = self.db.get_sentence(sentence_id)
         ic(row)
-        text = row[0]
-        sen_class = row[1]
-        token_class = row[2]
+        text = row[1]
+        sen_class = row[2]
+        token_class = row[3]
         return text, sen_class, token_class
 
 class HubertFinetune:
@@ -107,19 +109,51 @@ class HubertFinetune:
     bos_token_id = tokenizer.sep_token_id
     eos_token_id = tokenizer.cls_token_id
     mask_token_id = tokenizer.mask_token_id
-
-    db = DBHelper()
+    sentence_ids = []
 
     def __init__(self):
-        sentence_ids, labels = self.get_sentence_labels()
-        self.token_ids, self.token_labels = self.get_token_labels()
+        self.get_sentence_ids()
+        self.sentence_label_ids, self.cat_labels = self.get_sentence_labels()
+        self.token_ids, self.token_labels, self.token_cat_ids = self.get_token_labels()
+
         print("Token labels count: ", len(self.token_labels))
-        train_dataset = TextSamplerDataset(SEQ_LEN, self.device, self.tokenizer, self.db)
+        train_dataset = TextSamplerDataset(SEQ_LEN, self.device, self.tokenizer)
         # val_dataset = TextSamplerDataset(root_dir + data_dir + "valid.txt", SEQ_LEN, device, tokenizer, 0)
         # test_dataset = TextSamplerDataset(root_dir + data_dir + "test.txt", SEQ_LEN, device, tokenizer, 0, test=True)
         train_loader = self.cycle(train_dataset, BATCH_SIZE, SEQ_LEN, self.device, len(train_dataset))
         # val_loader = cycle(iter(val_dataset), BATCH_SIZE, SEQ_LEN, device)
         # test_loader = cycle(iter(test_dataset), 1, GENERATE_LENGTH, device)
+
+    def get_sentence_ids(self):
+        with DBHelper() as db:
+            self.sentence_ids = self.db.get_all_sentence_id()
+
+    def check_database_consistency(self):
+        with DBHelper() as db:
+            index = 0
+            ic("Check database consistency")
+            for sen_id in tqdm(self.sentence_ids):
+                row = db.get_sentence(sen_id)
+                text = row[1]
+                sen_label_id = row[2]
+                token_labels = row[3]
+                token_labels, corrupted = self.filter_token_labels(token_labels)
+                if corrupted:
+                    db.update_sentence(sen_id, text, sen_label_id, token_labels)
+                    ic("corrupted token label in sentence:", text)
+
+
+    def filter_token_labels(self, token_labels):
+        result = []
+        corrupted = False
+        for token in token_labels:
+            if token in self.token_label_ids:
+                result.append(token)
+            else:
+                result.append(0)
+                corrupted = True
+        return result, corrupted
+
 
     def cycle(self, loader, batch, seq_len, device, dataset_len):
         while True:
@@ -133,15 +167,15 @@ class HubertFinetune:
                 sen_list.append(sen_class)
                 tok_class_list.append(token_class)
 
-            tokens = self.tokenizer(text_list, padding=True, pad_to_multiple_of=8, truncation=True, return_tensors="pt", return_offsets_mapping=True,
-                               max_length=512)
+            tokens = self.tokenizer(text_list, padding=True, pad_to_multiple_of=8, truncation=True, return_tensors="pt",
+                                    return_offsets_mapping=True, max_length=512)
 
             tok_class = torch.ones_like(tokens["input_ids"], dtype=torch.long) * -100
             tmp = torch.ones(tok_class.size(1)) * -100
             mask = tokens["attention_mask"]
             max_index = tok_class.size(1)
             sentence = torch.tensor(sen_list, dtype=torch.long)
-            sentence = torch.unsqueeze(sentence, 1)
+            #sentence = torch.unsqueeze(sentence, 1)
             offset_mapping = tokens["offset_mapping"]
 
             for i, elem in enumerate(tok_class_list):
@@ -157,17 +191,15 @@ class HubertFinetune:
                 tmp[:index] = torch.tensor(elem[:index])
 
                 source = 1
-                prev = -1
-                for j, o in enumerate(offset):
+                #prev = -1
+                for j, o in enumerate(offset[:-1]):
                     tok_class[i, j + 1] = tmp[source]
-                    if prev == o[0]:
-                        prev = o[1]
-                        continue
-                    prev = o[1]
-                    source += 1
+                    #if prev == o[0]:
+                    #    prev = o[1]
+                    if o[0]:
+                        source += 1
 
             yield tokens["input_ids"].to(device), mask.to(device), sentence.to(device), tok_class.to(device)
-
 
 
     def decode_tokens(self, tokens):
@@ -196,7 +228,8 @@ class HubertFinetune:
     def get_sentence_labels(self):
         sentence_labels = []
         label_ids = []
-        rows = self.db.get_all_categories()
+        with DBHelper() as db:
+            rows = self.db.get_all_categories()
         for row in rows:
             label_ids.append(row[0])
             sentence_labels.append(row[2])
@@ -205,13 +238,17 @@ class HubertFinetune:
     def get_token_labels(self):
         token_labels = []
         label_ids = []
-        rows = self.db.get_all_token_labels()
+        token_cat_ids = []
+        with DBHelper() as db:
+            rows = self.db.get_all_token_labels()
         for row in rows:
-            label_ids.append(row[0])
-            token_labels.append(row[1])
+            label_ids.append(row[1])
+            token_labels.append(row[2])
+            token_cat_ids.append(row[3])
         return label_ids, token_labels
 
     def train(self):
+        self.check_database_consistency()
 
         best_loss = 1e25
 
@@ -292,9 +329,11 @@ class HubertFinetune:
                 logging.info(f'Accuracy sentence: {ac_sen_mean}  Accuracy token: {ac_token_mean}')
                 if val_loss < best_loss:
                     best_loss = val_loss
+                    # TODO elmenteni token labeleknek a számát, a predict-nél visszatölteni
                     model.save_pretrained(save_dir + "best/")
                     logging.info(f"Best model has saved, iteration: {i}")
                 else:
+                    # TODO elmenteni token labeleknek a számát, a predict-nél visszatölteni
                     model.save_pretrained(save_dir + "last/")
                     logging.info(f"Last model has saved, iteration: {i}")
 

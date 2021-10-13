@@ -66,6 +66,7 @@ class HubertModel:
         print(len(self.labels))
         for i, label in enumerate(self.labels):
             print(i, label)
+        # TODO elmenteni token labeleknek a számát, itt visszatölteni
         self.model = transformers.BertForSequenceAndTokenClassification.from_pretrained(
             save_dir + MODEL_NAME, local_files_only=True, config=self.config, num_labels_token=len(self.token_labels))
         self.model.eval()

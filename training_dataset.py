@@ -9,9 +9,23 @@ class TrainingDataset():
     BUFFER_SIZE = 10
     conv = ConvertExcel()
     buffer = []
+    token_label_ids = []
 
+    def get_token_label_ids(self):
+        with DBHelper() as db:
+            self.token_label_ids = db.get_all_token_label_frontend_ids()
+
+    def filter_token_labels(self, token_labels):
+        result = []
+        for token in token_labels:
+            if token in self.token_label_ids:
+                result.append(token)
+            else:
+                result.append(0)
+        return result
 
     def save(self, content_column, source_rows, target_categories, token_labels, file):
+        self.get_token_label_ids()
         df = pd.read_excel(file, header=0, sheet_name='Total', engine='openpyxl')
 
         result = self.extract_rows(content_column, df, source_rows, target_categories, token_labels)
@@ -29,6 +43,7 @@ class TrainingDataset():
         return sentence_id
 
     def save_row(self, target_category, content, token_labels):
+        token_labels = self.filter_token_labels(token_labels)
         sentence_id = 1
         if len(self.buffer) > self.BUFFER_SIZE:
             self.buffer.append((target_category, content, token_labels,))
