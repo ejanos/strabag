@@ -381,6 +381,17 @@ class DBHelper:
             return None
         return rows
 
+    def get_all_token_labels(self):
+        try:
+            sql = f"SELECT * FROM token_label"
+            self.cur.execute(sql)
+            rows = self.cur.fetchall()
+        except(Exception, psycopg2.DatabaseError) as error:
+            print(error)
+            return None
+        return rows
+
+
     def get_all_sentence_id(self):
         try:
             sql = f"SELECT id FROM sentence"

@@ -6,7 +6,6 @@ INSERT INTO public.sentence_label(
 	CategoryName, Ordinal)
 	VALUES ('betonozás', '02.01.');
 
-
 INSERT INTO public.token_label(
 	name, category_id)
 	VALUES ('betonvas', 1);

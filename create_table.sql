@@ -17,6 +17,7 @@ DROP TABLE IF EXISTS public.token_label;
 DROP TABLE IF EXISTS public.sentence_label;
 DROP TABLE IF EXISTS public.headers;
 DROP TABLE IF EXISTS public.PandasArchitect;
+DROP TABLE IF EXISTS public.TrainedProjects;
 
 
 CREATE TABLE public.TrainedProjects
