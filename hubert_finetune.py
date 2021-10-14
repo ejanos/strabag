@@ -29,7 +29,7 @@ punctuation = ".,:;!?"
 SEQ_LEN = 512
 GENERATE_LENGTH = 512
 TEST_LENGTH = 128
-BATCH_SIZE = 2  #32
+BATCH_SIZE = 32  #32
 
 LAST_EPOCH = 0
 NUM_BATCHES = int(583 * 4)   # 3?
