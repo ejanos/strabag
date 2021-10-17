@@ -76,12 +76,10 @@ class TrainingDataset:
                 return sentence_id
         return 1
 
-    def save_one_row(self, target_category, content, token_labels, category_name):
+    def save_one_row(self, target_category, content, token_labels):
         backend_tokens = []
         with DBHelper() as db:
             category_id = db.get_sentence_label_id_by_ordinal(target_category)
-            if not category_id:
-                db.insert_sentence_label(category_name, target_category)
             for token_id in token_labels:
                 backend_token = db.get_token_label_by_frontend_id(token_id)
                 if not backend_token:

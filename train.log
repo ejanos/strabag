@@ -1,0 +1,525 @@
+ERROR:webserver:Exception on /start/training [GET]
+Traceback (most recent call last):
+  File "D:\python_venv\strabag\lib\site-packages\flask\app.py", line 2447, in wsgi_app
+    response = self.full_dispatch_request()
+  File "D:\python_venv\strabag\lib\site-packages\flask\app.py", line 1952, in full_dispatch_request
+    rv = self.handle_user_exception(e)
+  File "D:\python_venv\strabag\lib\site-packages\flask\app.py", line 1821, in handle_user_exception
+    reraise(exc_type, exc_value, tb)
+  File "D:\python_venv\strabag\lib\site-packages\flask\_compat.py", line 39, in reraise
+    raise value
+  File "D:\python_venv\strabag\lib\site-packages\flask\app.py", line 1950, in full_dispatch_request
+    rv = self.dispatch_request()
+  File "D:\python_venv\strabag\lib\site-packages\flask\app.py", line 1936, in dispatch_request
+    return self.view_functions[rule.endpoint](**req.view_args)
+  File "D:/source/strabag/webserver.py", line 376, in start_training
+    model.train()
+  File "D:\source\strabag\hubert_finetune.py", line 269, in train
+    self.check_database_consistency()
+  File "D:\source\strabag\hubert_finetune.py", line 143, in check_database_consistency
+    text = row[1]
+TypeError: 'NoneType' object is not subscriptable
+INFO:werkzeug:127.0.0.1 - - [17/Oct/2021 17:34:54] "[35m[1mGET /start/training HTTP/1.1[0m" 500 -
+ERROR:webserver:Exception on /start/training [GET]
+Traceback (most recent call last):
+  File "D:\python_venv\strabag\lib\site-packages\flask\app.py", line 2447, in wsgi_app
+    response = self.full_dispatch_request()
+  File "D:\python_venv\strabag\lib\site-packages\flask\app.py", line 1952, in full_dispatch_request
+    rv = self.handle_user_exception(e)
+  File "D:\python_venv\strabag\lib\site-packages\flask\app.py", line 1821, in handle_user_exception
+    reraise(exc_type, exc_value, tb)
+  File "D:\python_venv\strabag\lib\site-packages\flask\_compat.py", line 39, in reraise
+    raise value
+  File "D:\python_venv\strabag\lib\site-packages\flask\app.py", line 1950, in full_dispatch_request
+    rv = self.dispatch_request()
+  File "D:\python_venv\strabag\lib\site-packages\flask\app.py", line 1936, in dispatch_request
+    return self.view_functions[rule.endpoint](**req.view_args)
+  File "D:/source/strabag/webserver.py", line 376, in start_training
+    model.train()
+  File "D:\source\strabag\hubert_finetune.py", line 271, in train
+    self.check_database_consistency()
+  File "D:\source\strabag\hubert_finetune.py", line 143, in check_database_consistency
+    for sen_id in tqdm(self.sentence_ids):
+  File "D:\python_venv\strabag\lib\site-packages\tqdm\std.py", line 1185, in __iter__
+    for obj in iterable:
+TypeError: 'int' object is not iterable
+INFO:werkzeug:127.0.0.1 - - [17/Oct/2021 17:39:55] "[35m[1mGET /start/training HTTP/1.1[0m" 500 -
+ERROR:webserver:Exception on /start/training [GET]
+Traceback (most recent call last):
+  File "D:\python_venv\strabag\lib\site-packages\flask\app.py", line 2447, in wsgi_app
+    response = self.full_dispatch_request()
+  File "D:\python_venv\strabag\lib\site-packages\flask\app.py", line 1952, in full_dispatch_request
+    rv = self.handle_user_exception(e)
+  File "D:\python_venv\strabag\lib\site-packages\flask\app.py", line 1821, in handle_user_exception
+    reraise(exc_type, exc_value, tb)
+  File "D:\python_venv\strabag\lib\site-packages\flask\_compat.py", line 39, in reraise
+    raise value
+  File "D:\python_venv\strabag\lib\site-packages\flask\app.py", line 1950, in full_dispatch_request
+    rv = self.dispatch_request()
+  File "D:\python_venv\strabag\lib\site-packages\flask\app.py", line 1936, in dispatch_request
+    return self.view_functions[rule.endpoint](**req.view_args)
+  File "D:/source/strabag/webserver.py", line 375, in start_training
+    model = HubertFinetune()
+  File "D:\source\strabag\hubert_finetune.py", line 126, in __init__
+    self.train_dataset = TextSamplerDataset(SEQ_LEN, self.device, self.tokenizer)
+  File "D:\source\strabag\hubert_finetune.py", line 65, in __init__
+    self.load_data_ids()
+  File "D:\source\strabag\hubert_finetune.py", line 79, in load_data_ids
+    random.shuffle(self.data_ids)
+  File "C:\Python38\lib\random.py", line 304, in shuffle
+    for i in reversed(range(1, len(x))):
+TypeError: object of type 'int' has no len()
+INFO:werkzeug:127.0.0.1 - - [17/Oct/2021 17:44:25] "[35m[1mGET /start/training HTTP/1.1[0m" 500 -
+ERROR:webserver:Exception on /start/training [GET]
+Traceback (most recent call last):
+  File "D:\python_venv\strabag\lib\site-packages\flask\app.py", line 2447, in wsgi_app
+    response = self.full_dispatch_request()
+  File "D:\python_venv\strabag\lib\site-packages\flask\app.py", line 1952, in full_dispatch_request
+    rv = self.handle_user_exception(e)
+  File "D:\python_venv\strabag\lib\site-packages\flask\app.py", line 1821, in handle_user_exception
+    reraise(exc_type, exc_value, tb)
+  File "D:\python_venv\strabag\lib\site-packages\flask\_compat.py", line 39, in reraise
+    raise value
+  File "D:\python_venv\strabag\lib\site-packages\flask\app.py", line 1950, in full_dispatch_request
+    rv = self.dispatch_request()
+  File "D:\python_venv\strabag\lib\site-packages\flask\app.py", line 1936, in dispatch_request
+    return self.view_functions[rule.endpoint](**req.view_args)
+  File "D:/source/strabag/webserver.py", line 375, in start_training
+    model = HubertFinetune()
+  File "D:\source\strabag\hubert_finetune.py", line 126, in __init__
+    self.train_dataset = TextSamplerDataset(SEQ_LEN, self.device, self.tokenizer)
+  File "D:\source\strabag\hubert_finetune.py", line 65, in __init__
+    self.load_data_ids()
+  File "D:\source\strabag\hubert_finetune.py", line 79, in load_data_ids
+    random.shuffle(self.data_ids)
+  File "C:\Python38\lib\random.py", line 304, in shuffle
+    for i in reversed(range(1, len(x))):
+TypeError: object of type 'int' has no len()
+INFO:werkzeug:127.0.0.1 - - [17/Oct/2021 17:45:19] "[35m[1mGET /start/training HTTP/1.1[0m" 500 -
+ERROR:webserver:Exception on /start/training [GET]
+Traceback (most recent call last):
+  File "D:\python_venv\strabag\lib\site-packages\flask\app.py", line 2447, in wsgi_app
+    response = self.full_dispatch_request()
+  File "D:\python_venv\strabag\lib\site-packages\flask\app.py", line 1952, in full_dispatch_request
+    rv = self.handle_user_exception(e)
+  File "D:\python_venv\strabag\lib\site-packages\flask\app.py", line 1821, in handle_user_exception
+    reraise(exc_type, exc_value, tb)
+  File "D:\python_venv\strabag\lib\site-packages\flask\_compat.py", line 39, in reraise
+    raise value
+  File "D:\python_venv\strabag\lib\site-packages\flask\app.py", line 1950, in full_dispatch_request
+    rv = self.dispatch_request()
+  File "D:\python_venv\strabag\lib\site-packages\flask\app.py", line 1936, in dispatch_request
+    return self.view_functions[rule.endpoint](**req.view_args)
+  File "D:/source/strabag/webserver.py", line 376, in start_training
+    model.train()
+  File "D:\source\strabag\hubert_finetune.py", line 267, in train
+    NUM_BATCHES = len(self.sentence_ids) * 4
+TypeError: object of type 'int' has no len()
+INFO:werkzeug:127.0.0.1 - - [17/Oct/2021 17:54:50] "[35m[1mGET /start/training HTTP/1.1[0m" 500 -
+ERROR:webserver:Exception on /start/training [GET]
+Traceback (most recent call last):
+  File "D:\python_venv\strabag\lib\site-packages\flask\app.py", line 2447, in wsgi_app
+    response = self.full_dispatch_request()
+  File "D:\python_venv\strabag\lib\site-packages\flask\app.py", line 1952, in full_dispatch_request
+    rv = self.handle_user_exception(e)
+  File "D:\python_venv\strabag\lib\site-packages\flask\app.py", line 1821, in handle_user_exception
+    reraise(exc_type, exc_value, tb)
+  File "D:\python_venv\strabag\lib\site-packages\flask\_compat.py", line 39, in reraise
+    raise value
+  File "D:\python_venv\strabag\lib\site-packages\flask\app.py", line 1950, in full_dispatch_request
+    rv = self.dispatch_request()
+  File "D:\python_venv\strabag\lib\site-packages\flask\app.py", line 1936, in dispatch_request
+    return self.view_functions[rule.endpoint](**req.view_args)
+  File "D:/source/strabag/webserver.py", line 376, in start_training
+    model.train()
+  File "D:\source\strabag\hubert_finetune.py", line 267, in train
+    NUM_BATCHES = len(self.sentence_ids) * 4
+TypeError: object of type 'int' has no len()
+INFO:werkzeug:127.0.0.1 - - [17/Oct/2021 17:56:06] "[35m[1mGET /start/training HTTP/1.1[0m" 500 -
+INFO:werkzeug: * Running on http://127.0.0.1:3000/ (Press CTRL+C to quit)
+INFO:werkzeug:127.0.0.1 - - [17/Oct/2021 17:59:37] "[37mGET /project/status?id=134 HTTP/1.1[0m" 200 -
+ERROR:webserver:Exception on /start/training [GET]
+Traceback (most recent call last):
+  File "D:\python_venv\strabag\lib\site-packages\flask\app.py", line 2447, in wsgi_app
+    response = self.full_dispatch_request()
+  File "D:\python_venv\strabag\lib\site-packages\flask\app.py", line 1952, in full_dispatch_request
+    rv = self.handle_user_exception(e)
+  File "D:\python_venv\strabag\lib\site-packages\flask\app.py", line 1821, in handle_user_exception
+    reraise(exc_type, exc_value, tb)
+  File "D:\python_venv\strabag\lib\site-packages\flask\_compat.py", line 39, in reraise
+    raise value
+  File "D:\python_venv\strabag\lib\site-packages\flask\app.py", line 1950, in full_dispatch_request
+    rv = self.dispatch_request()
+  File "D:\python_venv\strabag\lib\site-packages\flask\app.py", line 1936, in dispatch_request
+    return self.view_functions[rule.endpoint](**req.view_args)
+  File "D:/source/strabag/webserver.py", line 376, in start_training
+    model.train()
+  File "D:\source\strabag\hubert_finetune.py", line 267, in train
+    NUM_BATCHES = len(self.sentence_ids) * 4
+TypeError: object of type 'int' has no len()
+INFO:werkzeug:127.0.0.1 - - [17/Oct/2021 18:00:22] "[35m[1mGET /start/training HTTP/1.1[0m" 500 -
+INFO:werkzeug: * Running on http://127.0.0.1:3000/ (Press CTRL+C to quit)
+INFO:werkzeug:127.0.0.1 - - [17/Oct/2021 18:01:04] "[37mGET /project/status?id=134 HTTP/1.1[0m" 200 -
+ERROR:webserver:Exception on /start/training [GET]
+Traceback (most recent call last):
+  File "D:\python_venv\strabag\lib\site-packages\flask\app.py", line 2447, in wsgi_app
+    response = self.full_dispatch_request()
+  File "D:\python_venv\strabag\lib\site-packages\flask\app.py", line 1952, in full_dispatch_request
+    rv = self.handle_user_exception(e)
+  File "D:\python_venv\strabag\lib\site-packages\flask\app.py", line 1821, in handle_user_exception
+    reraise(exc_type, exc_value, tb)
+  File "D:\python_venv\strabag\lib\site-packages\flask\_compat.py", line 39, in reraise
+    raise value
+  File "D:\python_venv\strabag\lib\site-packages\flask\app.py", line 1950, in full_dispatch_request
+    rv = self.dispatch_request()
+  File "D:\python_venv\strabag\lib\site-packages\flask\app.py", line 1936, in dispatch_request
+    return self.view_functions[rule.endpoint](**req.view_args)
+  File "D:/source/strabag/webserver.py", line 376, in start_training
+    model.train()
+  File "D:\source\strabag\hubert_finetune.py", line 267, in train
+    NUM_BATCHES = len(self.sentence_ids) * 4
+TypeError: object of type 'int' has no len()
+INFO:werkzeug:127.0.0.1 - - [17/Oct/2021 18:01:12] "[35m[1mGET /start/training HTTP/1.1[0m" 500 -
+INFO:werkzeug: * Running on http://127.0.0.1:3000/ (Press CTRL+C to quit)
+INFO:werkzeug:127.0.0.1 - - [17/Oct/2021 18:02:09] "[37mGET /project/status?id=134 HTTP/1.1[0m" 200 -
+INFO:werkzeug: * Running on http://127.0.0.1:3000/ (Press CTRL+C to quit)
+INFO:werkzeug:127.0.0.1 - - [17/Oct/2021 18:03:33] "[37mGET /project/status?id=134 HTTP/1.1[0m" 200 -
+INFO:werkzeug: * Running on http://127.0.0.1:3000/ (Press CTRL+C to quit)
+INFO:werkzeug:127.0.0.1 - - [17/Oct/2021 18:08:11] "[37mGET /project/status?id=134 HTTP/1.1[0m" 200 -
+INFO:werkzeug: * Running on http://127.0.0.1:3000/ (Press CTRL+C to quit)
+INFO:werkzeug:127.0.0.1 - - [17/Oct/2021 18:09:23] "[37mGET /project/status?id=134 HTTP/1.1[0m" 200 -
+INFO:werkzeug: * Running on http://127.0.0.1:3000/ (Press CTRL+C to quit)
+INFO:werkzeug:127.0.0.1 - - [17/Oct/2021 18:12:08] "[37mGET /project/status?id=134 HTTP/1.1[0m" 200 -
+INFO:werkzeug: * Running on http://127.0.0.1:3000/ (Press CTRL+C to quit)
+INFO:werkzeug:127.0.0.1 - - [17/Oct/2021 18:13:02] "[37mGET /project/status?id=134 HTTP/1.1[0m" 200 -
+ERROR:webserver:Exception on /start/training [GET]
+Traceback (most recent call last):
+  File "D:\python_venv\strabag\lib\site-packages\flask\app.py", line 2447, in wsgi_app
+    response = self.full_dispatch_request()
+  File "D:\python_venv\strabag\lib\site-packages\flask\app.py", line 1952, in full_dispatch_request
+    rv = self.handle_user_exception(e)
+  File "D:\python_venv\strabag\lib\site-packages\flask\app.py", line 1821, in handle_user_exception
+    reraise(exc_type, exc_value, tb)
+  File "D:\python_venv\strabag\lib\site-packages\flask\_compat.py", line 39, in reraise
+    raise value
+  File "D:\python_venv\strabag\lib\site-packages\flask\app.py", line 1950, in full_dispatch_request
+    rv = self.dispatch_request()
+  File "D:\python_venv\strabag\lib\site-packages\flask\app.py", line 1936, in dispatch_request
+    return self.view_functions[rule.endpoint](**req.view_args)
+  File "D:/source/strabag/webserver.py", line 376, in start_training
+    model.train()
+  File "D:\source\strabag\hubert_finetune.py", line 319, in train
+    data, mask, target, target_token = next(train_loader)
+  File "D:\source\strabag\hubert_finetune.py", line 200, in cycle
+    tmp[:index] = torch.tensor(elem[:index], dtype=torch.long)
+RuntimeError: The expanded size of the tensor (40) must match the existing size (57) at non-singleton dimension 0.  Target sizes: [40].  Tensor sizes: [57]
+INFO:werkzeug:127.0.0.1 - - [17/Oct/2021 18:14:42] "[35m[1mGET /start/training HTTP/1.1[0m" 500 -
+INFO:werkzeug: * Running on http://127.0.0.1:3000/ (Press CTRL+C to quit)
+INFO:werkzeug:127.0.0.1 - - [17/Oct/2021 18:16:14] "[37mGET /project/status?id=134 HTTP/1.1[0m" 200 -
+INFO:werkzeug: * Running on http://127.0.0.1:3000/ (Press CTRL+C to quit)
+INFO:werkzeug:127.0.0.1 - - [17/Oct/2021 18:27:09] "[37mGET /project/status?id=134 HTTP/1.1[0m" 200 -
+INFO:werkzeug: * Running on http://127.0.0.1:3000/ (Press CTRL+C to quit)
+INFO:werkzeug:127.0.0.1 - - [17/Oct/2021 18:30:22] "[37mGET /project/status?id=134 HTTP/1.1[0m" 200 -
+INFO:werkzeug: * Running on http://127.0.0.1:3000/ (Press CTRL+C to quit)
+INFO:werkzeug:127.0.0.1 - - [17/Oct/2021 18:42:42] "[37mGET /project/status?id=134 HTTP/1.1[0m" 200 -
+ERROR:webserver:Exception on /start/training [GET]
+Traceback (most recent call last):
+  File "D:\python_venv\strabag\lib\site-packages\flask\app.py", line 2447, in wsgi_app
+    response = self.full_dispatch_request()
+  File "D:\python_venv\strabag\lib\site-packages\flask\app.py", line 1952, in full_dispatch_request
+    rv = self.handle_user_exception(e)
+  File "D:\python_venv\strabag\lib\site-packages\flask\app.py", line 1821, in handle_user_exception
+    reraise(exc_type, exc_value, tb)
+  File "D:\python_venv\strabag\lib\site-packages\flask\_compat.py", line 39, in reraise
+    raise value
+  File "D:\python_venv\strabag\lib\site-packages\flask\app.py", line 1950, in full_dispatch_request
+    rv = self.dispatch_request()
+  File "D:\python_venv\strabag\lib\site-packages\flask\app.py", line 1936, in dispatch_request
+    return self.view_functions[rule.endpoint](**req.view_args)
+  File "D:/source/strabag/webserver.py", line 376, in start_training
+    model.train()
+  File "D:\source\strabag\hubert_finetune.py", line 322, in train
+    data, mask, target, target_token = next(train_loader)
+  File "D:\source\strabag\hubert_finetune.py", line 203, in cycle
+    tmp[:index] = torch.tensor(elem[:index], dtype=torch.long)
+RuntimeError: The expanded size of the tensor (40) must match the existing size (57) at non-singleton dimension 0.  Target sizes: [40].  Tensor sizes: [57]
+INFO:werkzeug:127.0.0.1 - - [17/Oct/2021 18:42:53] "[35m[1mGET /start/training HTTP/1.1[0m" 500 -
+INFO:werkzeug: * Running on http://127.0.0.1:3000/ (Press CTRL+C to quit)
+INFO:werkzeug:127.0.0.1 - - [17/Oct/2021 18:44:16] "[37mGET /project/status?id=134 HTTP/1.1[0m" 200 -
+INFO:werkzeug: * Running on http://127.0.0.1:3000/ (Press CTRL+C to quit)
+INFO:werkzeug:127.0.0.1 - - [17/Oct/2021 18:46:03] "[37mGET /project/status?id=134 HTTP/1.1[0m" 200 -
+ERROR:webserver:Exception on /start/training [GET]
+Traceback (most recent call last):
+  File "D:\python_venv\strabag\lib\site-packages\flask\app.py", line 2447, in wsgi_app
+    response = self.full_dispatch_request()
+  File "D:\python_venv\strabag\lib\site-packages\flask\app.py", line 1952, in full_dispatch_request
+    rv = self.handle_user_exception(e)
+  File "D:\python_venv\strabag\lib\site-packages\flask\app.py", line 1821, in handle_user_exception
+    reraise(exc_type, exc_value, tb)
+  File "D:\python_venv\strabag\lib\site-packages\flask\_compat.py", line 39, in reraise
+    raise value
+  File "D:\python_venv\strabag\lib\site-packages\flask\app.py", line 1950, in full_dispatch_request
+    rv = self.dispatch_request()
+  File "D:\python_venv\strabag\lib\site-packages\flask\app.py", line 1936, in dispatch_request
+    return self.view_functions[rule.endpoint](**req.view_args)
+  File "D:/source/strabag/webserver.py", line 376, in start_training
+    model.train()
+  File "D:\source\strabag\hubert_finetune.py", line 322, in train
+    data, mask, target, target_token = next(train_loader)
+  File "D:\source\strabag\hubert_finetune.py", line 203, in cycle
+    tmp[:index] = torch.tensor(elem[:index], dtype=torch.long)
+RuntimeError: The expanded size of the tensor (40) must match the existing size (57) at non-singleton dimension 0.  Target sizes: [40].  Tensor sizes: [57]
+INFO:werkzeug:127.0.0.1 - - [17/Oct/2021 18:52:03] "[35m[1mGET /start/training HTTP/1.1[0m" 500 -
+INFO:werkzeug: * Running on http://127.0.0.1:3000/ (Press CTRL+C to quit)
+INFO:werkzeug:127.0.0.1 - - [17/Oct/2021 18:53:26] "[37mGET /project/status?id=134 HTTP/1.1[0m" 200 -
+INFO:werkzeug:127.0.0.1 - - [17/Oct/2021 18:53:30] "[37mGET /project/status?id=134 HTTP/1.1[0m" 200 -
+ERROR:webserver:Exception on /start/training [GET]
+Traceback (most recent call last):
+  File "D:\python_venv\strabag\lib\site-packages\flask\app.py", line 2447, in wsgi_app
+    response = self.full_dispatch_request()
+  File "D:\python_venv\strabag\lib\site-packages\flask\app.py", line 1952, in full_dispatch_request
+    rv = self.handle_user_exception(e)
+  File "D:\python_venv\strabag\lib\site-packages\flask\app.py", line 1821, in handle_user_exception
+    reraise(exc_type, exc_value, tb)
+  File "D:\python_venv\strabag\lib\site-packages\flask\_compat.py", line 39, in reraise
+    raise value
+  File "D:\python_venv\strabag\lib\site-packages\flask\app.py", line 1950, in full_dispatch_request
+    rv = self.dispatch_request()
+  File "D:\python_venv\strabag\lib\site-packages\flask\app.py", line 1936, in dispatch_request
+    return self.view_functions[rule.endpoint](**req.view_args)
+  File "D:/source/strabag/webserver.py", line 376, in start_training
+    model.train()
+  File "D:\source\strabag\hubert_finetune.py", line 323, in train
+    data, mask, target, target_token = next(train_loader)
+  File "D:\source\strabag\hubert_finetune.py", line 203, in cycle
+    tmp[:index] = torch.tensor(elem[:index], dtype=torch.long)
+RuntimeError: The expanded size of the tensor (40) must match the existing size (57) at non-singleton dimension 0.  Target sizes: [40].  Tensor sizes: [57]
+INFO:werkzeug:127.0.0.1 - - [17/Oct/2021 18:56:40] "[35m[1mGET /start/training HTTP/1.1[0m" 500 -
+INFO:werkzeug: * Running on http://127.0.0.1:3000/ (Press CTRL+C to quit)
+INFO:werkzeug:127.0.0.1 - - [17/Oct/2021 18:59:03] "[37mGET /project/status?id=134 HTTP/1.1[0m" 200 -
+ERROR:webserver:Exception on /start/training [GET]
+Traceback (most recent call last):
+  File "D:\python_venv\strabag\lib\site-packages\flask\app.py", line 2447, in wsgi_app
+    response = self.full_dispatch_request()
+  File "D:\python_venv\strabag\lib\site-packages\flask\app.py", line 1952, in full_dispatch_request
+    rv = self.handle_user_exception(e)
+  File "D:\python_venv\strabag\lib\site-packages\flask\app.py", line 1821, in handle_user_exception
+    reraise(exc_type, exc_value, tb)
+  File "D:\python_venv\strabag\lib\site-packages\flask\_compat.py", line 39, in reraise
+    raise value
+  File "D:\python_venv\strabag\lib\site-packages\flask\app.py", line 1950, in full_dispatch_request
+    rv = self.dispatch_request()
+  File "D:\python_venv\strabag\lib\site-packages\flask\app.py", line 1936, in dispatch_request
+    return self.view_functions[rule.endpoint](**req.view_args)
+  File "D:/source/strabag/webserver.py", line 376, in start_training
+    model.train()
+  File "D:\source\strabag\hubert_finetune.py", line 324, in train
+    data, mask, target, target_token = next(train_loader)
+  File "D:\source\strabag\hubert_finetune.py", line 204, in cycle
+    tmp[:index] = torch.tensor(elem[:index], dtype=torch.long)
+RuntimeError: The expanded size of the tensor (40) must match the existing size (57) at non-singleton dimension 0.  Target sizes: [40].  Tensor sizes: [57]
+INFO:werkzeug:127.0.0.1 - - [17/Oct/2021 19:00:16] "[35m[1mGET /start/training HTTP/1.1[0m" 500 -
+INFO:werkzeug: * Running on http://127.0.0.1:3000/ (Press CTRL+C to quit)
+INFO:werkzeug:127.0.0.1 - - [17/Oct/2021 19:02:26] "[37mGET /project/status?id=134 HTTP/1.1[0m" 200 -
+INFO:werkzeug: * Running on http://127.0.0.1:3000/ (Press CTRL+C to quit)
+INFO:werkzeug:127.0.0.1 - - [17/Oct/2021 19:05:39] "[37mGET /project/status?id=134 HTTP/1.1[0m" 200 -
+ERROR:webserver:Exception on /start/training [GET]
+Traceback (most recent call last):
+  File "D:\python_venv\strabag\lib\site-packages\flask\app.py", line 2447, in wsgi_app
+    response = self.full_dispatch_request()
+  File "D:\python_venv\strabag\lib\site-packages\flask\app.py", line 1952, in full_dispatch_request
+    rv = self.handle_user_exception(e)
+  File "D:\python_venv\strabag\lib\site-packages\flask\app.py", line 1821, in handle_user_exception
+    reraise(exc_type, exc_value, tb)
+  File "D:\python_venv\strabag\lib\site-packages\flask\_compat.py", line 39, in reraise
+    raise value
+  File "D:\python_venv\strabag\lib\site-packages\flask\app.py", line 1950, in full_dispatch_request
+    rv = self.dispatch_request()
+  File "D:\python_venv\strabag\lib\site-packages\flask\app.py", line 1936, in dispatch_request
+    return self.view_functions[rule.endpoint](**req.view_args)
+  File "D:/source/strabag/webserver.py", line 376, in start_training
+    model.train()
+  File "D:\source\strabag\hubert_finetune.py", line 324, in train
+    data, mask, target, target_token = next(train_loader)
+  File "D:\source\strabag\hubert_finetune.py", line 204, in cycle
+    tmp[:index] = torch.tensor(elem[:index], dtype=torch.long)
+RuntimeError: The expanded size of the tensor (40) must match the existing size (57) at non-singleton dimension 0.  Target sizes: [40].  Tensor sizes: [57]
+INFO:werkzeug:127.0.0.1 - - [17/Oct/2021 19:05:45] "[35m[1mGET /start/training HTTP/1.1[0m" 500 -
+INFO:werkzeug: * Running on http://127.0.0.1:3000/ (Press CTRL+C to quit)
+INFO:werkzeug:127.0.0.1 - - [17/Oct/2021 19:08:56] "[37mGET /project/status?id=134 HTTP/1.1[0m" 200 -
+ERROR:webserver:Exception on /start/training [GET]
+Traceback (most recent call last):
+  File "D:\python_venv\strabag\lib\site-packages\flask\app.py", line 2447, in wsgi_app
+    response = self.full_dispatch_request()
+  File "D:\python_venv\strabag\lib\site-packages\flask\app.py", line 1952, in full_dispatch_request
+    rv = self.handle_user_exception(e)
+  File "D:\python_venv\strabag\lib\site-packages\flask\app.py", line 1821, in handle_user_exception
+    reraise(exc_type, exc_value, tb)
+  File "D:\python_venv\strabag\lib\site-packages\flask\_compat.py", line 39, in reraise
+    raise value
+  File "D:\python_venv\strabag\lib\site-packages\flask\app.py", line 1950, in full_dispatch_request
+    rv = self.dispatch_request()
+  File "D:\python_venv\strabag\lib\site-packages\flask\app.py", line 1936, in dispatch_request
+    return self.view_functions[rule.endpoint](**req.view_args)
+  File "D:/source/strabag/webserver.py", line 376, in start_training
+    model.train()
+  File "D:\source\strabag\hubert_finetune.py", line 324, in train
+    data, mask, target, target_token = next(train_loader)
+  File "D:\source\strabag\hubert_finetune.py", line 204, in cycle
+    tmp[:index] = torch.tensor(elem[:index], dtype=torch.long)
+RuntimeError: The expanded size of the tensor (40) must match the existing size (57) at non-singleton dimension 0.  Target sizes: [40].  Tensor sizes: [57]
+INFO:werkzeug:127.0.0.1 - - [17/Oct/2021 19:09:02] "[35m[1mGET /start/training HTTP/1.1[0m" 500 -
+INFO:werkzeug: * Running on http://127.0.0.1:3000/ (Press CTRL+C to quit)
+ERROR:webserver:Exception on /start/training [GET]
+Traceback (most recent call last):
+  File "D:\python_venv\strabag\lib\site-packages\flask\app.py", line 2447, in wsgi_app
+    response = self.full_dispatch_request()
+  File "D:\python_venv\strabag\lib\site-packages\flask\app.py", line 1952, in full_dispatch_request
+    rv = self.handle_user_exception(e)
+  File "D:\python_venv\strabag\lib\site-packages\flask\app.py", line 1821, in handle_user_exception
+    reraise(exc_type, exc_value, tb)
+  File "D:\python_venv\strabag\lib\site-packages\flask\_compat.py", line 39, in reraise
+    raise value
+  File "D:\python_venv\strabag\lib\site-packages\flask\app.py", line 1950, in full_dispatch_request
+    rv = self.dispatch_request()
+  File "D:\python_venv\strabag\lib\site-packages\flask\app.py", line 1936, in dispatch_request
+    return self.view_functions[rule.endpoint](**req.view_args)
+  File "D:/source/strabag/webserver.py", line 376, in start_training
+    model.train()
+  File "D:\source\strabag\hubert_finetune.py", line 324, in train
+    data, mask, target, target_token = next(train_loader)
+  File "D:\source\strabag\hubert_finetune.py", line 204, in cycle
+    tmp[:index] = torch.tensor(elem[:index], dtype=torch.long)
+RuntimeError: The expanded size of the tensor (40) must match the existing size (57) at non-singleton dimension 0.  Target sizes: [40].  Tensor sizes: [57]
+INFO:werkzeug:127.0.0.1 - - [17/Oct/2021 19:17:57] "[35m[1mGET /start/training HTTP/1.1[0m" 500 -
+INFO:werkzeug: * Running on http://127.0.0.1:3000/ (Press CTRL+C to quit)
+INFO:werkzeug:127.0.0.1 - - [17/Oct/2021 19:20:13] "[37mGET /project/status?id=134 HTTP/1.1[0m" 200 -
+INFO:werkzeug: * Running on http://127.0.0.1:3000/ (Press CTRL+C to quit)
+INFO:werkzeug:127.0.0.1 - - [17/Oct/2021 19:22:15] "[37mGET /project/status?id=134 HTTP/1.1[0m" 200 -
+ERROR:webserver:Exception on /start/training [GET]
+Traceback (most recent call last):
+  File "D:\python_venv\strabag\lib\site-packages\flask\app.py", line 2447, in wsgi_app
+    response = self.full_dispatch_request()
+  File "D:\python_venv\strabag\lib\site-packages\flask\app.py", line 1952, in full_dispatch_request
+    rv = self.handle_user_exception(e)
+  File "D:\python_venv\strabag\lib\site-packages\flask\app.py", line 1821, in handle_user_exception
+    reraise(exc_type, exc_value, tb)
+  File "D:\python_venv\strabag\lib\site-packages\flask\_compat.py", line 39, in reraise
+    raise value
+  File "D:\python_venv\strabag\lib\site-packages\flask\app.py", line 1950, in full_dispatch_request
+    rv = self.dispatch_request()
+  File "D:\python_venv\strabag\lib\site-packages\flask\app.py", line 1936, in dispatch_request
+    return self.view_functions[rule.endpoint](**req.view_args)
+  File "D:/source/strabag/webserver.py", line 376, in start_training
+    model.train()
+  File "D:\source\strabag\hubert_finetune.py", line 326, in train
+    data, mask, target, target_token = next(train_loader)
+  File "D:\source\strabag\hubert_finetune.py", line 206, in cycle
+    tmp[:index] = torch.tensor(elem[:index], dtype=torch.long)
+RuntimeError: The expanded size of the tensor (40) must match the existing size (57) at non-singleton dimension 0.  Target sizes: [40].  Tensor sizes: [57]
+INFO:werkzeug:127.0.0.1 - - [17/Oct/2021 19:22:22] "[35m[1mGET /start/training HTTP/1.1[0m" 500 -
+INFO:werkzeug: * Running on http://127.0.0.1:3000/ (Press CTRL+C to quit)
+INFO:werkzeug:127.0.0.1 - - [17/Oct/2021 19:23:01] "[37mGET /project/status?id=134 HTTP/1.1[0m" 200 -
+INFO:werkzeug: * Running on http://127.0.0.1:3000/ (Press CTRL+C to quit)
+INFO:werkzeug:127.0.0.1 - - [17/Oct/2021 19:24:44] "[37mGET /project/status?id=134 HTTP/1.1[0m" 200 -
+INFO:werkzeug: * Running on http://127.0.0.1:3000/ (Press CTRL+C to quit)
+INFO:werkzeug:127.0.0.1 - - [17/Oct/2021 19:28:35] "[37mGET /project/status?id=134 HTTP/1.1[0m" 200 -
+ERROR:webserver:Exception on /start/training [GET]
+Traceback (most recent call last):
+  File "D:\python_venv\strabag\lib\site-packages\flask\app.py", line 2447, in wsgi_app
+    response = self.full_dispatch_request()
+  File "D:\python_venv\strabag\lib\site-packages\flask\app.py", line 1952, in full_dispatch_request
+    rv = self.handle_user_exception(e)
+  File "D:\python_venv\strabag\lib\site-packages\flask\app.py", line 1821, in handle_user_exception
+    reraise(exc_type, exc_value, tb)
+  File "D:\python_venv\strabag\lib\site-packages\flask\_compat.py", line 39, in reraise
+    raise value
+  File "D:\python_venv\strabag\lib\site-packages\flask\app.py", line 1950, in full_dispatch_request
+    rv = self.dispatch_request()
+  File "D:\python_venv\strabag\lib\site-packages\flask\app.py", line 1936, in dispatch_request
+    return self.view_functions[rule.endpoint](**req.view_args)
+  File "D:/source/strabag/webserver.py", line 376, in start_training
+    model.train()
+  File "D:\source\strabag\hubert_finetune.py", line 326, in train
+    data, mask, target, target_token = next(train_loader)
+  File "D:\source\strabag\hubert_finetune.py", line 206, in cycle
+    tmp[:index] = torch.tensor(elem[:index], dtype=torch.long)
+RuntimeError: The expanded size of the tensor (40) must match the existing size (57) at non-singleton dimension 0.  Target sizes: [40].  Tensor sizes: [57]
+INFO:werkzeug:127.0.0.1 - - [17/Oct/2021 19:28:40] "[35m[1mGET /start/training HTTP/1.1[0m" 500 -
+INFO:werkzeug: * Running on http://127.0.0.1:3000/ (Press CTRL+C to quit)
+INFO:werkzeug:127.0.0.1 - - [17/Oct/2021 19:30:26] "[37mGET /project/status?id=134 HTTP/1.1[0m" 200 -
+INFO:werkzeug:127.0.0.1 - - [17/Oct/2021 19:30:37] "[37mGET /project/status?id=134 HTTP/1.1[0m" 200 -
+ERROR:webserver:Exception on /start/training [GET]
+Traceback (most recent call last):
+  File "D:\python_venv\strabag\lib\site-packages\flask\app.py", line 2447, in wsgi_app
+    response = self.full_dispatch_request()
+  File "D:\python_venv\strabag\lib\site-packages\flask\app.py", line 1952, in full_dispatch_request
+    rv = self.handle_user_exception(e)
+  File "D:\python_venv\strabag\lib\site-packages\flask\app.py", line 1821, in handle_user_exception
+    reraise(exc_type, exc_value, tb)
+  File "D:\python_venv\strabag\lib\site-packages\flask\_compat.py", line 39, in reraise
+    raise value
+  File "D:\python_venv\strabag\lib\site-packages\flask\app.py", line 1950, in full_dispatch_request
+    rv = self.dispatch_request()
+  File "D:\python_venv\strabag\lib\site-packages\flask\app.py", line 1936, in dispatch_request
+    return self.view_functions[rule.endpoint](**req.view_args)
+  File "D:/source/strabag/webserver.py", line 376, in start_training
+    model.train()
+  File "D:\source\strabag\hubert_finetune.py", line 329, in train
+    data, mask, target, target_token = next(train_loader)
+  File "D:\source\strabag\hubert_finetune.py", line 206, in cycle
+    tmp[:index] = torch.tensor(elem[:index], dtype=torch.long)
+RuntimeError: The expanded size of the tensor (40) must match the existing size (57) at non-singleton dimension 0.  Target sizes: [40].  Tensor sizes: [57]
+INFO:werkzeug:127.0.0.1 - - [17/Oct/2021 19:30:43] "[35m[1mGET /start/training HTTP/1.1[0m" 500 -
+INFO:root:validation loss: 0.414816677570343
+INFO:root:training loss: 0.40666061639785767
+INFO:root:Accuracy sentence: 1.0  Accuracy token: 0.8811718851327897
+INFO:root:Best model has saved, iteration: 35
+INFO:werkzeug: * Running on http://127.0.0.1:3000/ (Press CTRL+C to quit)
+INFO:werkzeug:127.0.0.1 - - [17/Oct/2021 20:08:54] "[37mGET /project/status?id=134 HTTP/1.1[0m" 200 -
+INFO:werkzeug:127.0.0.1 - - [17/Oct/2021 20:08:54] "[37mGET /check/training HTTP/1.1[0m" 200 -
+INFO:root:validation loss: 0.4358941614627838
+INFO:root:training loss: 0.48604243993759155
+INFO:root:Accuracy sentence: 1.0  Accuracy token: 0.8805468946695327
+INFO:root:Best model has saved, iteration: 35
+INFO:werkzeug:127.0.0.1 - - [17/Oct/2021 20:16:35] "[37mGET /start/training HTTP/1.1[0m" 200 -
+INFO:werkzeug:127.0.0.1 - - [17/Oct/2021 20:20:25] "[37mGET /check/training HTTP/1.1[0m" 200 -
+INFO:werkzeug:127.0.0.1 - - [17/Oct/2021 20:22:04] "[37mGET /project/status?id=9876 HTTP/1.1[0m" 200 -
+INFO:werkzeug: * Running on http://127.0.0.1:3000/ (Press CTRL+C to quit)
+INFO:werkzeug:127.0.0.1 - - [17/Oct/2021 20:23:41] "[37mGET /project/status?id=9876 HTTP/1.1[0m" 200 -
+ERROR:webserver:Exception on /check/training [GET]
+Traceback (most recent call last):
+  File "D:\python_venv\strabag\lib\site-packages\flask\app.py", line 2447, in wsgi_app
+    response = self.full_dispatch_request()
+  File "D:\python_venv\strabag\lib\site-packages\flask\app.py", line 1953, in full_dispatch_request
+    return self.finalize_request(rv)
+  File "D:\python_venv\strabag\lib\site-packages\flask\app.py", line 1968, in finalize_request
+    response = self.make_response(rv)
+  File "D:\python_venv\strabag\lib\site-packages\flask\app.py", line 2127, in make_response
+    raise TypeError(
+TypeError: The view function did not return a valid response. The return type must be a string, dict, tuple, Response instance, or WSGI callable, but it was a bool.
+INFO:werkzeug:127.0.0.1 - - [17/Oct/2021 20:24:15] "[35m[1mGET /check/training HTTP/1.1[0m" 500 -
+INFO:werkzeug: * Running on http://127.0.0.1:3000/ (Press CTRL+C to quit)
+ERROR:webserver:Exception on /check/training [GET]
+Traceback (most recent call last):
+  File "D:\python_venv\strabag\lib\site-packages\flask\app.py", line 2447, in wsgi_app
+    response = self.full_dispatch_request()
+  File "D:\python_venv\strabag\lib\site-packages\flask\app.py", line 1953, in full_dispatch_request
+    return self.finalize_request(rv)
+  File "D:\python_venv\strabag\lib\site-packages\flask\app.py", line 1968, in finalize_request
+    response = self.make_response(rv)
+  File "D:\python_venv\strabag\lib\site-packages\flask\app.py", line 2127, in make_response
+    raise TypeError(
+TypeError: The view function did not return a valid response. The return type must be a string, dict, tuple, Response instance, or WSGI callable, but it was a int.
+INFO:werkzeug:127.0.0.1 - - [17/Oct/2021 20:24:59] "[35m[1mGET /check/training HTTP/1.1[0m" 500 -
+INFO:werkzeug: * Running on http://127.0.0.1:3000/ (Press CTRL+C to quit)
+INFO:werkzeug: * Running on http://127.0.0.1:3000/ (Press CTRL+C to quit)
+INFO:werkzeug:127.0.0.1 - - [17/Oct/2021 20:28:27] "[37mGET /check/training HTTP/1.1[0m" 200 -
+INFO:werkzeug: * Running on http://127.0.0.1:3000/ (Press CTRL+C to quit)
+INFO:werkzeug:127.0.0.1 - - [17/Oct/2021 20:30:11] "[37mGET /project/status?id=134 HTTP/1.1[0m" 200 -
+INFO:werkzeug:127.0.0.1 - - [17/Oct/2021 20:30:11] "[37mGET /check/training HTTP/1.1[0m" 200 -
+INFO:root:validation loss: 2.3042023181915283
+INFO:root:training loss: 2.5883665084838867
+INFO:root:Accuracy sentence: 0.903125  Accuracy token: 0.8039453268051148
+INFO:root:Best model has saved, iteration: 8
+INFO:werkzeug:127.0.0.1 - - [17/Oct/2021 20:34:31] "[37mGET /start/training HTTP/1.1[0m" 200 -

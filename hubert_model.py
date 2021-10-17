@@ -62,13 +62,13 @@ class HubertModel:
         self.config = transformers.BertConfig.from_json_file(MODEL_PATH + "/config.json")
         self.config.id2label = self.sentence_ids
         self.config.label2id = self.labels
-        self.config.num_labels = len(self.labels)
+        self.config.num_labels = len(self.labels)+1
         print(len(self.labels))
         for i, label in enumerate(self.labels):
             print(i, label)
         # TODO elmenteni token labeleknek a számát, itt visszatölteni
         self.model = transformers.BertForSequenceAndTokenClassification.from_pretrained(
-            save_dir + MODEL_NAME, local_files_only=True, config=self.config, num_labels_token=len(self.token_labels))
+            save_dir + MODEL_NAME, local_files_only=True, config=self.config, num_labels_token=len(self.token_labels)+1)
         self.model.eval()
 
         self.model.to(self.device)

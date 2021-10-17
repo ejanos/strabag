@@ -13,6 +13,7 @@ import json
 from types import SimpleNamespace
 import icecream as ic
 from custom_json_encoder import CustomJSONEncoder
+from hubert_finetune import HubertFinetune
 
 ic = ic.IceCreamDebugger()
 #ic.disable()
@@ -371,19 +372,18 @@ def predict_more_row():
 def start_training():
     if request.method == 'GET':
         training_is_running = True
-        from hubert_finetune import HubertFinetune
         model = HubertFinetune()
         model.train()
         #model = None
         training_is_running = False
-        return return_response(True)
+        return str(True)
     return "Not allowed method", 405
 
 @app.route("/check/training", methods=['GET'])
 # TODO make it async
 def check_training():
     if request.method == 'GET':
-        return return_response(training_is_running)
+        return str(training_is_running)
     return "Not allowed method", 405
 
 @app.route("/project/status", methods=['GET'])
@@ -395,7 +395,7 @@ def project_trained():
             is_trained = db.get_project_trained(project_id)
             if is_trained:
                 return return_response(is_trained)
-        return return_response(False)
+        return str(False)
     return "Not allowed method", 405
 
 @app.route("/save/project", methods=['POST'])

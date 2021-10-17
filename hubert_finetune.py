@@ -32,12 +32,11 @@ TEST_LENGTH = 128
 BATCH_SIZE = 32  #32
 
 LAST_EPOCH = 0
-NUM_BATCHES = int(583 * 4)   # 3?
-WARMUP = int(NUM_BATCHES * 0.06)
+
 LEARNING_RATE = 1e-5
-VALIDATE_EVERY = 5000
-GENERATE_EVERY = 500
-MINIBATCH = BATCH_SIZE
+VALIDATE_EVERY = 500
+GENERATE_EVERY = 50
+MINIBATCH = 4
 
 save_dir = "./model_bert/"
 root_dir = "./"
@@ -73,7 +72,9 @@ class TextSamplerDataset(Dataset):
 
     def load_data_ids(self):
         with DBHelper() as db:
-            self.data_ids = db.get_all_sentence_id()
+            rows = db.get_all_sentence_id()
+            for row in rows:
+                self.data_ids.append(row[0])
         random.shuffle(self.data_ids)
 
     def tokenize(self, txt):
@@ -96,13 +97,19 @@ class TextSamplerDataset(Dataset):
         else:
             with DBHelper() as db:
                 row = db.get_sentence(sentence_id)
-        ic(row)
+        #ic(row)
         text = row[1]
         sen_class = row[2]
         token_class = row[3]
         return text, sen_class, token_class
 
 class HubertFinetune:
+    sentence_label_ids = None
+    cat_labels = None
+    token_ids = None
+    token_labels = None
+    token_cat_ids = None
+
     device = torch.device("cuda:0" if torch.cuda.is_available() else "cpu")
 
     logging.basicConfig(filename=root_dir + 'train.log', level=logging.DEBUG)
@@ -115,22 +122,11 @@ class HubertFinetune:
     mask_token_id = tokenizer.mask_token_id
     sentence_ids = []
 
-    def __init__(self):
-        self.get_sentence_ids()
-        self.sentence_label_ids, self.cat_labels = self.get_sentence_labels()
-        self.token_ids, self.token_labels, self.token_cat_ids = self.get_token_labels()
-
-        print("Token labels count: ", len(self.token_labels))
-        self.train_dataset = TextSamplerDataset(SEQ_LEN, self.device, self.tokenizer)
-        # val_dataset = TextSamplerDataset(root_dir + data_dir + "valid.txt", SEQ_LEN, device, tokenizer, 0)
-        # test_dataset = TextSamplerDataset(root_dir + data_dir + "test.txt", SEQ_LEN, device, tokenizer, 0, test=True)
-        self.train_loader = self.cycle(self.train_dataset, BATCH_SIZE, SEQ_LEN, self.device, len(self.train_dataset))
-        # val_loader = cycle(iter(val_dataset), BATCH_SIZE, SEQ_LEN, device)
-        # test_loader = cycle(iter(test_dataset), 1, GENERATE_LENGTH, device)
-
     def get_sentence_ids(self):
         with DBHelper() as db:
-            self.sentence_ids = db.get_all_sentence_id()
+            rows = db.get_all_sentence_id()
+            for row in rows:
+                self.sentence_ids.append(row[0])
 
     def check_database_consistency(self):
         if DEBUG:
@@ -153,7 +149,7 @@ class HubertFinetune:
         result = []
         corrupted = False
         for token in token_labels:
-            if token in self.token_label_ids:
+            if token == 0 or token in self.token_ids :
                 result.append(token)
             else:
                 result.append(0)
@@ -179,20 +175,26 @@ class HubertFinetune:
             input_ids = tokens["input_ids"]
 
             tokens2 = tokens["input_ids"].tolist()
+            max_seq_len = len(tokens2[0]) - 1
 
-            for t in tokens2[0]:
-                t2 = self.tokenizer.decode(t)
-                print(t, t2)
+            #for t in tokens2[0]:
+            #    t2 = self.tokenizer.decode(t)
+            #    print(t, t2)
 
-            tok_class = torch.ones_like(tokens["input_ids"], dtype=torch.long) * -100
+            tok_class = torch.ones_like(input_ids, dtype=torch.long) * -100
             tmp = torch.ones(tok_class.size(1), dtype=torch.long) * -100
             mask = tokens["attention_mask"]
             sentence = torch.tensor(sen_list, dtype=torch.long)
             sentence = torch.unsqueeze(sentence, 1)
             #offset_mapping = tokens["offset_mapping"]
 
+            ic("tok class list",len(tok_class_list))
+
             for i, elem in enumerate(tok_class_list):
-                max_index = len(elem)
+                ic("külső ciklus",i)
+                max_index = len(elem) - 1
+                if max_index > max_seq_len:
+                    max_index = max_seq_len
 
                 index = (mask[i] == 0).nonzero(as_tuple=False)
                 if (index.size(0) == 0):
@@ -201,17 +203,25 @@ class HubertFinetune:
                     index = index[0, 0]
                     if index > max_index:
                         index = max_index
+                ic(tmp.size(), len(elem))
+
                 tmp[:index] = torch.tensor(elem[:index], dtype=torch.long)
+                #for k, e in enumerate(elem[:index]):
+                #    tmp[k] = e
 
                 source = 0
                 tok_class[i, 1] = tmp[0]
                 for j, token in enumerate(input_ids[i, 2:-1]):
+                    #ic(j, self.tokenizer.decode(token.item())[0])
                     if self.tokenizer.decode(token.item())[0] != "#":
                         source += 1
                     tok_class[i, j + 2] = tmp[source]
 
-
-            yield tokens["input_ids"].to(device), mask.to(device), sentence.to(device), tok_class.to(device)
+            print(input_ids.size())
+            print(mask.size())
+            print( sentence.size())
+            print( tok_class.size())
+            yield input_ids.to(device), mask.to(device), sentence.to(device), tok_class.to(device)
 
 
     def decode_tokens(self, tokens):
@@ -254,7 +264,7 @@ class HubertFinetune:
         with DBHelper() as db:
             rows = db.get_all_token_labels()
         for row in rows:
-            label_ids.append(row[1])
+            label_ids.append(row[0])
             token_labels.append(row[2])
             token_cat_ids.append(row[3])
         return label_ids, token_labels, token_cat_ids
@@ -266,6 +276,24 @@ class HubertFinetune:
         return result_dict
 
     def train(self):
+        self.get_sentence_ids()
+
+        NUM_BATCHES = len(self.sentence_ids) * 1 #4
+        ic("batches",NUM_BATCHES)
+        WARMUP = int(NUM_BATCHES * 0.06)
+
+        self.sentence_label_ids, self.cat_labels = self.get_sentence_labels()
+        self.token_ids, self.token_labels, self.token_cat_ids = self.get_token_labels()
+
+        print("Token labels count: ", len(self.token_labels))
+        train_dataset = TextSamplerDataset(SEQ_LEN, self.device, self.tokenizer)
+        # val_dataset = TextSamplerDataset(root_dir + data_dir + "valid.txt", SEQ_LEN, device, tokenizer, 0)
+        # test_dataset = TextSamplerDataset(root_dir + data_dir + "test.txt", SEQ_LEN, device, tokenizer, 0, test=True)
+        train_loader = self.cycle(train_dataset, BATCH_SIZE, SEQ_LEN, self.device, len(train_dataset))
+        # val_loader = cycle(iter(val_dataset), BATCH_SIZE, SEQ_LEN, device)
+        # test_loader = cycle(iter(test_dataset), 1, GENERATE_LENGTH, device)
+
+        #sentence_ids
         self.check_database_consistency()
 
         best_loss = 1e25
@@ -275,12 +303,12 @@ class HubertFinetune:
         config = transformers.BertConfig.from_json_file(MODEL_PATH + "/config.json")
         config.id2label = self.config_label_dict(self.sentence_label_ids, self.cat_labels)
         config.label2id = self.config_label_dict(self.cat_labels, self.sentence_label_ids)
-        config.num_labels = len(self.sentence_label_ids)
+        config.num_labels = len(self.sentence_label_ids)+1
         print(len(self.sentence_label_ids))
         for i , label in enumerate(self.cat_labels):
             print(i, label)
         model = transformers.BertForSequenceAndTokenClassification.from_pretrained(
-            MODEL_PATH, local_files_only=True, config=config, num_labels_token=len(self.token_labels))
+            MODEL_PATH, local_files_only=True, config=config, num_labels_token=len(self.token_labels)+1)
         model.eval()
 
         model.to(device)
@@ -302,12 +330,13 @@ class HubertFinetune:
             model.train()
 
             training_loss = []
-            data, mask, target, target_token = next(self.train_loader)
+            data, mask, target, target_token = next(train_loader)
+            ic(data.size(), mask.size(), target.size(), target_token.size())
             with autocast():
                 out = model(input_ids=data, labels_sentence=target, labels_token=target_token, attention_mask=mask, return_dict=True)
                 loss = out.loss
                 scaler.scale(loss).backward()
-            #print(f'loss: {loss}')
+            print(f'loss: {loss}')
             training_loss.append(loss.item())
             scaler.unscale_(optim)
             scaler.step(optim)
@@ -315,7 +344,7 @@ class HubertFinetune:
             optim.zero_grad()
             lr_scheduler.step()
 
-            if i % VALIDATE_EVERY == 0 and i != 0:
+            if i == (NUM_BATCHES - 1) or (i % VALIDATE_EVERY == 0 and i != 0):
                 optim.zero_grad()
                 ac_mean1 = []
                 ac_mean2 = []
@@ -324,7 +353,7 @@ class HubertFinetune:
                     model.eval()
                     with torch.no_grad():
                         # TODO val_loader
-                        data, mask, target, target_token = next(self.train_loader)
+                        data, mask, target, target_token = next(train_loader)
                         out = model(input_ids=data, labels_sentence=target, labels_token=target_token, attention_mask=mask,
                                     return_dict=True)
                         loss = out.loss
@@ -358,7 +387,7 @@ class HubertFinetune:
             if i % GENERATE_EVERY == 0 and i != 0:
                 optim.zero_grad()
                 model.eval()
-                data, mask, target, target_token = next(self.train_loader)
+                data, mask, target, target_token = next(train_loader)
 
                 for seq in data:
                     prime = self.decode_tokens(seq)
@@ -378,6 +407,6 @@ class HubertFinetune:
                             print(config.id2label[str(int(id))])
 
 if __name__ == '__main__':
-    DEBUG = True
+    DEBUG = False
     model = HubertFinetune()
     model.train()
