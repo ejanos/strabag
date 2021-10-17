@@ -261,9 +261,8 @@ def save_sentence():
         content = form['content']
         target_category = form['target_category']
         #category_name = form['category_name']
-        ic(category_name)
         token_labels = json.loads(form['token_labels'])
-        result = training.save_one_row(target_category, content, token_labels, category_name)
+        result = training.save_one_row(target_category, content, token_labels)
         return return_response(result)
 
     return "Not allowed method", 405
