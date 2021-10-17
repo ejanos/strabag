@@ -190,7 +190,7 @@ def read_all_category():
 def save_token_label():
     if request.method == 'POST':
         form = request.form
-        id = form['id']
+        id = form['id'] # frontend_id
         name = form['name']
         category_ordinal = form['category_ordinal']
         with DBHelper() as db:
@@ -260,8 +260,10 @@ def save_sentence():
         form = request.form
         content = form['content']
         target_category = form['target_category']
+        #category_name = form['category_name']
+        ic(category_name)
         token_labels = json.loads(form['token_labels'])
-        result = training.save_one_row(target_category, content, token_labels)
+        result = training.save_one_row(target_category, content, token_labels, category_name)
         return return_response(result)
 
     return "Not allowed method", 405
@@ -392,7 +394,9 @@ def project_trained():
         project_id = request.args.get('id')
         with DBHelper() as db:
             is_trained = db.get_project_trained(project_id)
-        return return_response(is_trained)
+            if is_trained:
+                return return_response(is_trained)
+        return return_response(False)
     return "Not allowed method", 405
 
 @app.route("/save/project", methods=['POST'])

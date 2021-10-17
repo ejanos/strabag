@@ -151,8 +151,11 @@ class DBHelper:
         try:
             sql = f"SELECT Trained FROM TrainedProjects WHERE  TrainedProjectId={project_id}"
             self.cur.execute(sql)
-            is_trained = self.cur.fetchone()[0]
-            return is_trained
+            result = self.cur.fetchone()
+            if result:
+                is_trained = result[0]
+                return is_trained
+            return None
         except(Exception, psycopg2.DatabaseError) as error:
             print(error)
             return None
@@ -473,6 +476,28 @@ class DBHelper:
             print(error)
             return None
 
+    def get_token_label_by_frontend_id(self, frontend_id):
+        try:
+            sql = f"SELECT * FROM token_label WHERE frontend_id={frontend_id}"
+            self.cur.execute(sql)
+            row = self.cur.fetchone()
+            return row
+        except(Exception, psycopg2.DatabaseError) as error:
+            print(error)
+            return None
+
+    def get_token_label_id_by_frontend_id(self, frontend_id):
+        try:
+            sql = f"SELECT id FROM token_label WHERE frontend_id={frontend_id}"
+            self.cur.execute(sql)
+            row = self.cur.fetchone()
+            if row:
+                return row[0]
+            return None
+        except(Exception, psycopg2.DatabaseError) as error:
+            print(error)
+            return None
+
     def get_all_token_label(self):
         try:
             sql = f"SELECT * FROM token_label"
@@ -483,12 +508,12 @@ class DBHelper:
             print(error)
             return None
 
-        def get_all_token_label_frontend_ids(self):
-            try:
-                sql = f"SELECT frontend_id FROM token_label"
-                self.cur.execute(sql)
-                rows = self.cur.fetchall()
-                return rows
-            except(Exception, psycopg2.DatabaseError) as error:
-                print(error)
-                return None
+    def get_all_token_label_frontend_ids(self):
+        try:
+            sql = f"SELECT frontend_id FROM token_label"
+            self.cur.execute(sql)
+            rows = self.cur.fetchall()
+            return rows
+        except(Exception, psycopg2.DatabaseError) as error:
+            print(error)
+            return None
