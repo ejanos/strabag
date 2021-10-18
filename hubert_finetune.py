@@ -12,7 +12,7 @@ from db_helper import DBHelper
 import icecream as ic
 
 ic = ic.IceCreamDebugger()
-#ic.disable()
+ic.disable()
 
 DEBUG = False
 MODEL_PATH = "./hubert_wiki_lower"
@@ -23,7 +23,7 @@ LOAD_PRETRAINED = True
 LOAD_TRAINING_CONF = False
 LOAD_TOKENIZER = True
 
-VAL_LOSS_CYCLE = 20
+VAL_LOSS_CYCLE = 10
 
 punctuation = ".,:;!?"
 SEQ_LEN = 512
@@ -35,7 +35,7 @@ LAST_EPOCH = 0
 
 LEARNING_RATE = 1e-5
 VALIDATE_EVERY = 500
-GENERATE_EVERY = 50
+GENERATE_EVERY = 5000
 MINIBATCH = 4
 
 save_dir = "./model_bert/"
@@ -278,7 +278,7 @@ class HubertFinetune:
     def train(self):
         self.get_sentence_ids()
 
-        NUM_BATCHES = len(self.sentence_ids) * 1 #4
+        NUM_BATCHES = len(self.sentence_ids)  #4
         ic("batches",NUM_BATCHES)
         WARMUP = int(NUM_BATCHES * 0.06)
 
@@ -303,12 +303,13 @@ class HubertFinetune:
         config = transformers.BertConfig.from_json_file(MODEL_PATH + "/config.json")
         config.id2label = self.config_label_dict(self.sentence_label_ids, self.cat_labels)
         config.label2id = self.config_label_dict(self.cat_labels, self.sentence_label_ids)
-        config.num_labels = len(self.sentence_label_ids)+1
+        #config.num_labels = len(self.sentence_label_ids)
+        config.num_labels = 12
         print(len(self.sentence_label_ids))
         for i , label in enumerate(self.cat_labels):
             print(i, label)
         model = transformers.BertForSequenceAndTokenClassification.from_pretrained(
-            MODEL_PATH, local_files_only=True, config=config, num_labels_token=len(self.token_labels)+1)
+            MODEL_PATH, local_files_only=True, config=config, num_labels_token=64)
         model.eval()
 
         model.to(device)
@@ -384,7 +385,7 @@ class HubertFinetune:
                     model.save_pretrained(save_dir + "last/")
                     logging.info(f"Last model has saved, iteration: {i}")
 
-            if i % GENERATE_EVERY == 0 and i != 0:
+            if i % GENERATE_EVERY == 99999 and i != 0:
                 optim.zero_grad()
                 model.eval()
                 data, mask, target, target_token = next(train_loader)

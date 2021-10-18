@@ -10,6 +10,9 @@ from hubert_model import HubertModel
 from helpers import Helpers
 import pandas as pd
 
+#class ContentRow:
+#    def __init__(self, id, content, unit):
+
 
 ic = ic.IceCreamDebugger()
 ic.disable()
@@ -115,7 +118,7 @@ class ConvertExcel:
         with DBHelper() as db:
             rows = db.get_all_token_label()
         for row in rows:
-            self.token_labels[row[0]] = row[2]
+            self.token_labels[row[0]] = row[3] # category id
 
     def split_top_sub(self, category):
         top = category[:2]
@@ -172,14 +175,18 @@ class ConvertExcel:
         target_categories = []
         source_rows = []
         first_row = 1
+        max_categories = len(self.category_by_index)
+        max_tokens = len(self.token_labels)
 
-        for i, txt in enumerate(df.iloc[first_row:, content_col]):
+        for i, txt in enumerate(df.iloc[first_row:, content_col-1]):
+        #for i in range(1, num_rows):
+            #txt = df.iloc[i, content_col]
             if txt and not pd.isna(txt):
                 # TODO felhasználni cat_prob valószínűségi értéket a blokkok értelmezéséhez
                 # TODO plusz a tokenek értékét is erre lehet felhasználni
                 # TODO token probability-t is fel lehet használni erre !!!
-                category, cat_prob, tokens, token_prob = self.model.predict(txt)
-                token_category = self.convert_token_label2category(tokens[0])
+                category, cat_prob, tokens, token_prob = self.model.predict(str(txt))
+                token_category = self.convert_token_label2category(tokens[0], max_tokens)
 
                 if category[0] == no_category_id and not self.there_is_no_token(token_category):
                     categories = self.select_valid_categories(token_category)
@@ -212,6 +219,9 @@ class ConvertExcel:
         self.load_token_labels()
         df = pd.read_excel(file, header=0, sheet_name=0, engine='openpyxl')
 
+        max_categories = len(self.category_by_index)
+        max_tokens = len(self.token_labels)
+
         target_categories = []
 
         for row in source_rows:
@@ -221,22 +231,58 @@ class ConvertExcel:
                 # TODO plusz a tokenek értékét is erre lehet felhasználni
                 # TODO token probability-t is fel lehet használni erre !!!
                 category, cat_prob, tokens, token_prob = self.model.predict(txt)
-                token_category = self.convert_token_label2category(tokens[0])
+                token_category = self.convert_token_label2category(tokens[0], max_tokens)
 
-                if category[0] == no_category_id and not self.there_is_no_token(token_category):
+                if category[0] == no_category_id or cat_prob < 0.5:
                     categories = self.select_valid_categories(token_category)
-                    if len(categories) == 1:
-                        cat_name = self.category_by_index[categories[0]]
-                        target_categories.append(cat_name)
-                    else:
-                        cat = self.select_max_prob_categories(token_category, token_prob)
-                        cat_name = self.category_by_index[cat]
-                        target_categories.append(cat_name)
-                elif category and category[0] in self.category_by_index:
+                    max_prob_category = self.select_max_prob_categories(token_category, token_prob)
+
+                elif category and cat_prob >= 0.5 and category[0] in self.category_by_index:
                     cat_name = self.category_by_index[category[0]]
                     target_categories.append(cat_name)
+
+                elif len(categories) == 1 and cat_prob < 0.5:
+                    cat_name = self.category_by_index[categories[0]]
+                    target_categories.append(cat_name)
+
+                elif len(categories) > 1 and cat_prob < 0.5:
+                    cat_name = self.category_by_index[max_prob_category]
+                    target_categories.append(cat_name)
+
                 else:
                     target_categories.append("00.00.")  # nincs kategória, vagy nem besorolható
+        return target_categories
+
+    def process_more_sentence(self, sentences):
+        self.load_categories()
+        self.load_token_labels()
+        no_category_id = 0
+
+        target_categories = []
+        max_tokens = len(self.token_labels)
+
+        for txt in sentences:
+            category, cat_prob, tokens, token_prob = self.model.predict(txt)
+            token_category = self.convert_token_label2category(tokens[0], max_tokens)
+
+            if category[0] == no_category_id or cat_prob < 0.5:
+                categories = self.select_valid_categories(token_category)
+                max_prob_category = self.select_max_prob_categories(token_category, token_prob)
+
+            elif category and cat_prob >= 0.5 and category[0] in self.category_by_index:
+                cat_name = self.category_by_index[category[0]]
+                target_categories.append(cat_name)
+
+            elif len(categories) == 1 and cat_prob < 0.5:
+                cat_name = self.category_by_index[categories[0]]
+                target_categories.append(cat_name)
+
+            elif len(categories) > 1 and cat_prob < 0.5:
+                    cat_name = self.category_by_index[max_prob_category]
+                    target_categories.append(cat_name)
+
+            else:
+                target_categories.append("00.00.")  # nincs kategória, vagy nem besorolható
         return target_categories
 
     def process_more_files(self, source_rows, source_cols, target_rows, target_cols, files):
@@ -329,6 +375,16 @@ class ConvertExcel:
             df_target = pd.concat([df_target, row_df], join='outer')
         return df_target
 
+    def convert_backward(self, source, converted, content_col, quantity_col):
+        df_source = pd.read_excel(source, header=0, sheet_name=0, engine='openpyxl')
+        df_conv = pd.read_excel(converted, header=0, sheet_name=0, engine='openpyxl')
+
+        first_row = 1
+        source_dict = dict()
+        for i, txt in enumerate(df_source.iloc[first_row:, content_col]):
+            source_dict[txt] = i + first_row
+
+
     def get_target_content(self, target):
         top = target[:2]
         sub = target[3:5]
@@ -384,11 +440,11 @@ class ConvertExcel:
             return True
         return False
 
-    def convert_token_label2category(self, tokens):
+    def convert_token_label2category(self, tokens, max_tokens):
         token_category = []
         for token in tokens:
             # token = 0 padding token
-            if token:
+            if token and token < max_tokens:
                 token_category.append(self.token_labels[token])
             else:
                 token_category.append(0)

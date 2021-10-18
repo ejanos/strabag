@@ -523,3 +523,1807 @@ INFO:root:training loss: 2.5883665084838867
 INFO:root:Accuracy sentence: 0.903125  Accuracy token: 0.8039453268051148
 INFO:root:Best model has saved, iteration: 8
 INFO:werkzeug:127.0.0.1 - - [17/Oct/2021 20:34:31] "[37mGET /start/training HTTP/1.1[0m" 200 -
+INFO:werkzeug: * Running on http://127.0.0.1:3000/ (Press CTRL+C to quit)
+INFO:werkzeug:127.0.0.1 - - [17/Oct/2021 22:11:29] "[37mGET /project/status?id=134 HTTP/1.1[0m" 200 -
+INFO:werkzeug:127.0.0.1 - - [17/Oct/2021 22:11:29] "[37mGET /check/training HTTP/1.1[0m" 200 -
+INFO:werkzeug:127.0.0.1 - - [17/Oct/2021 22:14:27] "[37mGET /project/status?id=134 HTTP/1.1[0m" 200 -
+INFO:werkzeug:127.0.0.1 - - [17/Oct/2021 22:14:27] "[37mGET /check/training HTTP/1.1[0m" 200 -
+INFO:werkzeug:127.0.0.1 - - [17/Oct/2021 22:18:27] "[37mGET /project/status?id=134 HTTP/1.1[0m" 200 -
+INFO:werkzeug:127.0.0.1 - - [17/Oct/2021 22:18:27] "[37mGET /check/training HTTP/1.1[0m" 200 -
+INFO:werkzeug:127.0.0.1 - - [17/Oct/2021 22:18:52] "[37mGET /project/status?id=134 HTTP/1.1[0m" 200 -
+INFO:werkzeug:127.0.0.1 - - [17/Oct/2021 22:18:52] "[37mGET /check/training HTTP/1.1[0m" 200 -
+INFO:werkzeug:127.0.0.1 - - [17/Oct/2021 22:20:43] "[37mGET /project/status?id=134 HTTP/1.1[0m" 200 -
+INFO:werkzeug:127.0.0.1 - - [17/Oct/2021 22:20:43] "[37mGET /check/training HTTP/1.1[0m" 200 -
+INFO:werkzeug:127.0.0.1 - - [17/Oct/2021 22:22:06] "[37mGET /project/status?id=134 HTTP/1.1[0m" 200 -
+INFO:werkzeug:127.0.0.1 - - [17/Oct/2021 22:22:06] "[37mGET /check/training HTTP/1.1[0m" 200 -
+INFO:werkzeug: * Running on http://127.0.0.1:3000/ (Press CTRL+C to quit)
+INFO:werkzeug:127.0.0.1 - - [17/Oct/2021 22:26:46] "[37mGET /project/status?id=134 HTTP/1.1[0m" 200 -
+INFO:werkzeug:127.0.0.1 - - [17/Oct/2021 22:26:46] "[37mGET /check/training HTTP/1.1[0m" 200 -
+INFO:werkzeug: * Running on http://127.0.0.1:3000/ (Press CTRL+C to quit)
+INFO:werkzeug:127.0.0.1 - - [17/Oct/2021 22:27:51] "[37mGET /project/status?id=134 HTTP/1.1[0m" 200 -
+INFO:werkzeug:127.0.0.1 - - [17/Oct/2021 22:27:51] "[37mGET /check/training HTTP/1.1[0m" 200 -
+INFO:werkzeug:127.0.0.1 - - [17/Oct/2021 22:28:44] "[37mGET /project/status?id=134 HTTP/1.1[0m" 200 -
+INFO:werkzeug:127.0.0.1 - - [17/Oct/2021 22:28:44] "[37mGET /check/training HTTP/1.1[0m" 200 -
+INFO:werkzeug: * Running on http://127.0.0.1:3000/ (Press CTRL+C to quit)
+INFO:werkzeug:127.0.0.1 - - [17/Oct/2021 22:31:36] "[37mGET /project/status?id=134 HTTP/1.1[0m" 200 -
+INFO:werkzeug:127.0.0.1 - - [17/Oct/2021 22:31:37] "[37mGET /check/training HTTP/1.1[0m" 200 -
+INFO:werkzeug:127.0.0.1 - - [17/Oct/2021 22:53:29] "[37mGET /project/status?id=134 HTTP/1.1[0m" 200 -
+INFO:werkzeug:127.0.0.1 - - [17/Oct/2021 22:53:29] "[37mGET /check/training HTTP/1.1[0m" 200 -
+INFO:werkzeug: * Running on http://127.0.0.1:3000/ (Press CTRL+C to quit)
+INFO:werkzeug:127.0.0.1 - - [17/Oct/2021 22:55:24] "[37mGET /project/status?id=134 HTTP/1.1[0m" 200 -
+INFO:werkzeug:127.0.0.1 - - [17/Oct/2021 22:55:24] "[37mGET /check/training HTTP/1.1[0m" 200 -
+INFO:werkzeug:127.0.0.1 - - [17/Oct/2021 22:55:43] "[31m[1mGET /convert/backward HTTP/1.1[0m" 405 -
+INFO:werkzeug:127.0.0.1 - - [17/Oct/2021 22:56:04] "[31m[1mPOST /convert/backward HTTP/1.1[0m" 400 -
+INFO:werkzeug:127.0.0.1 - - [17/Oct/2021 22:56:53] "[37mGET /project/status?id=9876 HTTP/1.1[0m" 200 -
+INFO:werkzeug: * Running on http://127.0.0.1:3000/ (Press CTRL+C to quit)
+INFO:werkzeug:127.0.0.1 - - [17/Oct/2021 22:57:48] "[37mGET /project/status?id=134 HTTP/1.1[0m" 200 -
+INFO:werkzeug:127.0.0.1 - - [17/Oct/2021 22:57:48] "[37mGET /check/training HTTP/1.1[0m" 200 -
+INFO:werkzeug: * Running on http://127.0.0.1:3000/ (Press CTRL+C to quit)
+INFO:werkzeug:127.0.0.1 - - [17/Oct/2021 23:00:39] "[37mGET /project/status?id=134 HTTP/1.1[0m" 200 -
+INFO:werkzeug:127.0.0.1 - - [17/Oct/2021 23:00:39] "[37mGET /check/training HTTP/1.1[0m" 200 -
+INFO:werkzeug:127.0.0.1 - - [17/Oct/2021 23:01:51] "[37mGET /check/training HTTP/1.1[0m" 200 -
+INFO:werkzeug:127.0.0.1 - - [17/Oct/2021 23:05:27] "[37mGET /project/status?id=134 HTTP/1.1[0m" 200 -
+INFO:werkzeug:127.0.0.1 - - [17/Oct/2021 23:05:27] "[37mGET /check/training HTTP/1.1[0m" 200 -
+INFO:werkzeug:127.0.0.1 - - [17/Oct/2021 23:06:09] "[37mGET /project/status?id=134 HTTP/1.1[0m" 200 -
+INFO:werkzeug:127.0.0.1 - - [17/Oct/2021 23:06:09] "[37mGET /check/training HTTP/1.1[0m" 200 -
+INFO:werkzeug:127.0.0.1 - - [17/Oct/2021 23:09:03] "[37mGET /project/status?id=134 HTTP/1.1[0m" 200 -
+INFO:werkzeug:127.0.0.1 - - [17/Oct/2021 23:09:03] "[37mGET /check/training HTTP/1.1[0m" 200 -
+INFO:werkzeug:127.0.0.1 - - [17/Oct/2021 23:11:33] "[37mGET /project/status?id=134 HTTP/1.1[0m" 200 -
+INFO:werkzeug:127.0.0.1 - - [17/Oct/2021 23:11:33] "[37mGET /check/training HTTP/1.1[0m" 200 -
+INFO:werkzeug:127.0.0.1 - - [17/Oct/2021 23:11:34] "[31m[1mGET /convert/mi HTTP/1.1[0m" 405 -
+INFO:werkzeug:127.0.0.1 - - [17/Oct/2021 23:14:36] "[37mGET /project/status?id=134 HTTP/1.1[0m" 200 -
+INFO:werkzeug:127.0.0.1 - - [17/Oct/2021 23:14:45] "[37mGET /check/training HTTP/1.1[0m" 200 -
+INFO:werkzeug:127.0.0.1 - - [17/Oct/2021 23:16:48] "[31m[1mGET /convert/mi HTTP/1.1[0m" 405 -
+INFO:werkzeug:127.0.0.1 - - [17/Oct/2021 23:17:55] "[37mGET /project/status?id=134 HTTP/1.1[0m" 200 -
+INFO:werkzeug:127.0.0.1 - - [17/Oct/2021 23:17:55] "[37mGET /check/training HTTP/1.1[0m" 200 -
+INFO:werkzeug:127.0.0.1 - - [17/Oct/2021 23:17:56] "[31m[1mPOST /convert/mi HTTP/1.1[0m" 400 -
+INFO:werkzeug:127.0.0.1 - - [17/Oct/2021 23:18:52] "[37mGET /project/status?id=134 HTTP/1.1[0m" 200 -
+INFO:werkzeug:127.0.0.1 - - [17/Oct/2021 23:18:59] "[37mGET /check/training HTTP/1.1[0m" 200 -
+INFO:werkzeug:127.0.0.1 - - [17/Oct/2021 23:20:48] "[31m[1mPOST /convert/mi HTTP/1.1[0m" 400 -
+INFO:werkzeug:127.0.0.1 - - [17/Oct/2021 23:21:17] "[37mGET /check/training HTTP/1.1[0m" 200 -
+ERROR:webserver:Exception on /convert/mi [POST]
+Traceback (most recent call last):
+  File "D:\python_venv\strabag\lib\site-packages\flask\app.py", line 2447, in wsgi_app
+    response = self.full_dispatch_request()
+  File "D:\python_venv\strabag\lib\site-packages\flask\app.py", line 1952, in full_dispatch_request
+    rv = self.handle_user_exception(e)
+  File "D:\python_venv\strabag\lib\site-packages\flask\app.py", line 1821, in handle_user_exception
+    reraise(exc_type, exc_value, tb)
+  File "D:\python_venv\strabag\lib\site-packages\flask\_compat.py", line 39, in reraise
+    raise value
+  File "D:\python_venv\strabag\lib\site-packages\flask\app.py", line 1950, in full_dispatch_request
+    rv = self.dispatch_request()
+  File "D:\python_venv\strabag\lib\site-packages\flask\app.py", line 1936, in dispatch_request
+    return self.view_functions[rule.endpoint](**req.view_args)
+  File "D:/source/strabag/webserver.py", line 345, in convert_mi
+    directory, file_name = conv.process_mi(content_col, source_cols, target_cols, file_path, no_category_id)
+  File "D:\source\strabag\convert_excel.py", line 184, in process_mi
+    category, cat_prob, tokens, token_prob = self.model.predict(txt)
+  File "D:\source\strabag\hubert_model.py", line 102, in predict
+    tokenized = self.tokenizer.encode(sentence, return_tensors='pt').to(self.device)
+  File "D:\python_venv\strabag\lib\site-packages\transformers\tokenization_utils_base.py", line 2059, in encode
+    encoded_inputs = self.encode_plus(
+  File "D:\python_venv\strabag\lib\site-packages\transformers\tokenization_utils_base.py", line 2378, in encode_plus
+    return self._encode_plus(
+  File "D:\python_venv\strabag\lib\site-packages\transformers\tokenization_utils_fast.py", line 458, in _encode_plus
+    batched_output = self._batch_encode_plus(
+  File "D:\python_venv\strabag\lib\site-packages\transformers\tokenization_utils_fast.py", line 385, in _batch_encode_plus
+    encodings = self._tokenizer.encode_batch(
+TypeError: TextEncodeInput must be Union[TextInputSequence, Tuple[InputSequence, InputSequence]]
+INFO:werkzeug:127.0.0.1 - - [17/Oct/2021 23:23:52] "[35m[1mPOST /convert/mi HTTP/1.1[0m" 500 -
+INFO:werkzeug: * Running on http://127.0.0.1:3000/ (Press CTRL+C to quit)
+ERROR:webserver:Exception on /convert/mi [POST]
+Traceback (most recent call last):
+  File "D:\python_venv\strabag\lib\site-packages\flask\app.py", line 2447, in wsgi_app
+    response = self.full_dispatch_request()
+  File "D:\python_venv\strabag\lib\site-packages\flask\app.py", line 1952, in full_dispatch_request
+    rv = self.handle_user_exception(e)
+  File "D:\python_venv\strabag\lib\site-packages\flask\app.py", line 1821, in handle_user_exception
+    reraise(exc_type, exc_value, tb)
+  File "D:\python_venv\strabag\lib\site-packages\flask\_compat.py", line 39, in reraise
+    raise value
+  File "D:\python_venv\strabag\lib\site-packages\flask\app.py", line 1950, in full_dispatch_request
+    rv = self.dispatch_request()
+  File "D:\python_venv\strabag\lib\site-packages\flask\app.py", line 1936, in dispatch_request
+    return self.view_functions[rule.endpoint](**req.view_args)
+  File "D:/source/strabag/webserver.py", line 345, in convert_mi
+    directory, file_name = conv.process_mi(content_col, source_cols, target_cols, file_path, no_category_id)
+  File "D:\source\strabag\convert_excel.py", line 184, in process_mi
+    category, cat_prob, tokens, token_prob = self.model.predict(txt)
+  File "D:\source\strabag\hubert_model.py", line 102, in predict
+    tokenized = self.tokenizer.encode(sentence, return_tensors='pt').to(self.device)
+  File "D:\python_venv\strabag\lib\site-packages\transformers\tokenization_utils_base.py", line 2059, in encode
+    encoded_inputs = self.encode_plus(
+  File "D:\python_venv\strabag\lib\site-packages\transformers\tokenization_utils_base.py", line 2378, in encode_plus
+    return self._encode_plus(
+  File "D:\python_venv\strabag\lib\site-packages\transformers\tokenization_utils_fast.py", line 458, in _encode_plus
+    batched_output = self._batch_encode_plus(
+  File "D:\python_venv\strabag\lib\site-packages\transformers\tokenization_utils_fast.py", line 385, in _batch_encode_plus
+    encodings = self._tokenizer.encode_batch(
+TypeError: TextEncodeInput must be Union[TextInputSequence, Tuple[InputSequence, InputSequence]]
+INFO:werkzeug:127.0.0.1 - - [17/Oct/2021 23:25:12] "[35m[1mPOST /convert/mi HTTP/1.1[0m" 500 -
+INFO:werkzeug:127.0.0.1 - - [17/Oct/2021 23:26:06] "[37mGET /project/status?id=134 HTTP/1.1[0m" 200 -
+INFO:werkzeug:127.0.0.1 - - [17/Oct/2021 23:26:06] "[37mGET /check/training HTTP/1.1[0m" 200 -
+INFO:werkzeug: * Running on http://127.0.0.1:3000/ (Press CTRL+C to quit)
+INFO:werkzeug:127.0.0.1 - - [17/Oct/2021 23:27:09] "[37mGET /project/status?id=134 HTTP/1.1[0m" 200 -
+INFO:werkzeug:127.0.0.1 - - [17/Oct/2021 23:27:09] "[37mGET /check/training HTTP/1.1[0m" 200 -
+INFO:werkzeug:127.0.0.1 - - [17/Oct/2021 23:28:21] "[37mGET /project/status?id=134 HTTP/1.1[0m" 200 -
+INFO:werkzeug:127.0.0.1 - - [17/Oct/2021 23:28:21] "[37mGET /check/training HTTP/1.1[0m" 200 -
+INFO:werkzeug:127.0.0.1 - - [17/Oct/2021 23:28:28] "[31m[1mPOST /convert/mi HTTP/1.1[0m" 400 -
+INFO:werkzeug:127.0.0.1 - - [17/Oct/2021 23:28:48] "[31m[1mPOST /convert/mi HTTP/1.1[0m" 400 -
+ERROR:webserver:Exception on /convert/mi [POST]
+Traceback (most recent call last):
+  File "D:\python_venv\strabag\lib\site-packages\pandas\core\indexing.py", line 702, in _has_valid_tuple
+    self._validate_key(k, i)
+  File "D:\python_venv\strabag\lib\site-packages\pandas\core\indexing.py", line 1369, in _validate_key
+    raise ValueError(f"Can only index by location with a [{self._valid_types}]")
+ValueError: Can only index by location with a [integer, integer slice (START point is INCLUDED, END point is EXCLUDED), listlike of integers, boolean array]
+
+The above exception was the direct cause of the following exception:
+
+Traceback (most recent call last):
+  File "D:\python_venv\strabag\lib\site-packages\flask\app.py", line 2447, in wsgi_app
+    response = self.full_dispatch_request()
+  File "D:\python_venv\strabag\lib\site-packages\flask\app.py", line 1952, in full_dispatch_request
+    rv = self.handle_user_exception(e)
+  File "D:\python_venv\strabag\lib\site-packages\flask\app.py", line 1821, in handle_user_exception
+    reraise(exc_type, exc_value, tb)
+  File "D:\python_venv\strabag\lib\site-packages\flask\_compat.py", line 39, in reraise
+    raise value
+  File "D:\python_venv\strabag\lib\site-packages\flask\app.py", line 1950, in full_dispatch_request
+    rv = self.dispatch_request()
+  File "D:\python_venv\strabag\lib\site-packages\flask\app.py", line 1936, in dispatch_request
+    return self.view_functions[rule.endpoint](**req.view_args)
+  File "D:/source/strabag/webserver.py", line 345, in convert_mi
+    directory, file_name = conv.process_mi(content_col, source_cols, target_cols, file_path, no_category_id)
+  File "D:\source\strabag\convert_excel.py", line 179, in process_mi
+    for i, txt in enumerate(df.iloc[first_row:, content_col]):
+  File "D:\python_venv\strabag\lib\site-packages\pandas\core\indexing.py", line 873, in __getitem__
+    return self._getitem_tuple(key)
+  File "D:\python_venv\strabag\lib\site-packages\pandas\core\indexing.py", line 1443, in _getitem_tuple
+    self._has_valid_tuple(tup)
+  File "D:\python_venv\strabag\lib\site-packages\pandas\core\indexing.py", line 704, in _has_valid_tuple
+    raise ValueError(
+ValueError: Location based indexing can only have [integer, integer slice (START point is INCLUDED, END point is EXCLUDED), listlike of integers, boolean array] types
+INFO:werkzeug:127.0.0.1 - - [17/Oct/2021 23:29:37] "[35m[1mPOST /convert/mi HTTP/1.1[0m" 500 -
+INFO:werkzeug:127.0.0.1 - - [17/Oct/2021 23:32:37] "[37mGET /project/status?id=134 HTTP/1.1[0m" 200 -
+INFO:werkzeug:127.0.0.1 - - [17/Oct/2021 23:32:37] "[37mGET /check/training HTTP/1.1[0m" 200 -
+ERROR:webserver:Exception on /convert/mi [POST]
+Traceback (most recent call last):
+  File "D:\python_venv\strabag\lib\site-packages\pandas\core\indexing.py", line 702, in _has_valid_tuple
+    self._validate_key(k, i)
+  File "D:\python_venv\strabag\lib\site-packages\pandas\core\indexing.py", line 1369, in _validate_key
+    raise ValueError(f"Can only index by location with a [{self._valid_types}]")
+ValueError: Can only index by location with a [integer, integer slice (START point is INCLUDED, END point is EXCLUDED), listlike of integers, boolean array]
+
+The above exception was the direct cause of the following exception:
+
+Traceback (most recent call last):
+  File "D:\python_venv\strabag\lib\site-packages\flask\app.py", line 2447, in wsgi_app
+    response = self.full_dispatch_request()
+  File "D:\python_venv\strabag\lib\site-packages\flask\app.py", line 1952, in full_dispatch_request
+    rv = self.handle_user_exception(e)
+  File "D:\python_venv\strabag\lib\site-packages\flask\app.py", line 1821, in handle_user_exception
+    reraise(exc_type, exc_value, tb)
+  File "D:\python_venv\strabag\lib\site-packages\flask\_compat.py", line 39, in reraise
+    raise value
+  File "D:\python_venv\strabag\lib\site-packages\flask\app.py", line 1950, in full_dispatch_request
+    rv = self.dispatch_request()
+  File "D:\python_venv\strabag\lib\site-packages\flask\app.py", line 1936, in dispatch_request
+    return self.view_functions[rule.endpoint](**req.view_args)
+  File "D:/source/strabag/webserver.py", line 345, in convert_mi
+    directory, file_name = conv.process_mi(content_col, source_cols, target_cols, file_path, no_category_id)
+  File "D:\source\strabag\convert_excel.py", line 179, in process_mi
+    for i, txt in enumerate(df.iloc[first_row:, content_col]):
+  File "D:\python_venv\strabag\lib\site-packages\pandas\core\indexing.py", line 873, in __getitem__
+    return self._getitem_tuple(key)
+  File "D:\python_venv\strabag\lib\site-packages\pandas\core\indexing.py", line 1443, in _getitem_tuple
+    self._has_valid_tuple(tup)
+  File "D:\python_venv\strabag\lib\site-packages\pandas\core\indexing.py", line 704, in _has_valid_tuple
+    raise ValueError(
+ValueError: Location based indexing can only have [integer, integer slice (START point is INCLUDED, END point is EXCLUDED), listlike of integers, boolean array] types
+INFO:werkzeug:127.0.0.1 - - [17/Oct/2021 23:33:34] "[35m[1mPOST /convert/mi HTTP/1.1[0m" 500 -
+INFO:werkzeug:127.0.0.1 - - [17/Oct/2021 23:38:07] "[37mGET /project/status?id=134 HTTP/1.1[0m" 200 -
+INFO:werkzeug:127.0.0.1 - - [17/Oct/2021 23:38:08] "[37mGET /check/training HTTP/1.1[0m" 200 -
+ERROR:webserver:Exception on /convert/mi [POST]
+Traceback (most recent call last):
+  File "D:\python_venv\strabag\lib\site-packages\pandas\core\indexing.py", line 702, in _has_valid_tuple
+    self._validate_key(k, i)
+  File "D:\python_venv\strabag\lib\site-packages\pandas\core\indexing.py", line 1369, in _validate_key
+    raise ValueError(f"Can only index by location with a [{self._valid_types}]")
+ValueError: Can only index by location with a [integer, integer slice (START point is INCLUDED, END point is EXCLUDED), listlike of integers, boolean array]
+
+The above exception was the direct cause of the following exception:
+
+Traceback (most recent call last):
+  File "D:\python_venv\strabag\lib\site-packages\flask\app.py", line 2447, in wsgi_app
+    response = self.full_dispatch_request()
+  File "D:\python_venv\strabag\lib\site-packages\flask\app.py", line 1952, in full_dispatch_request
+    rv = self.handle_user_exception(e)
+  File "D:\python_venv\strabag\lib\site-packages\flask\app.py", line 1821, in handle_user_exception
+    reraise(exc_type, exc_value, tb)
+  File "D:\python_venv\strabag\lib\site-packages\flask\_compat.py", line 39, in reraise
+    raise value
+  File "D:\python_venv\strabag\lib\site-packages\flask\app.py", line 1950, in full_dispatch_request
+    rv = self.dispatch_request()
+  File "D:\python_venv\strabag\lib\site-packages\flask\app.py", line 1936, in dispatch_request
+    return self.view_functions[rule.endpoint](**req.view_args)
+  File "D:/source/strabag/webserver.py", line 345, in convert_mi
+    directory, file_name = conv.process_mi(content_col, source_cols, target_cols, file_path, no_category_id)
+  File "D:\source\strabag\convert_excel.py", line 179, in process_mi
+    for i, txt in enumerate(df.iloc[first_row:, content_col]):
+  File "D:\python_venv\strabag\lib\site-packages\pandas\core\indexing.py", line 873, in __getitem__
+    return self._getitem_tuple(key)
+  File "D:\python_venv\strabag\lib\site-packages\pandas\core\indexing.py", line 1443, in _getitem_tuple
+    self._has_valid_tuple(tup)
+  File "D:\python_venv\strabag\lib\site-packages\pandas\core\indexing.py", line 704, in _has_valid_tuple
+    raise ValueError(
+ValueError: Location based indexing can only have [integer, integer slice (START point is INCLUDED, END point is EXCLUDED), listlike of integers, boolean array] types
+INFO:werkzeug:127.0.0.1 - - [17/Oct/2021 23:40:38] "[35m[1mPOST /convert/mi HTTP/1.1[0m" 500 -
+INFO:werkzeug:127.0.0.1 - - [17/Oct/2021 23:40:47] "[37mGET /project/status?id=134 HTTP/1.1[0m" 200 -
+INFO:werkzeug:127.0.0.1 - - [17/Oct/2021 23:40:47] "[37mGET /check/training HTTP/1.1[0m" 200 -
+ERROR:webserver:Exception on /convert/mi [POST]
+Traceback (most recent call last):
+  File "D:\python_venv\strabag\lib\site-packages\pandas\core\indexing.py", line 702, in _has_valid_tuple
+    self._validate_key(k, i)
+  File "D:\python_venv\strabag\lib\site-packages\pandas\core\indexing.py", line 1369, in _validate_key
+    raise ValueError(f"Can only index by location with a [{self._valid_types}]")
+ValueError: Can only index by location with a [integer, integer slice (START point is INCLUDED, END point is EXCLUDED), listlike of integers, boolean array]
+
+The above exception was the direct cause of the following exception:
+
+Traceback (most recent call last):
+  File "D:\python_venv\strabag\lib\site-packages\flask\app.py", line 2447, in wsgi_app
+    response = self.full_dispatch_request()
+  File "D:\python_venv\strabag\lib\site-packages\flask\app.py", line 1952, in full_dispatch_request
+    rv = self.handle_user_exception(e)
+  File "D:\python_venv\strabag\lib\site-packages\flask\app.py", line 1821, in handle_user_exception
+    reraise(exc_type, exc_value, tb)
+  File "D:\python_venv\strabag\lib\site-packages\flask\_compat.py", line 39, in reraise
+    raise value
+  File "D:\python_venv\strabag\lib\site-packages\flask\app.py", line 1950, in full_dispatch_request
+    rv = self.dispatch_request()
+  File "D:\python_venv\strabag\lib\site-packages\flask\app.py", line 1936, in dispatch_request
+    return self.view_functions[rule.endpoint](**req.view_args)
+  File "D:/source/strabag/webserver.py", line 345, in convert_mi
+    directory, file_name = conv.process_mi(content_col, source_cols, target_cols, file_path, no_category_id)
+  File "D:\source\strabag\convert_excel.py", line 179, in process_mi
+    for i, txt in enumerate(df.iloc[first_row:, content_col]):
+  File "D:\python_venv\strabag\lib\site-packages\pandas\core\indexing.py", line 873, in __getitem__
+    return self._getitem_tuple(key)
+  File "D:\python_venv\strabag\lib\site-packages\pandas\core\indexing.py", line 1443, in _getitem_tuple
+    self._has_valid_tuple(tup)
+  File "D:\python_venv\strabag\lib\site-packages\pandas\core\indexing.py", line 704, in _has_valid_tuple
+    raise ValueError(
+ValueError: Location based indexing can only have [integer, integer slice (START point is INCLUDED, END point is EXCLUDED), listlike of integers, boolean array] types
+INFO:werkzeug:127.0.0.1 - - [17/Oct/2021 23:41:18] "[35m[1mPOST /convert/mi HTTP/1.1[0m" 500 -
+INFO:werkzeug: * Running on http://127.0.0.1:3000/ (Press CTRL+C to quit)
+INFO:werkzeug:127.0.0.1 - - [17/Oct/2021 23:42:02] "[37mGET /project/status?id=134 HTTP/1.1[0m" 200 -
+INFO:werkzeug:127.0.0.1 - - [17/Oct/2021 23:42:02] "[37mGET /check/training HTTP/1.1[0m" 200 -
+INFO:werkzeug: * Running on http://127.0.0.1:3000/ (Press CTRL+C to quit)
+INFO:werkzeug:127.0.0.1 - - [17/Oct/2021 23:44:15] "[37mGET /project/status?id=134 HTTP/1.1[0m" 200 -
+INFO:werkzeug:127.0.0.1 - - [17/Oct/2021 23:44:15] "[37mGET /check/training HTTP/1.1[0m" 200 -
+ERROR:webserver:Exception on /convert/mi [POST]
+Traceback (most recent call last):
+  File "D:\python_venv\strabag\lib\site-packages\flask\app.py", line 2447, in wsgi_app
+    response = self.full_dispatch_request()
+  File "D:\python_venv\strabag\lib\site-packages\flask\app.py", line 1952, in full_dispatch_request
+    rv = self.handle_user_exception(e)
+  File "D:\python_venv\strabag\lib\site-packages\flask\app.py", line 1821, in handle_user_exception
+    reraise(exc_type, exc_value, tb)
+  File "D:\python_venv\strabag\lib\site-packages\flask\_compat.py", line 39, in reraise
+    raise value
+  File "D:\python_venv\strabag\lib\site-packages\flask\app.py", line 1950, in full_dispatch_request
+    rv = self.dispatch_request()
+  File "D:\python_venv\strabag\lib\site-packages\flask\app.py", line 1936, in dispatch_request
+    return self.view_functions[rule.endpoint](**req.view_args)
+  File "D:/source/strabag/webserver.py", line 345, in convert_mi
+    directory, file_name = conv.process_mi(content_col, source_cols, target_cols, file_path, no_category_id)
+  File "D:\source\strabag\convert_excel.py", line 179, in process_mi
+    for i, txt in enumerate(df.iloc[first_row:, content_col:content_col+1]):
+TypeError: can only concatenate str (not "int") to str
+INFO:werkzeug:127.0.0.1 - - [17/Oct/2021 23:44:31] "[35m[1mPOST /convert/mi HTTP/1.1[0m" 500 -
+INFO:werkzeug: * Running on http://127.0.0.1:3000/ (Press CTRL+C to quit)
+INFO:werkzeug:127.0.0.1 - - [17/Oct/2021 23:50:26] "[37mGET /project/status?id=134 HTTP/1.1[0m" 200 -
+INFO:werkzeug:127.0.0.1 - - [17/Oct/2021 23:50:26] "[37mGET /check/training HTTP/1.1[0m" 200 -
+ERROR:webserver:Exception on /convert/mi [POST]
+Traceback (most recent call last):
+  File "D:\python_venv\strabag\lib\site-packages\flask\app.py", line 2447, in wsgi_app
+    response = self.full_dispatch_request()
+  File "D:\python_venv\strabag\lib\site-packages\flask\app.py", line 1952, in full_dispatch_request
+    rv = self.handle_user_exception(e)
+  File "D:\python_venv\strabag\lib\site-packages\flask\app.py", line 1821, in handle_user_exception
+    reraise(exc_type, exc_value, tb)
+  File "D:\python_venv\strabag\lib\site-packages\flask\_compat.py", line 39, in reraise
+    raise value
+  File "D:\python_venv\strabag\lib\site-packages\flask\app.py", line 1950, in full_dispatch_request
+    rv = self.dispatch_request()
+  File "D:\python_venv\strabag\lib\site-packages\flask\app.py", line 1936, in dispatch_request
+    return self.view_functions[rule.endpoint](**req.view_args)
+  File "D:/source/strabag/webserver.py", line 345, in convert_mi
+    directory, file_name = conv.process_mi(content_col, source_cols, target_cols, file_path, no_category_id)
+  File "D:\source\strabag\convert_excel.py", line 182, in process_mi
+    for i in range(1, index):
+TypeError: 'RangeIndex' object cannot be interpreted as an integer
+INFO:werkzeug:127.0.0.1 - - [17/Oct/2021 23:50:28] "[35m[1mPOST /convert/mi HTTP/1.1[0m" 500 -
+INFO:werkzeug:127.0.0.1 - - [17/Oct/2021 23:51:00] "[37mGET /project/status?id=134 HTTP/1.1[0m" 200 -
+INFO:werkzeug:127.0.0.1 - - [17/Oct/2021 23:51:00] "[37mGET /check/training HTTP/1.1[0m" 200 -
+INFO:werkzeug: * Running on http://127.0.0.1:3000/ (Press CTRL+C to quit)
+INFO:werkzeug: * Running on http://127.0.0.1:3000/ (Press CTRL+C to quit)
+INFO:werkzeug:127.0.0.1 - - [17/Oct/2021 23:51:55] "[37mGET /project/status?id=134 HTTP/1.1[0m" 200 -
+INFO:werkzeug:127.0.0.1 - - [17/Oct/2021 23:51:55] "[37mGET /check/training HTTP/1.1[0m" 200 -
+ERROR:webserver:Exception on /convert/mi [POST]
+Traceback (most recent call last):
+  File "D:\python_venv\strabag\lib\site-packages\pandas\core\indexing.py", line 702, in _has_valid_tuple
+    self._validate_key(k, i)
+  File "D:\python_venv\strabag\lib\site-packages\pandas\core\indexing.py", line 1369, in _validate_key
+    raise ValueError(f"Can only index by location with a [{self._valid_types}]")
+ValueError: Can only index by location with a [integer, integer slice (START point is INCLUDED, END point is EXCLUDED), listlike of integers, boolean array]
+
+The above exception was the direct cause of the following exception:
+
+Traceback (most recent call last):
+  File "D:\python_venv\strabag\lib\site-packages\flask\app.py", line 2447, in wsgi_app
+    response = self.full_dispatch_request()
+  File "D:\python_venv\strabag\lib\site-packages\flask\app.py", line 1952, in full_dispatch_request
+    rv = self.handle_user_exception(e)
+  File "D:\python_venv\strabag\lib\site-packages\flask\app.py", line 1821, in handle_user_exception
+    reraise(exc_type, exc_value, tb)
+  File "D:\python_venv\strabag\lib\site-packages\flask\_compat.py", line 39, in reraise
+    raise value
+  File "D:\python_venv\strabag\lib\site-packages\flask\app.py", line 1950, in full_dispatch_request
+    rv = self.dispatch_request()
+  File "D:\python_venv\strabag\lib\site-packages\flask\app.py", line 1936, in dispatch_request
+    return self.view_functions[rule.endpoint](**req.view_args)
+  File "D:/source/strabag/webserver.py", line 345, in convert_mi
+    directory, file_name = conv.process_mi(content_col, source_cols, target_cols, file_path, no_category_id)
+  File "D:\source\strabag\convert_excel.py", line 183, in process_mi
+    txt = df.iloc[i, content_col]
+  File "D:\python_venv\strabag\lib\site-packages\pandas\core\indexing.py", line 873, in __getitem__
+    return self._getitem_tuple(key)
+  File "D:\python_venv\strabag\lib\site-packages\pandas\core\indexing.py", line 1443, in _getitem_tuple
+    self._has_valid_tuple(tup)
+  File "D:\python_venv\strabag\lib\site-packages\pandas\core\indexing.py", line 704, in _has_valid_tuple
+    raise ValueError(
+ValueError: Location based indexing can only have [integer, integer slice (START point is INCLUDED, END point is EXCLUDED), listlike of integers, boolean array] types
+INFO:werkzeug:127.0.0.1 - - [17/Oct/2021 23:52:13] "[35m[1mPOST /convert/mi HTTP/1.1[0m" 500 -
+INFO:werkzeug:127.0.0.1 - - [17/Oct/2021 23:52:16] "[37mGET /project/status?id=134 HTTP/1.1[0m" 200 -
+INFO:werkzeug:127.0.0.1 - - [17/Oct/2021 23:52:16] "[37mGET /check/training HTTP/1.1[0m" 200 -
+INFO:werkzeug: * Running on http://127.0.0.1:3000/ (Press CTRL+C to quit)
+INFO:werkzeug:127.0.0.1 - - [17/Oct/2021 23:53:19] "[37mGET /project/status?id=134 HTTP/1.1[0m" 200 -
+INFO:werkzeug:127.0.0.1 - - [17/Oct/2021 23:53:19] "[37mGET /check/training HTTP/1.1[0m" 200 -
+INFO:werkzeug: * Running on http://127.0.0.1:3000/ (Press CTRL+C to quit)
+INFO:werkzeug: * Running on http://127.0.0.1:3000/ (Press CTRL+C to quit)
+INFO:werkzeug:127.0.0.1 - - [17/Oct/2021 23:54:06] "[37mGET /project/status?id=134 HTTP/1.1[0m" 200 -
+INFO:werkzeug:127.0.0.1 - - [17/Oct/2021 23:54:06] "[37mGET /check/training HTTP/1.1[0m" 200 -
+ERROR:webserver:Exception on /convert/mi [POST]
+Traceback (most recent call last):
+  File "D:\python_venv\strabag\lib\site-packages\flask\app.py", line 2447, in wsgi_app
+    response = self.full_dispatch_request()
+  File "D:\python_venv\strabag\lib\site-packages\flask\app.py", line 1952, in full_dispatch_request
+    rv = self.handle_user_exception(e)
+  File "D:\python_venv\strabag\lib\site-packages\flask\app.py", line 1821, in handle_user_exception
+    reraise(exc_type, exc_value, tb)
+  File "D:\python_venv\strabag\lib\site-packages\flask\_compat.py", line 39, in reraise
+    raise value
+  File "D:\python_venv\strabag\lib\site-packages\flask\app.py", line 1950, in full_dispatch_request
+    rv = self.dispatch_request()
+  File "D:\python_venv\strabag\lib\site-packages\flask\app.py", line 1936, in dispatch_request
+    return self.view_functions[rule.endpoint](**req.view_args)
+  File "D:/source/strabag/webserver.py", line 345, in convert_mi
+    directory, file_name = conv.process_mi(content_col, source_cols, target_cols, file_path, no_category_id)
+  File "D:\source\strabag\convert_excel.py", line 188, in process_mi
+    category, cat_prob, tokens, token_prob = self.model.predict(txt)
+  File "D:\source\strabag\hubert_model.py", line 102, in predict
+    tokenized = self.tokenizer.encode(sentence, return_tensors='pt').to(self.device)
+  File "D:\python_venv\strabag\lib\site-packages\transformers\tokenization_utils_base.py", line 2059, in encode
+    encoded_inputs = self.encode_plus(
+  File "D:\python_venv\strabag\lib\site-packages\transformers\tokenization_utils_base.py", line 2378, in encode_plus
+    return self._encode_plus(
+  File "D:\python_venv\strabag\lib\site-packages\transformers\tokenization_utils_fast.py", line 458, in _encode_plus
+    batched_output = self._batch_encode_plus(
+  File "D:\python_venv\strabag\lib\site-packages\transformers\tokenization_utils_fast.py", line 385, in _batch_encode_plus
+    encodings = self._tokenizer.encode_batch(
+TypeError: TextEncodeInput must be Union[TextInputSequence, Tuple[InputSequence, InputSequence]]
+INFO:werkzeug:127.0.0.1 - - [17/Oct/2021 23:54:32] "[35m[1mPOST /convert/mi HTTP/1.1[0m" 500 -
+INFO:werkzeug: * Running on http://127.0.0.1:3000/ (Press CTRL+C to quit)
+INFO:werkzeug:127.0.0.1 - - [17/Oct/2021 23:55:09] "[37mGET /project/status?id=134 HTTP/1.1[0m" 200 -
+INFO:werkzeug:127.0.0.1 - - [17/Oct/2021 23:55:09] "[37mGET /check/training HTTP/1.1[0m" 200 -
+ERROR:webserver:Exception on /convert/mi [POST]
+Traceback (most recent call last):
+  File "D:\python_venv\strabag\lib\site-packages\flask\app.py", line 2447, in wsgi_app
+    response = self.full_dispatch_request()
+  File "D:\python_venv\strabag\lib\site-packages\flask\app.py", line 1952, in full_dispatch_request
+    rv = self.handle_user_exception(e)
+  File "D:\python_venv\strabag\lib\site-packages\flask\app.py", line 1821, in handle_user_exception
+    reraise(exc_type, exc_value, tb)
+  File "D:\python_venv\strabag\lib\site-packages\flask\_compat.py", line 39, in reraise
+    raise value
+  File "D:\python_venv\strabag\lib\site-packages\flask\app.py", line 1950, in full_dispatch_request
+    rv = self.dispatch_request()
+  File "D:\python_venv\strabag\lib\site-packages\flask\app.py", line 1936, in dispatch_request
+    return self.view_functions[rule.endpoint](**req.view_args)
+  File "D:/source/strabag/webserver.py", line 345, in convert_mi
+    directory, file_name = conv.process_mi(content_col, source_cols, target_cols, file_path, no_category_id)
+  File "D:\source\strabag\convert_excel.py", line 188, in process_mi
+    category, cat_prob, tokens, token_prob = self.model.predict(txt)
+  File "D:\source\strabag\hubert_model.py", line 102, in predict
+    tokenized = self.tokenizer.encode(sentence, return_tensors='pt').to(self.device)
+  File "D:\python_venv\strabag\lib\site-packages\transformers\tokenization_utils_base.py", line 2059, in encode
+    encoded_inputs = self.encode_plus(
+  File "D:\python_venv\strabag\lib\site-packages\transformers\tokenization_utils_base.py", line 2378, in encode_plus
+    return self._encode_plus(
+  File "D:\python_venv\strabag\lib\site-packages\transformers\tokenization_utils_fast.py", line 458, in _encode_plus
+    batched_output = self._batch_encode_plus(
+  File "D:\python_venv\strabag\lib\site-packages\transformers\tokenization_utils_fast.py", line 385, in _batch_encode_plus
+    encodings = self._tokenizer.encode_batch(
+TypeError: TextEncodeInput must be Union[TextInputSequence, Tuple[InputSequence, InputSequence]]
+INFO:werkzeug:127.0.0.1 - - [17/Oct/2021 23:55:11] "[35m[1mPOST /convert/mi HTTP/1.1[0m" 500 -
+INFO:werkzeug:127.0.0.1 - - [17/Oct/2021 23:58:11] "[37mGET /project/status?id=134 HTTP/1.1[0m" 200 -
+INFO:werkzeug:127.0.0.1 - - [17/Oct/2021 23:58:11] "[37mGET /check/training HTTP/1.1[0m" 200 -
+ERROR:webserver:Exception on /convert/mi [POST]
+Traceback (most recent call last):
+  File "D:\python_venv\strabag\lib\site-packages\flask\app.py", line 2447, in wsgi_app
+    response = self.full_dispatch_request()
+  File "D:\python_venv\strabag\lib\site-packages\flask\app.py", line 1952, in full_dispatch_request
+    rv = self.handle_user_exception(e)
+  File "D:\python_venv\strabag\lib\site-packages\flask\app.py", line 1821, in handle_user_exception
+    reraise(exc_type, exc_value, tb)
+  File "D:\python_venv\strabag\lib\site-packages\flask\_compat.py", line 39, in reraise
+    raise value
+  File "D:\python_venv\strabag\lib\site-packages\flask\app.py", line 1950, in full_dispatch_request
+    rv = self.dispatch_request()
+  File "D:\python_venv\strabag\lib\site-packages\flask\app.py", line 1936, in dispatch_request
+    return self.view_functions[rule.endpoint](**req.view_args)
+  File "D:/source/strabag/webserver.py", line 345, in convert_mi
+    directory, file_name = conv.process_mi(content_col, source_cols, target_cols, file_path, no_category_id)
+  File "D:\source\strabag\convert_excel.py", line 188, in process_mi
+    category, cat_prob, tokens, token_prob = self.model.predict(txt)
+  File "D:\source\strabag\hubert_model.py", line 102, in predict
+    tokenized = self.tokenizer.encode(sentence, return_tensors='pt').to(self.device)
+  File "D:\python_venv\strabag\lib\site-packages\transformers\tokenization_utils_base.py", line 2059, in encode
+    encoded_inputs = self.encode_plus(
+  File "D:\python_venv\strabag\lib\site-packages\transformers\tokenization_utils_base.py", line 2378, in encode_plus
+    return self._encode_plus(
+  File "D:\python_venv\strabag\lib\site-packages\transformers\tokenization_utils_fast.py", line 458, in _encode_plus
+    batched_output = self._batch_encode_plus(
+  File "D:\python_venv\strabag\lib\site-packages\transformers\tokenization_utils_fast.py", line 385, in _batch_encode_plus
+    encodings = self._tokenizer.encode_batch(
+TypeError: TextEncodeInput must be Union[TextInputSequence, Tuple[InputSequence, InputSequence]]
+INFO:werkzeug:127.0.0.1 - - [17/Oct/2021 23:58:15] "[35m[1mPOST /convert/mi HTTP/1.1[0m" 500 -
+INFO:werkzeug:127.0.0.1 - - [17/Oct/2021 23:58:34] "[37mGET /project/status?id=134 HTTP/1.1[0m" 200 -
+INFO:werkzeug:127.0.0.1 - - [17/Oct/2021 23:58:34] "[37mGET /check/training HTTP/1.1[0m" 200 -
+ERROR:webserver:Exception on /convert/mi [POST]
+Traceback (most recent call last):
+  File "D:\python_venv\strabag\lib\site-packages\flask\app.py", line 2447, in wsgi_app
+    response = self.full_dispatch_request()
+  File "D:\python_venv\strabag\lib\site-packages\flask\app.py", line 1952, in full_dispatch_request
+    rv = self.handle_user_exception(e)
+  File "D:\python_venv\strabag\lib\site-packages\flask\app.py", line 1821, in handle_user_exception
+    reraise(exc_type, exc_value, tb)
+  File "D:\python_venv\strabag\lib\site-packages\flask\_compat.py", line 39, in reraise
+    raise value
+  File "D:\python_venv\strabag\lib\site-packages\flask\app.py", line 1950, in full_dispatch_request
+    rv = self.dispatch_request()
+  File "D:\python_venv\strabag\lib\site-packages\flask\app.py", line 1936, in dispatch_request
+    return self.view_functions[rule.endpoint](**req.view_args)
+  File "D:/source/strabag/webserver.py", line 345, in convert_mi
+    directory, file_name = conv.process_mi(content_col, source_cols, target_cols, file_path, no_category_id)
+  File "D:\source\strabag\convert_excel.py", line 188, in process_mi
+    category, cat_prob, tokens, token_prob = self.model.predict(txt)
+  File "D:\source\strabag\hubert_model.py", line 102, in predict
+    tokenized = self.tokenizer.encode(sentence, return_tensors='pt').to(self.device)
+  File "D:\python_venv\strabag\lib\site-packages\transformers\tokenization_utils_base.py", line 2059, in encode
+    encoded_inputs = self.encode_plus(
+  File "D:\python_venv\strabag\lib\site-packages\transformers\tokenization_utils_base.py", line 2378, in encode_plus
+    return self._encode_plus(
+  File "D:\python_venv\strabag\lib\site-packages\transformers\tokenization_utils_fast.py", line 458, in _encode_plus
+    batched_output = self._batch_encode_plus(
+  File "D:\python_venv\strabag\lib\site-packages\transformers\tokenization_utils_fast.py", line 385, in _batch_encode_plus
+    encodings = self._tokenizer.encode_batch(
+TypeError: TextEncodeInput must be Union[TextInputSequence, Tuple[InputSequence, InputSequence]]
+INFO:werkzeug:127.0.0.1 - - [17/Oct/2021 23:58:43] "[35m[1mPOST /convert/mi HTTP/1.1[0m" 500 -
+INFO:werkzeug: * Running on http://127.0.0.1:3000/ (Press CTRL+C to quit)
+INFO:werkzeug:127.0.0.1 - - [17/Oct/2021 23:59:05] "[37mGET /project/status?id=134 HTTP/1.1[0m" 200 -
+INFO:werkzeug:127.0.0.1 - - [17/Oct/2021 23:59:05] "[37mGET /check/training HTTP/1.1[0m" 200 -
+ERROR:webserver:Exception on /convert/mi [POST]
+Traceback (most recent call last):
+  File "D:\python_venv\strabag\lib\site-packages\flask\app.py", line 2447, in wsgi_app
+    response = self.full_dispatch_request()
+  File "D:\python_venv\strabag\lib\site-packages\flask\app.py", line 1952, in full_dispatch_request
+    rv = self.handle_user_exception(e)
+  File "D:\python_venv\strabag\lib\site-packages\flask\app.py", line 1821, in handle_user_exception
+    reraise(exc_type, exc_value, tb)
+  File "D:\python_venv\strabag\lib\site-packages\flask\_compat.py", line 39, in reraise
+    raise value
+  File "D:\python_venv\strabag\lib\site-packages\flask\app.py", line 1950, in full_dispatch_request
+    rv = self.dispatch_request()
+  File "D:\python_venv\strabag\lib\site-packages\flask\app.py", line 1936, in dispatch_request
+    return self.view_functions[rule.endpoint](**req.view_args)
+  File "D:/source/strabag/webserver.py", line 345, in convert_mi
+    directory, file_name = conv.process_mi(content_col, source_cols, target_cols, file_path, no_category_id)
+  File "D:\source\strabag\convert_excel.py", line 188, in process_mi
+    category, cat_prob, tokens, token_prob = self.model.predict(txt)
+  File "D:\source\strabag\hubert_model.py", line 102, in predict
+    tokenized = self.tokenizer.encode(sentence, return_tensors='pt').to(self.device)
+  File "D:\python_venv\strabag\lib\site-packages\transformers\tokenization_utils_base.py", line 2059, in encode
+    encoded_inputs = self.encode_plus(
+  File "D:\python_venv\strabag\lib\site-packages\transformers\tokenization_utils_base.py", line 2378, in encode_plus
+    return self._encode_plus(
+  File "D:\python_venv\strabag\lib\site-packages\transformers\tokenization_utils_fast.py", line 458, in _encode_plus
+    batched_output = self._batch_encode_plus(
+  File "D:\python_venv\strabag\lib\site-packages\transformers\tokenization_utils_fast.py", line 385, in _batch_encode_plus
+    encodings = self._tokenizer.encode_batch(
+TypeError: TextEncodeInput must be Union[TextInputSequence, Tuple[InputSequence, InputSequence]]
+INFO:werkzeug:127.0.0.1 - - [17/Oct/2021 23:59:36] "[35m[1mPOST /convert/mi HTTP/1.1[0m" 500 -
+INFO:werkzeug:127.0.0.1 - - [17/Oct/2021 23:59:41] "[37mGET /project/status?id=134 HTTP/1.1[0m" 200 -
+INFO:werkzeug:127.0.0.1 - - [17/Oct/2021 23:59:41] "[37mGET /check/training HTTP/1.1[0m" 200 -
+ERROR:webserver:Exception on /convert/mi [POST]
+Traceback (most recent call last):
+  File "D:\python_venv\strabag\lib\site-packages\flask\app.py", line 2447, in wsgi_app
+    response = self.full_dispatch_request()
+  File "D:\python_venv\strabag\lib\site-packages\flask\app.py", line 1952, in full_dispatch_request
+    rv = self.handle_user_exception(e)
+  File "D:\python_venv\strabag\lib\site-packages\flask\app.py", line 1821, in handle_user_exception
+    reraise(exc_type, exc_value, tb)
+  File "D:\python_venv\strabag\lib\site-packages\flask\_compat.py", line 39, in reraise
+    raise value
+  File "D:\python_venv\strabag\lib\site-packages\flask\app.py", line 1950, in full_dispatch_request
+    rv = self.dispatch_request()
+  File "D:\python_venv\strabag\lib\site-packages\flask\app.py", line 1936, in dispatch_request
+    return self.view_functions[rule.endpoint](**req.view_args)
+  File "D:/source/strabag/webserver.py", line 345, in convert_mi
+    directory, file_name = conv.process_mi(content_col, source_cols, target_cols, file_path, no_category_id)
+  File "D:\source\strabag\convert_excel.py", line 188, in process_mi
+    category, cat_prob, tokens, token_prob = self.model.predict(txt)
+  File "D:\source\strabag\hubert_model.py", line 102, in predict
+    tokenized = self.tokenizer.encode(sentence, return_tensors='pt').to(self.device)
+  File "D:\python_venv\strabag\lib\site-packages\transformers\tokenization_utils_base.py", line 2059, in encode
+    encoded_inputs = self.encode_plus(
+  File "D:\python_venv\strabag\lib\site-packages\transformers\tokenization_utils_base.py", line 2378, in encode_plus
+    return self._encode_plus(
+  File "D:\python_venv\strabag\lib\site-packages\transformers\tokenization_utils_fast.py", line 458, in _encode_plus
+    batched_output = self._batch_encode_plus(
+  File "D:\python_venv\strabag\lib\site-packages\transformers\tokenization_utils_fast.py", line 385, in _batch_encode_plus
+    encodings = self._tokenizer.encode_batch(
+TypeError: TextEncodeInput must be Union[TextInputSequence, Tuple[InputSequence, InputSequence]]
+INFO:werkzeug:127.0.0.1 - - [18/Oct/2021 00:00:46] "[35m[1mPOST /convert/mi HTTP/1.1[0m" 500 -
+INFO:werkzeug:127.0.0.1 - - [18/Oct/2021 00:01:16] "[37mGET /project/status?id=134 HTTP/1.1[0m" 200 -
+INFO:werkzeug:127.0.0.1 - - [18/Oct/2021 00:01:16] "[37mGET /check/training HTTP/1.1[0m" 200 -
+INFO:werkzeug: * Running on http://127.0.0.1:3000/ (Press CTRL+C to quit)
+INFO:werkzeug:127.0.0.1 - - [18/Oct/2021 00:03:52] "[37mGET /check/training HTTP/1.1[0m" 200 -
+ERROR:webserver:Exception on /convert/mi [POST]
+Traceback (most recent call last):
+  File "D:\python_venv\strabag\lib\site-packages\flask\app.py", line 2447, in wsgi_app
+    response = self.full_dispatch_request()
+  File "D:\python_venv\strabag\lib\site-packages\flask\app.py", line 1952, in full_dispatch_request
+    rv = self.handle_user_exception(e)
+  File "D:\python_venv\strabag\lib\site-packages\flask\app.py", line 1821, in handle_user_exception
+    reraise(exc_type, exc_value, tb)
+  File "D:\python_venv\strabag\lib\site-packages\flask\_compat.py", line 39, in reraise
+    raise value
+  File "D:\python_venv\strabag\lib\site-packages\flask\app.py", line 1950, in full_dispatch_request
+    rv = self.dispatch_request()
+  File "D:\python_venv\strabag\lib\site-packages\flask\app.py", line 1936, in dispatch_request
+    return self.view_functions[rule.endpoint](**req.view_args)
+  File "D:/source/strabag/webserver.py", line 343, in convert_mi
+    f.save(file_path)
+  File "D:\python_venv\strabag\lib\site-packages\werkzeug\datastructures.py", line 3066, in save
+    dst = open(dst, "wb")
+PermissionError: [Errno 13] Permission denied: 'D:\\source\\strabag\\cache\\akarmi.xlsx'
+INFO:werkzeug:127.0.0.1 - - [18/Oct/2021 00:03:53] "[35m[1mPOST /convert/mi HTTP/1.1[0m" 500 -
+ERROR:webserver:Exception on /convert/mi [POST]
+Traceback (most recent call last):
+  File "D:\python_venv\strabag\lib\site-packages\flask\app.py", line 2447, in wsgi_app
+    response = self.full_dispatch_request()
+  File "D:\python_venv\strabag\lib\site-packages\flask\app.py", line 1952, in full_dispatch_request
+    rv = self.handle_user_exception(e)
+  File "D:\python_venv\strabag\lib\site-packages\flask\app.py", line 1821, in handle_user_exception
+    reraise(exc_type, exc_value, tb)
+  File "D:\python_venv\strabag\lib\site-packages\flask\_compat.py", line 39, in reraise
+    raise value
+  File "D:\python_venv\strabag\lib\site-packages\flask\app.py", line 1950, in full_dispatch_request
+    rv = self.dispatch_request()
+  File "D:\python_venv\strabag\lib\site-packages\flask\app.py", line 1936, in dispatch_request
+    return self.view_functions[rule.endpoint](**req.view_args)
+  File "D:/source/strabag/webserver.py", line 343, in convert_mi
+    f.save(file_path)
+  File "D:\python_venv\strabag\lib\site-packages\werkzeug\datastructures.py", line 3066, in save
+    dst = open(dst, "wb")
+PermissionError: [Errno 13] Permission denied: 'D:\\source\\strabag\\cache\\akarmi.xlsx'
+INFO:werkzeug:127.0.0.1 - - [18/Oct/2021 00:04:23] "[35m[1mPOST /convert/mi HTTP/1.1[0m" 500 -
+INFO:werkzeug:127.0.0.1 - - [18/Oct/2021 00:04:25] "[37mGET /project/status?id=134 HTTP/1.1[0m" 200 -
+INFO:werkzeug:127.0.0.1 - - [18/Oct/2021 00:04:25] "[37mGET /check/training HTTP/1.1[0m" 200 -
+ERROR:webserver:Exception on /convert/mi [POST]
+Traceback (most recent call last):
+  File "D:\python_venv\strabag\lib\site-packages\flask\app.py", line 2447, in wsgi_app
+    response = self.full_dispatch_request()
+  File "D:\python_venv\strabag\lib\site-packages\flask\app.py", line 1952, in full_dispatch_request
+    rv = self.handle_user_exception(e)
+  File "D:\python_venv\strabag\lib\site-packages\flask\app.py", line 1821, in handle_user_exception
+    reraise(exc_type, exc_value, tb)
+  File "D:\python_venv\strabag\lib\site-packages\flask\_compat.py", line 39, in reraise
+    raise value
+  File "D:\python_venv\strabag\lib\site-packages\flask\app.py", line 1950, in full_dispatch_request
+    rv = self.dispatch_request()
+  File "D:\python_venv\strabag\lib\site-packages\flask\app.py", line 1936, in dispatch_request
+    return self.view_functions[rule.endpoint](**req.view_args)
+  File "D:/source/strabag/webserver.py", line 343, in convert_mi
+    f.save(file_path)
+  File "D:\python_venv\strabag\lib\site-packages\werkzeug\datastructures.py", line 3066, in save
+    dst = open(dst, "wb")
+PermissionError: [Errno 13] Permission denied: 'D:\\source\\strabag\\cache\\akarmi.xlsx'
+INFO:werkzeug:127.0.0.1 - - [18/Oct/2021 00:04:26] "[35m[1mPOST /convert/mi HTTP/1.1[0m" 500 -
+INFO:werkzeug: * Running on http://127.0.0.1:3000/ (Press CTRL+C to quit)
+INFO:werkzeug:127.0.0.1 - - [18/Oct/2021 00:04:45] "[37mGET /project/status?id=134 HTTP/1.1[0m" 200 -
+INFO:werkzeug:127.0.0.1 - - [18/Oct/2021 00:04:45] "[37mGET /check/training HTTP/1.1[0m" 200 -
+ERROR:webserver:Exception on /convert/mi [POST]
+Traceback (most recent call last):
+  File "D:\python_venv\strabag\lib\site-packages\flask\app.py", line 2447, in wsgi_app
+    response = self.full_dispatch_request()
+  File "D:\python_venv\strabag\lib\site-packages\flask\app.py", line 1952, in full_dispatch_request
+    rv = self.handle_user_exception(e)
+  File "D:\python_venv\strabag\lib\site-packages\flask\app.py", line 1821, in handle_user_exception
+    reraise(exc_type, exc_value, tb)
+  File "D:\python_venv\strabag\lib\site-packages\flask\_compat.py", line 39, in reraise
+    raise value
+  File "D:\python_venv\strabag\lib\site-packages\flask\app.py", line 1950, in full_dispatch_request
+    rv = self.dispatch_request()
+  File "D:\python_venv\strabag\lib\site-packages\flask\app.py", line 1936, in dispatch_request
+    return self.view_functions[rule.endpoint](**req.view_args)
+  File "D:/source/strabag/webserver.py", line 343, in convert_mi
+    f.save(file_path)
+  File "D:\python_venv\strabag\lib\site-packages\werkzeug\datastructures.py", line 3066, in save
+    dst = open(dst, "wb")
+PermissionError: [Errno 13] Permission denied: 'D:\\source\\strabag\\cache\\akarmi.xlsx'
+INFO:werkzeug:127.0.0.1 - - [18/Oct/2021 00:04:47] "[35m[1mPOST /convert/mi HTTP/1.1[0m" 500 -
+INFO:werkzeug:127.0.0.1 - - [18/Oct/2021 00:05:06] "[37mGET /project/status?id=134 HTTP/1.1[0m" 200 -
+INFO:werkzeug:127.0.0.1 - - [18/Oct/2021 00:05:06] "[37mGET /check/training HTTP/1.1[0m" 200 -
+ERROR:webserver:Exception on /convert/mi [POST]
+Traceback (most recent call last):
+  File "D:\python_venv\strabag\lib\site-packages\flask\app.py", line 2447, in wsgi_app
+    response = self.full_dispatch_request()
+  File "D:\python_venv\strabag\lib\site-packages\flask\app.py", line 1952, in full_dispatch_request
+    rv = self.handle_user_exception(e)
+  File "D:\python_venv\strabag\lib\site-packages\flask\app.py", line 1821, in handle_user_exception
+    reraise(exc_type, exc_value, tb)
+  File "D:\python_venv\strabag\lib\site-packages\flask\_compat.py", line 39, in reraise
+    raise value
+  File "D:\python_venv\strabag\lib\site-packages\flask\app.py", line 1950, in full_dispatch_request
+    rv = self.dispatch_request()
+  File "D:\python_venv\strabag\lib\site-packages\flask\app.py", line 1936, in dispatch_request
+    return self.view_functions[rule.endpoint](**req.view_args)
+  File "D:/source/strabag/webserver.py", line 343, in convert_mi
+    f.save(file_path)
+  File "D:\python_venv\strabag\lib\site-packages\werkzeug\datastructures.py", line 3066, in save
+    dst = open(dst, "wb")
+PermissionError: [Errno 13] Permission denied: 'D:\\source\\strabag\\cache\\akarmi.xlsx'
+INFO:werkzeug:127.0.0.1 - - [18/Oct/2021 00:06:06] "[35m[1mPOST /convert/mi HTTP/1.1[0m" 500 -
+INFO:werkzeug:127.0.0.1 - - [18/Oct/2021 00:06:09] "[37mGET /project/status?id=134 HTTP/1.1[0m" 200 -
+INFO:werkzeug:127.0.0.1 - - [18/Oct/2021 00:06:09] "[37mGET /check/training HTTP/1.1[0m" 200 -
+INFO:werkzeug: * Running on http://127.0.0.1:3000/ (Press CTRL+C to quit)
+INFO:werkzeug:127.0.0.1 - - [18/Oct/2021 00:17:55] "[37mGET /project/status?id=134 HTTP/1.1[0m" 200 -
+INFO:werkzeug:127.0.0.1 - - [18/Oct/2021 00:17:55] "[37mGET /check/training HTTP/1.1[0m" 200 -
+INFO:werkzeug:127.0.0.1 - - [18/Oct/2021 00:19:27] "[37mGET /project/status?id=134 HTTP/1.1[0m" 200 -
+INFO:werkzeug:127.0.0.1 - - [18/Oct/2021 00:19:28] "[37mGET /check/training HTTP/1.1[0m" 200 -
+INFO:werkzeug:127.0.0.1 - - [18/Oct/2021 00:23:05] "[37mGET /project/status?id=134 HTTP/1.1[0m" 200 -
+INFO:werkzeug:127.0.0.1 - - [18/Oct/2021 00:23:05] "[37mGET /check/training HTTP/1.1[0m" 200 -
+INFO:werkzeug:127.0.0.1 - - [18/Oct/2021 00:28:06] "[37mPOST /convert/mi HTTP/1.1[0m" 200 -
+INFO:werkzeug: * Running on http://127.0.0.1:3000/ (Press CTRL+C to quit)
+INFO:werkzeug:127.0.0.1 - - [18/Oct/2021 00:31:07] "[37mGET /project/status?id=134 HTTP/1.1[0m" 200 -
+INFO:werkzeug:127.0.0.1 - - [18/Oct/2021 00:31:07] "[37mGET /check/training HTTP/1.1[0m" 200 -
+INFO:werkzeug:127.0.0.1 - - [18/Oct/2021 00:32:05] "[37mPOST /convert/mi HTTP/1.1[0m" 200 -
+INFO:werkzeug:127.0.0.1 - - [18/Oct/2021 00:36:38] "[37mGET /project/status?id=134 HTTP/1.1[0m" 200 -
+INFO:werkzeug:127.0.0.1 - - [18/Oct/2021 00:36:38] "[37mGET /check/training HTTP/1.1[0m" 200 -
+INFO:werkzeug:127.0.0.1 - - [18/Oct/2021 00:37:49] "[37mPOST /convert/mi HTTP/1.1[0m" 200 -
+INFO:werkzeug:127.0.0.1 - - [18/Oct/2021 00:48:13] "[37mGET /project/status?id=134 HTTP/1.1[0m" 200 -
+INFO:werkzeug:127.0.0.1 - - [18/Oct/2021 00:48:14] "[37mGET /check/training HTTP/1.1[0m" 200 -
+INFO:werkzeug:127.0.0.1 - - [18/Oct/2021 00:48:20] "[37mPOST /convert/mi HTTP/1.1[0m" 200 -
+INFO:werkzeug: * Running on http://127.0.0.1:3000/ (Press CTRL+C to quit)
+INFO:werkzeug:127.0.0.1 - - [18/Oct/2021 00:54:16] "[37mPOST /convert/mi HTTP/1.1[0m" 200 -
+INFO:werkzeug:127.0.0.1 - - [18/Oct/2021 01:07:00] "[37mPOST /convert/mi HTTP/1.1[0m" 200 -
+INFO:werkzeug:127.0.0.1 - - [18/Oct/2021 01:07:05] "[37mGET /project/status?id=134 HTTP/1.1[0m" 200 -
+INFO:werkzeug:127.0.0.1 - - [18/Oct/2021 01:07:05] "[37mGET /check/training HTTP/1.1[0m" 200 -
+INFO:werkzeug:127.0.0.1 - - [18/Oct/2021 01:07:08] "[37mPOST /convert/mi HTTP/1.1[0m" 200 -
+INFO:werkzeug:127.0.0.1 - - [18/Oct/2021 01:08:55] "[37mGET /project/status?id=134 HTTP/1.1[0m" 200 -
+INFO:werkzeug:127.0.0.1 - - [18/Oct/2021 01:08:55] "[37mGET /check/training HTTP/1.1[0m" 200 -
+INFO:werkzeug:127.0.0.1 - - [18/Oct/2021 01:09:10] "[37mPOST /convert/mi HTTP/1.1[0m" 200 -
+INFO:werkzeug:127.0.0.1 - - [18/Oct/2021 01:10:24] "[37mGET /project/status?id=134 HTTP/1.1[0m" 200 -
+INFO:werkzeug:127.0.0.1 - - [18/Oct/2021 01:10:25] "[37mGET /check/training HTTP/1.1[0m" 200 -
+INFO:werkzeug:127.0.0.1 - - [18/Oct/2021 01:11:45] "[37mPOST /convert/mi HTTP/1.1[0m" 200 -
+INFO:werkzeug:127.0.0.1 - - [18/Oct/2021 01:17:02] "[37mGET /project/status?id=134 HTTP/1.1[0m" 200 -
+INFO:werkzeug:127.0.0.1 - - [18/Oct/2021 01:17:02] "[37mGET /check/training HTTP/1.1[0m" 200 -
+INFO:werkzeug:127.0.0.1 - - [18/Oct/2021 01:17:07] "[37mPOST /convert/mi HTTP/1.1[0m" 200 -
+INFO:werkzeug:127.0.0.1 - - [18/Oct/2021 01:20:52] "[37mPOST /convert/mi HTTP/1.1[0m" 200 -
+INFO:werkzeug:127.0.0.1 - - [18/Oct/2021 01:21:02] "[37mGET /project/status?id=134 HTTP/1.1[0m" 200 -
+INFO:werkzeug:127.0.0.1 - - [18/Oct/2021 01:21:02] "[37mGET /check/training HTTP/1.1[0m" 200 -
+INFO:werkzeug:127.0.0.1 - - [18/Oct/2021 01:21:05] "[37mPOST /convert/mi HTTP/1.1[0m" 200 -
+INFO:werkzeug:127.0.0.1 - - [18/Oct/2021 01:25:37] "[37mGET /project/status?id=134 HTTP/1.1[0m" 200 -
+INFO:werkzeug:127.0.0.1 - - [18/Oct/2021 01:25:37] "[37mGET /check/training HTTP/1.1[0m" 200 -
+INFO:werkzeug:127.0.0.1 - - [18/Oct/2021 01:25:39] "[31m[1mPOST /convert HTTP/1.1[0m" 400 -
+INFO:werkzeug:127.0.0.1 - - [18/Oct/2021 01:31:35] "[37mGET /project/status?id=134 HTTP/1.1[0m" 200 -
+INFO:werkzeug:127.0.0.1 - - [18/Oct/2021 01:31:36] "[37mGET /check/training HTTP/1.1[0m" 200 -
+INFO:werkzeug:127.0.0.1 - - [18/Oct/2021 01:31:39] "[37mPOST /convert/mi HTTP/1.1[0m" 200 -
+INFO:werkzeug: * Running on http://127.0.0.1:3000/ (Press CTRL+C to quit)
+INFO:werkzeug: * Running on http://127.0.0.1:3000/ (Press CTRL+C to quit)
+INFO:werkzeug:127.0.0.1 - - [18/Oct/2021 01:34:25] "[37mGET /project/status?id=134 HTTP/1.1[0m" 200 -
+INFO:werkzeug:127.0.0.1 - - [18/Oct/2021 01:34:25] "[37mGET /check/training HTTP/1.1[0m" 200 -
+INFO:werkzeug:127.0.0.1 - - [18/Oct/2021 01:34:29] "[37mPOST /convert/mi HTTP/1.1[0m" 200 -
+INFO:werkzeug:127.0.0.1 - - [18/Oct/2021 01:34:41] "[37mGET /project/status?id=134 HTTP/1.1[0m" 200 -
+INFO:werkzeug:127.0.0.1 - - [18/Oct/2021 01:34:41] "[37mGET /check/training HTTP/1.1[0m" 200 -
+INFO:werkzeug:127.0.0.1 - - [18/Oct/2021 01:34:43] "[37mPOST /convert/mi HTTP/1.1[0m" 200 -
+INFO:werkzeug:127.0.0.1 - - [18/Oct/2021 01:35:11] "[37mGET /project/status?id=134 HTTP/1.1[0m" 200 -
+INFO:werkzeug:127.0.0.1 - - [18/Oct/2021 01:35:11] "[37mGET /check/training HTTP/1.1[0m" 200 -
+INFO:werkzeug:127.0.0.1 - - [18/Oct/2021 01:35:17] "[37mPOST /convert/mi HTTP/1.1[0m" 200 -
+INFO:werkzeug:127.0.0.1 - - [18/Oct/2021 01:37:11] "[37mGET /project/status?id=134 HTTP/1.1[0m" 200 -
+INFO:werkzeug:127.0.0.1 - - [18/Oct/2021 01:37:11] "[37mGET /check/training HTTP/1.1[0m" 200 -
+INFO:werkzeug: * Running on http://127.0.0.1:3000/ (Press CTRL+C to quit)
+INFO:werkzeug:127.0.0.1 - - [18/Oct/2021 02:23:05] "[37mGET /project/status?id=135 HTTP/1.1[0m" 200 -
+INFO:werkzeug:127.0.0.1 - - [18/Oct/2021 02:23:05] "[37mGET /project/status?id=134 HTTP/1.1[0m" 200 -
+INFO:werkzeug:127.0.0.1 - - [18/Oct/2021 02:23:05] "[37mGET /check/training HTTP/1.1[0m" 200 -
+INFO:werkzeug:127.0.0.1 - - [18/Oct/2021 02:32:15] "[37mGET /project/status?id=135 HTTP/1.1[0m" 200 -
+INFO:werkzeug:127.0.0.1 - - [18/Oct/2021 02:32:15] "[37mGET /project/status?id=134 HTTP/1.1[0m" 200 -
+INFO:werkzeug:127.0.0.1 - - [18/Oct/2021 02:32:15] "[37mGET /check/training HTTP/1.1[0m" 200 -
+INFO:werkzeug:127.0.0.1 - - [18/Oct/2021 02:34:09] "[37mGET /project/status?id=136 HTTP/1.1[0m" 200 -
+INFO:werkzeug:127.0.0.1 - - [18/Oct/2021 02:34:09] "[37mGET /project/status?id=134 HTTP/1.1[0m" 200 -
+INFO:werkzeug:127.0.0.1 - - [18/Oct/2021 02:34:09] "[37mGET /check/training HTTP/1.1[0m" 200 -
+ERROR:webserver:Exception on /predict [POST]
+Traceback (most recent call last):
+  File "D:\python_venv\strabag\lib\site-packages\flask\app.py", line 2447, in wsgi_app
+    response = self.full_dispatch_request()
+  File "D:\python_venv\strabag\lib\site-packages\flask\app.py", line 1953, in full_dispatch_request
+    return self.finalize_request(rv)
+  File "D:\python_venv\strabag\lib\site-packages\flask\app.py", line 1968, in finalize_request
+    response = self.make_response(rv)
+  File "D:\python_venv\strabag\lib\site-packages\flask\app.py", line 2127, in make_response
+    raise TypeError(
+TypeError: The view function did not return a valid response. The return type must be a string, dict, tuple, Response instance, or WSGI callable, but it was a list.
+INFO:werkzeug:127.0.0.1 - - [18/Oct/2021 02:35:12] "[35m[1mPOST /predict HTTP/1.1[0m" 500 -
+INFO:werkzeug:127.0.0.1 - - [18/Oct/2021 02:35:13] "[37mGET /read/all/category HTTP/1.1[0m" 200 -
+INFO:werkzeug:127.0.0.1 - - [18/Oct/2021 02:35:16] "[37mGET /project/status?id=137 HTTP/1.1[0m" 200 -
+INFO:werkzeug:127.0.0.1 - - [18/Oct/2021 02:35:16] "[37mGET /project/status?id=136 HTTP/1.1[0m" 200 -
+INFO:werkzeug:127.0.0.1 - - [18/Oct/2021 02:35:17] "[37mGET /project/status?id=134 HTTP/1.1[0m" 200 -
+INFO:werkzeug:127.0.0.1 - - [18/Oct/2021 02:35:17] "[37mGET /check/training HTTP/1.1[0m" 200 -
+INFO:werkzeug:127.0.0.1 - - [18/Oct/2021 02:35:29] "[37mGET /project/status?id=137 HTTP/1.1[0m" 200 -
+INFO:werkzeug:127.0.0.1 - - [18/Oct/2021 02:35:29] "[37mGET /project/status?id=136 HTTP/1.1[0m" 200 -
+INFO:werkzeug:127.0.0.1 - - [18/Oct/2021 02:35:29] "[37mGET /project/status?id=134 HTTP/1.1[0m" 200 -
+INFO:werkzeug:127.0.0.1 - - [18/Oct/2021 02:35:29] "[37mGET /check/training HTTP/1.1[0m" 200 -
+INFO:werkzeug:127.0.0.1 - - [18/Oct/2021 02:36:36] "[37mGET /project/status?id=138 HTTP/1.1[0m" 200 -
+INFO:werkzeug:127.0.0.1 - - [18/Oct/2021 02:36:36] "[37mGET /project/status?id=134 HTTP/1.1[0m" 200 -
+INFO:werkzeug:127.0.0.1 - - [18/Oct/2021 02:36:36] "[37mGET /check/training HTTP/1.1[0m" 200 -
+INFO:werkzeug:127.0.0.1 - - [18/Oct/2021 02:36:39] "[37mGET /project/status?id=138 HTTP/1.1[0m" 200 -
+INFO:werkzeug:127.0.0.1 - - [18/Oct/2021 02:36:40] "[37mGET /project/status?id=134 HTTP/1.1[0m" 200 -
+INFO:werkzeug:127.0.0.1 - - [18/Oct/2021 02:36:40] "[37mGET /check/training HTTP/1.1[0m" 200 -
+ERROR:webserver:Exception on /predict [POST]
+Traceback (most recent call last):
+  File "D:\python_venv\strabag\lib\site-packages\flask\app.py", line 2447, in wsgi_app
+    response = self.full_dispatch_request()
+  File "D:\python_venv\strabag\lib\site-packages\flask\app.py", line 1952, in full_dispatch_request
+    rv = self.handle_user_exception(e)
+  File "D:\python_venv\strabag\lib\site-packages\flask\app.py", line 1821, in handle_user_exception
+    reraise(exc_type, exc_value, tb)
+  File "D:\python_venv\strabag\lib\site-packages\flask\_compat.py", line 39, in reraise
+    raise value
+  File "D:\python_venv\strabag\lib\site-packages\flask\app.py", line 1950, in full_dispatch_request
+    rv = self.dispatch_request()
+  File "D:\python_venv\strabag\lib\site-packages\flask\app.py", line 1936, in dispatch_request
+    return self.view_functions[rule.endpoint](**req.view_args)
+  File "D:/source/strabag/webserver.py", line 356, in predict_more_row
+    target_categories = conv.process_more_sentence(sentences)
+  File "D:\source\strabag\convert_excel.py", line 266, in process_more_sentence
+    cat_name = self.category_by_index[categories[0]]
+KeyError: 'Vezetékvég'
+INFO:werkzeug:127.0.0.1 - - [18/Oct/2021 02:37:19] "[35m[1mPOST /predict HTTP/1.1[0m" 500 -
+INFO:werkzeug:127.0.0.1 - - [18/Oct/2021 02:39:01] "[37mGET /project/status?id=139 HTTP/1.1[0m" 200 -
+INFO:werkzeug:127.0.0.1 - - [18/Oct/2021 02:39:01] "[37mGET /project/status?id=138 HTTP/1.1[0m" 200 -
+INFO:werkzeug:127.0.0.1 - - [18/Oct/2021 02:39:02] "[37mGET /project/status?id=134 HTTP/1.1[0m" 200 -
+INFO:werkzeug:127.0.0.1 - - [18/Oct/2021 02:39:02] "[37mGET /check/training HTTP/1.1[0m" 200 -
+ERROR:webserver:Exception on /predict [POST]
+Traceback (most recent call last):
+  File "D:\python_venv\strabag\lib\site-packages\flask\app.py", line 2447, in wsgi_app
+    response = self.full_dispatch_request()
+  File "D:\python_venv\strabag\lib\site-packages\flask\app.py", line 1952, in full_dispatch_request
+    rv = self.handle_user_exception(e)
+  File "D:\python_venv\strabag\lib\site-packages\flask\app.py", line 1821, in handle_user_exception
+    reraise(exc_type, exc_value, tb)
+  File "D:\python_venv\strabag\lib\site-packages\flask\_compat.py", line 39, in reraise
+    raise value
+  File "D:\python_venv\strabag\lib\site-packages\flask\app.py", line 1950, in full_dispatch_request
+    rv = self.dispatch_request()
+  File "D:\python_venv\strabag\lib\site-packages\flask\app.py", line 1936, in dispatch_request
+    return self.view_functions[rule.endpoint](**req.view_args)
+  File "D:/source/strabag/webserver.py", line 356, in predict_more_row
+    target_categories = conv.process_more_sentence(sentences)
+  File "D:\source\strabag\convert_excel.py", line 266, in process_more_sentence
+    cat_name = self.category_by_index[categories[0]]
+KeyError: 'Vezetékvég'
+INFO:werkzeug:127.0.0.1 - - [18/Oct/2021 02:39:12] "[35m[1mPOST /predict HTTP/1.1[0m" 500 -
+INFO:werkzeug:127.0.0.1 - - [18/Oct/2021 02:39:55] "[37mGET /project/status?id=139 HTTP/1.1[0m" 200 -
+INFO:werkzeug:127.0.0.1 - - [18/Oct/2021 02:39:56] "[37mGET /project/status?id=134 HTTP/1.1[0m" 200 -
+INFO:werkzeug:127.0.0.1 - - [18/Oct/2021 02:39:56] "[37mGET /check/training HTTP/1.1[0m" 200 -
+ERROR:webserver:Exception on /predict [POST]
+Traceback (most recent call last):
+  File "D:\python_venv\strabag\lib\site-packages\flask\app.py", line 2447, in wsgi_app
+    response = self.full_dispatch_request()
+  File "D:\python_venv\strabag\lib\site-packages\flask\app.py", line 1952, in full_dispatch_request
+    rv = self.handle_user_exception(e)
+  File "D:\python_venv\strabag\lib\site-packages\flask\app.py", line 1821, in handle_user_exception
+    reraise(exc_type, exc_value, tb)
+  File "D:\python_venv\strabag\lib\site-packages\flask\_compat.py", line 39, in reraise
+    raise value
+  File "D:\python_venv\strabag\lib\site-packages\flask\app.py", line 1950, in full_dispatch_request
+    rv = self.dispatch_request()
+  File "D:\python_venv\strabag\lib\site-packages\flask\app.py", line 1936, in dispatch_request
+    return self.view_functions[rule.endpoint](**req.view_args)
+  File "D:/source/strabag/webserver.py", line 356, in predict_more_row
+    target_categories = conv.process_more_sentence(sentences)
+  File "D:\source\strabag\convert_excel.py", line 266, in process_more_sentence
+    cat_name = self.category_by_index[categories[0]]
+KeyError: 'Vezetékvég'
+INFO:werkzeug:127.0.0.1 - - [18/Oct/2021 02:41:56] "[35m[1mPOST /predict HTTP/1.1[0m" 500 -
+INFO:werkzeug:127.0.0.1 - - [18/Oct/2021 02:42:40] "[37mGET /project/status?id=139 HTTP/1.1[0m" 200 -
+INFO:werkzeug:127.0.0.1 - - [18/Oct/2021 02:42:40] "[37mGET /project/status?id=134 HTTP/1.1[0m" 200 -
+INFO:werkzeug:127.0.0.1 - - [18/Oct/2021 02:42:41] "[37mGET /check/training HTTP/1.1[0m" 200 -
+INFO:werkzeug:127.0.0.1 - - [18/Oct/2021 02:44:17] "[37mGET /project/status?id=139 HTTP/1.1[0m" 200 -
+INFO:werkzeug:127.0.0.1 - - [18/Oct/2021 02:44:17] "[37mGET /project/status?id=134 HTTP/1.1[0m" 200 -
+INFO:werkzeug:127.0.0.1 - - [18/Oct/2021 02:44:17] "[37mGET /check/training HTTP/1.1[0m" 200 -
+ERROR:webserver:Exception on /predict [POST]
+Traceback (most recent call last):
+  File "D:\python_venv\strabag\lib\site-packages\flask\app.py", line 2447, in wsgi_app
+    response = self.full_dispatch_request()
+  File "D:\python_venv\strabag\lib\site-packages\flask\app.py", line 1952, in full_dispatch_request
+    rv = self.handle_user_exception(e)
+  File "D:\python_venv\strabag\lib\site-packages\flask\app.py", line 1821, in handle_user_exception
+    reraise(exc_type, exc_value, tb)
+  File "D:\python_venv\strabag\lib\site-packages\flask\_compat.py", line 39, in reraise
+    raise value
+  File "D:\python_venv\strabag\lib\site-packages\flask\app.py", line 1950, in full_dispatch_request
+    rv = self.dispatch_request()
+  File "D:\python_venv\strabag\lib\site-packages\flask\app.py", line 1936, in dispatch_request
+    return self.view_functions[rule.endpoint](**req.view_args)
+  File "D:/source/strabag/webserver.py", line 356, in predict_more_row
+    target_categories = conv.process_more_sentence(sentences)
+  File "D:\source\strabag\convert_excel.py", line 270, in process_more_sentence
+    cat_name = self.category_by_index[cat]
+KeyError: 0
+INFO:werkzeug:127.0.0.1 - - [18/Oct/2021 02:45:11] "[35m[1mPOST /predict HTTP/1.1[0m" 500 -
+INFO:werkzeug: * Running on http://127.0.0.1:3000/ (Press CTRL+C to quit)
+INFO:werkzeug:127.0.0.1 - - [18/Oct/2021 02:46:09] "[37mGET /project/status?id=139 HTTP/1.1[0m" 200 -
+INFO:werkzeug:127.0.0.1 - - [18/Oct/2021 02:46:09] "[37mGET /project/status?id=134 HTTP/1.1[0m" 200 -
+INFO:werkzeug:127.0.0.1 - - [18/Oct/2021 02:46:09] "[37mGET /check/training HTTP/1.1[0m" 200 -
+INFO:werkzeug: * Running on http://127.0.0.1:3000/ (Press CTRL+C to quit)
+INFO:werkzeug:127.0.0.1 - - [18/Oct/2021 03:03:35] "[37mGET /project/status?id=139 HTTP/1.1[0m" 200 -
+INFO:werkzeug:127.0.0.1 - - [18/Oct/2021 03:03:35] "[37mGET /project/status?id=134 HTTP/1.1[0m" 200 -
+INFO:werkzeug:127.0.0.1 - - [18/Oct/2021 03:03:35] "[37mGET /check/training HTTP/1.1[0m" 200 -
+ERROR:webserver:Exception on /predict [POST]
+Traceback (most recent call last):
+  File "D:\python_venv\strabag\lib\site-packages\flask\app.py", line 2447, in wsgi_app
+    response = self.full_dispatch_request()
+  File "D:\python_venv\strabag\lib\site-packages\flask\app.py", line 1952, in full_dispatch_request
+    rv = self.handle_user_exception(e)
+  File "D:\python_venv\strabag\lib\site-packages\flask\app.py", line 1821, in handle_user_exception
+    reraise(exc_type, exc_value, tb)
+  File "D:\python_venv\strabag\lib\site-packages\flask\_compat.py", line 39, in reraise
+    raise value
+  File "D:\python_venv\strabag\lib\site-packages\flask\app.py", line 1950, in full_dispatch_request
+    rv = self.dispatch_request()
+  File "D:\python_venv\strabag\lib\site-packages\flask\app.py", line 1936, in dispatch_request
+    return self.view_functions[rule.endpoint](**req.view_args)
+  File "D:/source/strabag/webserver.py", line 356, in predict_more_row
+    target_categories = conv.process_more_sentence(sentences)
+  File "D:\source\strabag\convert_excel.py", line 275, in process_more_sentence
+    cat_name = self.category_by_index[cat]
+KeyError: 0
+INFO:werkzeug:127.0.0.1 - - [18/Oct/2021 03:03:41] "[35m[1mPOST /predict HTTP/1.1[0m" 500 -
+INFO:werkzeug:127.0.0.1 - - [18/Oct/2021 03:04:11] "[37mGET /project/status?id=139 HTTP/1.1[0m" 200 -
+INFO:werkzeug:127.0.0.1 - - [18/Oct/2021 03:04:12] "[37mGET /project/status?id=134 HTTP/1.1[0m" 200 -
+INFO:werkzeug:127.0.0.1 - - [18/Oct/2021 03:04:12] "[37mGET /check/training HTTP/1.1[0m" 200 -
+ERROR:webserver:Exception on /predict [POST]
+Traceback (most recent call last):
+  File "D:\python_venv\strabag\lib\site-packages\flask\app.py", line 2447, in wsgi_app
+    response = self.full_dispatch_request()
+  File "D:\python_venv\strabag\lib\site-packages\flask\app.py", line 1952, in full_dispatch_request
+    rv = self.handle_user_exception(e)
+  File "D:\python_venv\strabag\lib\site-packages\flask\app.py", line 1821, in handle_user_exception
+    reraise(exc_type, exc_value, tb)
+  File "D:\python_venv\strabag\lib\site-packages\flask\_compat.py", line 39, in reraise
+    raise value
+  File "D:\python_venv\strabag\lib\site-packages\flask\app.py", line 1950, in full_dispatch_request
+    rv = self.dispatch_request()
+  File "D:\python_venv\strabag\lib\site-packages\flask\app.py", line 1936, in dispatch_request
+    return self.view_functions[rule.endpoint](**req.view_args)
+  File "D:/source/strabag/webserver.py", line 356, in predict_more_row
+    target_categories = conv.process_more_sentence(sentences)
+  File "D:\source\strabag\convert_excel.py", line 275, in process_more_sentence
+    cat_name = self.category_by_index[cat]
+KeyError: 0
+INFO:werkzeug:127.0.0.1 - - [18/Oct/2021 03:04:40] "[35m[1mPOST /predict HTTP/1.1[0m" 500 -
+INFO:werkzeug: * Running on http://127.0.0.1:3000/ (Press CTRL+C to quit)
+INFO:werkzeug:127.0.0.1 - - [18/Oct/2021 03:05:42] "[37mGET /project/status?id=139 HTTP/1.1[0m" 200 -
+INFO:werkzeug:127.0.0.1 - - [18/Oct/2021 03:05:43] "[37mGET /project/status?id=134 HTTP/1.1[0m" 200 -
+INFO:werkzeug:127.0.0.1 - - [18/Oct/2021 03:05:43] "[37mGET /check/training HTTP/1.1[0m" 200 -
+INFO:werkzeug: * Running on http://127.0.0.1:3000/ (Press CTRL+C to quit)
+INFO:werkzeug:127.0.0.1 - - [18/Oct/2021 03:08:30] "[37mGET /project/status?id=139 HTTP/1.1[0m" 200 -
+INFO:werkzeug:127.0.0.1 - - [18/Oct/2021 03:08:30] "[37mGET /project/status?id=134 HTTP/1.1[0m" 200 -
+INFO:werkzeug:127.0.0.1 - - [18/Oct/2021 03:08:30] "[37mGET /check/training HTTP/1.1[0m" 200 -
+INFO:werkzeug: * Running on http://127.0.0.1:3000/ (Press CTRL+C to quit)
+INFO:werkzeug:127.0.0.1 - - [18/Oct/2021 03:10:04] "[37mGET /project/status?id=139 HTTP/1.1[0m" 200 -
+INFO:werkzeug:127.0.0.1 - - [18/Oct/2021 03:10:04] "[37mGET /project/status?id=134 HTTP/1.1[0m" 200 -
+INFO:werkzeug:127.0.0.1 - - [18/Oct/2021 03:10:05] "[37mGET /check/training HTTP/1.1[0m" 200 -
+INFO:werkzeug: * Running on http://127.0.0.1:3000/ (Press CTRL+C to quit)
+INFO:werkzeug:127.0.0.1 - - [18/Oct/2021 03:15:03] "[37mGET /project/status?id=139 HTTP/1.1[0m" 200 -
+INFO:werkzeug:127.0.0.1 - - [18/Oct/2021 03:15:03] "[37mGET /project/status?id=134 HTTP/1.1[0m" 200 -
+INFO:werkzeug:127.0.0.1 - - [18/Oct/2021 03:15:03] "[37mGET /check/training HTTP/1.1[0m" 200 -
+ERROR:webserver:Exception on /predict [POST]
+Traceback (most recent call last):
+  File "D:\python_venv\strabag\lib\site-packages\flask\app.py", line 2447, in wsgi_app
+    response = self.full_dispatch_request()
+  File "D:\python_venv\strabag\lib\site-packages\flask\app.py", line 1952, in full_dispatch_request
+    rv = self.handle_user_exception(e)
+  File "D:\python_venv\strabag\lib\site-packages\flask\app.py", line 1821, in handle_user_exception
+    reraise(exc_type, exc_value, tb)
+  File "D:\python_venv\strabag\lib\site-packages\flask\_compat.py", line 39, in reraise
+    raise value
+  File "D:\python_venv\strabag\lib\site-packages\flask\app.py", line 1950, in full_dispatch_request
+    rv = self.dispatch_request()
+  File "D:\python_venv\strabag\lib\site-packages\flask\app.py", line 1936, in dispatch_request
+    return self.view_functions[rule.endpoint](**req.view_args)
+  File "D:/source/strabag/webserver.py", line 356, in predict_more_row
+    target_categories = conv.process_more_sentence(sentences)
+  File "D:\source\strabag\convert_excel.py", line 275, in process_more_sentence
+    cat_name = self.category_by_index[max_prob_category]
+KeyError: 0
+INFO:werkzeug:127.0.0.1 - - [18/Oct/2021 03:15:09] "[35m[1mPOST /predict HTTP/1.1[0m" 500 -
+INFO:werkzeug: * Running on http://127.0.0.1:3000/ (Press CTRL+C to quit)
+INFO:werkzeug:127.0.0.1 - - [18/Oct/2021 03:15:24] "[37mGET /project/status?id=134 HTTP/1.1[0m" 200 -
+INFO:werkzeug:127.0.0.1 - - [18/Oct/2021 03:15:24] "[37mGET /check/training HTTP/1.1[0m" 200 -
+INFO:werkzeug: * Running on http://127.0.0.1:3000/ (Press CTRL+C to quit)
+INFO:werkzeug:127.0.0.1 - - [18/Oct/2021 03:18:17] "[37mGET /project/status?id=139 HTTP/1.1[0m" 200 -
+INFO:werkzeug:127.0.0.1 - - [18/Oct/2021 03:18:17] "[37mGET /project/status?id=134 HTTP/1.1[0m" 200 -
+INFO:werkzeug:127.0.0.1 - - [18/Oct/2021 03:18:17] "[37mGET /check/training HTTP/1.1[0m" 200 -
+ERROR:webserver:Exception on /predict [POST]
+Traceback (most recent call last):
+  File "D:\python_venv\strabag\lib\site-packages\flask\app.py", line 2447, in wsgi_app
+    response = self.full_dispatch_request()
+  File "D:\python_venv\strabag\lib\site-packages\flask\app.py", line 1952, in full_dispatch_request
+    rv = self.handle_user_exception(e)
+  File "D:\python_venv\strabag\lib\site-packages\flask\app.py", line 1821, in handle_user_exception
+    reraise(exc_type, exc_value, tb)
+  File "D:\python_venv\strabag\lib\site-packages\flask\_compat.py", line 39, in reraise
+    raise value
+  File "D:\python_venv\strabag\lib\site-packages\flask\app.py", line 1950, in full_dispatch_request
+    rv = self.dispatch_request()
+  File "D:\python_venv\strabag\lib\site-packages\flask\app.py", line 1936, in dispatch_request
+    return self.view_functions[rule.endpoint](**req.view_args)
+  File "D:/source/strabag/webserver.py", line 356, in predict_more_row
+    target_categories = conv.process_more_sentence(sentences)
+  File "D:\source\strabag\convert_excel.py", line 273, in process_more_sentence
+    cat_name = self.category_by_index[max_prob_category]
+KeyError: 0
+INFO:werkzeug:127.0.0.1 - - [18/Oct/2021 03:19:14] "[35m[1mPOST /predict HTTP/1.1[0m" 500 -
+INFO:werkzeug: * Running on http://127.0.0.1:3000/ (Press CTRL+C to quit)
+INFO:werkzeug:127.0.0.1 - - [18/Oct/2021 03:20:29] "[37mGET /project/status?id=134 HTTP/1.1[0m" 200 -
+INFO:werkzeug:127.0.0.1 - - [18/Oct/2021 03:20:29] "[37mGET /check/training HTTP/1.1[0m" 200 -
+INFO:werkzeug: * Running on http://127.0.0.1:3000/ (Press CTRL+C to quit)
+INFO:werkzeug: * Running on http://127.0.0.1:3000/ (Press CTRL+C to quit)
+INFO:werkzeug: * Running on http://127.0.0.1:3000/ (Press CTRL+C to quit)
+INFO:werkzeug:127.0.0.1 - - [18/Oct/2021 03:23:49] "[37mGET /project/status?id=134 HTTP/1.1[0m" 200 -
+INFO:werkzeug:127.0.0.1 - - [18/Oct/2021 03:23:49] "[37mGET /check/training HTTP/1.1[0m" 200 -
+INFO:werkzeug: * Running on http://127.0.0.1:3000/ (Press CTRL+C to quit)
+INFO:werkzeug:127.0.0.1 - - [18/Oct/2021 03:25:58] "[37mGET /project/status?id=139 HTTP/1.1[0m" 200 -
+INFO:werkzeug:127.0.0.1 - - [18/Oct/2021 03:25:58] "[37mGET /project/status?id=134 HTTP/1.1[0m" 200 -
+INFO:werkzeug:127.0.0.1 - - [18/Oct/2021 03:25:58] "[37mGET /check/training HTTP/1.1[0m" 200 -
+ERROR:webserver:Exception on /predict [POST]
+Traceback (most recent call last):
+  File "D:\python_venv\strabag\lib\site-packages\flask\app.py", line 2447, in wsgi_app
+    response = self.full_dispatch_request()
+  File "D:\python_venv\strabag\lib\site-packages\flask\app.py", line 1953, in full_dispatch_request
+    return self.finalize_request(rv)
+  File "D:\python_venv\strabag\lib\site-packages\flask\app.py", line 1968, in finalize_request
+    response = self.make_response(rv)
+  File "D:\python_venv\strabag\lib\site-packages\flask\app.py", line 2127, in make_response
+    raise TypeError(
+TypeError: The view function did not return a valid response. The return type must be a string, dict, tuple, Response instance, or WSGI callable, but it was a list.
+INFO:werkzeug:127.0.0.1 - - [18/Oct/2021 03:26:07] "[35m[1mPOST /predict HTTP/1.1[0m" 500 -
+INFO:werkzeug: * Running on http://127.0.0.1:3000/ (Press CTRL+C to quit)
+INFO:werkzeug:127.0.0.1 - - [18/Oct/2021 03:26:24] "[37mGET /project/status?id=139 HTTP/1.1[0m" 200 -
+INFO:werkzeug:127.0.0.1 - - [18/Oct/2021 03:26:24] "[37mGET /project/status?id=134 HTTP/1.1[0m" 200 -
+INFO:werkzeug:127.0.0.1 - - [18/Oct/2021 03:26:24] "[37mGET /check/training HTTP/1.1[0m" 200 -
+INFO:werkzeug: * Running on http://127.0.0.1:3000/ (Press CTRL+C to quit)
+INFO:werkzeug:127.0.0.1 - - [18/Oct/2021 03:28:21] "[37mGET /project/status?id=139 HTTP/1.1[0m" 200 -
+INFO:werkzeug:127.0.0.1 - - [18/Oct/2021 03:28:21] "[37mGET /project/status?id=134 HTTP/1.1[0m" 200 -
+INFO:werkzeug:127.0.0.1 - - [18/Oct/2021 03:28:21] "[37mGET /check/training HTTP/1.1[0m" 200 -
+INFO:werkzeug:127.0.0.1 - - [18/Oct/2021 03:28:28] "[37mPOST /predict HTTP/1.1[0m" 200 -
+INFO:werkzeug:127.0.0.1 - - [18/Oct/2021 03:29:43] "[37mPOST /predict HTTP/1.1[0m" 200 -
+INFO:werkzeug:127.0.0.1 - - [18/Oct/2021 03:29:43] "[37mGET /read/all/category HTTP/1.1[0m" 200 -
+INFO:werkzeug: * Running on http://127.0.0.1:3000/ (Press CTRL+C to quit)
+INFO:werkzeug:127.0.0.1 - - [18/Oct/2021 03:35:52] "[37mGET /read/all/category HTTP/1.1[0m" 200 -
+INFO:werkzeug:127.0.0.1 - - [18/Oct/2021 03:35:56] "[37mPOST /predict HTTP/1.1[0m" 200 -
+INFO:werkzeug:127.0.0.1 - - [18/Oct/2021 03:42:18] "[37mGET /project/status?id=139 HTTP/1.1[0m" 200 -
+INFO:werkzeug:127.0.0.1 - - [18/Oct/2021 03:42:19] "[37mGET /project/status?id=134 HTTP/1.1[0m" 200 -
+INFO:werkzeug:127.0.0.1 - - [18/Oct/2021 03:42:19] "[37mGET /check/training HTTP/1.1[0m" 200 -
+INFO:werkzeug:127.0.0.1 - - [18/Oct/2021 03:42:23] "[37mGET /read/all/category HTTP/1.1[0m" 200 -
+INFO:werkzeug:127.0.0.1 - - [18/Oct/2021 03:42:26] "[37mPOST /predict HTTP/1.1[0m" 200 -
+INFO:werkzeug: * Running on http://127.0.0.1:3000/ (Press CTRL+C to quit)
+INFO:werkzeug:127.0.0.1 - - [18/Oct/2021 03:54:36] "[37mGET /project/status?id=139 HTTP/1.1[0m" 200 -
+INFO:werkzeug:127.0.0.1 - - [18/Oct/2021 03:54:36] "[37mGET /project/status?id=134 HTTP/1.1[0m" 200 -
+INFO:werkzeug:127.0.0.1 - - [18/Oct/2021 03:54:36] "[37mGET /check/training HTTP/1.1[0m" 200 -
+INFO:werkzeug:127.0.0.1 - - [18/Oct/2021 03:54:58] "[37mGET /read/all/category HTTP/1.1[0m" 200 -
+INFO:werkzeug:127.0.0.1 - - [18/Oct/2021 03:54:58] "[37mPOST /save/category HTTP/1.1[0m" 200 -
+INFO:werkzeug:127.0.0.1 - - [18/Oct/2021 03:54:59] "[37mPOST /save/category HTTP/1.1[0m" 200 -
+INFO:werkzeug:127.0.0.1 - - [18/Oct/2021 03:54:59] "[37mPOST /save/category HTTP/1.1[0m" 200 -
+INFO:werkzeug:127.0.0.1 - - [18/Oct/2021 03:54:59] "[37mPOST /save/category HTTP/1.1[0m" 200 -
+INFO:werkzeug:127.0.0.1 - - [18/Oct/2021 03:54:59] "[37mPOST /save/category HTTP/1.1[0m" 200 -
+INFO:werkzeug:127.0.0.1 - - [18/Oct/2021 03:55:00] "[37mPOST /save/category HTTP/1.1[0m" 200 -
+INFO:werkzeug:127.0.0.1 - - [18/Oct/2021 03:55:00] "[37mPOST /save/category HTTP/1.1[0m" 200 -
+INFO:werkzeug:127.0.0.1 - - [18/Oct/2021 03:55:00] "[37mPOST /save/category HTTP/1.1[0m" 200 -
+INFO:werkzeug:127.0.0.1 - - [18/Oct/2021 03:55:04] "[37mPOST /predict HTTP/1.1[0m" 200 -
+INFO:werkzeug:127.0.0.1 - - [18/Oct/2021 04:00:41] "[37mGET /project/status?id=139 HTTP/1.1[0m" 200 -
+INFO:werkzeug:127.0.0.1 - - [18/Oct/2021 04:00:42] "[37mGET /project/status?id=134 HTTP/1.1[0m" 200 -
+INFO:werkzeug:127.0.0.1 - - [18/Oct/2021 04:00:42] "[37mGET /check/training HTTP/1.1[0m" 200 -
+INFO:werkzeug:127.0.0.1 - - [18/Oct/2021 04:00:47] "[37mGET /read/all/category HTTP/1.1[0m" 200 -
+INFO:werkzeug:127.0.0.1 - - [18/Oct/2021 04:01:24] "[37mGET /project/status?id=139 HTTP/1.1[0m" 200 -
+INFO:werkzeug:127.0.0.1 - - [18/Oct/2021 04:01:24] "[37mGET /project/status?id=134 HTTP/1.1[0m" 200 -
+INFO:werkzeug:127.0.0.1 - - [18/Oct/2021 04:01:24] "[37mGET /check/training HTTP/1.1[0m" 200 -
+INFO:werkzeug:127.0.0.1 - - [18/Oct/2021 04:01:59] "[37mGET /project/status?id=139 HTTP/1.1[0m" 200 -
+INFO:werkzeug:127.0.0.1 - - [18/Oct/2021 04:01:59] "[37mGET /project/status?id=134 HTTP/1.1[0m" 200 -
+INFO:werkzeug:127.0.0.1 - - [18/Oct/2021 04:01:59] "[37mGET /check/training HTTP/1.1[0m" 200 -
+INFO:werkzeug:127.0.0.1 - - [18/Oct/2021 04:02:05] "[33mGET /read/all/token HTTP/1.1[0m" 404 -
+INFO:werkzeug:127.0.0.1 - - [18/Oct/2021 04:02:05] "[37mPOST /save/tokenlabel HTTP/1.1[0m" 200 -
+INFO:werkzeug:127.0.0.1 - - [18/Oct/2021 04:02:05] "[37mPOST /save/tokenlabel HTTP/1.1[0m" 200 -
+INFO:werkzeug:127.0.0.1 - - [18/Oct/2021 04:02:06] "[35m[1mPOST /save/tokenlabel HTTP/1.1[0m" 500 -
+INFO:werkzeug:127.0.0.1 - - [18/Oct/2021 04:02:06] "[37mPOST /save/tokenlabel HTTP/1.1[0m" 200 -
+INFO:werkzeug:127.0.0.1 - - [18/Oct/2021 04:02:06] "[35m[1mPOST /save/tokenlabel HTTP/1.1[0m" 500 -
+INFO:werkzeug:127.0.0.1 - - [18/Oct/2021 04:02:07] "[37mPOST /save/tokenlabel HTTP/1.1[0m" 200 -
+INFO:werkzeug:127.0.0.1 - - [18/Oct/2021 04:02:07] "[37mPOST /save/tokenlabel HTTP/1.1[0m" 200 -
+INFO:werkzeug:127.0.0.1 - - [18/Oct/2021 04:02:07] "[37mPOST /save/tokenlabel HTTP/1.1[0m" 200 -
+INFO:werkzeug:127.0.0.1 - - [18/Oct/2021 04:02:07] "[37mPOST /save/tokenlabel HTTP/1.1[0m" 200 -
+INFO:werkzeug:127.0.0.1 - - [18/Oct/2021 04:02:08] "[37mPOST /save/tokenlabel HTTP/1.1[0m" 200 -
+INFO:werkzeug:127.0.0.1 - - [18/Oct/2021 04:02:08] "[37mPOST /save/tokenlabel HTTP/1.1[0m" 200 -
+INFO:werkzeug:127.0.0.1 - - [18/Oct/2021 04:02:08] "[37mPOST /save/tokenlabel HTTP/1.1[0m" 200 -
+INFO:werkzeug:127.0.0.1 - - [18/Oct/2021 04:02:08] "[35m[1mPOST /save/tokenlabel HTTP/1.1[0m" 500 -
+INFO:werkzeug:127.0.0.1 - - [18/Oct/2021 04:02:09] "[35m[1mPOST /save/tokenlabel HTTP/1.1[0m" 500 -
+INFO:werkzeug:127.0.0.1 - - [18/Oct/2021 04:02:09] "[35m[1mPOST /save/tokenlabel HTTP/1.1[0m" 500 -
+INFO:werkzeug:127.0.0.1 - - [18/Oct/2021 04:02:09] "[37mPOST /save/tokenlabel HTTP/1.1[0m" 200 -
+INFO:werkzeug:127.0.0.1 - - [18/Oct/2021 04:02:09] "[37mPOST /save/tokenlabel HTTP/1.1[0m" 200 -
+INFO:werkzeug:127.0.0.1 - - [18/Oct/2021 04:02:09] "[37mPOST /save/tokenlabel HTTP/1.1[0m" 200 -
+INFO:werkzeug:127.0.0.1 - - [18/Oct/2021 04:02:10] "[37mPOST /save/tokenlabel HTTP/1.1[0m" 200 -
+INFO:werkzeug:127.0.0.1 - - [18/Oct/2021 04:02:10] "[35m[1mPOST /save/tokenlabel HTTP/1.1[0m" 500 -
+INFO:werkzeug:127.0.0.1 - - [18/Oct/2021 04:02:10] "[37mPOST /save/tokenlabel HTTP/1.1[0m" 200 -
+INFO:werkzeug:127.0.0.1 - - [18/Oct/2021 04:02:12] "[37mPOST /save/sentence HTTP/1.1[0m" 200 -
+INFO:werkzeug:127.0.0.1 - - [18/Oct/2021 04:02:13] "[37mPOST /save/sentence HTTP/1.1[0m" 200 -
+INFO:werkzeug:127.0.0.1 - - [18/Oct/2021 04:02:13] "[37mPOST /save/sentence HTTP/1.1[0m" 200 -
+INFO:werkzeug:127.0.0.1 - - [18/Oct/2021 04:02:13] "[37mPOST /save/sentence HTTP/1.1[0m" 200 -
+INFO:werkzeug:127.0.0.1 - - [18/Oct/2021 04:02:13] "[37mPOST /save/sentence HTTP/1.1[0m" 200 -
+INFO:werkzeug:127.0.0.1 - - [18/Oct/2021 04:02:13] "[37mPOST /save/sentence HTTP/1.1[0m" 200 -
+INFO:werkzeug:127.0.0.1 - - [18/Oct/2021 04:02:13] "[37mPOST /save/sentence HTTP/1.1[0m" 200 -
+INFO:werkzeug:127.0.0.1 - - [18/Oct/2021 04:02:13] "[37mPOST /save/sentence HTTP/1.1[0m" 200 -
+INFO:werkzeug:127.0.0.1 - - [18/Oct/2021 04:02:13] "[37mPOST /save/sentence HTTP/1.1[0m" 200 -
+INFO:werkzeug:127.0.0.1 - - [18/Oct/2021 04:02:13] "[37mPOST /save/sentence HTTP/1.1[0m" 200 -
+INFO:werkzeug:127.0.0.1 - - [18/Oct/2021 04:02:13] "[37mPOST /save/sentence HTTP/1.1[0m" 200 -
+INFO:werkzeug:127.0.0.1 - - [18/Oct/2021 04:02:14] "[37mPOST /save/sentence HTTP/1.1[0m" 200 -
+INFO:werkzeug:127.0.0.1 - - [18/Oct/2021 04:02:14] "[37mPOST /save/sentence HTTP/1.1[0m" 200 -
+INFO:werkzeug:127.0.0.1 - - [18/Oct/2021 04:02:14] "[37mPOST /save/sentence HTTP/1.1[0m" 200 -
+INFO:werkzeug:127.0.0.1 - - [18/Oct/2021 04:02:15] "[37mPOST /save/sentence HTTP/1.1[0m" 200 -
+INFO:werkzeug:127.0.0.1 - - [18/Oct/2021 04:02:15] "[37mPOST /save/sentence HTTP/1.1[0m" 200 -
+INFO:werkzeug:127.0.0.1 - - [18/Oct/2021 04:02:15] "[37mPOST /save/sentence HTTP/1.1[0m" 200 -
+INFO:werkzeug:127.0.0.1 - - [18/Oct/2021 04:02:15] "[37mPOST /save/sentence HTTP/1.1[0m" 200 -
+INFO:werkzeug:127.0.0.1 - - [18/Oct/2021 04:02:15] "[37mPOST /save/sentence HTTP/1.1[0m" 200 -
+INFO:werkzeug:127.0.0.1 - - [18/Oct/2021 04:02:15] "[37mPOST /save/sentence HTTP/1.1[0m" 200 -
+INFO:werkzeug:127.0.0.1 - - [18/Oct/2021 04:02:15] "[37mPOST /save/sentence HTTP/1.1[0m" 200 -
+INFO:werkzeug:127.0.0.1 - - [18/Oct/2021 04:02:15] "[37mPOST /save/sentence HTTP/1.1[0m" 200 -
+INFO:werkzeug:127.0.0.1 - - [18/Oct/2021 04:02:15] "[37mPOST /save/sentence HTTP/1.1[0m" 200 -
+INFO:werkzeug:127.0.0.1 - - [18/Oct/2021 04:02:15] "[37mPOST /save/sentence HTTP/1.1[0m" 200 -
+INFO:werkzeug:127.0.0.1 - - [18/Oct/2021 04:02:15] "[37mPOST /save/sentence HTTP/1.1[0m" 200 -
+INFO:werkzeug:127.0.0.1 - - [18/Oct/2021 04:02:15] "[37mPOST /save/sentence HTTP/1.1[0m" 200 -
+INFO:werkzeug:127.0.0.1 - - [18/Oct/2021 04:02:15] "[37mPOST /save/sentence HTTP/1.1[0m" 200 -
+INFO:werkzeug:127.0.0.1 - - [18/Oct/2021 04:02:15] "[37mPOST /save/sentence HTTP/1.1[0m" 200 -
+INFO:werkzeug:127.0.0.1 - - [18/Oct/2021 04:02:15] "[37mPOST /save/sentence HTTP/1.1[0m" 200 -
+INFO:werkzeug:127.0.0.1 - - [18/Oct/2021 04:02:15] "[37mPOST /save/sentence HTTP/1.1[0m" 200 -
+INFO:werkzeug:127.0.0.1 - - [18/Oct/2021 04:02:15] "[37mPOST /save/sentence HTTP/1.1[0m" 200 -
+INFO:werkzeug:127.0.0.1 - - [18/Oct/2021 04:02:15] "[37mPOST /save/sentence HTTP/1.1[0m" 200 -
+INFO:werkzeug:127.0.0.1 - - [18/Oct/2021 04:02:15] "[37mPOST /save/sentence HTTP/1.1[0m" 200 -
+INFO:werkzeug:127.0.0.1 - - [18/Oct/2021 04:02:15] "[37mPOST /save/sentence HTTP/1.1[0m" 200 -
+INFO:werkzeug:127.0.0.1 - - [18/Oct/2021 04:02:15] "[37mPOST /save/sentence HTTP/1.1[0m" 200 -
+INFO:werkzeug:127.0.0.1 - - [18/Oct/2021 04:02:15] "[37mPOST /save/sentence HTTP/1.1[0m" 200 -
+INFO:werkzeug:127.0.0.1 - - [18/Oct/2021 04:02:15] "[37mPOST /save/sentence HTTP/1.1[0m" 200 -
+INFO:werkzeug:127.0.0.1 - - [18/Oct/2021 04:02:16] "[37mPOST /save/sentence HTTP/1.1[0m" 200 -
+INFO:werkzeug:127.0.0.1 - - [18/Oct/2021 04:02:16] "[37mPOST /save/sentence HTTP/1.1[0m" 200 -
+INFO:werkzeug:127.0.0.1 - - [18/Oct/2021 04:02:16] "[37mPOST /save/sentence HTTP/1.1[0m" 200 -
+INFO:werkzeug:127.0.0.1 - - [18/Oct/2021 04:02:16] "[37mPOST /save/sentence HTTP/1.1[0m" 200 -
+INFO:werkzeug:127.0.0.1 - - [18/Oct/2021 04:02:16] "[37mPOST /save/sentence HTTP/1.1[0m" 200 -
+INFO:werkzeug:127.0.0.1 - - [18/Oct/2021 04:02:16] "[37mPOST /save/sentence HTTP/1.1[0m" 200 -
+INFO:werkzeug:127.0.0.1 - - [18/Oct/2021 04:02:16] "[37mPOST /save/sentence HTTP/1.1[0m" 200 -
+INFO:werkzeug:127.0.0.1 - - [18/Oct/2021 04:02:17] "[37mPOST /save/sentence HTTP/1.1[0m" 200 -
+INFO:werkzeug:127.0.0.1 - - [18/Oct/2021 04:02:17] "[37mPOST /save/sentence HTTP/1.1[0m" 200 -
+INFO:werkzeug:127.0.0.1 - - [18/Oct/2021 04:02:17] "[37mPOST /save/sentence HTTP/1.1[0m" 200 -
+INFO:werkzeug:127.0.0.1 - - [18/Oct/2021 04:02:17] "[37mPOST /save/sentence HTTP/1.1[0m" 200 -
+INFO:werkzeug:127.0.0.1 - - [18/Oct/2021 04:02:17] "[37mPOST /save/sentence HTTP/1.1[0m" 200 -
+INFO:werkzeug:127.0.0.1 - - [18/Oct/2021 04:02:17] "[37mPOST /save/sentence HTTP/1.1[0m" 200 -
+INFO:werkzeug:127.0.0.1 - - [18/Oct/2021 04:02:17] "[37mPOST /save/sentence HTTP/1.1[0m" 200 -
+INFO:werkzeug:127.0.0.1 - - [18/Oct/2021 04:02:17] "[37mPOST /save/sentence HTTP/1.1[0m" 200 -
+INFO:werkzeug:127.0.0.1 - - [18/Oct/2021 04:02:17] "[37mPOST /save/sentence HTTP/1.1[0m" 200 -
+INFO:werkzeug:127.0.0.1 - - [18/Oct/2021 04:02:17] "[37mPOST /save/sentence HTTP/1.1[0m" 200 -
+INFO:werkzeug:127.0.0.1 - - [18/Oct/2021 04:02:17] "[37mPOST /save/sentence HTTP/1.1[0m" 200 -
+INFO:werkzeug:127.0.0.1 - - [18/Oct/2021 04:02:17] "[37mPOST /save/sentence HTTP/1.1[0m" 200 -
+INFO:werkzeug:127.0.0.1 - - [18/Oct/2021 04:02:17] "[37mPOST /save/sentence HTTP/1.1[0m" 200 -
+INFO:werkzeug:127.0.0.1 - - [18/Oct/2021 04:02:18] "[37mPOST /save/sentence HTTP/1.1[0m" 200 -
+INFO:werkzeug:127.0.0.1 - - [18/Oct/2021 04:02:18] "[37mPOST /save/sentence HTTP/1.1[0m" 200 -
+INFO:werkzeug:127.0.0.1 - - [18/Oct/2021 04:02:18] "[37mPOST /save/sentence HTTP/1.1[0m" 200 -
+INFO:werkzeug:127.0.0.1 - - [18/Oct/2021 04:02:18] "[37mPOST /save/sentence HTTP/1.1[0m" 200 -
+INFO:werkzeug:127.0.0.1 - - [18/Oct/2021 04:02:18] "[37mPOST /save/sentence HTTP/1.1[0m" 200 -
+INFO:werkzeug:127.0.0.1 - - [18/Oct/2021 04:02:18] "[37mPOST /save/sentence HTTP/1.1[0m" 200 -
+INFO:werkzeug:127.0.0.1 - - [18/Oct/2021 04:02:19] "[37mPOST /save/sentence HTTP/1.1[0m" 200 -
+INFO:werkzeug:127.0.0.1 - - [18/Oct/2021 04:02:19] "[37mPOST /save/sentence HTTP/1.1[0m" 200 -
+INFO:werkzeug:127.0.0.1 - - [18/Oct/2021 04:02:19] "[37mPOST /save/sentence HTTP/1.1[0m" 200 -
+INFO:werkzeug:127.0.0.1 - - [18/Oct/2021 04:02:19] "[37mPOST /save/sentence HTTP/1.1[0m" 200 -
+INFO:werkzeug:127.0.0.1 - - [18/Oct/2021 04:02:19] "[37mPOST /save/sentence HTTP/1.1[0m" 200 -
+INFO:werkzeug:127.0.0.1 - - [18/Oct/2021 04:02:19] "[37mPOST /save/sentence HTTP/1.1[0m" 200 -
+INFO:werkzeug:127.0.0.1 - - [18/Oct/2021 04:02:19] "[37mPOST /save/sentence HTTP/1.1[0m" 200 -
+INFO:werkzeug:127.0.0.1 - - [18/Oct/2021 04:02:19] "[37mPOST /save/sentence HTTP/1.1[0m" 200 -
+INFO:werkzeug:127.0.0.1 - - [18/Oct/2021 04:02:19] "[37mPOST /save/sentence HTTP/1.1[0m" 200 -
+INFO:werkzeug:127.0.0.1 - - [18/Oct/2021 04:02:19] "[37mPOST /save/sentence HTTP/1.1[0m" 200 -
+INFO:werkzeug:127.0.0.1 - - [18/Oct/2021 04:02:19] "[37mPOST /save/sentence HTTP/1.1[0m" 200 -
+INFO:werkzeug:127.0.0.1 - - [18/Oct/2021 04:02:19] "[37mPOST /save/sentence HTTP/1.1[0m" 200 -
+INFO:werkzeug:127.0.0.1 - - [18/Oct/2021 04:02:19] "[37mPOST /save/sentence HTTP/1.1[0m" 200 -
+INFO:werkzeug:127.0.0.1 - - [18/Oct/2021 04:02:19] "[37mPOST /save/sentence HTTP/1.1[0m" 200 -
+INFO:werkzeug:127.0.0.1 - - [18/Oct/2021 04:02:19] "[37mPOST /save/sentence HTTP/1.1[0m" 200 -
+INFO:werkzeug:127.0.0.1 - - [18/Oct/2021 04:02:19] "[37mPOST /save/sentence HTTP/1.1[0m" 200 -
+INFO:werkzeug:127.0.0.1 - - [18/Oct/2021 04:02:20] "[37mPOST /save/sentence HTTP/1.1[0m" 200 -
+INFO:werkzeug:127.0.0.1 - - [18/Oct/2021 04:02:20] "[37mPOST /save/sentence HTTP/1.1[0m" 200 -
+INFO:werkzeug:127.0.0.1 - - [18/Oct/2021 04:02:20] "[37mPOST /save/sentence HTTP/1.1[0m" 200 -
+INFO:werkzeug:127.0.0.1 - - [18/Oct/2021 04:02:20] "[37mPOST /save/sentence HTTP/1.1[0m" 200 -
+ERROR:webserver:Exception on /start/training [GET]
+Traceback (most recent call last):
+  File "D:\python_venv\strabag\lib\site-packages\flask\app.py", line 2447, in wsgi_app
+    response = self.full_dispatch_request()
+  File "D:\python_venv\strabag\lib\site-packages\flask\app.py", line 1952, in full_dispatch_request
+    rv = self.handle_user_exception(e)
+  File "D:\python_venv\strabag\lib\site-packages\flask\app.py", line 1821, in handle_user_exception
+    reraise(exc_type, exc_value, tb)
+  File "D:\python_venv\strabag\lib\site-packages\flask\_compat.py", line 39, in reraise
+    raise value
+  File "D:\python_venv\strabag\lib\site-packages\flask\app.py", line 1950, in full_dispatch_request
+    rv = self.dispatch_request()
+  File "D:\python_venv\strabag\lib\site-packages\flask\app.py", line 1936, in dispatch_request
+    return self.view_functions[rule.endpoint](**req.view_args)
+  File "D:/source/strabag/webserver.py", line 366, in start_training
+    model.train()
+  File "D:\source\strabag\hubert_finetune.py", line 338, in train
+    scaler.scale(loss).backward()
+  File "D:\python_venv\strabag\lib\site-packages\torch\cuda\amp\grad_scaler.py", line 163, in scale
+    self._lazy_init_scale_growth_tracker(outputs.device)
+  File "D:\python_venv\strabag\lib\site-packages\torch\cuda\amp\grad_scaler.py", line 144, in _lazy_init_scale_growth_tracker
+    self._growth_tracker = torch.full((1,), self._init_growth_tracker, dtype=torch.int32, device=dev)
+RuntimeError: CUDA error: device-side assert triggered
+CUDA kernel errors might be asynchronously reported at some other API call,so the stacktrace below might be incorrect.
+For debugging consider passing CUDA_LAUNCH_BLOCKING=1.
+INFO:werkzeug:127.0.0.1 - - [18/Oct/2021 04:02:45] "[35m[1mGET /start/training HTTP/1.1[0m" 500 -
+INFO:werkzeug:127.0.0.1 - - [18/Oct/2021 04:03:46] "[37mGET /check/training HTTP/1.1[0m" 200 -
+INFO:werkzeug: * Running on http://127.0.0.1:3000/ (Press CTRL+C to quit)
+ERROR:webserver:Exception on /start/training [GET]
+Traceback (most recent call last):
+  File "D:\python_venv\strabag\lib\site-packages\flask\app.py", line 2447, in wsgi_app
+    response = self.full_dispatch_request()
+  File "D:\python_venv\strabag\lib\site-packages\flask\app.py", line 1952, in full_dispatch_request
+    rv = self.handle_user_exception(e)
+  File "D:\python_venv\strabag\lib\site-packages\flask\app.py", line 1821, in handle_user_exception
+    reraise(exc_type, exc_value, tb)
+  File "D:\python_venv\strabag\lib\site-packages\flask\_compat.py", line 39, in reraise
+    raise value
+  File "D:\python_venv\strabag\lib\site-packages\flask\app.py", line 1950, in full_dispatch_request
+    rv = self.dispatch_request()
+  File "D:\python_venv\strabag\lib\site-packages\flask\app.py", line 1936, in dispatch_request
+    return self.view_functions[rule.endpoint](**req.view_args)
+  File "D:/source/strabag/webserver.py", line 366, in start_training
+    model.train()
+  File "D:\source\strabag\hubert_finetune.py", line 336, in train
+    out = model(input_ids=data, labels_sentence=target, labels_token=target_token, attention_mask=mask, return_dict=True)
+  File "D:\python_venv\strabag\lib\site-packages\torch\nn\modules\module.py", line 1051, in _call_impl
+    return forward_call(*input, **kwargs)
+  File "D:\python_venv\strabag\lib\site-packages\transformers\models\bert\modeling_bert.py", line 1561, in forward
+    total_loss = loss + loss_token
+RuntimeError: CUDA error: device-side assert triggered
+CUDA kernel errors might be asynchronously reported at some other API call,so the stacktrace below might be incorrect.
+For debugging consider passing CUDA_LAUNCH_BLOCKING=1.
+INFO:werkzeug:127.0.0.1 - - [18/Oct/2021 04:06:48] "[35m[1mGET /start/training HTTP/1.1[0m" 500 -
+INFO:werkzeug:127.0.0.1 - - [18/Oct/2021 04:07:49] "[37mGET /check/training HTTP/1.1[0m" 200 -
+INFO:werkzeug: * Running on http://127.0.0.1:3000/ (Press CTRL+C to quit)
+INFO:werkzeug: * Running on http://127.0.0.1:3000/ (Press CTRL+C to quit)
+ERROR:webserver:Exception on /start/training [GET]
+Traceback (most recent call last):
+  File "D:\python_venv\strabag\lib\site-packages\flask\app.py", line 2447, in wsgi_app
+    response = self.full_dispatch_request()
+  File "D:\python_venv\strabag\lib\site-packages\flask\app.py", line 1952, in full_dispatch_request
+    rv = self.handle_user_exception(e)
+  File "D:\python_venv\strabag\lib\site-packages\flask\app.py", line 1821, in handle_user_exception
+    reraise(exc_type, exc_value, tb)
+  File "D:\python_venv\strabag\lib\site-packages\flask\_compat.py", line 39, in reraise
+    raise value
+  File "D:\python_venv\strabag\lib\site-packages\flask\app.py", line 1950, in full_dispatch_request
+    rv = self.dispatch_request()
+  File "D:\python_venv\strabag\lib\site-packages\flask\app.py", line 1936, in dispatch_request
+    return self.view_functions[rule.endpoint](**req.view_args)
+  File "D:/source/strabag/webserver.py", line 366, in start_training
+    model.train()
+  File "D:\source\strabag\hubert_finetune.py", line 338, in train
+    scaler.scale(loss).backward()
+  File "D:\python_venv\strabag\lib\site-packages\torch\_tensor.py", line 255, in backward
+    torch.autograd.backward(self, gradient, retain_graph, create_graph, inputs=inputs)
+  File "D:\python_venv\strabag\lib\site-packages\torch\autograd\__init__.py", line 147, in backward
+    Variable._execution_engine.run_backward(
+RuntimeError: CUDA error: device-side assert triggered
+CUDA kernel errors might be asynchronously reported at some other API call,so the stacktrace below might be incorrect.
+For debugging consider passing CUDA_LAUNCH_BLOCKING=1.
+INFO:werkzeug:127.0.0.1 - - [18/Oct/2021 04:09:47] "[35m[1mGET /start/training HTTP/1.1[0m" 500 -
+INFO:werkzeug: * Running on http://127.0.0.1:3000/ (Press CTRL+C to quit)
+INFO:werkzeug:127.0.0.1 - - [18/Oct/2021 04:10:39] "[37mGET /project/status?id=139 HTTP/1.1[0m" 200 -
+INFO:werkzeug:127.0.0.1 - - [18/Oct/2021 04:10:39] "[37mGET /project/status?id=134 HTTP/1.1[0m" 200 -
+INFO:werkzeug:127.0.0.1 - - [18/Oct/2021 04:10:39] "[37mGET /check/training HTTP/1.1[0m" 200 -
+ERROR:webserver:Exception on /start/training [GET]
+Traceback (most recent call last):
+  File "D:\python_venv\strabag\lib\site-packages\flask\app.py", line 2447, in wsgi_app
+    response = self.full_dispatch_request()
+  File "D:\python_venv\strabag\lib\site-packages\flask\app.py", line 1952, in full_dispatch_request
+    rv = self.handle_user_exception(e)
+  File "D:\python_venv\strabag\lib\site-packages\flask\app.py", line 1821, in handle_user_exception
+    reraise(exc_type, exc_value, tb)
+  File "D:\python_venv\strabag\lib\site-packages\flask\_compat.py", line 39, in reraise
+    raise value
+  File "D:\python_venv\strabag\lib\site-packages\flask\app.py", line 1950, in full_dispatch_request
+    rv = self.dispatch_request()
+  File "D:\python_venv\strabag\lib\site-packages\flask\app.py", line 1936, in dispatch_request
+    return self.view_functions[rule.endpoint](**req.view_args)
+  File "D:/source/strabag/webserver.py", line 366, in start_training
+    model.train()
+  File "D:\source\strabag\hubert_finetune.py", line 338, in train
+    scaler.scale(loss).backward()
+  File "D:\python_venv\strabag\lib\site-packages\torch\_tensor.py", line 255, in backward
+    torch.autograd.backward(self, gradient, retain_graph, create_graph, inputs=inputs)
+  File "D:\python_venv\strabag\lib\site-packages\torch\autograd\__init__.py", line 147, in backward
+    Variable._execution_engine.run_backward(
+RuntimeError: CUDA error: device-side assert triggered
+CUDA kernel errors might be asynchronously reported at some other API call,so the stacktrace below might be incorrect.
+For debugging consider passing CUDA_LAUNCH_BLOCKING=1.
+INFO:werkzeug:127.0.0.1 - - [18/Oct/2021 04:10:53] "[35m[1mGET /start/training HTTP/1.1[0m" 500 -
+INFO:werkzeug:127.0.0.1 - - [18/Oct/2021 04:11:54] "[37mGET /check/training HTTP/1.1[0m" 200 -
+INFO:werkzeug: * Running on http://127.0.0.1:3000/ (Press CTRL+C to quit)
+ERROR:webserver:Exception on /start/training [GET]
+Traceback (most recent call last):
+  File "D:\python_venv\strabag\lib\site-packages\flask\app.py", line 2447, in wsgi_app
+    response = self.full_dispatch_request()
+  File "D:\python_venv\strabag\lib\site-packages\flask\app.py", line 1952, in full_dispatch_request
+    rv = self.handle_user_exception(e)
+  File "D:\python_venv\strabag\lib\site-packages\flask\app.py", line 1821, in handle_user_exception
+    reraise(exc_type, exc_value, tb)
+  File "D:\python_venv\strabag\lib\site-packages\flask\_compat.py", line 39, in reraise
+    raise value
+  File "D:\python_venv\strabag\lib\site-packages\flask\app.py", line 1950, in full_dispatch_request
+    rv = self.dispatch_request()
+  File "D:\python_venv\strabag\lib\site-packages\flask\app.py", line 1936, in dispatch_request
+    return self.view_functions[rule.endpoint](**req.view_args)
+  File "D:/source/strabag/webserver.py", line 366, in start_training
+    model.train()
+  File "D:\source\strabag\hubert_finetune.py", line 310, in train
+    model = transformers.BertForSequenceAndTokenClassification.from_pretrained(
+  File "D:\python_venv\strabag\lib\site-packages\transformers\modeling_utils.py", line 1213, in from_pretrained
+    model, missing_keys, unexpected_keys, error_msgs = cls._load_state_dict_into_model(
+  File "D:\python_venv\strabag\lib\site-packages\transformers\modeling_utils.py", line 1354, in _load_state_dict_into_model
+    raise RuntimeError(f"Error(s) in loading state_dict for {model.__class__.__name__}:\n\t{error_msg}")
+RuntimeError: Error(s) in loading state_dict for BertForSequenceAndTokenClassification:
+	size mismatch for bert.embeddings.token_type_embeddings.weight: copying a param with shape torch.Size([2, 768]) from checkpoint, the shape in current model is torch.Size([11, 768]).
+INFO:werkzeug:127.0.0.1 - - [18/Oct/2021 04:13:46] "[35m[1mGET /start/training HTTP/1.1[0m" 500 -
+INFO:werkzeug:127.0.0.1 - - [18/Oct/2021 04:14:46] "[37mGET /check/training HTTP/1.1[0m" 200 -
+INFO:werkzeug: * Running on http://127.0.0.1:3000/ (Press CTRL+C to quit)
+ERROR:webserver:Exception on /start/training [GET]
+Traceback (most recent call last):
+  File "D:\python_venv\strabag\lib\site-packages\flask\app.py", line 2447, in wsgi_app
+    response = self.full_dispatch_request()
+  File "D:\python_venv\strabag\lib\site-packages\flask\app.py", line 1952, in full_dispatch_request
+    rv = self.handle_user_exception(e)
+  File "D:\python_venv\strabag\lib\site-packages\flask\app.py", line 1821, in handle_user_exception
+    reraise(exc_type, exc_value, tb)
+  File "D:\python_venv\strabag\lib\site-packages\flask\_compat.py", line 39, in reraise
+    raise value
+  File "D:\python_venv\strabag\lib\site-packages\flask\app.py", line 1950, in full_dispatch_request
+    rv = self.dispatch_request()
+  File "D:\python_venv\strabag\lib\site-packages\flask\app.py", line 1936, in dispatch_request
+    return self.view_functions[rule.endpoint](**req.view_args)
+  File "D:/source/strabag/webserver.py", line 366, in start_training
+    model.train()
+  File "D:\source\strabag\hubert_finetune.py", line 310, in train
+    model = transformers.BertForSequenceAndTokenClassification.from_pretrained(
+  File "D:\python_venv\strabag\lib\site-packages\transformers\modeling_utils.py", line 1213, in from_pretrained
+    model, missing_keys, unexpected_keys, error_msgs = cls._load_state_dict_into_model(
+  File "D:\python_venv\strabag\lib\site-packages\transformers\modeling_utils.py", line 1354, in _load_state_dict_into_model
+    raise RuntimeError(f"Error(s) in loading state_dict for {model.__class__.__name__}:\n\t{error_msg}")
+RuntimeError: Error(s) in loading state_dict for BertForSequenceAndTokenClassification:
+	size mismatch for bert.embeddings.token_type_embeddings.weight: copying a param with shape torch.Size([2, 768]) from checkpoint, the shape in current model is torch.Size([11, 768]).
+INFO:werkzeug:127.0.0.1 - - [18/Oct/2021 04:15:05] "[35m[1mGET /start/training HTTP/1.1[0m" 500 -
+INFO:werkzeug: * Running on http://127.0.0.1:3000/ (Press CTRL+C to quit)
+INFO:werkzeug: * Running on http://127.0.0.1:3000/ (Press CTRL+C to quit)
+INFO:werkzeug:127.0.0.1 - - [18/Oct/2021 04:16:05] "[37mGET /project/status?id=139 HTTP/1.1[0m" 200 -
+INFO:werkzeug:127.0.0.1 - - [18/Oct/2021 04:16:05] "[37mGET /project/status?id=134 HTTP/1.1[0m" 200 -
+INFO:werkzeug:127.0.0.1 - - [18/Oct/2021 04:16:05] "[37mGET /check/training HTTP/1.1[0m" 200 -
+INFO:werkzeug: * Running on http://127.0.0.1:3000/ (Press CTRL+C to quit)
+INFO:werkzeug: * Running on http://127.0.0.1:3000/ (Press CTRL+C to quit)
+ERROR:webserver:Exception on /start/training [GET]
+Traceback (most recent call last):
+  File "D:\python_venv\strabag\lib\site-packages\flask\app.py", line 2447, in wsgi_app
+    response = self.full_dispatch_request()
+  File "D:\python_venv\strabag\lib\site-packages\flask\app.py", line 1952, in full_dispatch_request
+    rv = self.handle_user_exception(e)
+  File "D:\python_venv\strabag\lib\site-packages\flask\app.py", line 1821, in handle_user_exception
+    reraise(exc_type, exc_value, tb)
+  File "D:\python_venv\strabag\lib\site-packages\flask\_compat.py", line 39, in reraise
+    raise value
+  File "D:\python_venv\strabag\lib\site-packages\flask\app.py", line 1950, in full_dispatch_request
+    rv = self.dispatch_request()
+  File "D:\python_venv\strabag\lib\site-packages\flask\app.py", line 1936, in dispatch_request
+    return self.view_functions[rule.endpoint](**req.view_args)
+  File "D:/source/strabag/webserver.py", line 366, in start_training
+    model.train()
+  File "D:\source\strabag\hubert_finetune.py", line 339, in train
+    scaler.scale(loss).backward()
+  File "D:\python_venv\strabag\lib\site-packages\torch\_tensor.py", line 255, in backward
+    torch.autograd.backward(self, gradient, retain_graph, create_graph, inputs=inputs)
+  File "D:\python_venv\strabag\lib\site-packages\torch\autograd\__init__.py", line 147, in backward
+    Variable._execution_engine.run_backward(
+RuntimeError: CUDA error: device-side assert triggered
+CUDA kernel errors might be asynchronously reported at some other API call,so the stacktrace below might be incorrect.
+For debugging consider passing CUDA_LAUNCH_BLOCKING=1.
+INFO:werkzeug:127.0.0.1 - - [18/Oct/2021 04:26:00] "[35m[1mGET /start/training HTTP/1.1[0m" 500 -
+INFO:werkzeug: * Running on http://127.0.0.1:3000/ (Press CTRL+C to quit)
+INFO:werkzeug:127.0.0.1 - - [18/Oct/2021 04:26:40] "[37mGET /project/status?id=139 HTTP/1.1[0m" 200 -
+INFO:werkzeug:127.0.0.1 - - [18/Oct/2021 04:26:40] "[37mGET /project/status?id=134 HTTP/1.1[0m" 200 -
+INFO:werkzeug:127.0.0.1 - - [18/Oct/2021 04:26:40] "[37mGET /check/training HTTP/1.1[0m" 200 -
+ERROR:webserver:Exception on /start/training [GET]
+Traceback (most recent call last):
+  File "D:\python_venv\strabag\lib\site-packages\flask\app.py", line 2447, in wsgi_app
+    response = self.full_dispatch_request()
+  File "D:\python_venv\strabag\lib\site-packages\flask\app.py", line 1952, in full_dispatch_request
+    rv = self.handle_user_exception(e)
+  File "D:\python_venv\strabag\lib\site-packages\flask\app.py", line 1821, in handle_user_exception
+    reraise(exc_type, exc_value, tb)
+  File "D:\python_venv\strabag\lib\site-packages\flask\_compat.py", line 39, in reraise
+    raise value
+  File "D:\python_venv\strabag\lib\site-packages\flask\app.py", line 1950, in full_dispatch_request
+    rv = self.dispatch_request()
+  File "D:\python_venv\strabag\lib\site-packages\flask\app.py", line 1936, in dispatch_request
+    return self.view_functions[rule.endpoint](**req.view_args)
+  File "D:/source/strabag/webserver.py", line 366, in start_training
+    model.train()
+  File "D:\source\strabag\hubert_finetune.py", line 339, in train
+    scaler.scale(loss).backward()
+  File "D:\python_venv\strabag\lib\site-packages\torch\_tensor.py", line 255, in backward
+    torch.autograd.backward(self, gradient, retain_graph, create_graph, inputs=inputs)
+  File "D:\python_venv\strabag\lib\site-packages\torch\autograd\__init__.py", line 147, in backward
+    Variable._execution_engine.run_backward(
+RuntimeError: cuda runtime error (710) : device-side assert triggered at C:/w/b/windows/pytorch/aten/src\THC/generic/THCTensorMath.cu:29
+INFO:werkzeug:127.0.0.1 - - [18/Oct/2021 04:26:55] "[35m[1mGET /start/training HTTP/1.1[0m" 500 -
+INFO:werkzeug: * Running on http://127.0.0.1:3000/ (Press CTRL+C to quit)
+INFO:werkzeug:127.0.0.1 - - [18/Oct/2021 04:27:56] "[37mGET /check/training HTTP/1.1[0m" 200 -
+INFO:werkzeug: * Running on http://127.0.0.1:3000/ (Press CTRL+C to quit)
+INFO:werkzeug: * Running on http://127.0.0.1:3000/ (Press CTRL+C to quit)
+ERROR:webserver:Exception on /start/training [GET]
+Traceback (most recent call last):
+  File "D:\python_venv\strabag\lib\site-packages\flask\app.py", line 2447, in wsgi_app
+    response = self.full_dispatch_request()
+  File "D:\python_venv\strabag\lib\site-packages\flask\app.py", line 1952, in full_dispatch_request
+    rv = self.handle_user_exception(e)
+  File "D:\python_venv\strabag\lib\site-packages\flask\app.py", line 1821, in handle_user_exception
+    reraise(exc_type, exc_value, tb)
+  File "D:\python_venv\strabag\lib\site-packages\flask\_compat.py", line 39, in reraise
+    raise value
+  File "D:\python_venv\strabag\lib\site-packages\flask\app.py", line 1950, in full_dispatch_request
+    rv = self.dispatch_request()
+  File "D:\python_venv\strabag\lib\site-packages\flask\app.py", line 1936, in dispatch_request
+    return self.view_functions[rule.endpoint](**req.view_args)
+  File "D:/source/strabag/webserver.py", line 366, in start_training
+    model.train()
+  File "D:\source\strabag\hubert_finetune.py", line 408, in train
+    print(config.id2label[str(int(id))])
+KeyError: '1'
+INFO:werkzeug:127.0.0.1 - - [18/Oct/2021 04:35:31] "[35m[1mGET /start/training HTTP/1.1[0m" 500 -
+INFO:werkzeug: * Running on http://127.0.0.1:3000/ (Press CTRL+C to quit)
+ERROR:webserver:Exception on /start/training [GET]
+Traceback (most recent call last):
+  File "D:\python_venv\strabag\lib\site-packages\flask\app.py", line 2447, in wsgi_app
+    response = self.full_dispatch_request()
+  File "D:\python_venv\strabag\lib\site-packages\flask\app.py", line 1952, in full_dispatch_request
+    rv = self.handle_user_exception(e)
+  File "D:\python_venv\strabag\lib\site-packages\flask\app.py", line 1821, in handle_user_exception
+    reraise(exc_type, exc_value, tb)
+  File "D:\python_venv\strabag\lib\site-packages\flask\_compat.py", line 39, in reraise
+    raise value
+  File "D:\python_venv\strabag\lib\site-packages\flask\app.py", line 1950, in full_dispatch_request
+    rv = self.dispatch_request()
+  File "D:\python_venv\strabag\lib\site-packages\flask\app.py", line 1936, in dispatch_request
+    return self.view_functions[rule.endpoint](**req.view_args)
+  File "D:/source/strabag/webserver.py", line 366, in start_training
+    model.train()
+  File "D:\source\strabag\hubert_finetune.py", line 408, in train
+    print(config.id2label[str(int(id))])
+KeyError: '10'
+INFO:werkzeug:127.0.0.1 - - [18/Oct/2021 04:44:53] "[35m[1mGET /start/training HTTP/1.1[0m" 500 -
+INFO:werkzeug: * Running on http://127.0.0.1:3000/ (Press CTRL+C to quit)
+INFO:werkzeug: * Running on http://127.0.0.1:3000/ (Press CTRL+C to quit)
+INFO:root:validation loss: 1.2709548473358154
+INFO:root:training loss: 1.3406561613082886
+INFO:root:Accuracy sentence: 0.74375  Accuracy token: 0.8728601664304734
+INFO:root:Best model has saved, iteration: 45
+INFO:werkzeug:127.0.0.1 - - [18/Oct/2021 04:55:04] "[37mGET /start/training HTTP/1.1[0m" 200 -
+INFO:werkzeug: * Running on http://127.0.0.1:3000/ (Press CTRL+C to quit)
+INFO:root:validation loss: 0.5047050714492798
+INFO:root:training loss: 0.6405165195465088
+INFO:root:Accuracy sentence: 0.909375  Accuracy token: 0.8794981360435485
+INFO:root:Best model has saved, iteration: 91
+INFO:werkzeug:127.0.0.1 - - [18/Oct/2021 05:08:26] "[37mGET /start/training HTTP/1.1[0m" 200 -
+INFO:werkzeug: * Running on http://127.0.0.1:3000/ (Press CTRL+C to quit)
+INFO:werkzeug:127.0.0.1 - - [18/Oct/2021 05:14:14] "[37mGET /project/status?id=139 HTTP/1.1[0m" 200 -
+INFO:werkzeug:127.0.0.1 - - [18/Oct/2021 05:14:14] "[37mGET /project/status?id=134 HTTP/1.1[0m" 200 -
+INFO:werkzeug:127.0.0.1 - - [18/Oct/2021 05:14:14] "[37mGET /check/training HTTP/1.1[0m" 200 -
+INFO:werkzeug:127.0.0.1 - - [18/Oct/2021 05:19:37] "[37mGET /project/status?id=140 HTTP/1.1[0m" 200 -
+INFO:werkzeug:127.0.0.1 - - [18/Oct/2021 05:19:38] "[37mGET /project/status?id=139 HTTP/1.1[0m" 200 -
+INFO:werkzeug:127.0.0.1 - - [18/Oct/2021 05:19:38] "[37mGET /project/status?id=134 HTTP/1.1[0m" 200 -
+INFO:werkzeug:127.0.0.1 - - [18/Oct/2021 05:19:38] "[37mGET /check/training HTTP/1.1[0m" 200 -
+INFO:werkzeug:127.0.0.1 - - [18/Oct/2021 05:23:19] "[37mGET /project/status?id=142 HTTP/1.1[0m" 200 -
+INFO:werkzeug:127.0.0.1 - - [18/Oct/2021 05:23:19] "[37mGET /project/status?id=141 HTTP/1.1[0m" 200 -
+INFO:werkzeug:127.0.0.1 - - [18/Oct/2021 05:23:20] "[37mGET /project/status?id=140 HTTP/1.1[0m" 200 -
+INFO:werkzeug:127.0.0.1 - - [18/Oct/2021 05:23:20] "[37mGET /project/status?id=139 HTTP/1.1[0m" 200 -
+INFO:werkzeug:127.0.0.1 - - [18/Oct/2021 05:23:20] "[37mGET /project/status?id=134 HTTP/1.1[0m" 200 -
+INFO:werkzeug:127.0.0.1 - - [18/Oct/2021 05:23:20] "[37mGET /check/training HTTP/1.1[0m" 200 -
+INFO:werkzeug:127.0.0.1 - - [18/Oct/2021 05:26:03] "[37mGET /project/status?id=142 HTTP/1.1[0m" 200 -
+INFO:werkzeug:127.0.0.1 - - [18/Oct/2021 05:26:03] "[37mGET /project/status?id=141 HTTP/1.1[0m" 200 -
+INFO:werkzeug:127.0.0.1 - - [18/Oct/2021 05:26:03] "[37mGET /project/status?id=140 HTTP/1.1[0m" 200 -
+INFO:werkzeug:127.0.0.1 - - [18/Oct/2021 05:26:03] "[37mGET /project/status?id=139 HTTP/1.1[0m" 200 -
+INFO:werkzeug:127.0.0.1 - - [18/Oct/2021 05:26:03] "[37mGET /project/status?id=134 HTTP/1.1[0m" 200 -
+INFO:werkzeug:127.0.0.1 - - [18/Oct/2021 05:26:04] "[37mGET /check/training HTTP/1.1[0m" 200 -
+INFO:werkzeug:127.0.0.1 - - [18/Oct/2021 05:26:38] "[37mGET /read/all/category HTTP/1.1[0m" 200 -
+INFO:werkzeug:127.0.0.1 - - [18/Oct/2021 05:27:55] "[37mGET /project/status?id=141 HTTP/1.1[0m" 200 -
+INFO:werkzeug:127.0.0.1 - - [18/Oct/2021 05:27:55] "[37mGET /project/status?id=140 HTTP/1.1[0m" 200 -
+INFO:werkzeug:127.0.0.1 - - [18/Oct/2021 05:27:55] "[37mGET /project/status?id=139 HTTP/1.1[0m" 200 -
+INFO:werkzeug:127.0.0.1 - - [18/Oct/2021 05:27:55] "[37mGET /project/status?id=134 HTTP/1.1[0m" 200 -
+INFO:werkzeug:127.0.0.1 - - [18/Oct/2021 05:27:56] "[37mGET /check/training HTTP/1.1[0m" 200 -
+INFO:werkzeug:127.0.0.1 - - [18/Oct/2021 05:28:13] "[37mGET /read/all/category HTTP/1.1[0m" 200 -
+ERROR:webserver:Exception on /predict [POST]
+Traceback (most recent call last):
+  File "D:\python_venv\strabag\lib\site-packages\flask\app.py", line 2447, in wsgi_app
+    response = self.full_dispatch_request()
+  File "D:\python_venv\strabag\lib\site-packages\flask\app.py", line 1952, in full_dispatch_request
+    rv = self.handle_user_exception(e)
+  File "D:\python_venv\strabag\lib\site-packages\flask\app.py", line 1821, in handle_user_exception
+    reraise(exc_type, exc_value, tb)
+  File "D:\python_venv\strabag\lib\site-packages\flask\_compat.py", line 39, in reraise
+    raise value
+  File "D:\python_venv\strabag\lib\site-packages\flask\app.py", line 1950, in full_dispatch_request
+    rv = self.dispatch_request()
+  File "D:\python_venv\strabag\lib\site-packages\flask\app.py", line 1936, in dispatch_request
+    return self.view_functions[rule.endpoint](**req.view_args)
+  File "D:/source/strabag/webserver.py", line 356, in predict_more_row
+    if request.method == 'POST':
+  File "D:\source\strabag\convert_excel.py", line 265, in process_more_sentence
+    category, cat_prob, tokens, token_prob = self.model.predict(txt)
+  File "D:\source\strabag\hubert_model.py", line 105, in predict
+    self.model = transformers.BertForSequenceAndTokenClassification.from_pretrained(
+  File "D:\python_venv\strabag\lib\site-packages\transformers\modeling_utils.py", line 1213, in from_pretrained
+    model, missing_keys, unexpected_keys, error_msgs = cls._load_state_dict_into_model(
+  File "D:\python_venv\strabag\lib\site-packages\transformers\modeling_utils.py", line 1354, in _load_state_dict_into_model
+    raise RuntimeError(f"Error(s) in loading state_dict for {model.__class__.__name__}:\n\t{error_msg}")
+RuntimeError: Error(s) in loading state_dict for BertForSequenceAndTokenClassification:
+	size mismatch for classifier.weight: copying a param with shape torch.Size([12, 768]) from checkpoint, the shape in current model is torch.Size([11, 768]).
+	size mismatch for classifier.bias: copying a param with shape torch.Size([12]) from checkpoint, the shape in current model is torch.Size([11]).
+	size mismatch for classifier_token.weight: copying a param with shape torch.Size([64, 768]) from checkpoint, the shape in current model is torch.Size([25, 768]).
+	size mismatch for classifier_token.bias: copying a param with shape torch.Size([64]) from checkpoint, the shape in current model is torch.Size([25]).
+INFO:werkzeug:127.0.0.1 - - [18/Oct/2021 05:28:15] "[35m[1mPOST /predict HTTP/1.1[0m" 500 -
+INFO:werkzeug:127.0.0.1 - - [18/Oct/2021 05:29:36] "[37mGET /project/status?id=141 HTTP/1.1[0m" 200 -
+INFO:werkzeug:127.0.0.1 - - [18/Oct/2021 05:29:36] "[37mGET /project/status?id=140 HTTP/1.1[0m" 200 -
+INFO:werkzeug:127.0.0.1 - - [18/Oct/2021 05:29:37] "[37mGET /project/status?id=139 HTTP/1.1[0m" 200 -
+INFO:werkzeug:127.0.0.1 - - [18/Oct/2021 05:29:37] "[37mGET /project/status?id=134 HTTP/1.1[0m" 200 -
+INFO:werkzeug:127.0.0.1 - - [18/Oct/2021 05:29:37] "[37mGET /check/training HTTP/1.1[0m" 200 -
+INFO:werkzeug:127.0.0.1 - - [18/Oct/2021 05:29:53] "[37mGET /read/all/category HTTP/1.1[0m" 200 -
+ERROR:webserver:Exception on /predict [POST]
+Traceback (most recent call last):
+  File "D:\python_venv\strabag\lib\site-packages\flask\app.py", line 2447, in wsgi_app
+    response = self.full_dispatch_request()
+  File "D:\python_venv\strabag\lib\site-packages\flask\app.py", line 1952, in full_dispatch_request
+    rv = self.handle_user_exception(e)
+  File "D:\python_venv\strabag\lib\site-packages\flask\app.py", line 1821, in handle_user_exception
+    reraise(exc_type, exc_value, tb)
+  File "D:\python_venv\strabag\lib\site-packages\flask\_compat.py", line 39, in reraise
+    raise value
+  File "D:\python_venv\strabag\lib\site-packages\flask\app.py", line 1950, in full_dispatch_request
+    rv = self.dispatch_request()
+  File "D:\python_venv\strabag\lib\site-packages\flask\app.py", line 1936, in dispatch_request
+    return self.view_functions[rule.endpoint](**req.view_args)
+  File "D:/source/strabag/webserver.py", line 356, in predict_more_row
+    if request.method == 'POST':
+  File "D:\source\strabag\convert_excel.py", line 265, in process_more_sentence
+    category, cat_prob, tokens, token_prob = self.model.predict(txt)
+  File "D:\source\strabag\hubert_model.py", line 105, in predict
+    self.model = transformers.BertForSequenceAndTokenClassification.from_pretrained(
+  File "D:\python_venv\strabag\lib\site-packages\transformers\modeling_utils.py", line 1213, in from_pretrained
+    model, missing_keys, unexpected_keys, error_msgs = cls._load_state_dict_into_model(
+  File "D:\python_venv\strabag\lib\site-packages\transformers\modeling_utils.py", line 1354, in _load_state_dict_into_model
+    raise RuntimeError(f"Error(s) in loading state_dict for {model.__class__.__name__}:\n\t{error_msg}")
+RuntimeError: Error(s) in loading state_dict for BertForSequenceAndTokenClassification:
+	size mismatch for classifier.weight: copying a param with shape torch.Size([12, 768]) from checkpoint, the shape in current model is torch.Size([11, 768]).
+	size mismatch for classifier.bias: copying a param with shape torch.Size([12]) from checkpoint, the shape in current model is torch.Size([11]).
+	size mismatch for classifier_token.weight: copying a param with shape torch.Size([64, 768]) from checkpoint, the shape in current model is torch.Size([25, 768]).
+	size mismatch for classifier_token.bias: copying a param with shape torch.Size([64]) from checkpoint, the shape in current model is torch.Size([25]).
+INFO:werkzeug:127.0.0.1 - - [18/Oct/2021 05:29:55] "[35m[1mPOST /predict HTTP/1.1[0m" 500 -
+INFO:werkzeug:127.0.0.1 - - [18/Oct/2021 05:30:16] "[37mGET /project/status?id=141 HTTP/1.1[0m" 200 -
+INFO:werkzeug:127.0.0.1 - - [18/Oct/2021 05:30:16] "[37mGET /project/status?id=140 HTTP/1.1[0m" 200 -
+INFO:werkzeug:127.0.0.1 - - [18/Oct/2021 05:30:16] "[37mGET /project/status?id=139 HTTP/1.1[0m" 200 -
+INFO:werkzeug:127.0.0.1 - - [18/Oct/2021 05:30:16] "[37mGET /project/status?id=134 HTTP/1.1[0m" 200 -
+INFO:werkzeug:127.0.0.1 - - [18/Oct/2021 05:30:16] "[37mGET /check/training HTTP/1.1[0m" 200 -
+INFO:werkzeug:127.0.0.1 - - [18/Oct/2021 05:30:52] "[37mGET /read/all/category HTTP/1.1[0m" 200 -
+ERROR:webserver:Exception on /predict [POST]
+Traceback (most recent call last):
+  File "D:\python_venv\strabag\lib\site-packages\flask\app.py", line 2447, in wsgi_app
+    response = self.full_dispatch_request()
+  File "D:\python_venv\strabag\lib\site-packages\flask\app.py", line 1952, in full_dispatch_request
+    rv = self.handle_user_exception(e)
+  File "D:\python_venv\strabag\lib\site-packages\flask\app.py", line 1821, in handle_user_exception
+    reraise(exc_type, exc_value, tb)
+  File "D:\python_venv\strabag\lib\site-packages\flask\_compat.py", line 39, in reraise
+    raise value
+  File "D:\python_venv\strabag\lib\site-packages\flask\app.py", line 1950, in full_dispatch_request
+    rv = self.dispatch_request()
+  File "D:\python_venv\strabag\lib\site-packages\flask\app.py", line 1936, in dispatch_request
+    return self.view_functions[rule.endpoint](**req.view_args)
+  File "D:/source/strabag/webserver.py", line 356, in predict_more_row
+    if request.method == 'POST':
+  File "D:\source\strabag\convert_excel.py", line 265, in process_more_sentence
+    category, cat_prob, tokens, token_prob = self.model.predict(txt)
+  File "D:\source\strabag\hubert_model.py", line 105, in predict
+    self.model = transformers.BertForSequenceAndTokenClassification.from_pretrained(
+  File "D:\python_venv\strabag\lib\site-packages\transformers\modeling_utils.py", line 1213, in from_pretrained
+    model, missing_keys, unexpected_keys, error_msgs = cls._load_state_dict_into_model(
+  File "D:\python_venv\strabag\lib\site-packages\transformers\modeling_utils.py", line 1354, in _load_state_dict_into_model
+    raise RuntimeError(f"Error(s) in loading state_dict for {model.__class__.__name__}:\n\t{error_msg}")
+RuntimeError: Error(s) in loading state_dict for BertForSequenceAndTokenClassification:
+	size mismatch for classifier.weight: copying a param with shape torch.Size([12, 768]) from checkpoint, the shape in current model is torch.Size([11, 768]).
+	size mismatch for classifier.bias: copying a param with shape torch.Size([12]) from checkpoint, the shape in current model is torch.Size([11]).
+	size mismatch for classifier_token.weight: copying a param with shape torch.Size([64, 768]) from checkpoint, the shape in current model is torch.Size([25, 768]).
+	size mismatch for classifier_token.bias: copying a param with shape torch.Size([64]) from checkpoint, the shape in current model is torch.Size([25]).
+INFO:werkzeug:127.0.0.1 - - [18/Oct/2021 05:31:06] "[35m[1mPOST /predict HTTP/1.1[0m" 500 -
+INFO:werkzeug:127.0.0.1 - - [18/Oct/2021 05:31:24] "[37mGET /project/status?id=141 HTTP/1.1[0m" 200 -
+INFO:werkzeug:127.0.0.1 - - [18/Oct/2021 05:31:24] "[37mGET /project/status?id=139 HTTP/1.1[0m" 200 -
+INFO:werkzeug:127.0.0.1 - - [18/Oct/2021 05:31:24] "[37mGET /project/status?id=134 HTTP/1.1[0m" 200 -
+INFO:werkzeug:127.0.0.1 - - [18/Oct/2021 05:31:25] "[37mGET /check/training HTTP/1.1[0m" 200 -
+INFO:werkzeug:127.0.0.1 - - [18/Oct/2021 05:32:18] "[37mGET /read/all/category HTTP/1.1[0m" 200 -
+ERROR:webserver:Exception on /predict [POST]
+Traceback (most recent call last):
+  File "D:\python_venv\strabag\lib\site-packages\flask\app.py", line 2447, in wsgi_app
+    response = self.full_dispatch_request()
+  File "D:\python_venv\strabag\lib\site-packages\flask\app.py", line 1952, in full_dispatch_request
+    rv = self.handle_user_exception(e)
+  File "D:\python_venv\strabag\lib\site-packages\flask\app.py", line 1821, in handle_user_exception
+    reraise(exc_type, exc_value, tb)
+  File "D:\python_venv\strabag\lib\site-packages\flask\_compat.py", line 39, in reraise
+    raise value
+  File "D:\python_venv\strabag\lib\site-packages\flask\app.py", line 1950, in full_dispatch_request
+    rv = self.dispatch_request()
+  File "D:\python_venv\strabag\lib\site-packages\flask\app.py", line 1936, in dispatch_request
+    return self.view_functions[rule.endpoint](**req.view_args)
+  File "D:/source/strabag/webserver.py", line 356, in predict_more_row
+    if request.method == 'POST':
+  File "D:\source\strabag\convert_excel.py", line 265, in process_more_sentence
+    category, cat_prob, tokens, token_prob = self.model.predict(txt)
+  File "D:\source\strabag\hubert_model.py", line 105, in predict
+    self.model = transformers.BertForSequenceAndTokenClassification.from_pretrained(
+  File "D:\python_venv\strabag\lib\site-packages\transformers\modeling_utils.py", line 1213, in from_pretrained
+    model, missing_keys, unexpected_keys, error_msgs = cls._load_state_dict_into_model(
+  File "D:\python_venv\strabag\lib\site-packages\transformers\modeling_utils.py", line 1354, in _load_state_dict_into_model
+    raise RuntimeError(f"Error(s) in loading state_dict for {model.__class__.__name__}:\n\t{error_msg}")
+RuntimeError: Error(s) in loading state_dict for BertForSequenceAndTokenClassification:
+	size mismatch for classifier.weight: copying a param with shape torch.Size([12, 768]) from checkpoint, the shape in current model is torch.Size([11, 768]).
+	size mismatch for classifier.bias: copying a param with shape torch.Size([12]) from checkpoint, the shape in current model is torch.Size([11]).
+	size mismatch for classifier_token.weight: copying a param with shape torch.Size([64, 768]) from checkpoint, the shape in current model is torch.Size([25, 768]).
+	size mismatch for classifier_token.bias: copying a param with shape torch.Size([64]) from checkpoint, the shape in current model is torch.Size([25]).
+INFO:werkzeug:127.0.0.1 - - [18/Oct/2021 05:32:20] "[35m[1mPOST /predict HTTP/1.1[0m" 500 -
+INFO:werkzeug: * Running on http://127.0.0.1:3000/ (Press CTRL+C to quit)
+INFO:werkzeug:127.0.0.1 - - [18/Oct/2021 05:35:49] "[37mGET /project/status?id=141 HTTP/1.1[0m" 200 -
+INFO:werkzeug:127.0.0.1 - - [18/Oct/2021 05:35:49] "[37mGET /project/status?id=139 HTTP/1.1[0m" 200 -
+INFO:werkzeug:127.0.0.1 - - [18/Oct/2021 05:35:49] "[37mGET /project/status?id=134 HTTP/1.1[0m" 200 -
+INFO:werkzeug:127.0.0.1 - - [18/Oct/2021 05:35:49] "[37mGET /check/training HTTP/1.1[0m" 200 -
+INFO:werkzeug:127.0.0.1 - - [18/Oct/2021 05:38:06] "[37mGET /project/status?id=143 HTTP/1.1[0m" 200 -
+INFO:werkzeug:127.0.0.1 - - [18/Oct/2021 05:38:06] "[37mGET /project/status?id=139 HTTP/1.1[0m" 200 -
+INFO:werkzeug:127.0.0.1 - - [18/Oct/2021 05:38:06] "[37mGET /project/status?id=134 HTTP/1.1[0m" 200 -
+INFO:werkzeug:127.0.0.1 - - [18/Oct/2021 05:38:07] "[37mGET /check/training HTTP/1.1[0m" 200 -
+INFO:werkzeug:127.0.0.1 - - [18/Oct/2021 05:38:23] "[37mGET /project/status?id=143 HTTP/1.1[0m" 200 -
+INFO:werkzeug:127.0.0.1 - - [18/Oct/2021 05:38:23] "[37mGET /project/status?id=139 HTTP/1.1[0m" 200 -
+INFO:werkzeug:127.0.0.1 - - [18/Oct/2021 05:38:24] "[37mGET /project/status?id=134 HTTP/1.1[0m" 200 -
+INFO:werkzeug:127.0.0.1 - - [18/Oct/2021 05:38:24] "[37mGET /check/training HTTP/1.1[0m" 200 -
+INFO:werkzeug:127.0.0.1 - - [18/Oct/2021 05:38:40] "[37mGET /project/status?id=139 HTTP/1.1[0m" 200 -
+INFO:werkzeug:127.0.0.1 - - [18/Oct/2021 05:38:40] "[37mGET /project/status?id=134 HTTP/1.1[0m" 200 -
+INFO:werkzeug:127.0.0.1 - - [18/Oct/2021 05:38:40] "[37mGET /check/training HTTP/1.1[0m" 200 -
+INFO:werkzeug:127.0.0.1 - - [18/Oct/2021 05:38:44] "[37mGET /project/status?id=139 HTTP/1.1[0m" 200 -
+INFO:werkzeug:127.0.0.1 - - [18/Oct/2021 05:38:44] "[37mGET /project/status?id=134 HTTP/1.1[0m" 200 -
+INFO:werkzeug:127.0.0.1 - - [18/Oct/2021 05:38:44] "[37mGET /check/training HTTP/1.1[0m" 200 -
+INFO:werkzeug:127.0.0.1 - - [18/Oct/2021 05:41:52] "[37mGET /project/status?id=144 HTTP/1.1[0m" 200 -
+INFO:werkzeug:127.0.0.1 - - [18/Oct/2021 05:41:52] "[37mGET /project/status?id=139 HTTP/1.1[0m" 200 -
+INFO:werkzeug:127.0.0.1 - - [18/Oct/2021 05:41:52] "[37mGET /project/status?id=134 HTTP/1.1[0m" 200 -
+INFO:werkzeug:127.0.0.1 - - [18/Oct/2021 05:41:52] "[37mGET /check/training HTTP/1.1[0m" 200 -
+INFO:werkzeug:127.0.0.1 - - [18/Oct/2021 05:42:26] "[37mGET /read/all/category HTTP/1.1[0m" 200 -
+INFO:werkzeug:127.0.0.1 - - [18/Oct/2021 05:42:52] "[37mGET /read/all/category HTTP/1.1[0m" 200 -
+INFO:werkzeug:127.0.0.1 - - [18/Oct/2021 05:43:07] "[37mGET /project/status?id=144 HTTP/1.1[0m" 200 -
+INFO:werkzeug:127.0.0.1 - - [18/Oct/2021 05:43:07] "[37mGET /project/status?id=139 HTTP/1.1[0m" 200 -
+INFO:werkzeug:127.0.0.1 - - [18/Oct/2021 05:43:08] "[37mGET /project/status?id=134 HTTP/1.1[0m" 200 -
+INFO:werkzeug:127.0.0.1 - - [18/Oct/2021 05:43:08] "[37mGET /check/training HTTP/1.1[0m" 200 -
+INFO:werkzeug:127.0.0.1 - - [18/Oct/2021 05:44:02] "[37mGET /read/all/category HTTP/1.1[0m" 200 -
+INFO:werkzeug: * Running on http://127.0.0.1:3000/ (Press CTRL+C to quit)
+INFO:werkzeug:127.0.0.1 - - [18/Oct/2021 05:44:55] "[37mGET /read/all/category HTTP/1.1[0m" 200 -
+ERROR:webserver:Exception on /predict [POST]
+Traceback (most recent call last):
+  File "D:\python_venv\strabag\lib\site-packages\flask\app.py", line 2447, in wsgi_app
+    response = self.full_dispatch_request()
+  File "D:\python_venv\strabag\lib\site-packages\flask\app.py", line 1952, in full_dispatch_request
+    rv = self.handle_user_exception(e)
+  File "D:\python_venv\strabag\lib\site-packages\flask\app.py", line 1821, in handle_user_exception
+    reraise(exc_type, exc_value, tb)
+  File "D:\python_venv\strabag\lib\site-packages\flask\_compat.py", line 39, in reraise
+    raise value
+  File "D:\python_venv\strabag\lib\site-packages\flask\app.py", line 1950, in full_dispatch_request
+    rv = self.dispatch_request()
+  File "D:\python_venv\strabag\lib\site-packages\flask\app.py", line 1936, in dispatch_request
+    return self.view_functions[rule.endpoint](**req.view_args)
+  File "D:/source/strabag/webserver.py", line 359, in predict_more_row
+    target_categories = conv.process_more_sentence(sentences)
+  File "D:\source\strabag\convert_excel.py", line 265, in process_more_sentence
+    category, cat_prob, tokens, token_prob = self.model.predict(txt)
+  File "D:\source\strabag\hubert_model.py", line 105, in predict
+    self.model = transformers.BertForSequenceAndTokenClassification.from_pretrained(
+  File "D:\python_venv\strabag\lib\site-packages\transformers\modeling_utils.py", line 1213, in from_pretrained
+    model, missing_keys, unexpected_keys, error_msgs = cls._load_state_dict_into_model(
+  File "D:\python_venv\strabag\lib\site-packages\transformers\modeling_utils.py", line 1354, in _load_state_dict_into_model
+    raise RuntimeError(f"Error(s) in loading state_dict for {model.__class__.__name__}:\n\t{error_msg}")
+RuntimeError: Error(s) in loading state_dict for BertForSequenceAndTokenClassification:
+	size mismatch for classifier.weight: copying a param with shape torch.Size([12, 768]) from checkpoint, the shape in current model is torch.Size([11, 768]).
+	size mismatch for classifier.bias: copying a param with shape torch.Size([12]) from checkpoint, the shape in current model is torch.Size([11]).
+	size mismatch for classifier_token.weight: copying a param with shape torch.Size([64, 768]) from checkpoint, the shape in current model is torch.Size([25, 768]).
+	size mismatch for classifier_token.bias: copying a param with shape torch.Size([64]) from checkpoint, the shape in current model is torch.Size([25]).
+INFO:werkzeug:127.0.0.1 - - [18/Oct/2021 05:44:58] "[35m[1mPOST /predict HTTP/1.1[0m" 500 -
+INFO:werkzeug:127.0.0.1 - - [18/Oct/2021 05:45:44] "[37mGET /read/all/category HTTP/1.1[0m" 200 -
+ERROR:webserver:Exception on /predict [POST]
+Traceback (most recent call last):
+  File "D:\python_venv\strabag\lib\site-packages\flask\app.py", line 2447, in wsgi_app
+    response = self.full_dispatch_request()
+  File "D:\python_venv\strabag\lib\site-packages\flask\app.py", line 1952, in full_dispatch_request
+    rv = self.handle_user_exception(e)
+  File "D:\python_venv\strabag\lib\site-packages\flask\app.py", line 1821, in handle_user_exception
+    reraise(exc_type, exc_value, tb)
+  File "D:\python_venv\strabag\lib\site-packages\flask\_compat.py", line 39, in reraise
+    raise value
+  File "D:\python_venv\strabag\lib\site-packages\flask\app.py", line 1950, in full_dispatch_request
+    rv = self.dispatch_request()
+  File "D:\python_venv\strabag\lib\site-packages\flask\app.py", line 1936, in dispatch_request
+    return self.view_functions[rule.endpoint](**req.view_args)
+  File "D:/source/strabag/webserver.py", line 359, in predict_more_row
+    target_categories = conv.process_more_sentence(sentences)
+  File "D:\source\strabag\convert_excel.py", line 265, in process_more_sentence
+    category, cat_prob, tokens, token_prob = self.model.predict(txt)
+  File "D:\source\strabag\hubert_model.py", line 105, in predict
+    self.model = transformers.BertForSequenceAndTokenClassification.from_pretrained(
+  File "D:\python_venv\strabag\lib\site-packages\transformers\modeling_utils.py", line 1213, in from_pretrained
+    model, missing_keys, unexpected_keys, error_msgs = cls._load_state_dict_into_model(
+  File "D:\python_venv\strabag\lib\site-packages\transformers\modeling_utils.py", line 1354, in _load_state_dict_into_model
+    raise RuntimeError(f"Error(s) in loading state_dict for {model.__class__.__name__}:\n\t{error_msg}")
+RuntimeError: Error(s) in loading state_dict for BertForSequenceAndTokenClassification:
+	size mismatch for classifier.weight: copying a param with shape torch.Size([12, 768]) from checkpoint, the shape in current model is torch.Size([11, 768]).
+	size mismatch for classifier.bias: copying a param with shape torch.Size([12]) from checkpoint, the shape in current model is torch.Size([11]).
+	size mismatch for classifier_token.weight: copying a param with shape torch.Size([64, 768]) from checkpoint, the shape in current model is torch.Size([25, 768]).
+	size mismatch for classifier_token.bias: copying a param with shape torch.Size([64]) from checkpoint, the shape in current model is torch.Size([25]).
+INFO:werkzeug:127.0.0.1 - - [18/Oct/2021 05:45:46] "[35m[1mPOST /predict HTTP/1.1[0m" 500 -
+INFO:werkzeug:127.0.0.1 - - [18/Oct/2021 05:48:38] "[37mGET /project/status?id=144 HTTP/1.1[0m" 200 -
+INFO:werkzeug:127.0.0.1 - - [18/Oct/2021 05:48:38] "[37mGET /project/status?id=139 HTTP/1.1[0m" 200 -
+INFO:werkzeug:127.0.0.1 - - [18/Oct/2021 05:48:38] "[37mGET /project/status?id=134 HTTP/1.1[0m" 200 -
+INFO:werkzeug:127.0.0.1 - - [18/Oct/2021 05:48:38] "[37mGET /check/training HTTP/1.1[0m" 200 -
+INFO:werkzeug:127.0.0.1 - - [18/Oct/2021 05:48:46] "[37mGET /read/all/category HTTP/1.1[0m" 200 -
+ERROR:webserver:Exception on /predict [POST]
+Traceback (most recent call last):
+  File "D:\python_venv\strabag\lib\site-packages\flask\app.py", line 2447, in wsgi_app
+    response = self.full_dispatch_request()
+  File "D:\python_venv\strabag\lib\site-packages\flask\app.py", line 1952, in full_dispatch_request
+    rv = self.handle_user_exception(e)
+  File "D:\python_venv\strabag\lib\site-packages\flask\app.py", line 1821, in handle_user_exception
+    reraise(exc_type, exc_value, tb)
+  File "D:\python_venv\strabag\lib\site-packages\flask\_compat.py", line 39, in reraise
+    raise value
+  File "D:\python_venv\strabag\lib\site-packages\flask\app.py", line 1950, in full_dispatch_request
+    rv = self.dispatch_request()
+  File "D:\python_venv\strabag\lib\site-packages\flask\app.py", line 1936, in dispatch_request
+    return self.view_functions[rule.endpoint](**req.view_args)
+  File "D:/source/strabag/webserver.py", line 359, in predict_more_row
+    target_categories = conv.process_more_sentence(sentences)
+  File "D:\source\strabag\convert_excel.py", line 265, in process_more_sentence
+    category, cat_prob, tokens, token_prob = self.model.predict(txt)
+  File "D:\source\strabag\hubert_model.py", line 105, in predict
+    self.model = transformers.BertForSequenceAndTokenClassification.from_pretrained(
+  File "D:\python_venv\strabag\lib\site-packages\transformers\modeling_utils.py", line 1213, in from_pretrained
+    model, missing_keys, unexpected_keys, error_msgs = cls._load_state_dict_into_model(
+  File "D:\python_venv\strabag\lib\site-packages\transformers\modeling_utils.py", line 1354, in _load_state_dict_into_model
+    raise RuntimeError(f"Error(s) in loading state_dict for {model.__class__.__name__}:\n\t{error_msg}")
+RuntimeError: Error(s) in loading state_dict for BertForSequenceAndTokenClassification:
+	size mismatch for classifier.weight: copying a param with shape torch.Size([12, 768]) from checkpoint, the shape in current model is torch.Size([11, 768]).
+	size mismatch for classifier.bias: copying a param with shape torch.Size([12]) from checkpoint, the shape in current model is torch.Size([11]).
+	size mismatch for classifier_token.weight: copying a param with shape torch.Size([64, 768]) from checkpoint, the shape in current model is torch.Size([25, 768]).
+	size mismatch for classifier_token.bias: copying a param with shape torch.Size([64]) from checkpoint, the shape in current model is torch.Size([25]).
+INFO:werkzeug:127.0.0.1 - - [18/Oct/2021 05:48:49] "[35m[1mPOST /predict HTTP/1.1[0m" 500 -
+INFO:werkzeug: * Running on http://127.0.0.1:3000/ (Press CTRL+C to quit)
+INFO:werkzeug:127.0.0.1 - - [18/Oct/2021 05:49:19] "[37mGET /read/all/category HTTP/1.1[0m" 200 -
+INFO:werkzeug: * Running on http://127.0.0.1:3000/ (Press CTRL+C to quit)
+INFO:werkzeug:127.0.0.1 - - [18/Oct/2021 05:50:53] "[37mGET /read/all/category HTTP/1.1[0m" 200 -
+INFO:werkzeug: * Running on http://127.0.0.1:3000/ (Press CTRL+C to quit)
+INFO:werkzeug:127.0.0.1 - - [18/Oct/2021 05:51:42] "[37mGET /read/all/category HTTP/1.1[0m" 200 -
+ERROR:webserver:Exception on /predict [POST]
+Traceback (most recent call last):
+  File "D:\python_venv\strabag\lib\site-packages\flask\app.py", line 2447, in wsgi_app
+    response = self.full_dispatch_request()
+  File "D:\python_venv\strabag\lib\site-packages\flask\app.py", line 1952, in full_dispatch_request
+    rv = self.handle_user_exception(e)
+  File "D:\python_venv\strabag\lib\site-packages\flask\app.py", line 1821, in handle_user_exception
+    reraise(exc_type, exc_value, tb)
+  File "D:\python_venv\strabag\lib\site-packages\flask\_compat.py", line 39, in reraise
+    raise value
+  File "D:\python_venv\strabag\lib\site-packages\flask\app.py", line 1950, in full_dispatch_request
+    rv = self.dispatch_request()
+  File "D:\python_venv\strabag\lib\site-packages\flask\app.py", line 1936, in dispatch_request
+    return self.view_functions[rule.endpoint](**req.view_args)
+  File "D:/source/strabag/webserver.py", line 359, in predict_more_row
+    target_categories = conv.process_more_sentence(sentences)
+  File "D:\source\strabag\convert_excel.py", line 265, in process_more_sentence
+    category, cat_prob, tokens, token_prob = self.model.predict(txt)
+  File "D:\source\strabag\hubert_model.py", line 105, in predict
+    self.model = transformers.BertForSequenceAndTokenClassification.from_pretrained(
+  File "D:\python_venv\strabag\lib\site-packages\transformers\modeling_utils.py", line 1213, in from_pretrained
+    model, missing_keys, unexpected_keys, error_msgs = cls._load_state_dict_into_model(
+  File "D:\python_venv\strabag\lib\site-packages\transformers\modeling_utils.py", line 1354, in _load_state_dict_into_model
+    raise RuntimeError(f"Error(s) in loading state_dict for {model.__class__.__name__}:\n\t{error_msg}")
+RuntimeError: Error(s) in loading state_dict for BertForSequenceAndTokenClassification:
+	size mismatch for classifier.weight: copying a param with shape torch.Size([12, 768]) from checkpoint, the shape in current model is torch.Size([11, 768]).
+	size mismatch for classifier.bias: copying a param with shape torch.Size([12]) from checkpoint, the shape in current model is torch.Size([11]).
+INFO:werkzeug:127.0.0.1 - - [18/Oct/2021 05:51:43] "[35m[1mPOST /predict HTTP/1.1[0m" 500 -
+INFO:werkzeug: * Running on http://127.0.0.1:3000/ (Press CTRL+C to quit)
+INFO:werkzeug:127.0.0.1 - - [18/Oct/2021 05:52:04] "[37mGET /read/all/category HTTP/1.1[0m" 200 -
+INFO:werkzeug: * Running on http://127.0.0.1:3000/ (Press CTRL+C to quit)
+INFO:werkzeug:127.0.0.1 - - [18/Oct/2021 05:52:53] "[37mGET /read/all/category HTTP/1.1[0m" 200 -
+INFO:werkzeug:127.0.0.1 - - [18/Oct/2021 05:53:01] "[37mPOST /predict HTTP/1.1[0m" 200 -
+INFO:werkzeug:127.0.0.1 - - [18/Oct/2021 05:53:35] "[37mGET /read/all/category HTTP/1.1[0m" 200 -
+INFO:werkzeug:127.0.0.1 - - [18/Oct/2021 05:53:42] "[37mGET /read/all/category HTTP/1.1[0m" 200 -
+INFO:werkzeug:127.0.0.1 - - [18/Oct/2021 05:53:43] "[37mPOST /predict HTTP/1.1[0m" 200 -
+INFO:werkzeug:127.0.0.1 - - [18/Oct/2021 05:53:55] "[37mGET /read/all/category HTTP/1.1[0m" 200 -
+INFO:werkzeug:127.0.0.1 - - [18/Oct/2021 05:53:57] "[37mPOST /predict HTTP/1.1[0m" 200 -
+INFO:werkzeug:127.0.0.1 - - [18/Oct/2021 05:54:09] "[37mGET /project/status?id=144 HTTP/1.1[0m" 200 -
+INFO:werkzeug:127.0.0.1 - - [18/Oct/2021 05:54:09] "[37mGET /project/status?id=139 HTTP/1.1[0m" 200 -
+INFO:werkzeug:127.0.0.1 - - [18/Oct/2021 05:54:10] "[37mGET /project/status?id=134 HTTP/1.1[0m" 200 -
+INFO:werkzeug:127.0.0.1 - - [18/Oct/2021 05:54:10] "[37mGET /check/training HTTP/1.1[0m" 200 -
+INFO:werkzeug:127.0.0.1 - - [18/Oct/2021 06:06:23] "[37mGET /project/status?id=145 HTTP/1.1[0m" 200 -
+INFO:werkzeug:127.0.0.1 - - [18/Oct/2021 06:06:23] "[37mGET /project/status?id=144 HTTP/1.1[0m" 200 -
+INFO:werkzeug:127.0.0.1 - - [18/Oct/2021 06:06:23] "[37mGET /project/status?id=139 HTTP/1.1[0m" 200 -
+INFO:werkzeug:127.0.0.1 - - [18/Oct/2021 06:06:23] "[37mGET /project/status?id=134 HTTP/1.1[0m" 200 -
+INFO:werkzeug:127.0.0.1 - - [18/Oct/2021 06:06:23] "[37mGET /check/training HTTP/1.1[0m" 200 -
+INFO:werkzeug:127.0.0.1 - - [18/Oct/2021 06:07:53] "[37mGET /read/all/category HTTP/1.1[0m" 200 -
+INFO:werkzeug:127.0.0.1 - - [18/Oct/2021 06:07:53] "[37mPOST /predict HTTP/1.1[0m" 200 -
+INFO:werkzeug:127.0.0.1 - - [18/Oct/2021 06:07:57] "[37mGET /project/status?id=146 HTTP/1.1[0m" 200 -
+INFO:werkzeug:127.0.0.1 - - [18/Oct/2021 06:07:58] "[37mGET /project/status?id=145 HTTP/1.1[0m" 200 -
+INFO:werkzeug:127.0.0.1 - - [18/Oct/2021 06:07:58] "[37mGET /project/status?id=144 HTTP/1.1[0m" 200 -
+INFO:werkzeug:127.0.0.1 - - [18/Oct/2021 06:07:58] "[37mGET /project/status?id=139 HTTP/1.1[0m" 200 -
+INFO:werkzeug:127.0.0.1 - - [18/Oct/2021 06:07:58] "[37mGET /project/status?id=134 HTTP/1.1[0m" 200 -
+INFO:werkzeug:127.0.0.1 - - [18/Oct/2021 06:07:58] "[37mGET /check/training HTTP/1.1[0m" 200 -
+INFO:werkzeug:127.0.0.1 - - [18/Oct/2021 06:10:09] "[37mGET /project/status?id=147 HTTP/1.1[0m" 200 -
+INFO:werkzeug:127.0.0.1 - - [18/Oct/2021 06:10:09] "[37mGET /project/status?id=144 HTTP/1.1[0m" 200 -
+INFO:werkzeug:127.0.0.1 - - [18/Oct/2021 06:10:10] "[37mGET /project/status?id=139 HTTP/1.1[0m" 200 -
+INFO:werkzeug:127.0.0.1 - - [18/Oct/2021 06:10:10] "[37mGET /project/status?id=134 HTTP/1.1[0m" 200 -
+INFO:werkzeug:127.0.0.1 - - [18/Oct/2021 06:10:10] "[37mGET /check/training HTTP/1.1[0m" 200 -
+INFO:werkzeug:127.0.0.1 - - [18/Oct/2021 06:12:22] "[37mGET /read/all/category HTTP/1.1[0m" 200 -
+INFO:werkzeug:127.0.0.1 - - [18/Oct/2021 06:12:58] "[37mPOST /predict HTTP/1.1[0m" 200 -
+INFO:werkzeug:127.0.0.1 - - [18/Oct/2021 06:13:27] "[37mGET /project/status?id=148 HTTP/1.1[0m" 200 -
+INFO:werkzeug:127.0.0.1 - - [18/Oct/2021 06:13:27] "[37mGET /project/status?id=147 HTTP/1.1[0m" 200 -
+INFO:werkzeug:127.0.0.1 - - [18/Oct/2021 06:13:27] "[37mGET /project/status?id=144 HTTP/1.1[0m" 200 -
+INFO:werkzeug:127.0.0.1 - - [18/Oct/2021 06:13:28] "[37mGET /project/status?id=139 HTTP/1.1[0m" 200 -
+INFO:werkzeug:127.0.0.1 - - [18/Oct/2021 06:13:28] "[37mGET /project/status?id=134 HTTP/1.1[0m" 200 -
+INFO:werkzeug:127.0.0.1 - - [18/Oct/2021 06:13:28] "[37mGET /check/training HTTP/1.1[0m" 200 -
+INFO:werkzeug:127.0.0.1 - - [18/Oct/2021 06:14:35] "[37mGET /read/all/category HTTP/1.1[0m" 200 -
+INFO:werkzeug:127.0.0.1 - - [18/Oct/2021 06:15:10] "[37mPOST /predict HTTP/1.1[0m" 200 -

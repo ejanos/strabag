@@ -32,3 +32,4 @@ db_helper.py
 /password.txt
 /connect_string.json
 /model_bert/best_back/pytorch_model.bin
+/model_bert/best2/pytorch_model.bin

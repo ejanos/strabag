@@ -43,6 +43,14 @@ root_dir = "./"
 data_dir = "finetuning_dataset/"
 
 class HubertModel:
+    device = torch.device("cuda:0" if torch.cuda.is_available() else "cpu")
+    model = None
+    sentence_ids = None
+    labels = None
+    token_ids = None
+    token_labels = None
+    config = None
+
     tokenizer = transformers.BertTokenizerFast(vocab_file=MODEL_PATH + "/vocab.txt", max_len=SEQ_LEN,
                                                padding_side='right', do_lower_case=True, strip_accents=False)
 
@@ -53,25 +61,11 @@ class HubertModel:
 
     def __init__(self, test=False):
         self.test = test
-        self.sentence_ids, self.labels = self.get_sentence_labels()
-        self.token_ids, self.token_labels = self.get_token_labels()
-        print("Token labels count: ", len(self.token_labels))
 
-        self.device = torch.device("cuda:0" if torch.cuda.is_available() else "cpu")
-
-        self.config = transformers.BertConfig.from_json_file(MODEL_PATH + "/config.json")
-        self.config.id2label = self.sentence_ids
-        self.config.label2id = self.labels
-        self.config.num_labels = len(self.labels)+1
-        print(len(self.labels))
-        for i, label in enumerate(self.labels):
-            print(i, label)
+        #print(len(self.labels))
+        #for i, label in enumerate(self.labels):
+        #    print(i, label)
         # TODO elmenteni token labeleknek a számát, itt visszatölteni
-        self.model = transformers.BertForSequenceAndTokenClassification.from_pretrained(
-            save_dir + MODEL_NAME, local_files_only=True, config=self.config, num_labels_token=len(self.token_labels)+1)
-        self.model.eval()
-
-        self.model.to(self.device)
 
     def decode_tokens(self, tokens):
         return self.tokenizer.decode(tokens.tolist())
@@ -97,6 +91,22 @@ class HubertModel:
         return label_ids, token_labels
 
     def predict(self, sentence):
+        if not self.model:
+            self.sentence_ids, self.labels = self.get_sentence_labels()
+            self.token_ids, self.token_labels = self.get_token_labels()
+            print("Token labels count: ", len(self.token_labels))
+
+            self.device = torch.device("cuda:0" if torch.cuda.is_available() else "cpu")
+
+            self.config = transformers.BertConfig.from_json_file(MODEL_PATH + "/config.json")
+            self.config.id2label = self.sentence_ids
+            self.config.label2id = self.labels
+            self.config.num_labels = 12
+            self.model = transformers.BertForSequenceAndTokenClassification.from_pretrained(
+                save_dir + MODEL_NAME, local_files_only=True, config=self.config, num_labels_token=64)
+            self.model.eval()
+            self.model.to(self.device)
+
         with torch.no_grad():
             #ic(sentence)
             tokenized = self.tokenizer.encode(sentence, return_tensors='pt').to(self.device)

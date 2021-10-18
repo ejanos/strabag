@@ -18,6 +18,9 @@ from hubert_finetune import HubertFinetune
 ic = ic.IceCreamDebugger()
 #ic.disable()
 
+CATEGORIES = 12
+TOKEN_LABELS = 64
+
 training_is_running = False
 
 CACHE = "cache"
@@ -352,19 +355,9 @@ def convert_mi():
 def predict_more_row():
     if request.method == 'POST':
         form = request.form
-        content_col = json.loads(form['content_col'])
-        source_rows = json.loads(form['source_rows'])
-        no_category_id = json.loads(form['no_category_id'])
-        f = request.files['file']
-        filename = f.filename
-        cwd = os.getcwd()
-        file_path = os.path.join(cwd, CACHE, filename)
-        f.save(file_path)
-
-        target_categories = conv.process_more_row(
-            content_col, source_rows, file_path, no_category_id)
-
-        return target_categories
+        sentences = json.loads(form['sentences'])
+        target_categories = conv.process_more_sentence(sentences)
+        return return_response(target_categories)
     return "Not allowed method", 405
 
 @app.route("/start/training", methods=['GET'])
@@ -376,14 +369,16 @@ def start_training():
         model.train()
         #model = None
         training_is_running = False
-        return str(True)
+        return "1"
     return "Not allowed method", 405
 
 @app.route("/check/training", methods=['GET'])
 # TODO make it async
 def check_training():
     if request.method == 'GET':
-        return str(training_is_running)
+        if training_is_running:
+            return "1"
+        return "0"
     return "Not allowed method", 405
 
 @app.route("/project/status", methods=['GET'])
@@ -395,7 +390,7 @@ def project_trained():
             is_trained = db.get_project_trained(project_id)
             if is_trained:
                 return return_response(is_trained)
-        return str(False)
+        return "0"
     return "Not allowed method", 405
 
 @app.route("/save/project", methods=['POST'])
@@ -426,6 +421,26 @@ def update_project_status():
         return return_response(result)
     return "Not allowed method", 405
 
+@app.route("/convert/backward", methods=['POST'])
+# TODO make it async
+def convert_backward():
+    if request.method == 'POST':
+        form = request.form
+        content_col = request.form['content_col']
+        quantity_col = request.form['quantity_col']
+        source = request.files['source']
+        converted = request.files['converted']
+
+        source_filename = source.filename
+        converted_filename = converted.filename
+        cwd = os.getcwd()
+        file_path_s = os.path.join(cwd, CACHE, source_filename)
+        file_path_c = os.path.join(cwd, CACHE, converted_filename)
+        source.save(file_path_s)
+        converted.save(file_path_c)
+        directory, file_name = conv.convert_backward(file_path_s, file_path_c, content_col, quantity_col)
+        return send_from_directory(directory, file_name, as_attachment=True)
+
 def get_convert_data():
     form = request.form
     source_rows = json.loads(form['source_rows'])
@@ -442,6 +457,8 @@ def get_convert_data():
 def return_response(result):
     if result:
         return jsonify(result)
+    elif result == False:
+        return "0"
     else:
         return "Database error!"
 
