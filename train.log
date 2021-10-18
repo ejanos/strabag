@@ -2327,3 +2327,91 @@ INFO:werkzeug:127.0.0.1 - - [18/Oct/2021 06:13:28] "[37mGET /project/status?id=
 INFO:werkzeug:127.0.0.1 - - [18/Oct/2021 06:13:28] "[37mGET /check/training HTTP/1.1[0m" 200 -
 INFO:werkzeug:127.0.0.1 - - [18/Oct/2021 06:14:35] "[37mGET /read/all/category HTTP/1.1[0m" 200 -
 INFO:werkzeug:127.0.0.1 - - [18/Oct/2021 06:15:10] "[37mPOST /predict HTTP/1.1[0m" 200 -
+INFO:werkzeug: * Running on http://127.0.0.1:3000/ (Press CTRL+C to quit)
+INFO:werkzeug:127.0.0.1 - - [18/Oct/2021 09:46:13] "[37mGET /project/status?id=148 HTTP/1.1[0m" 200 -
+INFO:werkzeug:127.0.0.1 - - [18/Oct/2021 09:46:14] "[37mGET /project/status?id=147 HTTP/1.1[0m" 200 -
+INFO:werkzeug:127.0.0.1 - - [18/Oct/2021 09:46:14] "[37mGET /project/status?id=144 HTTP/1.1[0m" 200 -
+INFO:werkzeug:127.0.0.1 - - [18/Oct/2021 09:46:14] "[37mGET /project/status?id=139 HTTP/1.1[0m" 200 -
+INFO:werkzeug:127.0.0.1 - - [18/Oct/2021 09:46:14] "[37mGET /project/status?id=134 HTTP/1.1[0m" 200 -
+INFO:werkzeug:127.0.0.1 - - [18/Oct/2021 09:46:15] "[37mGET /check/training HTTP/1.1[0m" 200 -
+INFO:werkzeug:127.0.0.1 - - [18/Oct/2021 09:47:12] "[37mGET /read/all/category HTTP/1.1[0m" 200 -
+INFO:werkzeug:127.0.0.1 - - [18/Oct/2021 09:48:12] "[37mPOST /predict HTTP/1.1[0m" 200 -
+INFO:werkzeug:127.0.0.1 - - [18/Oct/2021 09:53:11] "[37mGET /project/status?id=148 HTTP/1.1[0m" 200 -
+INFO:werkzeug:127.0.0.1 - - [18/Oct/2021 09:53:11] "[37mGET /project/status?id=147 HTTP/1.1[0m" 200 -
+INFO:werkzeug:127.0.0.1 - - [18/Oct/2021 09:53:11] "[37mGET /project/status?id=144 HTTP/1.1[0m" 200 -
+INFO:werkzeug:127.0.0.1 - - [18/Oct/2021 09:53:11] "[37mGET /project/status?id=139 HTTP/1.1[0m" 200 -
+INFO:werkzeug:127.0.0.1 - - [18/Oct/2021 09:53:12] "[37mGET /project/status?id=134 HTTP/1.1[0m" 200 -
+INFO:werkzeug:127.0.0.1 - - [18/Oct/2021 09:53:12] "[37mGET /check/training HTTP/1.1[0m" 200 -
+INFO:werkzeug:127.0.0.1 - - [18/Oct/2021 09:53:19] "[37mPOST /convert/mi HTTP/1.1[0m" 200 -
+INFO:werkzeug:127.0.0.1 - - [18/Oct/2021 09:55:02] "[37mGET /project/status?id=148 HTTP/1.1[0m" 200 -
+INFO:werkzeug:127.0.0.1 - - [18/Oct/2021 09:55:02] "[37mGET /project/status?id=147 HTTP/1.1[0m" 200 -
+INFO:werkzeug:127.0.0.1 - - [18/Oct/2021 09:55:02] "[37mGET /project/status?id=144 HTTP/1.1[0m" 200 -
+INFO:werkzeug:127.0.0.1 - - [18/Oct/2021 09:55:02] "[37mGET /project/status?id=139 HTTP/1.1[0m" 200 -
+INFO:werkzeug:127.0.0.1 - - [18/Oct/2021 09:55:03] "[37mGET /project/status?id=134 HTTP/1.1[0m" 200 -
+INFO:werkzeug:127.0.0.1 - - [18/Oct/2021 09:55:03] "[37mGET /check/training HTTP/1.1[0m" 200 -
+INFO:werkzeug:127.0.0.1 - - [18/Oct/2021 09:57:42] "[37mGET /project/status?id=148 HTTP/1.1[0m" 200 -
+INFO:werkzeug:127.0.0.1 - - [18/Oct/2021 09:57:42] "[37mGET /project/status?id=147 HTTP/1.1[0m" 200 -
+INFO:werkzeug:127.0.0.1 - - [18/Oct/2021 09:57:43] "[37mGET /project/status?id=144 HTTP/1.1[0m" 200 -
+INFO:werkzeug:127.0.0.1 - - [18/Oct/2021 09:57:43] "[37mGET /project/status?id=139 HTTP/1.1[0m" 200 -
+INFO:werkzeug:127.0.0.1 - - [18/Oct/2021 09:57:43] "[37mGET /project/status?id=134 HTTP/1.1[0m" 200 -
+INFO:werkzeug:127.0.0.1 - - [18/Oct/2021 09:57:43] "[37mGET /check/training HTTP/1.1[0m" 200 -
+INFO:werkzeug:127.0.0.1 - - [18/Oct/2021 09:57:56] "[37mGET /read/all/category HTTP/1.1[0m" 200 -
+INFO:werkzeug:127.0.0.1 - - [18/Oct/2021 09:58:13] "[37mGET /read/all/category HTTP/1.1[0m" 200 -
+INFO:werkzeug:127.0.0.1 - - [18/Oct/2021 09:58:13] "[37mPOST /predict HTTP/1.1[0m" 200 -
+INFO:werkzeug:127.0.0.1 - - [18/Oct/2021 09:58:26] "[37mGET /read/all/category HTTP/1.1[0m" 200 -
+INFO:werkzeug:127.0.0.1 - - [18/Oct/2021 09:58:30] "[37mPOST /predict HTTP/1.1[0m" 200 -
+INFO:werkzeug:127.0.0.1 - - [18/Oct/2021 09:59:11] "[37mGET /read/all/category HTTP/1.1[0m" 200 -
+INFO:werkzeug:127.0.0.1 - - [18/Oct/2021 09:59:13] "[37mPOST /predict HTTP/1.1[0m" 200 -
+INFO:werkzeug:127.0.0.1 - - [18/Oct/2021 10:22:06] "[37mGET /project/status?id=148 HTTP/1.1[0m" 200 -
+INFO:werkzeug:127.0.0.1 - - [18/Oct/2021 10:22:06] "[37mGET /project/status?id=147 HTTP/1.1[0m" 200 -
+INFO:werkzeug:127.0.0.1 - - [18/Oct/2021 10:22:06] "[37mGET /project/status?id=144 HTTP/1.1[0m" 200 -
+INFO:werkzeug:127.0.0.1 - - [18/Oct/2021 10:22:06] "[37mGET /project/status?id=139 HTTP/1.1[0m" 200 -
+INFO:werkzeug:127.0.0.1 - - [18/Oct/2021 10:22:07] "[37mGET /project/status?id=134 HTTP/1.1[0m" 200 -
+INFO:werkzeug:127.0.0.1 - - [18/Oct/2021 10:22:07] "[37mGET /check/training HTTP/1.1[0m" 200 -
+INFO:werkzeug: * Running on http://127.0.0.1:3000/ (Press CTRL+C to quit)
+INFO:werkzeug: * Running on http://127.0.0.1:3000/ (Press CTRL+C to quit)
+INFO:werkzeug:127.0.0.1 - - [18/Oct/2021 11:41:25] "[37mGET /read/all/category HTTP/1.1[0m" 200 -
+ERROR:webserver:Exception on /predict [POST]
+Traceback (most recent call last):
+  File "D:\python_venv\strabag\lib\site-packages\flask\app.py", line 2447, in wsgi_app
+    response = self.full_dispatch_request()
+  File "D:\python_venv\strabag\lib\site-packages\flask\app.py", line 1952, in full_dispatch_request
+    rv = self.handle_user_exception(e)
+  File "D:\python_venv\strabag\lib\site-packages\flask\app.py", line 1821, in handle_user_exception
+    reraise(exc_type, exc_value, tb)
+  File "D:\python_venv\strabag\lib\site-packages\flask\_compat.py", line 39, in reraise
+    raise value
+  File "D:\python_venv\strabag\lib\site-packages\flask\app.py", line 1950, in full_dispatch_request
+    rv = self.dispatch_request()
+  File "D:\python_venv\strabag\lib\site-packages\flask\app.py", line 1936, in dispatch_request
+    return self.view_functions[rule.endpoint](**req.view_args)
+  File "D:/source/strabag/webserver.py", line 371, in predict_more_row
+    target_categories = conv.process_more_sentence(sentences, CATEGORIES, TOKEN_LABELS)
+  File "D:\source\strabag\convert_excel.py", line 266, in process_more_sentence
+    category, cat_prob, tokens, token_prob = self.model.predict(txt, number_categories, number_token_labels)
+  File "D:\source\strabag\hubert_model.py", line 109, in predict
+    self.model = transformers.BertForSequenceAndTokenClassification.from_pretrained(
+  File "D:\python_venv\strabag\lib\site-packages\transformers\modeling_utils.py", line 1213, in from_pretrained
+    model, missing_keys, unexpected_keys, error_msgs = cls._load_state_dict_into_model(
+  File "D:\python_venv\strabag\lib\site-packages\transformers\modeling_utils.py", line 1354, in _load_state_dict_into_model
+    raise RuntimeError(f"Error(s) in loading state_dict for {model.__class__.__name__}:\n\t{error_msg}")
+RuntimeError: Error(s) in loading state_dict for BertForSequenceAndTokenClassification:
+	size mismatch for classifier.weight: copying a param with shape torch.Size([12, 768]) from checkpoint, the shape in current model is torch.Size([93, 768]).
+	size mismatch for classifier.bias: copying a param with shape torch.Size([12]) from checkpoint, the shape in current model is torch.Size([93]).
+INFO:werkzeug:127.0.0.1 - - [18/Oct/2021 11:41:32] "[35m[1mPOST /predict HTTP/1.1[0m" 500 -
+INFO:werkzeug:127.0.0.1 - - [18/Oct/2021 11:41:51] "[37mGET /project/status?id=148 HTTP/1.1[0m" 200 -
+INFO:werkzeug:127.0.0.1 - - [18/Oct/2021 11:41:51] "[37mGET /project/status?id=147 HTTP/1.1[0m" 200 -
+INFO:werkzeug:127.0.0.1 - - [18/Oct/2021 11:41:51] "[37mGET /project/status?id=144 HTTP/1.1[0m" 200 -
+INFO:werkzeug:127.0.0.1 - - [18/Oct/2021 11:41:51] "[37mGET /project/status?id=139 HTTP/1.1[0m" 200 -
+INFO:werkzeug:127.0.0.1 - - [18/Oct/2021 11:41:52] "[37mGET /project/status?id=134 HTTP/1.1[0m" 200 -
+INFO:werkzeug:127.0.0.1 - - [18/Oct/2021 11:41:52] "[37mGET /check/training HTTP/1.1[0m" 200 -
+INFO:werkzeug: * Running on http://127.0.0.1:3000/ (Press CTRL+C to quit)
+INFO:werkzeug: * Running on http://127.0.0.1:3000/ (Press CTRL+C to quit)
+INFO:werkzeug:127.0.0.1 - - [18/Oct/2021 11:45:11] "[37mGET /read/all/category HTTP/1.1[0m" 200 -
+INFO:werkzeug:127.0.0.1 - - [18/Oct/2021 11:45:25] "[37mPOST /predict HTTP/1.1[0m" 200 -
+INFO:werkzeug:127.0.0.1 - - [18/Oct/2021 11:45:36] "[37mGET /project/status?id=148 HTTP/1.1[0m" 200 -
+INFO:werkzeug:127.0.0.1 - - [18/Oct/2021 11:45:36] "[37mGET /project/status?id=147 HTTP/1.1[0m" 200 -
+INFO:werkzeug:127.0.0.1 - - [18/Oct/2021 11:45:36] "[37mGET /project/status?id=144 HTTP/1.1[0m" 200 -
+INFO:werkzeug:127.0.0.1 - - [18/Oct/2021 11:45:36] "[37mGET /project/status?id=139 HTTP/1.1[0m" 200 -
+INFO:werkzeug:127.0.0.1 - - [18/Oct/2021 11:45:36] "[37mGET /project/status?id=134 HTTP/1.1[0m" 200 -
+INFO:werkzeug:127.0.0.1 - - [18/Oct/2021 11:45:36] "[37mGET /check/training HTTP/1.1[0m" 200 -

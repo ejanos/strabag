@@ -30,7 +30,7 @@ class TopLevelCategory:
         self.name = name
 
 class ConvertExcel:
-    model = HubertModel()
+
     token_labels = dict()
     test = False
     column_subset = [
@@ -81,7 +81,8 @@ class ConvertExcel:
 
     max_index = 0
 
-    def __init__(self, test=False):
+    def __init__(self, number_categories, number_token_labels, test=False):
+        self.model = HubertModel(number_categories, number_token_labels)
         self.test = test
 
     def load_categories(self):
@@ -166,7 +167,7 @@ class ConvertExcel:
         cwd = os.getcwd()
         return cwd, EXPORT_FILENAME
 
-    def process_mi(self, content_col, source_cols, target_cols, file, no_category_id):
+    def process_mi(self, content_col, source_cols, target_cols, file, no_category_id, num_categories, num_tokens):
         self.load_categories()
         self.load_token_labels()
         df_target = pd.read_csv("./data/ITWO_sablon3.csv", dtype=str)
@@ -185,7 +186,7 @@ class ConvertExcel:
                 # TODO felhasználni cat_prob valószínűségi értéket a blokkok értelmezéséhez
                 # TODO plusz a tokenek értékét is erre lehet felhasználni
                 # TODO token probability-t is fel lehet használni erre !!!
-                category, cat_prob, tokens, token_prob = self.model.predict(str(txt))
+                category, cat_prob, tokens, token_prob = self.model.predict(str(txt), num_categories, num_tokens)
                 token_category = self.convert_token_label2category(tokens[0], max_tokens)
 
                 if category[0] == no_category_id and not self.there_is_no_token(token_category):
@@ -253,7 +254,7 @@ class ConvertExcel:
                     target_categories.append("00.00.")  # nincs kategória, vagy nem besorolható
         return target_categories
 
-    def process_more_sentence(self, sentences):
+    def process_more_sentence(self, sentences, number_categories, number_token_labels):
         self.load_categories()
         self.load_token_labels()
         no_category_id = 0
@@ -262,7 +263,7 @@ class ConvertExcel:
         max_tokens = len(self.token_labels)
 
         for txt in sentences:
-            category, cat_prob, tokens, token_prob = self.model.predict(txt)
+            category, cat_prob, tokens, token_prob = self.model.predict(txt, number_categories, number_token_labels)
             token_category = self.convert_token_label2category(tokens[0], max_tokens)
 
             if category[0] == no_category_id or cat_prob < 0.5:

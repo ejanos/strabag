@@ -14,10 +14,16 @@ class TokenLabel:
 class TrainingDataset:
     NUMERIC = "01234567890.,"
     BUFFER_SIZE = 10
-    conv = ConvertExcel()
+
     buffer = []
     token_label_ids = []
     token_label_dict = dict()
+
+    def __init__(self, number_categories, number_token_labels):
+        self.CATEGORIES = number_categories
+        self.TOKEN_LABELS = number_token_labels
+        self.conv = ConvertExcel(number_categories, number_token_labels)
+
 
     def get_token_label_ids(self):
         with DBHelper() as db:

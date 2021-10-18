@@ -59,8 +59,10 @@ class HubertModel:
     eos_token_id = tokenizer.cls_token_id
     mask_token_id = tokenizer.mask_token_id
 
-    def __init__(self, test=False):
+    def __init__(self, number_categories, number_token_labels, test=False):
         self.test = test
+        self.CATEGORIES = number_categories
+        self.TOKEN_LABELS = number_token_labels
 
         #print(len(self.labels))
         #for i, label in enumerate(self.labels):
@@ -90,8 +92,10 @@ class HubertModel:
             token_labels.append(row[1])
         return label_ids, token_labels
 
-    def predict(self, sentence):
-        if not self.model:
+    def predict(self, sentence, number_categories, number_token_labels):
+        if not self.model or self.CATEGORIES != number_categories or self.TOKEN_LABELS != number_token_labels:
+            self.CATEGORIES = number_categories
+            self.TOKEN_LABELS = number_token_labels
             self.sentence_ids, self.labels = self.get_sentence_labels()
             self.token_ids, self.token_labels = self.get_token_labels()
             print("Token labels count: ", len(self.token_labels))
@@ -101,9 +105,9 @@ class HubertModel:
             self.config = transformers.BertConfig.from_json_file(MODEL_PATH + "/config.json")
             self.config.id2label = self.sentence_ids
             self.config.label2id = self.labels
-            self.config.num_labels = 12
+            self.config.num_labels = number_categories
             self.model = transformers.BertForSequenceAndTokenClassification.from_pretrained(
-                save_dir + MODEL_NAME, local_files_only=True, config=self.config, num_labels_token=64)
+                save_dir + MODEL_NAME, local_files_only=True, config=self.config, num_labels_token=number_token_labels)
             self.model.eval()
             self.model.to(self.device)
 

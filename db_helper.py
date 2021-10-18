@@ -394,6 +394,25 @@ class DBHelper:
             return None
         return rows
 
+    def get_all_token_label_id(self):
+        try:
+            sql = f"SELECT id FROM token_label"
+            self.cur.execute(sql)
+            rows = self.cur.fetchall()
+        except(Exception, psycopg2.DatabaseError) as error:
+            print(error)
+            return None
+        return rows
+
+    def get_all_category_id(self):
+        try:
+            sql = f"SELECT PandasCategoryId FROM sentence_label"
+            self.cur.execute(sql)
+            rows = self.cur.fetchall()
+        except(Exception, psycopg2.DatabaseError) as error:
+            print(error)
+            return None
+        return rows
 
     def get_all_sentence_id(self):
         try:

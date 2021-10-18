@@ -275,7 +275,7 @@ class HubertFinetune:
             result_dict[key] = value
         return result_dict
 
-    def train(self):
+    def train(self, number_categories, number_token_labels):
         self.get_sentence_ids()
 
         NUM_BATCHES = len(self.sentence_ids)  #4
@@ -304,12 +304,12 @@ class HubertFinetune:
         config.id2label = self.config_label_dict(self.sentence_label_ids, self.cat_labels)
         config.label2id = self.config_label_dict(self.cat_labels, self.sentence_label_ids)
         #config.num_labels = len(self.sentence_label_ids)
-        config.num_labels = 12
+        config.num_labels = number_categories
         print(len(self.sentence_label_ids))
         for i , label in enumerate(self.cat_labels):
             print(i, label)
         model = transformers.BertForSequenceAndTokenClassification.from_pretrained(
-            MODEL_PATH, local_files_only=True, config=config, num_labels_token=64)
+            MODEL_PATH, local_files_only=True, config=config, num_labels_token=number_token_labels)
         model.eval()
 
         model.to(device)

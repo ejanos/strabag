@@ -35,8 +35,6 @@ app = Flask(__name__)
 app.json_encoder = CustomJSONEncoder
 app.config['UPLOAD_FOLDER'] = CACHE
 
-conv = ConvertExcel()
-training = TrainingDataset()
 process_columns = ProcessColumns()
 
 @app.route("/compare/columns", methods=['POST'])
@@ -149,12 +147,15 @@ def get_architect():
 @app.route("/save/category", methods=['POST'])
 # TODO make it async
 def save_category():
+    global CATEGORIES
     if request.method == 'POST':
         form = request.form
         name = form['name']
         ordinal = form['ordinal']
         with DBHelper() as db:
             result = db.insert_sentence_label(name, ordinal)
+            if result > CATEGORIES:
+                CATEGORIES = result + 1
             if not result:
                 return "Invalid DB operation", 500
         return return_response(result)
@@ -192,6 +193,7 @@ def read_all_category():
 @app.route("/save/tokenlabel", methods=['POST'])
 # TODO make it async
 def save_token_label():
+    global TOKEN_LABELS
     if request.method == 'POST':
         form = request.form
         id = form['id'] # frontend_id
@@ -199,6 +201,8 @@ def save_token_label():
         category_ordinal = form['category_ordinal']
         with DBHelper() as db:
             result = db.insert_token_label(id, name, category_ordinal)
+            if result > TOKEN_LABELS:
+                TOKEN_LABELS = result + 1
             if not result:
                 return "Invalid DB operation", 500
         return return_response(result)
@@ -291,7 +295,8 @@ def convert():
     if request.method == 'POST':
         file_path, source_cols, source_rows, target_categories, target_cols = get_convert_data()
 
-        directory, file_name = conv.process(source_rows, source_cols, target_categories, target_cols, file_path)
+        directory, file_name = conv.process(
+            source_rows, source_cols, target_categories, target_cols, file_path)
         return send_from_directory(directory, file_name, as_attachment=True)
 
     return "Not allowed method", 405
@@ -303,7 +308,8 @@ def convert_more_sheets():
     if request.method == 'POST':
         file_path, source_cols, source_rows, target_categories, target_cols = get_convert_data()
 
-        directory, file_name = conv.process_more_sheets_and_save(source_rows, source_cols, target_categories, target_cols, file_path)
+        directory, file_name = conv.process_more_sheets_and_save(
+            source_rows, source_cols, target_categories, target_cols, file_path)
         return send_from_directory(directory, file_name, as_attachment=True)
 
     return "Not allowed method", 405
@@ -326,13 +332,16 @@ def convert_more_files():
             file_path = os.path.join(cwd, CACHE, filename)
             cached_files.append(file_path)
             file.save(file_path)
-        directory, file_name = conv.process_more_files(source_rows, source_cols, target_categories, target_cols, cached_files)
+        directory, file_name = conv.process_more_files(
+            source_rows, source_cols, target_categories, target_cols, cached_files)
         return send_from_directory(directory, file_name, as_attachment=True)
     return "Not allowed method", 405
 
 @app.route("/convert/mi", methods=['POST'])
 # TODO make it async
 def convert_mi():
+    global CATEGORIES
+    global TOKEN_LABELS
     if request.method == 'POST':
         form = request.form
         content_col = json.loads(form['content_col'])
@@ -345,7 +354,8 @@ def convert_mi():
         file_path = os.path.join(cwd, CACHE, filename)
         f.save(file_path)
 
-        directory, file_name = conv.process_mi(content_col, source_cols, target_cols, file_path, no_category_id)
+        directory, file_name = conv.process_mi(
+            content_col, source_cols, target_cols, file_path, no_category_id, CATEGORIES, TOKEN_LABELS)
         return send_from_directory(directory, file_name, as_attachment=True)
 
     return "Not allowed method", 405
@@ -353,10 +363,12 @@ def convert_mi():
 @app.route("/predict", methods=['POST'])
 # TODO make it async
 def predict_more_row():
+    global CATEGORIES
+    global TOKEN_LABELS
     if request.method == 'POST':
         form = request.form
         sentences = json.loads(form['sentences'])
-        target_categories = conv.process_more_sentence(sentences)
+        target_categories = conv.process_more_sentence(sentences, CATEGORIES, TOKEN_LABELS)
         return return_response(target_categories)
     return "Not allowed method", 405
 
@@ -366,7 +378,7 @@ def start_training():
     if request.method == 'GET':
         training_is_running = True
         model = HubertFinetune()
-        model.train()
+        model.train(CATEGORIES, TOKEN_LABELS)
         #model = None
         training_is_running = False
         return "1"
@@ -454,6 +466,35 @@ def get_convert_data():
     f.save(file_path)
     return file_path, source_cols, source_rows, target_categories, target_cols
 
+def get_max_category_id():
+    cat_max = 0
+    with DBHelper() as db:
+        rows = db.get_all_category()
+        for row in rows:
+            if row[0] > cat_max:
+                cat_max = row[0]
+    return cat_max
+
+def get_max_token_id():
+    token_max = 0
+    with DBHelper() as db:
+        rows = db.get_all_category_id()
+        for row in rows:
+            if row[0] > token_max:
+                token_max = row[0]
+    return token_max
+
+def set_classes_number_for_training():
+    global CATEGORIES
+    global TOKEN_LABELS
+    num_cat = get_max_category_id()
+    num_token_label = get_max_token_id()
+    if num_cat > CATEGORIES:
+        CATEGORIES = num_cat + 1
+    if num_token_label > TOKEN_LABELS:
+        TOKEN_LABELS = num_token_label + 1
+    return CATEGORIES, TOKEN_LABELS
+
 def return_response(result):
     if result:
         return jsonify(result)
@@ -463,4 +504,8 @@ def return_response(result):
         return "Database error!"
 
 if __name__ == "__main__":
+    set_classes_number_for_training()
+    conv = ConvertExcel(CATEGORIES, TOKEN_LABELS)
+    training = TrainingDataset(CATEGORIES, TOKEN_LABELS)
+    ic(CATEGORIES, TOKEN_LABELS)
     app.run(threaded=True, port=3000)
