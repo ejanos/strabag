@@ -1,0 +1,5 @@
+{"HOST": "178.48.250.233",
+"TRAIN_EXCEL_TEST": "merkbau_test",
+"TRAIN_EXCEL": "merkbau",
+"USER": "postgres",
+"PASSWORD":  "x.1234ABCD"}

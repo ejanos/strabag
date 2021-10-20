@@ -2,7 +2,7 @@
 
 -- DROP DATABASE merkbau;
 
-CREATE DATABASE merkbau
+CREATE DATABASE omegavision
     WITH
     OWNER = postgres
     ENCODING = 'UTF8'
