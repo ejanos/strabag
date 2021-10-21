@@ -4088,3 +4088,558 @@ INFO:werkzeug:127.0.0.1 - - [20/Oct/2021 19:05:35] "[37mGET /read/all/category 
 INFO:werkzeug:127.0.0.1 - - [20/Oct/2021 19:05:38] "[37mPOST /predict HTTP/1.1[0m" 200 -
 INFO:werkzeug:127.0.0.1 - - [20/Oct/2021 19:07:34] "[37mGET /read/all/category HTTP/1.1[0m" 200 -
 INFO:werkzeug:127.0.0.1 - - [20/Oct/2021 19:07:35] "[37mPOST /predict HTTP/1.1[0m" 200 -
+INFO:werkzeug: * Running on http://127.0.0.1:3000/ (Press CTRL+C to quit)
+INFO:werkzeug:127.0.0.1 - - [21/Oct/2021 18:25:26] "[37mGET /check/training HTTP/1.1[0m" 200 -
+INFO:werkzeug:127.0.0.1 - - [21/Oct/2021 18:31:35] "[37mGET /check/training HTTP/1.1[0m" 200 -
+INFO:werkzeug:127.0.0.1 - - [21/Oct/2021 18:45:01] "[37mGET /check/training HTTP/1.1[0m" 200 -
+INFO:werkzeug:127.0.0.1 - - [21/Oct/2021 18:51:17] "[37mGET /check/training HTTP/1.1[0m" 200 -
+INFO:werkzeug:127.0.0.1 - - [21/Oct/2021 18:55:26] "[37mGET /project/status?id=155 HTTP/1.1[0m" 200 -
+INFO:werkzeug:127.0.0.1 - - [21/Oct/2021 18:55:26] "[37mGET /check/training HTTP/1.1[0m" 200 -
+INFO:werkzeug:127.0.0.1 - - [21/Oct/2021 18:59:11] "[37mGET /project/status?id=156 HTTP/1.1[0m" 200 -
+INFO:werkzeug:127.0.0.1 - - [21/Oct/2021 18:59:11] "[37mGET /check/training HTTP/1.1[0m" 200 -
+INFO:werkzeug:127.0.0.1 - - [21/Oct/2021 18:59:25] "[37mGET /read/all/category HTTP/1.1[0m" 200 -
+INFO:werkzeug:127.0.0.1 - - [21/Oct/2021 18:59:26] "[37mPOST /save/category HTTP/1.1[0m" 200 -
+INFO:werkzeug:127.0.0.1 - - [21/Oct/2021 18:59:26] "[37mPOST /save/category HTTP/1.1[0m" 200 -
+INFO:werkzeug:127.0.0.1 - - [21/Oct/2021 18:59:26] "[37mPOST /save/category HTTP/1.1[0m" 200 -
+INFO:werkzeug:127.0.0.1 - - [21/Oct/2021 18:59:26] "[37mPOST /save/category HTTP/1.1[0m" 200 -
+INFO:werkzeug:127.0.0.1 - - [21/Oct/2021 18:59:27] "[37mPOST /save/category HTTP/1.1[0m" 200 -
+INFO:werkzeug:127.0.0.1 - - [21/Oct/2021 18:59:27] "[37mPOST /save/category HTTP/1.1[0m" 200 -
+INFO:werkzeug:127.0.0.1 - - [21/Oct/2021 18:59:27] "[37mPOST /save/category HTTP/1.1[0m" 200 -
+INFO:werkzeug:127.0.0.1 - - [21/Oct/2021 18:59:27] "[37mPOST /save/category HTTP/1.1[0m" 200 -
+INFO:werkzeug:127.0.0.1 - - [21/Oct/2021 18:59:28] "[37mPOST /save/category HTTP/1.1[0m" 200 -
+INFO:werkzeug:127.0.0.1 - - [21/Oct/2021 18:59:28] "[37mPOST /save/category HTTP/1.1[0m" 200 -
+INFO:werkzeug:127.0.0.1 - - [21/Oct/2021 18:59:28] "[37mPOST /save/category HTTP/1.1[0m" 200 -
+INFO:werkzeug:127.0.0.1 - - [21/Oct/2021 18:59:28] "[37mPOST /save/category HTTP/1.1[0m" 200 -
+INFO:werkzeug:127.0.0.1 - - [21/Oct/2021 18:59:29] "[37mPOST /save/category HTTP/1.1[0m" 200 -
+INFO:werkzeug:127.0.0.1 - - [21/Oct/2021 18:59:29] "[37mPOST /save/category HTTP/1.1[0m" 200 -
+INFO:werkzeug:127.0.0.1 - - [21/Oct/2021 18:59:29] "[37mPOST /save/category HTTP/1.1[0m" 200 -
+INFO:werkzeug:127.0.0.1 - - [21/Oct/2021 18:59:30] "[37mPOST /save/category HTTP/1.1[0m" 200 -
+INFO:werkzeug:127.0.0.1 - - [21/Oct/2021 18:59:30] "[37mPOST /save/category HTTP/1.1[0m" 200 -
+INFO:werkzeug:127.0.0.1 - - [21/Oct/2021 18:59:30] "[37mPOST /save/category HTTP/1.1[0m" 200 -
+INFO:werkzeug:127.0.0.1 - - [21/Oct/2021 18:59:30] "[37mPOST /save/category HTTP/1.1[0m" 200 -
+INFO:werkzeug:127.0.0.1 - - [21/Oct/2021 18:59:31] "[37mPOST /save/category HTTP/1.1[0m" 200 -
+INFO:werkzeug:127.0.0.1 - - [21/Oct/2021 18:59:31] "[37mPOST /save/category HTTP/1.1[0m" 200 -
+INFO:werkzeug:127.0.0.1 - - [21/Oct/2021 18:59:32] "[37mPOST /save/category HTTP/1.1[0m" 200 -
+INFO:werkzeug:127.0.0.1 - - [21/Oct/2021 18:59:32] "[37mPOST /save/category HTTP/1.1[0m" 200 -
+INFO:werkzeug:127.0.0.1 - - [21/Oct/2021 18:59:32] "[37mPOST /save/category HTTP/1.1[0m" 200 -
+INFO:werkzeug:127.0.0.1 - - [21/Oct/2021 18:59:33] "[37mPOST /save/category HTTP/1.1[0m" 200 -
+INFO:werkzeug:127.0.0.1 - - [21/Oct/2021 18:59:33] "[37mPOST /save/category HTTP/1.1[0m" 200 -
+INFO:werkzeug:127.0.0.1 - - [21/Oct/2021 18:59:33] "[37mPOST /save/category HTTP/1.1[0m" 200 -
+INFO:werkzeug:127.0.0.1 - - [21/Oct/2021 18:59:34] "[37mPOST /save/category HTTP/1.1[0m" 200 -
+INFO:werkzeug:127.0.0.1 - - [21/Oct/2021 18:59:34] "[37mPOST /save/category HTTP/1.1[0m" 200 -
+INFO:werkzeug:127.0.0.1 - - [21/Oct/2021 18:59:34] "[37mPOST /save/category HTTP/1.1[0m" 200 -
+INFO:werkzeug:127.0.0.1 - - [21/Oct/2021 18:59:34] "[37mPOST /save/category HTTP/1.1[0m" 200 -
+INFO:werkzeug:127.0.0.1 - - [21/Oct/2021 18:59:35] "[37mPOST /save/category HTTP/1.1[0m" 200 -
+INFO:werkzeug:127.0.0.1 - - [21/Oct/2021 18:59:35] "[37mPOST /save/category HTTP/1.1[0m" 200 -
+INFO:werkzeug:127.0.0.1 - - [21/Oct/2021 18:59:35] "[37mPOST /save/category HTTP/1.1[0m" 200 -
+INFO:werkzeug:127.0.0.1 - - [21/Oct/2021 18:59:36] "[37mPOST /save/category HTTP/1.1[0m" 200 -
+INFO:werkzeug:127.0.0.1 - - [21/Oct/2021 18:59:36] "[37mPOST /save/category HTTP/1.1[0m" 200 -
+INFO:werkzeug:127.0.0.1 - - [21/Oct/2021 18:59:36] "[37mPOST /save/category HTTP/1.1[0m" 200 -
+INFO:werkzeug:127.0.0.1 - - [21/Oct/2021 18:59:36] "[37mPOST /save/category HTTP/1.1[0m" 200 -
+INFO:werkzeug:127.0.0.1 - - [21/Oct/2021 18:59:37] "[37mPOST /save/category HTTP/1.1[0m" 200 -
+INFO:werkzeug:127.0.0.1 - - [21/Oct/2021 18:59:37] "[37mPOST /save/category HTTP/1.1[0m" 200 -
+INFO:werkzeug:127.0.0.1 - - [21/Oct/2021 18:59:37] "[37mPOST /save/category HTTP/1.1[0m" 200 -
+INFO:werkzeug:127.0.0.1 - - [21/Oct/2021 18:59:37] "[37mPOST /save/category HTTP/1.1[0m" 200 -
+INFO:werkzeug:127.0.0.1 - - [21/Oct/2021 18:59:38] "[37mPOST /save/category HTTP/1.1[0m" 200 -
+INFO:werkzeug:127.0.0.1 - - [21/Oct/2021 18:59:38] "[37mPOST /save/category HTTP/1.1[0m" 200 -
+INFO:werkzeug:127.0.0.1 - - [21/Oct/2021 18:59:38] "[37mPOST /save/category HTTP/1.1[0m" 200 -
+INFO:werkzeug:127.0.0.1 - - [21/Oct/2021 18:59:38] "[37mPOST /save/category HTTP/1.1[0m" 200 -
+INFO:werkzeug:127.0.0.1 - - [21/Oct/2021 18:59:39] "[37mPOST /save/category HTTP/1.1[0m" 200 -
+INFO:werkzeug:127.0.0.1 - - [21/Oct/2021 18:59:39] "[37mPOST /save/category HTTP/1.1[0m" 200 -
+INFO:werkzeug:127.0.0.1 - - [21/Oct/2021 18:59:39] "[37mPOST /save/category HTTP/1.1[0m" 200 -
+INFO:werkzeug:127.0.0.1 - - [21/Oct/2021 18:59:40] "[37mPOST /save/category HTTP/1.1[0m" 200 -
+INFO:werkzeug:127.0.0.1 - - [21/Oct/2021 18:59:40] "[37mPOST /save/category HTTP/1.1[0m" 200 -
+INFO:werkzeug:127.0.0.1 - - [21/Oct/2021 18:59:40] "[37mPOST /save/category HTTP/1.1[0m" 200 -
+INFO:werkzeug:127.0.0.1 - - [21/Oct/2021 18:59:41] "[37mPOST /save/category HTTP/1.1[0m" 200 -
+INFO:werkzeug:127.0.0.1 - - [21/Oct/2021 18:59:41] "[37mPOST /save/category HTTP/1.1[0m" 200 -
+INFO:werkzeug:127.0.0.1 - - [21/Oct/2021 18:59:41] "[37mPOST /save/category HTTP/1.1[0m" 200 -
+INFO:werkzeug:127.0.0.1 - - [21/Oct/2021 18:59:42] "[37mPOST /save/category HTTP/1.1[0m" 200 -
+INFO:werkzeug:127.0.0.1 - - [21/Oct/2021 18:59:42] "[37mPOST /save/category HTTP/1.1[0m" 200 -
+ERROR:webserver:Exception on /predict [POST]
+Traceback (most recent call last):
+  File "D:\python_venv\strabag\lib\site-packages\flask\app.py", line 2447, in wsgi_app
+    response = self.full_dispatch_request()
+  File "D:\python_venv\strabag\lib\site-packages\flask\app.py", line 1952, in full_dispatch_request
+    rv = self.handle_user_exception(e)
+  File "D:\python_venv\strabag\lib\site-packages\flask\app.py", line 1821, in handle_user_exception
+    reraise(exc_type, exc_value, tb)
+  File "D:\python_venv\strabag\lib\site-packages\flask\_compat.py", line 39, in reraise
+    raise value
+  File "D:\python_venv\strabag\lib\site-packages\flask\app.py", line 1950, in full_dispatch_request
+    rv = self.dispatch_request()
+  File "D:\python_venv\strabag\lib\site-packages\flask\app.py", line 1936, in dispatch_request
+    return self.view_functions[rule.endpoint](**req.view_args)
+  File "D:/source/strabag/webserver.py", line 371, in predict_more_row
+    target_categories = conv.process_more_sentence(sentences, CATEGORIES, TOKEN_LABELS)
+  File "D:\source\strabag\convert_excel.py", line 266, in process_more_sentence
+    category, cat_prob, tokens, token_prob = self.model.predict(txt, number_categories, number_token_labels)
+  File "D:\source\strabag\hubert_model.py", line 109, in predict
+    self.model = transformers.BertForSequenceAndTokenClassification.from_pretrained(
+  File "D:\python_venv\strabag\lib\site-packages\transformers\modeling_utils.py", line 1213, in from_pretrained
+    model, missing_keys, unexpected_keys, error_msgs = cls._load_state_dict_into_model(
+  File "D:\python_venv\strabag\lib\site-packages\transformers\modeling_utils.py", line 1354, in _load_state_dict_into_model
+    raise RuntimeError(f"Error(s) in loading state_dict for {model.__class__.__name__}:\n\t{error_msg}")
+RuntimeError: Error(s) in loading state_dict for BertForSequenceAndTokenClassification:
+	size mismatch for classifier.weight: copying a param with shape torch.Size([12, 768]) from checkpoint, the shape in current model is torch.Size([58, 768]).
+	size mismatch for classifier.bias: copying a param with shape torch.Size([12]) from checkpoint, the shape in current model is torch.Size([58]).
+INFO:werkzeug:127.0.0.1 - - [21/Oct/2021 18:59:50] "[35m[1mPOST /predict HTTP/1.1[0m" 500 -
+INFO:werkzeug:127.0.0.1 - - [21/Oct/2021 19:06:00] "[37mGET /project/status?id=156 HTTP/1.1[0m" 200 -
+INFO:werkzeug:127.0.0.1 - - [21/Oct/2021 19:06:00] "[37mGET /check/training HTTP/1.1[0m" 200 -
+INFO:werkzeug:127.0.0.1 - - [21/Oct/2021 19:10:03] "[37mGET /read/all/category HTTP/1.1[0m" 200 -
+ERROR:webserver:Exception on /predict [POST]
+Traceback (most recent call last):
+  File "D:\python_venv\strabag\lib\site-packages\flask\app.py", line 2447, in wsgi_app
+    response = self.full_dispatch_request()
+  File "D:\python_venv\strabag\lib\site-packages\flask\app.py", line 1952, in full_dispatch_request
+    rv = self.handle_user_exception(e)
+  File "D:\python_venv\strabag\lib\site-packages\flask\app.py", line 1821, in handle_user_exception
+    reraise(exc_type, exc_value, tb)
+  File "D:\python_venv\strabag\lib\site-packages\flask\_compat.py", line 39, in reraise
+    raise value
+  File "D:\python_venv\strabag\lib\site-packages\flask\app.py", line 1950, in full_dispatch_request
+    rv = self.dispatch_request()
+  File "D:\python_venv\strabag\lib\site-packages\flask\app.py", line 1936, in dispatch_request
+    return self.view_functions[rule.endpoint](**req.view_args)
+  File "D:/source/strabag/webserver.py", line 371, in predict_more_row
+    target_categories = conv.process_more_sentence(sentences, CATEGORIES, TOKEN_LABELS)
+  File "D:\source\strabag\convert_excel.py", line 266, in process_more_sentence
+    category, cat_prob, tokens, token_prob = self.model.predict(txt, number_categories, number_token_labels)
+  File "D:\source\strabag\hubert_model.py", line 109, in predict
+    self.model = transformers.BertForSequenceAndTokenClassification.from_pretrained(
+  File "D:\python_venv\strabag\lib\site-packages\transformers\modeling_utils.py", line 1213, in from_pretrained
+    model, missing_keys, unexpected_keys, error_msgs = cls._load_state_dict_into_model(
+  File "D:\python_venv\strabag\lib\site-packages\transformers\modeling_utils.py", line 1354, in _load_state_dict_into_model
+    raise RuntimeError(f"Error(s) in loading state_dict for {model.__class__.__name__}:\n\t{error_msg}")
+RuntimeError: Error(s) in loading state_dict for BertForSequenceAndTokenClassification:
+	size mismatch for classifier.weight: copying a param with shape torch.Size([12, 768]) from checkpoint, the shape in current model is torch.Size([58, 768]).
+	size mismatch for classifier.bias: copying a param with shape torch.Size([12]) from checkpoint, the shape in current model is torch.Size([58]).
+INFO:werkzeug:127.0.0.1 - - [21/Oct/2021 19:10:05] "[35m[1mPOST /predict HTTP/1.1[0m" 500 -
+INFO:werkzeug:127.0.0.1 - - [21/Oct/2021 19:11:24] "[37mGET /project/status?id=157 HTTP/1.1[0m" 200 -
+INFO:werkzeug:127.0.0.1 - - [21/Oct/2021 19:11:24] "[37mGET /project/status?id=156 HTTP/1.1[0m" 200 -
+INFO:werkzeug:127.0.0.1 - - [21/Oct/2021 19:11:24] "[37mGET /check/training HTTP/1.1[0m" 200 -
+INFO:werkzeug:127.0.0.1 - - [21/Oct/2021 19:12:02] "[37mGET /read/all/category HTTP/1.1[0m" 200 -
+ERROR:webserver:Exception on /predict [POST]
+Traceback (most recent call last):
+  File "D:\python_venv\strabag\lib\site-packages\flask\app.py", line 2447, in wsgi_app
+    response = self.full_dispatch_request()
+  File "D:\python_venv\strabag\lib\site-packages\flask\app.py", line 1952, in full_dispatch_request
+    rv = self.handle_user_exception(e)
+  File "D:\python_venv\strabag\lib\site-packages\flask\app.py", line 1821, in handle_user_exception
+    reraise(exc_type, exc_value, tb)
+  File "D:\python_venv\strabag\lib\site-packages\flask\_compat.py", line 39, in reraise
+    raise value
+  File "D:\python_venv\strabag\lib\site-packages\flask\app.py", line 1950, in full_dispatch_request
+    rv = self.dispatch_request()
+  File "D:\python_venv\strabag\lib\site-packages\flask\app.py", line 1936, in dispatch_request
+    return self.view_functions[rule.endpoint](**req.view_args)
+  File "D:/source/strabag/webserver.py", line 371, in predict_more_row
+    target_categories = conv.process_more_sentence(sentences, CATEGORIES, TOKEN_LABELS)
+  File "D:\source\strabag\convert_excel.py", line 266, in process_more_sentence
+    category, cat_prob, tokens, token_prob = self.model.predict(txt, number_categories, number_token_labels)
+  File "D:\source\strabag\hubert_model.py", line 109, in predict
+    self.model = transformers.BertForSequenceAndTokenClassification.from_pretrained(
+  File "D:\python_venv\strabag\lib\site-packages\transformers\modeling_utils.py", line 1213, in from_pretrained
+    model, missing_keys, unexpected_keys, error_msgs = cls._load_state_dict_into_model(
+  File "D:\python_venv\strabag\lib\site-packages\transformers\modeling_utils.py", line 1354, in _load_state_dict_into_model
+    raise RuntimeError(f"Error(s) in loading state_dict for {model.__class__.__name__}:\n\t{error_msg}")
+RuntimeError: Error(s) in loading state_dict for BertForSequenceAndTokenClassification:
+	size mismatch for classifier.weight: copying a param with shape torch.Size([12, 768]) from checkpoint, the shape in current model is torch.Size([58, 768]).
+	size mismatch for classifier.bias: copying a param with shape torch.Size([12]) from checkpoint, the shape in current model is torch.Size([58]).
+INFO:werkzeug:127.0.0.1 - - [21/Oct/2021 19:12:04] "[35m[1mPOST /predict HTTP/1.1[0m" 500 -
+INFO:werkzeug:127.0.0.1 - - [21/Oct/2021 19:12:40] "[37mGET /read/all/category HTTP/1.1[0m" 200 -
+ERROR:webserver:Exception on /predict [POST]
+Traceback (most recent call last):
+  File "D:\python_venv\strabag\lib\site-packages\flask\app.py", line 2447, in wsgi_app
+    response = self.full_dispatch_request()
+  File "D:\python_venv\strabag\lib\site-packages\flask\app.py", line 1952, in full_dispatch_request
+    rv = self.handle_user_exception(e)
+  File "D:\python_venv\strabag\lib\site-packages\flask\app.py", line 1821, in handle_user_exception
+    reraise(exc_type, exc_value, tb)
+  File "D:\python_venv\strabag\lib\site-packages\flask\_compat.py", line 39, in reraise
+    raise value
+  File "D:\python_venv\strabag\lib\site-packages\flask\app.py", line 1950, in full_dispatch_request
+    rv = self.dispatch_request()
+  File "D:\python_venv\strabag\lib\site-packages\flask\app.py", line 1936, in dispatch_request
+    return self.view_functions[rule.endpoint](**req.view_args)
+  File "D:/source/strabag/webserver.py", line 371, in predict_more_row
+    target_categories = conv.process_more_sentence(sentences, CATEGORIES, TOKEN_LABELS)
+  File "D:\source\strabag\convert_excel.py", line 266, in process_more_sentence
+    category, cat_prob, tokens, token_prob = self.model.predict(txt, number_categories, number_token_labels)
+  File "D:\source\strabag\hubert_model.py", line 109, in predict
+    self.model = transformers.BertForSequenceAndTokenClassification.from_pretrained(
+  File "D:\python_venv\strabag\lib\site-packages\transformers\modeling_utils.py", line 1213, in from_pretrained
+    model, missing_keys, unexpected_keys, error_msgs = cls._load_state_dict_into_model(
+  File "D:\python_venv\strabag\lib\site-packages\transformers\modeling_utils.py", line 1354, in _load_state_dict_into_model
+    raise RuntimeError(f"Error(s) in loading state_dict for {model.__class__.__name__}:\n\t{error_msg}")
+RuntimeError: Error(s) in loading state_dict for BertForSequenceAndTokenClassification:
+	size mismatch for classifier.weight: copying a param with shape torch.Size([12, 768]) from checkpoint, the shape in current model is torch.Size([58, 768]).
+	size mismatch for classifier.bias: copying a param with shape torch.Size([12]) from checkpoint, the shape in current model is torch.Size([58]).
+INFO:werkzeug:127.0.0.1 - - [21/Oct/2021 19:12:43] "[35m[1mPOST /predict HTTP/1.1[0m" 500 -
+INFO:werkzeug: * Running on http://127.0.0.1:3000/ (Press CTRL+C to quit)
+INFO:werkzeug: * Running on http://127.0.0.1:3000/ (Press CTRL+C to quit)
+INFO:werkzeug: * Running on http://127.0.0.1:3000/ (Press CTRL+C to quit)
+INFO:werkzeug:127.0.0.1 - - [21/Oct/2021 19:26:45] "[37mGET /project/status?id=157 HTTP/1.1[0m" 200 -
+INFO:werkzeug:127.0.0.1 - - [21/Oct/2021 19:26:45] "[37mGET /project/status?id=156 HTTP/1.1[0m" 200 -
+INFO:werkzeug:127.0.0.1 - - [21/Oct/2021 19:26:46] "[37mGET /check/training HTTP/1.1[0m" 200 -
+INFO:werkzeug:127.0.0.1 - - [21/Oct/2021 20:14:46] "[37mGET /project/status?id=158 HTTP/1.1[0m" 200 -
+INFO:werkzeug:127.0.0.1 - - [21/Oct/2021 20:14:46] "[37mGET /check/training HTTP/1.1[0m" 200 -
+INFO:werkzeug:127.0.0.1 - - [21/Oct/2021 20:15:35] "[37mGET /project/status?id=159 HTTP/1.1[0m" 200 -
+INFO:werkzeug:127.0.0.1 - - [21/Oct/2021 20:15:35] "[37mGET /check/training HTTP/1.1[0m" 200 -
+INFO:werkzeug:127.0.0.1 - - [21/Oct/2021 20:17:40] "[37mGET /read/all/category HTTP/1.1[0m" 200 -
+ERROR:webserver:Exception on /predict [POST]
+Traceback (most recent call last):
+  File "D:\python_venv\strabag\lib\site-packages\flask\app.py", line 2447, in wsgi_app
+    response = self.full_dispatch_request()
+  File "D:\python_venv\strabag\lib\site-packages\flask\app.py", line 1952, in full_dispatch_request
+    rv = self.handle_user_exception(e)
+  File "D:\python_venv\strabag\lib\site-packages\flask\app.py", line 1821, in handle_user_exception
+    reraise(exc_type, exc_value, tb)
+  File "D:\python_venv\strabag\lib\site-packages\flask\_compat.py", line 39, in reraise
+    raise value
+  File "D:\python_venv\strabag\lib\site-packages\flask\app.py", line 1950, in full_dispatch_request
+    rv = self.dispatch_request()
+  File "D:\python_venv\strabag\lib\site-packages\flask\app.py", line 1936, in dispatch_request
+    return self.view_functions[rule.endpoint](**req.view_args)
+  File "D:/source/strabag/webserver.py", line 371, in predict_more_row
+    target_categories = conv.process_more_sentence(sentences, CATEGORIES, TOKEN_LABELS)
+  File "D:\source\strabag\convert_excel.py", line 266, in process_more_sentence
+    category, cat_prob, tokens, token_prob = self.model.predict(txt, number_categories, number_token_labels)
+  File "D:\source\strabag\hubert_model.py", line 109, in predict
+    self.model = transformers.BertForSequenceAndTokenClassification.from_pretrained(
+  File "D:\python_venv\strabag\lib\site-packages\transformers\modeling_utils.py", line 1213, in from_pretrained
+    model, missing_keys, unexpected_keys, error_msgs = cls._load_state_dict_into_model(
+  File "D:\python_venv\strabag\lib\site-packages\transformers\modeling_utils.py", line 1354, in _load_state_dict_into_model
+    raise RuntimeError(f"Error(s) in loading state_dict for {model.__class__.__name__}:\n\t{error_msg}")
+RuntimeError: Error(s) in loading state_dict for BertForSequenceAndTokenClassification:
+	size mismatch for classifier.weight: copying a param with shape torch.Size([12, 768]) from checkpoint, the shape in current model is torch.Size([58, 768]).
+	size mismatch for classifier.bias: copying a param with shape torch.Size([12]) from checkpoint, the shape in current model is torch.Size([58]).
+	size mismatch for classifier_token.weight: copying a param with shape torch.Size([64, 768]) from checkpoint, the shape in current model is torch.Size([1, 768]).
+	size mismatch for classifier_token.bias: copying a param with shape torch.Size([64]) from checkpoint, the shape in current model is torch.Size([1]).
+INFO:werkzeug:127.0.0.1 - - [21/Oct/2021 20:17:46] "[35m[1mPOST /predict HTTP/1.1[0m" 500 -
+INFO:werkzeug:127.0.0.1 - - [21/Oct/2021 20:45:34] "[37mGET /project/status?id=160 HTTP/1.1[0m" 200 -
+INFO:werkzeug:127.0.0.1 - - [21/Oct/2021 20:45:34] "[37mGET /check/training HTTP/1.1[0m" 200 -
+INFO:werkzeug:127.0.0.1 - - [21/Oct/2021 20:45:43] "[33mGET /read/all/token HTTP/1.1[0m" 404 -
+INFO:werkzeug:127.0.0.1 - - [21/Oct/2021 20:45:44] "[37mPOST /save/sentence HTTP/1.1[0m" 200 -
+INFO:werkzeug:127.0.0.1 - - [21/Oct/2021 20:45:44] "[37mPOST /save/sentence HTTP/1.1[0m" 200 -
+INFO:werkzeug:127.0.0.1 - - [21/Oct/2021 20:45:44] "[37mPOST /save/sentence HTTP/1.1[0m" 200 -
+INFO:werkzeug:127.0.0.1 - - [21/Oct/2021 20:45:44] "[37mPOST /save/sentence HTTP/1.1[0m" 200 -
+INFO:werkzeug:127.0.0.1 - - [21/Oct/2021 20:45:44] "[37mPOST /save/sentence HTTP/1.1[0m" 200 -
+INFO:werkzeug:127.0.0.1 - - [21/Oct/2021 20:45:44] "[37mPOST /save/sentence HTTP/1.1[0m" 200 -
+INFO:werkzeug:127.0.0.1 - - [21/Oct/2021 20:45:44] "[37mPOST /save/sentence HTTP/1.1[0m" 200 -
+INFO:werkzeug:127.0.0.1 - - [21/Oct/2021 20:45:44] "[37mPOST /save/sentence HTTP/1.1[0m" 200 -
+INFO:werkzeug:127.0.0.1 - - [21/Oct/2021 20:45:44] "[37mPOST /save/sentence HTTP/1.1[0m" 200 -
+INFO:werkzeug:127.0.0.1 - - [21/Oct/2021 20:45:44] "[37mPOST /save/sentence HTTP/1.1[0m" 200 -
+INFO:werkzeug:127.0.0.1 - - [21/Oct/2021 20:45:44] "[37mPOST /save/sentence HTTP/1.1[0m" 200 -
+INFO:werkzeug:127.0.0.1 - - [21/Oct/2021 20:45:44] "[37mPOST /save/sentence HTTP/1.1[0m" 200 -
+INFO:werkzeug:127.0.0.1 - - [21/Oct/2021 20:45:44] "[37mPOST /save/sentence HTTP/1.1[0m" 200 -
+INFO:werkzeug:127.0.0.1 - - [21/Oct/2021 20:45:44] "[37mPOST /save/sentence HTTP/1.1[0m" 200 -
+INFO:werkzeug:127.0.0.1 - - [21/Oct/2021 20:45:44] "[37mPOST /save/sentence HTTP/1.1[0m" 200 -
+INFO:werkzeug:127.0.0.1 - - [21/Oct/2021 20:45:44] "[37mPOST /save/sentence HTTP/1.1[0m" 200 -
+INFO:werkzeug:127.0.0.1 - - [21/Oct/2021 20:45:44] "[37mPOST /save/sentence HTTP/1.1[0m" 200 -
+INFO:werkzeug:127.0.0.1 - - [21/Oct/2021 20:45:44] "[37mPOST /save/sentence HTTP/1.1[0m" 200 -
+INFO:werkzeug:127.0.0.1 - - [21/Oct/2021 20:45:44] "[37mPOST /save/sentence HTTP/1.1[0m" 200 -
+INFO:werkzeug:127.0.0.1 - - [21/Oct/2021 20:45:44] "[37mPOST /save/sentence HTTP/1.1[0m" 200 -
+INFO:werkzeug:127.0.0.1 - - [21/Oct/2021 20:45:45] "[37mPOST /save/sentence HTTP/1.1[0m" 200 -
+INFO:werkzeug:127.0.0.1 - - [21/Oct/2021 20:45:45] "[37mPOST /save/sentence HTTP/1.1[0m" 200 -
+INFO:werkzeug:127.0.0.1 - - [21/Oct/2021 20:45:45] "[37mPOST /save/sentence HTTP/1.1[0m" 200 -
+INFO:werkzeug: * Running on http://127.0.0.1:3000/ (Press CTRL+C to quit)
+INFO:werkzeug:127.0.0.1 - - [21/Oct/2021 20:53:15] "[37mGET /project/status?id=160 HTTP/1.1[0m" 200 -
+INFO:werkzeug:127.0.0.1 - - [21/Oct/2021 20:53:15] "[37mGET /check/training HTTP/1.1[0m" 200 -
+INFO:werkzeug:127.0.0.1 - - [21/Oct/2021 20:53:18] "[37mGET /read/all/category HTTP/1.1[0m" 200 -
+INFO:werkzeug:127.0.0.1 - - [21/Oct/2021 20:54:12] "[37mGET /project/status?id=160 HTTP/1.1[0m" 200 -
+INFO:werkzeug:127.0.0.1 - - [21/Oct/2021 20:54:13] "[37mGET /check/training HTTP/1.1[0m" 200 -
+INFO:werkzeug:127.0.0.1 - - [21/Oct/2021 20:54:23] "[37mGET /read/all/category HTTP/1.1[0m" 200 -
+INFO:werkzeug:127.0.0.1 - - [21/Oct/2021 21:00:30] "[37mGET /project/status?id=160 HTTP/1.1[0m" 200 -
+INFO:werkzeug:127.0.0.1 - - [21/Oct/2021 21:00:30] "[37mGET /check/training HTTP/1.1[0m" 200 -
+INFO:werkzeug:127.0.0.1 - - [21/Oct/2021 21:00:34] "[37mGET /read/all/category HTTP/1.1[0m" 200 -
+INFO:werkzeug:127.0.0.1 - - [21/Oct/2021 21:06:59] "[37mGET /project/status?id=160 HTTP/1.1[0m" 200 -
+INFO:werkzeug:127.0.0.1 - - [21/Oct/2021 21:06:59] "[37mGET /check/training HTTP/1.1[0m" 200 -
+INFO:werkzeug:127.0.0.1 - - [21/Oct/2021 21:07:01] "[33mGET /read/all/token HTTP/1.1[0m" 404 -
+INFO:werkzeug:127.0.0.1 - - [21/Oct/2021 21:07:01] "[37mPOST /save/tokenlabel HTTP/1.1[0m" 200 -
+ERROR:webserver:Exception on /save/tokenlabel [POST]
+Traceback (most recent call last):
+  File "D:\python_venv\strabag\lib\site-packages\flask\app.py", line 2447, in wsgi_app
+    response = self.full_dispatch_request()
+  File "D:\python_venv\strabag\lib\site-packages\flask\app.py", line 1952, in full_dispatch_request
+    rv = self.handle_user_exception(e)
+  File "D:\python_venv\strabag\lib\site-packages\flask\app.py", line 1821, in handle_user_exception
+    reraise(exc_type, exc_value, tb)
+  File "D:\python_venv\strabag\lib\site-packages\flask\_compat.py", line 39, in reraise
+    raise value
+  File "D:\python_venv\strabag\lib\site-packages\flask\app.py", line 1950, in full_dispatch_request
+    rv = self.dispatch_request()
+  File "D:\python_venv\strabag\lib\site-packages\flask\app.py", line 1936, in dispatch_request
+    return self.view_functions[rule.endpoint](**req.view_args)
+  File "D:/source/strabag/webserver.py", line 203, in save_token_label
+    result = db.insert_token_label(id, name, category_ordinal)
+  File "D:\source\strabag\db_helper.py", line 81, in insert_token_label
+    token_id = self.generate_token_label_id()
+  File "D:\source\strabag\db_helper.py", line 109, in generate_token_label_id
+    token_id_max = max(self.sentence_label_ids)
+ValueError: max() arg is an empty sequence
+INFO:werkzeug:127.0.0.1 - - [21/Oct/2021 21:07:01] "[35m[1mPOST /save/tokenlabel HTTP/1.1[0m" 500 -
+ERROR:webserver:Exception on /save/tokenlabel [POST]
+Traceback (most recent call last):
+  File "D:\python_venv\strabag\lib\site-packages\flask\app.py", line 2447, in wsgi_app
+    response = self.full_dispatch_request()
+  File "D:\python_venv\strabag\lib\site-packages\flask\app.py", line 1952, in full_dispatch_request
+    rv = self.handle_user_exception(e)
+  File "D:\python_venv\strabag\lib\site-packages\flask\app.py", line 1821, in handle_user_exception
+    reraise(exc_type, exc_value, tb)
+  File "D:\python_venv\strabag\lib\site-packages\flask\_compat.py", line 39, in reraise
+    raise value
+  File "D:\python_venv\strabag\lib\site-packages\flask\app.py", line 1950, in full_dispatch_request
+    rv = self.dispatch_request()
+  File "D:\python_venv\strabag\lib\site-packages\flask\app.py", line 1936, in dispatch_request
+    return self.view_functions[rule.endpoint](**req.view_args)
+  File "D:/source/strabag/webserver.py", line 203, in save_token_label
+    result = db.insert_token_label(id, name, category_ordinal)
+  File "D:\source\strabag\db_helper.py", line 81, in insert_token_label
+    token_id = self.generate_token_label_id()
+  File "D:\source\strabag\db_helper.py", line 109, in generate_token_label_id
+    token_id_max = max(self.sentence_label_ids)
+ValueError: max() arg is an empty sequence
+INFO:werkzeug:127.0.0.1 - - [21/Oct/2021 21:07:02] "[35m[1mPOST /save/tokenlabel HTTP/1.1[0m" 500 -
+ERROR:webserver:Exception on /save/tokenlabel [POST]
+Traceback (most recent call last):
+  File "D:\python_venv\strabag\lib\site-packages\flask\app.py", line 2447, in wsgi_app
+    response = self.full_dispatch_request()
+  File "D:\python_venv\strabag\lib\site-packages\flask\app.py", line 1952, in full_dispatch_request
+    rv = self.handle_user_exception(e)
+  File "D:\python_venv\strabag\lib\site-packages\flask\app.py", line 1821, in handle_user_exception
+    reraise(exc_type, exc_value, tb)
+  File "D:\python_venv\strabag\lib\site-packages\flask\_compat.py", line 39, in reraise
+    raise value
+  File "D:\python_venv\strabag\lib\site-packages\flask\app.py", line 1950, in full_dispatch_request
+    rv = self.dispatch_request()
+  File "D:\python_venv\strabag\lib\site-packages\flask\app.py", line 1936, in dispatch_request
+    return self.view_functions[rule.endpoint](**req.view_args)
+  File "D:/source/strabag/webserver.py", line 203, in save_token_label
+    result = db.insert_token_label(id, name, category_ordinal)
+  File "D:\source\strabag\db_helper.py", line 81, in insert_token_label
+    token_id = self.generate_token_label_id()
+  File "D:\source\strabag\db_helper.py", line 109, in generate_token_label_id
+    token_id_max = max(self.sentence_label_ids)
+ValueError: max() arg is an empty sequence
+INFO:werkzeug:127.0.0.1 - - [21/Oct/2021 21:07:02] "[35m[1mPOST /save/tokenlabel HTTP/1.1[0m" 500 -
+ERROR:webserver:Exception on /save/tokenlabel [POST]
+Traceback (most recent call last):
+  File "D:\python_venv\strabag\lib\site-packages\flask\app.py", line 2447, in wsgi_app
+    response = self.full_dispatch_request()
+  File "D:\python_venv\strabag\lib\site-packages\flask\app.py", line 1952, in full_dispatch_request
+    rv = self.handle_user_exception(e)
+  File "D:\python_venv\strabag\lib\site-packages\flask\app.py", line 1821, in handle_user_exception
+    reraise(exc_type, exc_value, tb)
+  File "D:\python_venv\strabag\lib\site-packages\flask\_compat.py", line 39, in reraise
+    raise value
+  File "D:\python_venv\strabag\lib\site-packages\flask\app.py", line 1950, in full_dispatch_request
+    rv = self.dispatch_request()
+  File "D:\python_venv\strabag\lib\site-packages\flask\app.py", line 1936, in dispatch_request
+    return self.view_functions[rule.endpoint](**req.view_args)
+  File "D:/source/strabag/webserver.py", line 203, in save_token_label
+    result = db.insert_token_label(id, name, category_ordinal)
+  File "D:\source\strabag\db_helper.py", line 81, in insert_token_label
+    token_id = self.generate_token_label_id()
+  File "D:\source\strabag\db_helper.py", line 109, in generate_token_label_id
+    token_id_max = max(self.sentence_label_ids)
+ValueError: max() arg is an empty sequence
+INFO:werkzeug:127.0.0.1 - - [21/Oct/2021 21:07:02] "[35m[1mPOST /save/tokenlabel HTTP/1.1[0m" 500 -
+ERROR:webserver:Exception on /save/tokenlabel [POST]
+Traceback (most recent call last):
+  File "D:\python_venv\strabag\lib\site-packages\flask\app.py", line 2447, in wsgi_app
+    response = self.full_dispatch_request()
+  File "D:\python_venv\strabag\lib\site-packages\flask\app.py", line 1952, in full_dispatch_request
+    rv = self.handle_user_exception(e)
+  File "D:\python_venv\strabag\lib\site-packages\flask\app.py", line 1821, in handle_user_exception
+    reraise(exc_type, exc_value, tb)
+  File "D:\python_venv\strabag\lib\site-packages\flask\_compat.py", line 39, in reraise
+    raise value
+  File "D:\python_venv\strabag\lib\site-packages\flask\app.py", line 1950, in full_dispatch_request
+    rv = self.dispatch_request()
+  File "D:\python_venv\strabag\lib\site-packages\flask\app.py", line 1936, in dispatch_request
+    return self.view_functions[rule.endpoint](**req.view_args)
+  File "D:/source/strabag/webserver.py", line 203, in save_token_label
+    result = db.insert_token_label(id, name, category_ordinal)
+  File "D:\source\strabag\db_helper.py", line 81, in insert_token_label
+    token_id = self.generate_token_label_id()
+  File "D:\source\strabag\db_helper.py", line 109, in generate_token_label_id
+    token_id_max = max(self.sentence_label_ids)
+ValueError: max() arg is an empty sequence
+INFO:werkzeug:127.0.0.1 - - [21/Oct/2021 21:07:02] "[35m[1mPOST /save/tokenlabel HTTP/1.1[0m" 500 -
+ERROR:webserver:Exception on /save/tokenlabel [POST]
+Traceback (most recent call last):
+  File "D:\python_venv\strabag\lib\site-packages\flask\app.py", line 2447, in wsgi_app
+    response = self.full_dispatch_request()
+  File "D:\python_venv\strabag\lib\site-packages\flask\app.py", line 1952, in full_dispatch_request
+    rv = self.handle_user_exception(e)
+  File "D:\python_venv\strabag\lib\site-packages\flask\app.py", line 1821, in handle_user_exception
+    reraise(exc_type, exc_value, tb)
+  File "D:\python_venv\strabag\lib\site-packages\flask\_compat.py", line 39, in reraise
+    raise value
+  File "D:\python_venv\strabag\lib\site-packages\flask\app.py", line 1950, in full_dispatch_request
+    rv = self.dispatch_request()
+  File "D:\python_venv\strabag\lib\site-packages\flask\app.py", line 1936, in dispatch_request
+    return self.view_functions[rule.endpoint](**req.view_args)
+  File "D:/source/strabag/webserver.py", line 203, in save_token_label
+    result = db.insert_token_label(id, name, category_ordinal)
+  File "D:\source\strabag\db_helper.py", line 81, in insert_token_label
+    token_id = self.generate_token_label_id()
+  File "D:\source\strabag\db_helper.py", line 109, in generate_token_label_id
+    token_id_max = max(self.sentence_label_ids)
+ValueError: max() arg is an empty sequence
+INFO:werkzeug:127.0.0.1 - - [21/Oct/2021 21:07:02] "[35m[1mPOST /save/tokenlabel HTTP/1.1[0m" 500 -
+ERROR:webserver:Exception on /save/tokenlabel [POST]
+Traceback (most recent call last):
+  File "D:\python_venv\strabag\lib\site-packages\flask\app.py", line 2447, in wsgi_app
+    response = self.full_dispatch_request()
+  File "D:\python_venv\strabag\lib\site-packages\flask\app.py", line 1952, in full_dispatch_request
+    rv = self.handle_user_exception(e)
+  File "D:\python_venv\strabag\lib\site-packages\flask\app.py", line 1821, in handle_user_exception
+    reraise(exc_type, exc_value, tb)
+  File "D:\python_venv\strabag\lib\site-packages\flask\_compat.py", line 39, in reraise
+    raise value
+  File "D:\python_venv\strabag\lib\site-packages\flask\app.py", line 1950, in full_dispatch_request
+    rv = self.dispatch_request()
+  File "D:\python_venv\strabag\lib\site-packages\flask\app.py", line 1936, in dispatch_request
+    return self.view_functions[rule.endpoint](**req.view_args)
+  File "D:/source/strabag/webserver.py", line 203, in save_token_label
+    result = db.insert_token_label(id, name, category_ordinal)
+  File "D:\source\strabag\db_helper.py", line 81, in insert_token_label
+    token_id = self.generate_token_label_id()
+  File "D:\source\strabag\db_helper.py", line 109, in generate_token_label_id
+    token_id_max = max(self.sentence_label_ids)
+ValueError: max() arg is an empty sequence
+INFO:werkzeug:127.0.0.1 - - [21/Oct/2021 21:07:03] "[35m[1mPOST /save/tokenlabel HTTP/1.1[0m" 500 -
+ERROR:webserver:Exception on /save/tokenlabel [POST]
+Traceback (most recent call last):
+  File "D:\python_venv\strabag\lib\site-packages\flask\app.py", line 2447, in wsgi_app
+    response = self.full_dispatch_request()
+  File "D:\python_venv\strabag\lib\site-packages\flask\app.py", line 1952, in full_dispatch_request
+    rv = self.handle_user_exception(e)
+  File "D:\python_venv\strabag\lib\site-packages\flask\app.py", line 1821, in handle_user_exception
+    reraise(exc_type, exc_value, tb)
+  File "D:\python_venv\strabag\lib\site-packages\flask\_compat.py", line 39, in reraise
+    raise value
+  File "D:\python_venv\strabag\lib\site-packages\flask\app.py", line 1950, in full_dispatch_request
+    rv = self.dispatch_request()
+  File "D:\python_venv\strabag\lib\site-packages\flask\app.py", line 1936, in dispatch_request
+    return self.view_functions[rule.endpoint](**req.view_args)
+  File "D:/source/strabag/webserver.py", line 203, in save_token_label
+    result = db.insert_token_label(id, name, category_ordinal)
+  File "D:\source\strabag\db_helper.py", line 81, in insert_token_label
+    token_id = self.generate_token_label_id()
+  File "D:\source\strabag\db_helper.py", line 109, in generate_token_label_id
+    token_id_max = max(self.sentence_label_ids)
+ValueError: max() arg is an empty sequence
+INFO:werkzeug:127.0.0.1 - - [21/Oct/2021 21:07:03] "[35m[1mPOST /save/tokenlabel HTTP/1.1[0m" 500 -
+ERROR:webserver:Exception on /save/tokenlabel [POST]
+Traceback (most recent call last):
+  File "D:\python_venv\strabag\lib\site-packages\flask\app.py", line 2447, in wsgi_app
+    response = self.full_dispatch_request()
+  File "D:\python_venv\strabag\lib\site-packages\flask\app.py", line 1952, in full_dispatch_request
+    rv = self.handle_user_exception(e)
+  File "D:\python_venv\strabag\lib\site-packages\flask\app.py", line 1821, in handle_user_exception
+    reraise(exc_type, exc_value, tb)
+  File "D:\python_venv\strabag\lib\site-packages\flask\_compat.py", line 39, in reraise
+    raise value
+  File "D:\python_venv\strabag\lib\site-packages\flask\app.py", line 1950, in full_dispatch_request
+    rv = self.dispatch_request()
+  File "D:\python_venv\strabag\lib\site-packages\flask\app.py", line 1936, in dispatch_request
+    return self.view_functions[rule.endpoint](**req.view_args)
+  File "D:/source/strabag/webserver.py", line 203, in save_token_label
+    result = db.insert_token_label(id, name, category_ordinal)
+  File "D:\source\strabag\db_helper.py", line 81, in insert_token_label
+    token_id = self.generate_token_label_id()
+  File "D:\source\strabag\db_helper.py", line 109, in generate_token_label_id
+    token_id_max = max(self.sentence_label_ids)
+ValueError: max() arg is an empty sequence
+INFO:werkzeug:127.0.0.1 - - [21/Oct/2021 21:07:03] "[35m[1mPOST /save/tokenlabel HTTP/1.1[0m" 500 -
+ERROR:webserver:Exception on /save/tokenlabel [POST]
+Traceback (most recent call last):
+  File "D:\python_venv\strabag\lib\site-packages\flask\app.py", line 2447, in wsgi_app
+    response = self.full_dispatch_request()
+  File "D:\python_venv\strabag\lib\site-packages\flask\app.py", line 1952, in full_dispatch_request
+    rv = self.handle_user_exception(e)
+  File "D:\python_venv\strabag\lib\site-packages\flask\app.py", line 1821, in handle_user_exception
+    reraise(exc_type, exc_value, tb)
+  File "D:\python_venv\strabag\lib\site-packages\flask\_compat.py", line 39, in reraise
+    raise value
+  File "D:\python_venv\strabag\lib\site-packages\flask\app.py", line 1950, in full_dispatch_request
+    rv = self.dispatch_request()
+  File "D:\python_venv\strabag\lib\site-packages\flask\app.py", line 1936, in dispatch_request
+    return self.view_functions[rule.endpoint](**req.view_args)
+  File "D:/source/strabag/webserver.py", line 203, in save_token_label
+    result = db.insert_token_label(id, name, category_ordinal)
+  File "D:\source\strabag\db_helper.py", line 81, in insert_token_label
+    token_id = self.generate_token_label_id()
+  File "D:\source\strabag\db_helper.py", line 109, in generate_token_label_id
+    token_id_max = max(self.sentence_label_ids)
+ValueError: max() arg is an empty sequence
+INFO:werkzeug:127.0.0.1 - - [21/Oct/2021 21:07:03] "[35m[1mPOST /save/tokenlabel HTTP/1.1[0m" 500 -
+ERROR:webserver:Exception on /save/tokenlabel [POST]
+Traceback (most recent call last):
+  File "D:\python_venv\strabag\lib\site-packages\flask\app.py", line 2447, in wsgi_app
+    response = self.full_dispatch_request()
+  File "D:\python_venv\strabag\lib\site-packages\flask\app.py", line 1952, in full_dispatch_request
+    rv = self.handle_user_exception(e)
+  File "D:\python_venv\strabag\lib\site-packages\flask\app.py", line 1821, in handle_user_exception
+    reraise(exc_type, exc_value, tb)
+  File "D:\python_venv\strabag\lib\site-packages\flask\_compat.py", line 39, in reraise
+    raise value
+  File "D:\python_venv\strabag\lib\site-packages\flask\app.py", line 1950, in full_dispatch_request
+    rv = self.dispatch_request()
+  File "D:\python_venv\strabag\lib\site-packages\flask\app.py", line 1936, in dispatch_request
+    return self.view_functions[rule.endpoint](**req.view_args)
+  File "D:/source/strabag/webserver.py", line 203, in save_token_label
+    result = db.insert_token_label(id, name, category_ordinal)
+  File "D:\source\strabag\db_helper.py", line 81, in insert_token_label
+    token_id = self.generate_token_label_id()
+  File "D:\source\strabag\db_helper.py", line 109, in generate_token_label_id
+    token_id_max = max(self.sentence_label_ids)
+ValueError: max() arg is an empty sequence
+INFO:werkzeug:127.0.0.1 - - [21/Oct/2021 21:07:03] "[35m[1mPOST /save/tokenlabel HTTP/1.1[0m" 500 -
+ERROR:webserver:Exception on /save/tokenlabel [POST]
+Traceback (most recent call last):
+  File "D:\python_venv\strabag\lib\site-packages\flask\app.py", line 2447, in wsgi_app
+    response = self.full_dispatch_request()
+  File "D:\python_venv\strabag\lib\site-packages\flask\app.py", line 1952, in full_dispatch_request
+    rv = self.handle_user_exception(e)
+  File "D:\python_venv\strabag\lib\site-packages\flask\app.py", line 1821, in handle_user_exception
+    reraise(exc_type, exc_value, tb)
+  File "D:\python_venv\strabag\lib\site-packages\flask\_compat.py", line 39, in reraise
+    raise value
+  File "D:\python_venv\strabag\lib\site-packages\flask\app.py", line 1950, in full_dispatch_request
+    rv = self.dispatch_request()
+  File "D:\python_venv\strabag\lib\site-packages\flask\app.py", line 1936, in dispatch_request
+    return self.view_functions[rule.endpoint](**req.view_args)
+  File "D:/source/strabag/webserver.py", line 203, in save_token_label
+    result = db.insert_token_label(id, name, category_ordinal)
+  File "D:\source\strabag\db_helper.py", line 81, in insert_token_label
+    token_id = self.generate_token_label_id()
+  File "D:\source\strabag\db_helper.py", line 109, in generate_token_label_id
+    token_id_max = max(self.sentence_label_ids)
+ValueError: max() arg is an empty sequence
+INFO:werkzeug:127.0.0.1 - - [21/Oct/2021 21:07:04] "[35m[1mPOST /save/tokenlabel HTTP/1.1[0m" 500 -
+INFO:werkzeug:127.0.0.1 - - [21/Oct/2021 21:07:05] "[37mPOST /save/sentence HTTP/1.1[0m" 200 -
+INFO:werkzeug:127.0.0.1 - - [21/Oct/2021 21:07:05] "[37mPOST /save/sentence HTTP/1.1[0m" 200 -
+INFO:werkzeug:127.0.0.1 - - [21/Oct/2021 21:07:05] "[37mPOST /save/sentence HTTP/1.1[0m" 200 -
+INFO:werkzeug:127.0.0.1 - - [21/Oct/2021 21:07:05] "[37mPOST /save/sentence HTTP/1.1[0m" 200 -
+INFO:werkzeug:127.0.0.1 - - [21/Oct/2021 21:07:05] "[37mPOST /save/sentence HTTP/1.1[0m" 200 -
+INFO:werkzeug:127.0.0.1 - - [21/Oct/2021 21:07:05] "[37mPOST /save/sentence HTTP/1.1[0m" 200 -
+INFO:werkzeug:127.0.0.1 - - [21/Oct/2021 21:07:05] "[37mPOST /save/sentence HTTP/1.1[0m" 200 -
+INFO:werkzeug:127.0.0.1 - - [21/Oct/2021 21:07:05] "[37mPOST /save/sentence HTTP/1.1[0m" 200 -
+INFO:werkzeug:127.0.0.1 - - [21/Oct/2021 21:07:05] "[37mPOST /save/sentence HTTP/1.1[0m" 200 -
+INFO:werkzeug:127.0.0.1 - - [21/Oct/2021 21:07:05] "[37mPOST /save/sentence HTTP/1.1[0m" 200 -
+INFO:werkzeug:127.0.0.1 - - [21/Oct/2021 21:07:05] "[37mPOST /save/sentence HTTP/1.1[0m" 200 -
+INFO:werkzeug:127.0.0.1 - - [21/Oct/2021 21:07:05] "[37mPOST /save/sentence HTTP/1.1[0m" 200 -
+INFO:werkzeug:127.0.0.1 - - [21/Oct/2021 21:07:05] "[37mPOST /save/sentence HTTP/1.1[0m" 200 -
+INFO:werkzeug:127.0.0.1 - - [21/Oct/2021 21:07:05] "[37mPOST /save/sentence HTTP/1.1[0m" 200 -
+INFO:werkzeug:127.0.0.1 - - [21/Oct/2021 21:07:05] "[37mPOST /save/sentence HTTP/1.1[0m" 200 -
+INFO:werkzeug:127.0.0.1 - - [21/Oct/2021 21:07:05] "[37mPOST /save/sentence HTTP/1.1[0m" 200 -
+INFO:werkzeug:127.0.0.1 - - [21/Oct/2021 21:07:05] "[37mPOST /save/sentence HTTP/1.1[0m" 200 -
+INFO:werkzeug:127.0.0.1 - - [21/Oct/2021 21:07:05] "[37mPOST /save/sentence HTTP/1.1[0m" 200 -
+INFO:werkzeug:127.0.0.1 - - [21/Oct/2021 21:07:05] "[37mPOST /save/sentence HTTP/1.1[0m" 200 -
+INFO:werkzeug:127.0.0.1 - - [21/Oct/2021 21:07:05] "[37mPOST /save/sentence HTTP/1.1[0m" 200 -
+INFO:werkzeug:127.0.0.1 - - [21/Oct/2021 21:07:05] "[37mPOST /save/sentence HTTP/1.1[0m" 200 -
+INFO:werkzeug:127.0.0.1 - - [21/Oct/2021 21:07:05] "[37mPOST /save/sentence HTTP/1.1[0m" 200 -
+INFO:werkzeug:127.0.0.1 - - [21/Oct/2021 21:07:05] "[37mPOST /save/sentence HTTP/1.1[0m" 200 -

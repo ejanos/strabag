@@ -19,7 +19,7 @@ ic = ic.IceCreamDebugger()
 #ic.disable()
 
 CATEGORIES = 12
-TOKEN_LABELS = 64
+TOKEN_LABELS = 1
 
 training_is_running = False
 
@@ -256,6 +256,7 @@ def save_training_data():
         file_path = os.path.join(cwd, CACHE, filename)
         f.save(file_path)
         result = training.save(content_column, source_rows, target_categories, token_labels, file_path)
+        set_classes_number_for_training()
         return return_response(result)
 
     return "Not allowed method", 405
@@ -478,7 +479,7 @@ def get_max_category_id():
 def get_max_token_id():
     token_max = 0
     with DBHelper() as db:
-        rows = db.get_all_category_id()
+        rows = db.get_all_token_id()
         for row in rows:
             if row[0] > token_max:
                 token_max = row[0]
