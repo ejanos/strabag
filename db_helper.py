@@ -13,6 +13,8 @@ class DBHelper:
     conn = ""
     cur = ""
     password = ""
+    sentence_label_ids = []
+    token_label_ids = []
 
     def __init__(self, test=False):
         self.test = test
@@ -62,15 +64,57 @@ class DBHelper:
         return architect_id
 
     def insert_sentence_label(self, category, ordinal):
-        sql = """INSERT INTO sentence_label(CategoryName, Ordinal) VALUES(%s,%s) RETURNING PandasCategoryId;"""
+        sql = """INSERT INTO sentence_label(PandasCategoryId, CategoryName, Ordinal) VALUES(%s,%s,%s) RETURNING PandasCategoryId;"""
+        cat_id = self.generate_sentence_label_id()
         try:
-            self.cur.execute(sql, (category, ordinal,))
+            self.cur.execute(sql, (cat_id, category, ordinal,))
             sentence_label_id = self.cur.fetchone()[0]
             self.conn.commit()
+            self.sentence_label_ids.append(sentence_label_id)
         except(Exception, psycopg2.DatabaseError) as error:
             print(error)
             return None
         return sentence_label_id
+
+    def insert_token_label(self, frontend_id, name, category_ordinal):
+        sql = """INSERT INTO token_label(id, frontend_id, "name", category_id) VALUES(%s, %s, %s,%s) RETURNING id;"""
+        token_id = self.generate_token_label_id()
+        try:
+            category_id = self.get_category_id_by_ordinal(category_ordinal)
+            self.cur.execute(sql, (token_id, frontend_id, name, category_id,))
+            token_label_id = self.cur.fetchone()[0]
+            self.conn.commit()
+            self.token_label_ids.append(token_label_id)
+        except(Exception, psycopg2.DatabaseError) as error:
+            print(error)
+            return None
+        return token_label_id
+
+    def generate_sentence_label_id(self):
+        if len(self.sentence_label_ids) > 0:
+            self.sentence_label_ids.sort()
+            cat_id_max = max(self.sentence_label_ids)
+            return cat_id_max + 1
+        else:
+            rows = self.get_sentence_label_ids()
+            if not rows:
+                return 1
+            for row in rows:
+                self.sentence_label_ids.append(row[0])
+            return max(self.sentence_label_ids) + 1
+
+    def generate_token_label_id(self):
+        if len(self.token_label_ids) > 0:
+            self.token_label_ids.sort()
+            token_id_max = max(self.sentence_label_ids)
+            return token_id_max + 1
+        else:
+            rows = self.get_token_label_ids()
+            if not rows:
+                return 1
+            for row in rows:
+                self.token_label_ids.append(row[0])
+            return max(self.token_label_ids) + 1
 
 
     def insert_sentence(self, text, sentence_label_id, token_labels):
@@ -307,17 +351,6 @@ class DBHelper:
             return None
         return header_id
 
-    def insert_sentence_label(self, name, ordinal):
-        sql = """INSERT INTO sentence_label(CategoryName, Ordinal) VALUES(%s,%s) RETURNING PandasCategoryId;"""
-        try:
-            self.cur.execute(sql, (name,ordinal,))
-            category_id = self.cur.fetchone()[0]
-            self.conn.commit()
-        except(Exception, psycopg2.DatabaseError) as error:
-            print(error)
-            return None
-        return category_id
-
     def update_sentence_label(self, category, ordinal, id):
         sql = """UPDATE sentence_label SET CategoryName = %s, Ordinal = %s, ModifiedDate = CURRENT_DATE WHERE PandasCategoryId = %s RETURNING PandasCategoryId;"""
         try:
@@ -349,18 +382,6 @@ class DBHelper:
             print(error)
             return None
         return sentence_id
-
-    def insert_token_label(self, frontend_id, name, category_ordinal):
-        sql = """INSERT INTO token_label(frontend_id, "name", category_id) VALUES(%s, %s,%s) RETURNING id;"""
-        try:
-            category_id = self.get_category_id_by_ordinal(category_ordinal)
-            self.cur.execute(sql, (frontend_id, name, category_id,))
-            token_label_id = self.cur.fetchone()[0]
-            self.conn.commit()
-        except(Exception, psycopg2.DatabaseError) as error:
-            print(error)
-            return None
-        return token_label_id
 
     def update_token_label(self, name, category_ordinal, frontend_id):
         sql = """UPDATE token_label SET "name" = %s, category_id = %s, modified_date = CURRENT_DATE WHERE frontend_id = %s RETURNING id;"""
@@ -440,6 +461,26 @@ class DBHelper:
             self.cur.execute(sql)
             category_id = self.cur.fetchone()[0]
             return category_id
+        except(Exception, psycopg2.DatabaseError) as error:
+            print(error)
+            return None
+
+    def get_sentence_label_ids(self):
+        try:
+            sql = f"SELECT PandasCategoryId FROM sentence_label ORDER BY PandasCategoryId"
+            self.cur.execute(sql)
+            rows = self.cur.fetchall()
+            return rows
+        except(Exception, psycopg2.DatabaseError) as error:
+            print(error)
+            return None
+
+    def get_token_label_ids(self):
+        try:
+            sql = f"SELECT id FROM token_label ORDER BY id"
+            self.cur.execute(sql)
+            rows = self.cur.fetchall()
+            return rows
         except(Exception, psycopg2.DatabaseError) as error:
             print(error)
             return None

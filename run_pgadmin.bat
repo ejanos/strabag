@@ -1,0 +1,1 @@
+docker run -e PGADMIN_DEFAULT_EMAIL=erdody.janos@gmail.com -e PGADMIN_DEFAULT_PASSWORD=password dpage/pgadmin4 -p 80:7777 -d

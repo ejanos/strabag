@@ -114,7 +114,7 @@ def get_all_token_labels_test():
         ordinal2 = get_random_string(15)
         category_id2 = db.insert_sentence_label(sen_label2, ordinal2)
         token_id1 = db.insert_token_label(frontend_id1, label1, ordinal1)
-        token_id2 = db.insert_token_label(frontend_id1, label2, ordinal2)
+        token_id2 = db.insert_token_label(frontend_id2, label2, ordinal2)
         token_labels = db.get_all_token_label()
         assert len(token_labels) > 1
         for label in token_labels:
@@ -397,6 +397,26 @@ def get_sentence_label_test():
         sentence_label_row = db.get_sentence_label(1)
         assert sentence_label_row[1] == "Tetőszerelés"
 
+def get_sentence_label_ids_test():
+    with DBHelper(test=True) as db:
+        row = db.get_sentence_label_ids()
+        if not row:
+            insert_sentences()
+        sentence_label_row = db.get_sentence_label_ids()
+        assert sentence_label_row[0][0] == 1
+
+def get_token_label_ids_test():
+    with DBHelper(test=True) as db:
+        category = get_random_string(15)
+        ordinal = get_random_string(15)
+        frontend_id = random.randint(0, 99999)
+        category_id = db.insert_sentence_label(category, ordinal)
+        name = get_random_string(15)
+        token_id = db.insert_token_label(frontend_id, name, ordinal)
+        row = db.get_token_label_ids()
+        assert row[0][0] == 1
+
+
 def get_token_label_test():
     with DBHelper(test=True) as db:
         category = get_random_string(15)
@@ -431,6 +451,14 @@ def get_random_ordinal():
 
 
 initialize()
+get_all_token_labels_test()
+print("Test get all token labels is OK")
+input("press enter")
+
+get_sentence_label_ids_test()
+print("Test get sentence label test is OK")
+get_token_label_ids_test()
+print("Test get token label ids is OK")
 update_project_test()
 print("Test update project test is OK")
 
@@ -461,8 +489,7 @@ get_next_sentence_test()
 print("Test get next sentence test is OK")
 get_sentence_label_by_ordinal_test()
 print("Test get all sentence labels is OK")
-get_all_token_labels_test()
-print("Test get all token labels is OK")
+
 get_all_categories_test()
 print("Test get all categories is OK")
 

@@ -68,7 +68,7 @@ ALTER TABLE public.headers
 
 CREATE TABLE public.sentence_label
 (
-    PandasCategoryId SERIAL NOT NULL,
+    PandasCategoryId integer NOT NULL,
     CategoryName character varying(128) NOT NULL,
     Ordinal character varying(16) NOT NULL UNIQUE,
     CreateDate date DEFAULT CURRENT_DATE,
@@ -83,7 +83,7 @@ ALTER TABLE public.sentence_label
 
 CREATE TABLE public.token_label
 (
-    id SERIAL NOT NULL,
+    id integer NOT NULL,
     frontend_id integer NOT NULL,
     name character varying(128) NOT NULL UNIQUE,
     category_id integer,

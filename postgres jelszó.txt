@@ -5,3 +5,11 @@ port: 5432
 user: postgres
 pgAdmin master password:
 @JbhNA;g.qW3S-8H
+
+Norbi szervere:
+jelszó:
+E+=Gj,4FfKb9+WBT
+omegavision
+omegavision
+80.98.110.178
+
