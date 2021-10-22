@@ -158,13 +158,13 @@ class HubertFinetune:
                 corrupted = True
         return result, corrupted
 
-    def save_dict_csv(filename, voc):
+    def save_dict_csv(self, filename, voc):
         with open(filename, 'w', encoding='utf-8') as csv_file:
             writer = csv.writer(csv_file, delimiter=',', quotechar='"', quoting=csv.QUOTE_MINIMAL)
             for k, v in voc.items():
                 writer.writerow([k, v])
 
-    def load_csv(filename):
+    def load_csv(self, filename):
         res = dict()
         with open(filename, 'r', encoding='utf-8') as csv_file:
             reader = csv.reader(csv_file, delimiter=',', quotechar='"', quoting=csv.QUOTE_MINIMAL)

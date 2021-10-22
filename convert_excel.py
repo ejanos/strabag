@@ -85,7 +85,7 @@ class ConvertExcel:
         self.model = HubertModel()
         self.test = test
 
-    def load_csv(filename):
+    def load_csv(self, filename):
         res = dict()
         with open(filename, 'r', encoding='utf-8') as csv_file:
             reader = csv.reader(csv_file, delimiter=',', quotechar='"', quoting=csv.QUOTE_MINIMAL)

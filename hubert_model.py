@@ -70,7 +70,7 @@ class HubertModel:
         #    print(i, label)
         # TODO elmenteni token labeleknek a számát, itt visszatölteni
 
-    def load_csv(filename):
+    def load_csv(self, filename):
         res = dict()
         with open(filename, 'r', encoding='utf-8') as csv_file:
             reader = csv.reader(csv_file, delimiter=',', quotechar='"', quoting=csv.QUOTE_MINIMAL)
