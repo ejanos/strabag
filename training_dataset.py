@@ -22,7 +22,7 @@ class TrainingDataset:
     def __init__(self, number_categories, number_token_labels):
         self.CATEGORIES = number_categories
         self.TOKEN_LABELS = number_token_labels
-        self.conv = ConvertExcel(number_categories, number_token_labels)
+        self.conv = ConvertExcel()
 
 
     def get_token_label_ids(self):

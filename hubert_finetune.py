@@ -10,11 +10,13 @@ from torch.cuda.amp import GradScaler, autocast
 import random
 from db_helper import DBHelper
 import icecream as ic
+import csv
 
 ic = ic.IceCreamDebugger()
 ic.disable()
 
 DEBUG = False
+save_dir = "./model_bert/"
 MODEL_PATH = "./hubert_wiki_lower"
 MODEL_NAME = "best/"
 DATASET_DIR = "finetuning_dataset/"
@@ -156,6 +158,21 @@ class HubertFinetune:
                 corrupted = True
         return result, corrupted
 
+    def save_dict_csv(filename, voc):
+        with open(filename, 'w', encoding='utf-8') as csv_file:
+            writer = csv.writer(csv_file, delimiter=',', quotechar='"', quoting=csv.QUOTE_MINIMAL)
+            for k, v in voc.items():
+                writer.writerow([k, v])
+
+    def load_csv(filename):
+        res = dict()
+        with open(filename, 'r', encoding='utf-8') as csv_file:
+            reader = csv.reader(csv_file, delimiter=',', quotechar='"', quoting=csv.QUOTE_MINIMAL)
+            for row in reader:
+                if len(row) > 0:
+                    res[row[0]] = int(row[1])
+        return res
+
 
     def cycle(self, loader, batch, seq_len, device, dataset_len):
         while True:
@@ -276,9 +293,14 @@ class HubertFinetune:
         return result_dict
 
     def train(self, number_categories, number_token_labels):
+        train_param_dict = {
+            "categories": number_categories,
+            "tokens": number_token_labels
+        }
+
         self.get_sentence_ids()
 
-        NUM_BATCHES = len(self.sentence_ids)  #4
+        NUM_BATCHES = len(self.sentence_ids) #4
         ic("batches",NUM_BATCHES)
         WARMUP = int(NUM_BATCHES * 0.06)
 
@@ -379,10 +401,12 @@ class HubertFinetune:
                     best_loss = val_loss
                     # TODO elmenteni token labeleknek a számát, a predict-nél visszatölteni
                     model.save_pretrained(save_dir + "best/")
+                    self.save_dict_csv(save_dir + "trainparams.csv", train_param_dict)
                     logging.info(f"Best model has saved, iteration: {i}")
                 elif not DEBUG:
                     # TODO elmenteni token labeleknek a számát, a predict-nél visszatölteni
                     model.save_pretrained(save_dir + "last/")
+                    self.save_dict_csv(save_dir + "trainparams.csv", train_param_dict)
                     logging.info(f"Last model has saved, iteration: {i}")
 
             if i % GENERATE_EVERY == 99999 and i != 0:

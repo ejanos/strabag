@@ -19,7 +19,7 @@ ic = ic.IceCreamDebugger()
 #ic.disable()
 
 CATEGORIES = 12
-TOKEN_LABELS = 1
+TOKEN_LABELS = 2
 
 training_is_running = False
 
@@ -356,7 +356,7 @@ def convert_mi():
         f.save(file_path)
 
         directory, file_name = conv.process_mi(
-            content_col, source_cols, target_cols, file_path, no_category_id, CATEGORIES, TOKEN_LABELS)
+            content_col, source_cols, target_cols, file_path, no_category_id)
         return send_from_directory(directory, file_name, as_attachment=True)
 
     return "Not allowed method", 405
@@ -369,7 +369,7 @@ def predict_more_row():
     if request.method == 'POST':
         form = request.form
         sentences = json.loads(form['sentences'])
-        target_categories = conv.process_more_sentence(sentences, CATEGORIES, TOKEN_LABELS)
+        target_categories = conv.process_more_sentence(sentences)
         return return_response(target_categories)
     return "Not allowed method", 405
 
@@ -494,6 +494,8 @@ def set_classes_number_for_training():
         CATEGORIES = num_cat + 1
     if num_token_label > TOKEN_LABELS:
         TOKEN_LABELS = num_token_label + 1
+    if TOKEN_LABELS < 2:
+        TOKEN_LABELS = 2
     return CATEGORIES, TOKEN_LABELS
 
 def return_response(result):
@@ -506,7 +508,7 @@ def return_response(result):
 
 if __name__ == "__main__":
     set_classes_number_for_training()
-    conv = ConvertExcel(CATEGORIES, TOKEN_LABELS)
+    conv = ConvertExcel()
     training = TrainingDataset(CATEGORIES, TOKEN_LABELS)
     ic(CATEGORIES, TOKEN_LABELS)
-    app.run(threaded=True, port=3000)
+    app.run(threaded=True, host='0.0.0.0', port=3000)

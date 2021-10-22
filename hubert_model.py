@@ -10,6 +10,7 @@ from torch.cuda.amp import GradScaler, autocast
 import random
 from db_helper import DBHelper
 import icecream as ic
+import csv
 
 ic = ic.IceCreamDebugger()
 ic.disable()
@@ -59,15 +60,24 @@ class HubertModel:
     eos_token_id = tokenizer.cls_token_id
     mask_token_id = tokenizer.mask_token_id
 
-    def __init__(self, number_categories, number_token_labels, test=False):
+    def __init__(self, test=False):
+        #, number_categories, number_token_labels,
+        self.CATEGORIES, self.TOKEN_LABELS = self.load_train_params()
         self.test = test
-        self.CATEGORIES = number_categories
-        self.TOKEN_LABELS = number_token_labels
 
         #print(len(self.labels))
         #for i, label in enumerate(self.labels):
         #    print(i, label)
         # TODO elmenteni token labeleknek a számát, itt visszatölteni
+
+    def load_csv(filename):
+        res = dict()
+        with open(filename, 'r', encoding='utf-8') as csv_file:
+            reader = csv.reader(csv_file, delimiter=',', quotechar='"', quoting=csv.QUOTE_MINIMAL)
+            for row in reader:
+                if len(row) > 0:
+                    res[row[0]] = int(row[1])
+        return res
 
     def decode_tokens(self, tokens):
         return self.tokenizer.decode(tokens.tolist())
@@ -125,6 +135,12 @@ class HubertModel:
             if not self.test:
                 return pred_sen.cpu().tolist(), sen_prob.cpu().item(), pred_token.cpu().tolist(), token_prob
             self.print_test_params(pred_sen, pred_token)
+
+    def load_train_params(self):
+        train_param_dict = self.load_csv(save_dir + "trainparams.csv")
+        number_categories = train_param_dict["categories"]
+        number_token_labels = train_param_dict["tokens"]
+        return number_categories, number_token_labels
 
     def get_token_probability(self, logits, tokens):
         token_prob = []

@@ -4643,3 +4643,383 @@ INFO:werkzeug:127.0.0.1 - - [21/Oct/2021 21:07:05] "[37mPOST /save/sentence HTT
 INFO:werkzeug:127.0.0.1 - - [21/Oct/2021 21:07:05] "[37mPOST /save/sentence HTTP/1.1[0m" 200 -
 INFO:werkzeug:127.0.0.1 - - [21/Oct/2021 21:07:05] "[37mPOST /save/sentence HTTP/1.1[0m" 200 -
 INFO:werkzeug:127.0.0.1 - - [21/Oct/2021 21:07:05] "[37mPOST /save/sentence HTTP/1.1[0m" 200 -
+INFO:werkzeug: * Running on http://127.0.0.1:3000/ (Press CTRL+C to quit)
+ERROR:webserver:Exception on /start/training [GET]
+Traceback (most recent call last):
+  File "D:\python_venv\strabag\lib\site-packages\flask\app.py", line 2447, in wsgi_app
+    response = self.full_dispatch_request()
+  File "D:\python_venv\strabag\lib\site-packages\flask\app.py", line 1952, in full_dispatch_request
+    rv = self.handle_user_exception(e)
+  File "D:\python_venv\strabag\lib\site-packages\flask\app.py", line 1821, in handle_user_exception
+    reraise(exc_type, exc_value, tb)
+  File "D:\python_venv\strabag\lib\site-packages\flask\_compat.py", line 39, in reraise
+    raise value
+  File "D:\python_venv\strabag\lib\site-packages\flask\app.py", line 1950, in full_dispatch_request
+    rv = self.dispatch_request()
+  File "D:\python_venv\strabag\lib\site-packages\flask\app.py", line 1936, in dispatch_request
+    return self.view_functions[rule.endpoint](**req.view_args)
+  File "D:/source/strabag/webserver.py", line 382, in start_training
+    model.train(CATEGORIES, TOKEN_LABELS)
+  File "D:\source\strabag\hubert_finetune.py", line 339, in train
+    scaler.scale(loss).backward()
+  File "D:\python_venv\strabag\lib\site-packages\torch\_tensor.py", line 255, in backward
+    torch.autograd.backward(self, gradient, retain_graph, create_graph, inputs=inputs)
+  File "D:\python_venv\strabag\lib\site-packages\torch\autograd\__init__.py", line 147, in backward
+    Variable._execution_engine.run_backward(
+RuntimeError: CUDA error: device-side assert triggered
+CUDA kernel errors might be asynchronously reported at some other API call,so the stacktrace below might be incorrect.
+For debugging consider passing CUDA_LAUNCH_BLOCKING=1.
+INFO:werkzeug:127.0.0.1 - - [21/Oct/2021 21:10:36] "[35m[1mGET /start/training HTTP/1.1[0m" 500 -
+INFO:werkzeug: * Running on http://127.0.0.1:3000/ (Press CTRL+C to quit)
+INFO:werkzeug:127.0.0.1 - - [21/Oct/2021 21:11:05] "[37mGET /project/status?id=160 HTTP/1.1[0m" 200 -
+INFO:werkzeug:127.0.0.1 - - [21/Oct/2021 21:11:05] "[37mGET /check/training HTTP/1.1[0m" 200 -
+ERROR:webserver:Exception on /start/training [GET]
+Traceback (most recent call last):
+  File "D:\python_venv\strabag\lib\site-packages\flask\app.py", line 2447, in wsgi_app
+    response = self.full_dispatch_request()
+  File "D:\python_venv\strabag\lib\site-packages\flask\app.py", line 1952, in full_dispatch_request
+    rv = self.handle_user_exception(e)
+  File "D:\python_venv\strabag\lib\site-packages\flask\app.py", line 1821, in handle_user_exception
+    reraise(exc_type, exc_value, tb)
+  File "D:\python_venv\strabag\lib\site-packages\flask\_compat.py", line 39, in reraise
+    raise value
+  File "D:\python_venv\strabag\lib\site-packages\flask\app.py", line 1950, in full_dispatch_request
+    rv = self.dispatch_request()
+  File "D:\python_venv\strabag\lib\site-packages\flask\app.py", line 1936, in dispatch_request
+    return self.view_functions[rule.endpoint](**req.view_args)
+  File "D:/source/strabag/webserver.py", line 382, in start_training
+    model.train(CATEGORIES, TOKEN_LABELS)
+  File "D:\source\strabag\hubert_finetune.py", line 339, in train
+    scaler.scale(loss).backward()
+  File "D:\python_venv\strabag\lib\site-packages\torch\_tensor.py", line 255, in backward
+    torch.autograd.backward(self, gradient, retain_graph, create_graph, inputs=inputs)
+  File "D:\python_venv\strabag\lib\site-packages\torch\autograd\__init__.py", line 147, in backward
+    Variable._execution_engine.run_backward(
+RuntimeError: CUDA error: CUBLAS_STATUS_ALLOC_FAILED when calling `cublasCreate(handle)`
+INFO:werkzeug:127.0.0.1 - - [21/Oct/2021 21:11:21] "[35m[1mGET /start/training HTTP/1.1[0m" 500 -
+INFO:werkzeug:127.0.0.1 - - [21/Oct/2021 21:12:21] "[37mGET /check/training HTTP/1.1[0m" 200 -
+INFO:werkzeug: * Running on http://127.0.0.1:3000/ (Press CTRL+C to quit)
+INFO:root:validation loss: 0.8064764142036438
+INFO:root:training loss: 1.060399055480957
+INFO:root:Accuracy sentence: 1.0  Accuracy token: 0.8903460323810577
+INFO:root:Best model has saved, iteration: 22
+INFO:werkzeug:127.0.0.1 - - [21/Oct/2021 21:17:22] "[37mGET /start/training HTTP/1.1[0m" 200 -
+INFO:werkzeug:127.0.0.1 - - [21/Oct/2021 21:21:46] "[37mGET /project/status?id=160 HTTP/1.1[0m" 200 -
+INFO:werkzeug:127.0.0.1 - - [21/Oct/2021 21:21:46] "[37mGET /check/training HTTP/1.1[0m" 200 -
+INFO:werkzeug:127.0.0.1 - - [21/Oct/2021 21:28:42] "[37mGET /project/status?id=160 HTTP/1.1[0m" 200 -
+INFO:werkzeug:127.0.0.1 - - [21/Oct/2021 21:28:42] "[37mGET /check/training HTTP/1.1[0m" 200 -
+INFO:werkzeug:127.0.0.1 - - [21/Oct/2021 21:28:54] "[37mPOST /predict HTTP/1.1[0m" 200 -
+INFO:werkzeug:127.0.0.1 - - [21/Oct/2021 21:29:26] "[37mGET /project/status?id=160 HTTP/1.1[0m" 200 -
+INFO:werkzeug:127.0.0.1 - - [21/Oct/2021 21:29:26] "[37mGET /check/training HTTP/1.1[0m" 200 -
+INFO:werkzeug:127.0.0.1 - - [21/Oct/2021 21:33:44] "[37mGET /project/status?id=161 HTTP/1.1[0m" 200 -
+INFO:werkzeug:127.0.0.1 - - [21/Oct/2021 21:33:44] "[37mGET /project/status?id=160 HTTP/1.1[0m" 200 -
+INFO:werkzeug:127.0.0.1 - - [21/Oct/2021 21:33:44] "[37mGET /check/training HTTP/1.1[0m" 200 -
+INFO:werkzeug:127.0.0.1 - - [21/Oct/2021 21:33:50] "[37mPOST /predict HTTP/1.1[0m" 200 -
+INFO:werkzeug: * Running on http://127.0.0.1:3000/ (Press CTRL+C to quit)
+INFO:werkzeug:127.0.0.1 - - [21/Oct/2021 21:34:14] "[37mGET /project/status?id=161 HTTP/1.1[0m" 200 -
+INFO:werkzeug:127.0.0.1 - - [21/Oct/2021 21:34:14] "[37mGET /project/status?id=160 HTTP/1.1[0m" 200 -
+INFO:werkzeug:127.0.0.1 - - [21/Oct/2021 21:34:14] "[37mGET /check/training HTTP/1.1[0m" 200 -
+INFO:werkzeug:127.0.0.1 - - [21/Oct/2021 21:34:17] "[37mPOST /predict HTTP/1.1[0m" 200 -
+INFO:werkzeug:127.0.0.1 - - [21/Oct/2021 21:34:22] "[37mGET /project/status?id=161 HTTP/1.1[0m" 200 -
+INFO:werkzeug:127.0.0.1 - - [21/Oct/2021 21:34:22] "[37mGET /project/status?id=160 HTTP/1.1[0m" 200 -
+INFO:werkzeug:127.0.0.1 - - [21/Oct/2021 21:34:22] "[37mGET /check/training HTTP/1.1[0m" 200 -
+INFO:werkzeug:127.0.0.1 - - [21/Oct/2021 21:34:25] "[37mGET /read/all/category HTTP/1.1[0m" 200 -
+INFO:werkzeug:127.0.0.1 - - [21/Oct/2021 21:34:34] "[37mPOST /predict HTTP/1.1[0m" 200 -
+INFO:werkzeug:127.0.0.1 - - [21/Oct/2021 21:35:25] "[37mGET /read/all/category HTTP/1.1[0m" 200 -
+INFO:werkzeug:127.0.0.1 - - [21/Oct/2021 21:35:28] "[37mGET /project/status?id=161 HTTP/1.1[0m" 200 -
+INFO:werkzeug:127.0.0.1 - - [21/Oct/2021 21:35:29] "[37mGET /project/status?id=160 HTTP/1.1[0m" 200 -
+INFO:werkzeug:127.0.0.1 - - [21/Oct/2021 21:35:29] "[37mGET /check/training HTTP/1.1[0m" 200 -
+INFO:werkzeug:127.0.0.1 - - [21/Oct/2021 21:35:29] "[37mPOST /predict HTTP/1.1[0m" 200 -
+INFO:werkzeug:127.0.0.1 - - [21/Oct/2021 21:35:31] "[37mPOST /predict HTTP/1.1[0m" 200 -
+INFO:werkzeug:127.0.0.1 - - [21/Oct/2021 21:51:10] "[37mPOST /predict HTTP/1.1[0m" 200 -
+INFO:werkzeug:127.0.0.1 - - [21/Oct/2021 21:59:33] "[37mGET /project/status?id=161 HTTP/1.1[0m" 200 -
+INFO:werkzeug:127.0.0.1 - - [21/Oct/2021 21:59:33] "[37mGET /project/status?id=160 HTTP/1.1[0m" 200 -
+INFO:werkzeug:127.0.0.1 - - [21/Oct/2021 21:59:33] "[37mGET /check/training HTTP/1.1[0m" 200 -
+INFO:werkzeug:127.0.0.1 - - [21/Oct/2021 22:16:10] "[37mGET /project/status?id=161 HTTP/1.1[0m" 200 -
+INFO:werkzeug:127.0.0.1 - - [21/Oct/2021 22:16:10] "[37mGET /project/status?id=160 HTTP/1.1[0m" 200 -
+INFO:werkzeug:127.0.0.1 - - [21/Oct/2021 22:16:11] "[37mGET /check/training HTTP/1.1[0m" 200 -
+INFO:werkzeug:127.0.0.1 - - [21/Oct/2021 22:16:56] "[37mGET /read/all/category HTTP/1.1[0m" 200 -
+INFO:werkzeug:127.0.0.1 - - [21/Oct/2021 22:17:00] "[37mPOST /predict HTTP/1.1[0m" 200 -
+INFO:werkzeug:127.0.0.1 - - [21/Oct/2021 22:22:17] "[37mGET /read/all/category HTTP/1.1[0m" 200 -
+INFO:werkzeug:127.0.0.1 - - [21/Oct/2021 22:22:21] "[37mPOST /predict HTTP/1.1[0m" 200 -
+INFO:werkzeug:127.0.0.1 - - [21/Oct/2021 22:24:34] "[37mGET /read/all/category HTTP/1.1[0m" 200 -
+INFO:werkzeug:127.0.0.1 - - [21/Oct/2021 22:24:39] "[37mPOST /predict HTTP/1.1[0m" 200 -
+INFO:werkzeug:127.0.0.1 - - [21/Oct/2021 22:24:50] "[37mGET /read/all/category HTTP/1.1[0m" 200 -
+INFO:werkzeug:127.0.0.1 - - [21/Oct/2021 22:24:55] "[37mPOST /predict HTTP/1.1[0m" 200 -
+INFO:werkzeug:127.0.0.1 - - [21/Oct/2021 22:25:31] "[37mGET /read/all/category HTTP/1.1[0m" 200 -
+INFO:werkzeug:127.0.0.1 - - [21/Oct/2021 22:25:35] "[37mPOST /predict HTTP/1.1[0m" 200 -
+INFO:werkzeug:127.0.0.1 - - [21/Oct/2021 22:27:08] "[37mGET /project/status?id=161 HTTP/1.1[0m" 200 -
+INFO:werkzeug:127.0.0.1 - - [21/Oct/2021 22:27:08] "[37mGET /project/status?id=160 HTTP/1.1[0m" 200 -
+INFO:werkzeug:127.0.0.1 - - [21/Oct/2021 22:27:08] "[37mGET /check/training HTTP/1.1[0m" 200 -
+INFO:werkzeug:127.0.0.1 - - [21/Oct/2021 22:28:10] "[37mGET /project/status?id=161 HTTP/1.1[0m" 200 -
+INFO:werkzeug:127.0.0.1 - - [21/Oct/2021 22:28:11] "[37mGET /project/status?id=160 HTTP/1.1[0m" 200 -
+INFO:werkzeug:127.0.0.1 - - [21/Oct/2021 22:28:11] "[37mGET /check/training HTTP/1.1[0m" 200 -
+INFO:werkzeug:127.0.0.1 - - [21/Oct/2021 22:42:38] "[37mGET /project/status?id=161 HTTP/1.1[0m" 200 -
+INFO:werkzeug:127.0.0.1 - - [21/Oct/2021 22:42:38] "[37mGET /project/status?id=160 HTTP/1.1[0m" 200 -
+INFO:werkzeug:127.0.0.1 - - [21/Oct/2021 22:42:38] "[37mGET /check/training HTTP/1.1[0m" 200 -
+INFO:werkzeug:127.0.0.1 - - [21/Oct/2021 22:54:43] "[37mGET /project/status?id=161 HTTP/1.1[0m" 200 -
+INFO:werkzeug:127.0.0.1 - - [21/Oct/2021 22:54:43] "[37mGET /project/status?id=160 HTTP/1.1[0m" 200 -
+INFO:werkzeug:127.0.0.1 - - [21/Oct/2021 22:54:43] "[37mGET /check/training HTTP/1.1[0m" 200 -
+INFO:werkzeug:127.0.0.1 - - [21/Oct/2021 22:56:19] "[37mGET /project/status?id=161 HTTP/1.1[0m" 200 -
+INFO:werkzeug:127.0.0.1 - - [21/Oct/2021 22:56:20] "[37mGET /project/status?id=160 HTTP/1.1[0m" 200 -
+INFO:werkzeug:127.0.0.1 - - [21/Oct/2021 22:56:20] "[37mGET /check/training HTTP/1.1[0m" 200 -
+INFO:werkzeug:127.0.0.1 - - [21/Oct/2021 22:56:46] "[37mGET /project/status?id=161 HTTP/1.1[0m" 200 -
+INFO:werkzeug:127.0.0.1 - - [21/Oct/2021 22:56:46] "[37mGET /project/status?id=160 HTTP/1.1[0m" 200 -
+INFO:werkzeug:127.0.0.1 - - [21/Oct/2021 22:56:46] "[37mGET /check/training HTTP/1.1[0m" 200 -
+INFO:werkzeug:127.0.0.1 - - [21/Oct/2021 22:59:45] "[37mGET /project/status?id=161 HTTP/1.1[0m" 200 -
+INFO:werkzeug:127.0.0.1 - - [21/Oct/2021 22:59:46] "[37mGET /project/status?id=160 HTTP/1.1[0m" 200 -
+INFO:werkzeug:127.0.0.1 - - [21/Oct/2021 22:59:46] "[37mGET /check/training HTTP/1.1[0m" 200 -
+INFO:werkzeug:127.0.0.1 - - [21/Oct/2021 22:59:59] "[37mGET /project/status?id=161 HTTP/1.1[0m" 200 -
+INFO:werkzeug:127.0.0.1 - - [21/Oct/2021 22:59:59] "[37mGET /project/status?id=160 HTTP/1.1[0m" 200 -
+INFO:werkzeug:127.0.0.1 - - [21/Oct/2021 22:59:59] "[37mGET /check/training HTTP/1.1[0m" 200 -
+INFO:werkzeug:127.0.0.1 - - [21/Oct/2021 23:00:39] "[37mGET /project/status?id=161 HTTP/1.1[0m" 200 -
+INFO:werkzeug:127.0.0.1 - - [21/Oct/2021 23:00:39] "[37mGET /project/status?id=160 HTTP/1.1[0m" 200 -
+INFO:werkzeug:127.0.0.1 - - [21/Oct/2021 23:00:39] "[37mGET /check/training HTTP/1.1[0m" 200 -
+INFO:werkzeug:127.0.0.1 - - [21/Oct/2021 23:00:43] "[37mGET /read/all/category HTTP/1.1[0m" 200 -
+INFO:werkzeug:127.0.0.1 - - [21/Oct/2021 23:00:47] "[37mPOST /predict HTTP/1.1[0m" 200 -
+INFO:werkzeug:127.0.0.1 - - [21/Oct/2021 23:02:41] "[37mGET /project/status?id=161 HTTP/1.1[0m" 200 -
+INFO:werkzeug:127.0.0.1 - - [21/Oct/2021 23:02:41] "[37mGET /project/status?id=160 HTTP/1.1[0m" 200 -
+INFO:werkzeug:127.0.0.1 - - [21/Oct/2021 23:02:41] "[37mGET /check/training HTTP/1.1[0m" 200 -
+INFO:werkzeug:127.0.0.1 - - [21/Oct/2021 23:02:48] "[37mGET /read/all/category HTTP/1.1[0m" 200 -
+INFO:werkzeug:127.0.0.1 - - [21/Oct/2021 23:02:53] "[37mPOST /predict HTTP/1.1[0m" 200 -
+INFO:werkzeug:127.0.0.1 - - [21/Oct/2021 23:15:40] "[37mGET /project/status?id=161 HTTP/1.1[0m" 200 -
+INFO:werkzeug:127.0.0.1 - - [21/Oct/2021 23:15:40] "[37mGET /project/status?id=160 HTTP/1.1[0m" 200 -
+INFO:werkzeug:127.0.0.1 - - [21/Oct/2021 23:15:40] "[37mGET /check/training HTTP/1.1[0m" 200 -
+INFO:werkzeug:127.0.0.1 - - [21/Oct/2021 23:15:48] "[37mGET /read/all/category HTTP/1.1[0m" 200 -
+INFO:werkzeug:127.0.0.1 - - [21/Oct/2021 23:15:53] "[37mPOST /predict HTTP/1.1[0m" 200 -
+INFO:werkzeug:127.0.0.1 - - [21/Oct/2021 23:17:40] "[37mGET /project/status?id=161 HTTP/1.1[0m" 200 -
+INFO:werkzeug:127.0.0.1 - - [21/Oct/2021 23:17:40] "[37mGET /project/status?id=160 HTTP/1.1[0m" 200 -
+INFO:werkzeug:127.0.0.1 - - [21/Oct/2021 23:17:41] "[37mGET /check/training HTTP/1.1[0m" 200 -
+INFO:werkzeug:127.0.0.1 - - [21/Oct/2021 23:17:50] "[37mGET /read/all/category HTTP/1.1[0m" 200 -
+INFO:werkzeug:127.0.0.1 - - [21/Oct/2021 23:17:55] "[37mPOST /predict HTTP/1.1[0m" 200 -
+INFO:werkzeug:127.0.0.1 - - [21/Oct/2021 23:42:17] "[37mGET /project/status?id=161 HTTP/1.1[0m" 200 -
+INFO:werkzeug:127.0.0.1 - - [21/Oct/2021 23:42:17] "[37mGET /project/status?id=160 HTTP/1.1[0m" 200 -
+INFO:werkzeug:127.0.0.1 - - [21/Oct/2021 23:42:17] "[37mGET /check/training HTTP/1.1[0m" 200 -
+INFO:werkzeug:127.0.0.1 - - [21/Oct/2021 23:42:21] "[37mGET /read/all/category HTTP/1.1[0m" 200 -
+INFO:werkzeug:127.0.0.1 - - [21/Oct/2021 23:42:26] "[37mPOST /predict HTTP/1.1[0m" 200 -
+INFO:werkzeug:127.0.0.1 - - [21/Oct/2021 23:47:12] "[37mGET /project/status?id=161 HTTP/1.1[0m" 200 -
+INFO:werkzeug:127.0.0.1 - - [21/Oct/2021 23:47:12] "[37mGET /project/status?id=160 HTTP/1.1[0m" 200 -
+INFO:werkzeug:127.0.0.1 - - [21/Oct/2021 23:47:12] "[37mGET /check/training HTTP/1.1[0m" 200 -
+INFO:werkzeug:127.0.0.1 - - [21/Oct/2021 23:47:18] "[37mGET /read/all/category HTTP/1.1[0m" 200 -
+INFO:werkzeug:127.0.0.1 - - [21/Oct/2021 23:47:23] "[37mPOST /predict HTTP/1.1[0m" 200 -
+INFO:werkzeug:127.0.0.1 - - [21/Oct/2021 23:50:59] "[37mGET /project/status?id=161 HTTP/1.1[0m" 200 -
+INFO:werkzeug:127.0.0.1 - - [21/Oct/2021 23:51:00] "[37mGET /project/status?id=160 HTTP/1.1[0m" 200 -
+INFO:werkzeug:127.0.0.1 - - [21/Oct/2021 23:51:00] "[37mGET /check/training HTTP/1.1[0m" 200 -
+INFO:werkzeug:127.0.0.1 - - [21/Oct/2021 23:52:54] "[37mGET /project/status?id=161 HTTP/1.1[0m" 200 -
+INFO:werkzeug:127.0.0.1 - - [21/Oct/2021 23:52:54] "[37mGET /project/status?id=160 HTTP/1.1[0m" 200 -
+INFO:werkzeug:127.0.0.1 - - [21/Oct/2021 23:52:54] "[37mGET /check/training HTTP/1.1[0m" 200 -
+INFO:werkzeug:127.0.0.1 - - [21/Oct/2021 23:52:58] "[37mGET /read/all/category HTTP/1.1[0m" 200 -
+INFO:werkzeug:127.0.0.1 - - [21/Oct/2021 23:53:03] "[37mPOST /predict HTTP/1.1[0m" 200 -
+INFO:werkzeug:127.0.0.1 - - [22/Oct/2021 00:27:12] "[37mGET /project/status?id=161 HTTP/1.1[0m" 200 -
+INFO:werkzeug:127.0.0.1 - - [22/Oct/2021 00:27:12] "[37mGET /project/status?id=160 HTTP/1.1[0m" 200 -
+INFO:werkzeug:127.0.0.1 - - [22/Oct/2021 00:27:12] "[37mGET /check/training HTTP/1.1[0m" 200 -
+INFO:werkzeug:127.0.0.1 - - [22/Oct/2021 00:27:18] "[37mGET /read/all/category HTTP/1.1[0m" 200 -
+INFO:werkzeug:127.0.0.1 - - [22/Oct/2021 00:31:01] "[37mGET /project/status?id=161 HTTP/1.1[0m" 200 -
+INFO:werkzeug:127.0.0.1 - - [22/Oct/2021 00:31:02] "[37mGET /project/status?id=160 HTTP/1.1[0m" 200 -
+INFO:werkzeug:127.0.0.1 - - [22/Oct/2021 00:31:02] "[37mGET /check/training HTTP/1.1[0m" 200 -
+INFO:werkzeug:127.0.0.1 - - [22/Oct/2021 00:31:05] "[37mGET /read/all/category HTTP/1.1[0m" 200 -
+INFO:werkzeug:127.0.0.1 - - [22/Oct/2021 00:31:26] "[37mGET /read/all/category HTTP/1.1[0m" 200 -
+INFO:werkzeug:127.0.0.1 - - [22/Oct/2021 00:32:47] "[37mGET /project/status?id=161 HTTP/1.1[0m" 200 -
+INFO:werkzeug:127.0.0.1 - - [22/Oct/2021 00:32:47] "[37mGET /project/status?id=160 HTTP/1.1[0m" 200 -
+INFO:werkzeug:127.0.0.1 - - [22/Oct/2021 00:32:47] "[37mGET /check/training HTTP/1.1[0m" 200 -
+INFO:werkzeug:127.0.0.1 - - [22/Oct/2021 00:32:51] "[37mGET /read/all/category HTTP/1.1[0m" 200 -
+INFO:werkzeug:127.0.0.1 - - [22/Oct/2021 00:33:55] "[37mGET /project/status?id=161 HTTP/1.1[0m" 200 -
+INFO:werkzeug:127.0.0.1 - - [22/Oct/2021 00:33:55] "[37mGET /project/status?id=160 HTTP/1.1[0m" 200 -
+INFO:werkzeug:127.0.0.1 - - [22/Oct/2021 00:33:56] "[37mGET /check/training HTTP/1.1[0m" 200 -
+INFO:werkzeug:127.0.0.1 - - [22/Oct/2021 00:34:01] "[37mGET /read/all/category HTTP/1.1[0m" 200 -
+INFO:werkzeug:127.0.0.1 - - [22/Oct/2021 00:41:53] "[37mGET /project/status?id=161 HTTP/1.1[0m" 200 -
+INFO:werkzeug:127.0.0.1 - - [22/Oct/2021 00:41:53] "[37mGET /project/status?id=160 HTTP/1.1[0m" 200 -
+INFO:werkzeug:127.0.0.1 - - [22/Oct/2021 00:41:53] "[37mGET /check/training HTTP/1.1[0m" 200 -
+INFO:werkzeug:127.0.0.1 - - [22/Oct/2021 00:42:27] "[37mGET /read/all/category HTTP/1.1[0m" 200 -
+INFO:werkzeug:127.0.0.1 - - [22/Oct/2021 00:47:41] "[37mGET /project/status?id=161 HTTP/1.1[0m" 200 -
+INFO:werkzeug:127.0.0.1 - - [22/Oct/2021 00:47:41] "[37mGET /project/status?id=160 HTTP/1.1[0m" 200 -
+INFO:werkzeug:127.0.0.1 - - [22/Oct/2021 00:47:41] "[37mGET /check/training HTTP/1.1[0m" 200 -
+INFO:werkzeug:127.0.0.1 - - [22/Oct/2021 00:47:45] "[37mGET /read/all/category HTTP/1.1[0m" 200 -
+INFO:werkzeug:127.0.0.1 - - [22/Oct/2021 00:48:29] "[37mGET /project/status?id=161 HTTP/1.1[0m" 200 -
+INFO:werkzeug:127.0.0.1 - - [22/Oct/2021 00:48:29] "[37mGET /project/status?id=160 HTTP/1.1[0m" 200 -
+INFO:werkzeug:127.0.0.1 - - [22/Oct/2021 00:48:30] "[37mGET /check/training HTTP/1.1[0m" 200 -
+INFO:werkzeug:127.0.0.1 - - [22/Oct/2021 00:49:07] "[37mGET /read/all/category HTTP/1.1[0m" 200 -
+INFO:werkzeug:127.0.0.1 - - [22/Oct/2021 00:55:01] "[37mGET /project/status?id=161 HTTP/1.1[0m" 200 -
+INFO:werkzeug:127.0.0.1 - - [22/Oct/2021 00:55:01] "[37mGET /project/status?id=160 HTTP/1.1[0m" 200 -
+INFO:werkzeug:127.0.0.1 - - [22/Oct/2021 00:55:01] "[37mGET /check/training HTTP/1.1[0m" 200 -
+INFO:werkzeug:127.0.0.1 - - [22/Oct/2021 00:55:05] "[37mGET /read/all/category HTTP/1.1[0m" 200 -
+INFO:werkzeug:127.0.0.1 - - [22/Oct/2021 00:56:16] "[37mGET /project/status?id=161 HTTP/1.1[0m" 200 -
+INFO:werkzeug:127.0.0.1 - - [22/Oct/2021 00:56:16] "[37mGET /project/status?id=160 HTTP/1.1[0m" 200 -
+INFO:werkzeug:127.0.0.1 - - [22/Oct/2021 00:56:16] "[37mGET /check/training HTTP/1.1[0m" 200 -
+INFO:werkzeug:127.0.0.1 - - [22/Oct/2021 00:56:29] "[37mGET /read/all/category HTTP/1.1[0m" 200 -
+INFO:werkzeug:127.0.0.1 - - [22/Oct/2021 01:01:34] "[37mGET /project/status?id=161 HTTP/1.1[0m" 200 -
+INFO:werkzeug:127.0.0.1 - - [22/Oct/2021 01:01:34] "[37mGET /project/status?id=160 HTTP/1.1[0m" 200 -
+INFO:werkzeug:127.0.0.1 - - [22/Oct/2021 01:01:34] "[37mGET /check/training HTTP/1.1[0m" 200 -
+INFO:werkzeug:127.0.0.1 - - [22/Oct/2021 01:01:52] "[37mGET /project/status?id=161 HTTP/1.1[0m" 200 -
+INFO:werkzeug:127.0.0.1 - - [22/Oct/2021 01:01:52] "[37mGET /project/status?id=160 HTTP/1.1[0m" 200 -
+INFO:werkzeug:127.0.0.1 - - [22/Oct/2021 01:01:53] "[37mGET /check/training HTTP/1.1[0m" 200 -
+INFO:werkzeug:127.0.0.1 - - [22/Oct/2021 01:03:05] "[37mGET /read/all/category HTTP/1.1[0m" 200 -
+INFO:werkzeug:127.0.0.1 - - [22/Oct/2021 01:03:10] "[37mPOST /predict HTTP/1.1[0m" 200 -
+INFO:werkzeug:127.0.0.1 - - [22/Oct/2021 01:09:15] "[37mGET /project/status?id=162 HTTP/1.1[0m" 200 -
+INFO:werkzeug:127.0.0.1 - - [22/Oct/2021 01:09:15] "[37mGET /project/status?id=160 HTTP/1.1[0m" 200 -
+INFO:werkzeug:127.0.0.1 - - [22/Oct/2021 01:09:16] "[37mGET /check/training HTTP/1.1[0m" 200 -
+INFO:werkzeug:127.0.0.1 - - [22/Oct/2021 01:10:53] "[37mGET /read/all/category HTTP/1.1[0m" 200 -
+INFO:werkzeug:127.0.0.1 - - [22/Oct/2021 01:10:58] "[37mPOST /predict HTTP/1.1[0m" 200 -
+INFO:werkzeug:127.0.0.1 - - [22/Oct/2021 01:15:13] "[37mGET /project/status?id=162 HTTP/1.1[0m" 200 -
+INFO:werkzeug:127.0.0.1 - - [22/Oct/2021 01:15:13] "[37mGET /project/status?id=160 HTTP/1.1[0m" 200 -
+INFO:werkzeug:127.0.0.1 - - [22/Oct/2021 01:15:13] "[37mGET /check/training HTTP/1.1[0m" 200 -
+INFO:werkzeug:127.0.0.1 - - [22/Oct/2021 01:15:17] "[37mGET /read/all/category HTTP/1.1[0m" 200 -
+INFO:werkzeug:127.0.0.1 - - [22/Oct/2021 01:15:22] "[37mPOST /predict HTTP/1.1[0m" 200 -
+INFO:werkzeug:127.0.0.1 - - [22/Oct/2021 01:15:31] "[37mGET /read/all/category HTTP/1.1[0m" 200 -
+INFO:werkzeug:127.0.0.1 - - [22/Oct/2021 01:20:57] "[37mGET /read/all/category HTTP/1.1[0m" 200 -
+INFO:werkzeug:127.0.0.1 - - [22/Oct/2021 01:22:07] "[37mGET /read/all/category HTTP/1.1[0m" 200 -
+INFO:werkzeug:127.0.0.1 - - [22/Oct/2021 01:41:23] "[37mGET /project/status?id=162 HTTP/1.1[0m" 200 -
+INFO:werkzeug:127.0.0.1 - - [22/Oct/2021 01:41:23] "[37mGET /project/status?id=160 HTTP/1.1[0m" 200 -
+INFO:werkzeug:127.0.0.1 - - [22/Oct/2021 01:41:23] "[37mGET /check/training HTTP/1.1[0m" 200 -
+INFO:werkzeug:127.0.0.1 - - [22/Oct/2021 01:41:28] "[37mGET /read/all/category HTTP/1.1[0m" 200 -
+INFO:werkzeug:127.0.0.1 - - [22/Oct/2021 01:41:42] "[37mGET /project/status?id=162 HTTP/1.1[0m" 200 -
+INFO:werkzeug:127.0.0.1 - - [22/Oct/2021 01:41:42] "[37mGET /project/status?id=160 HTTP/1.1[0m" 200 -
+INFO:werkzeug:127.0.0.1 - - [22/Oct/2021 01:41:42] "[37mGET /check/training HTTP/1.1[0m" 200 -
+INFO:werkzeug:127.0.0.1 - - [22/Oct/2021 01:41:45] "[37mGET /read/all/category HTTP/1.1[0m" 200 -
+INFO:werkzeug:127.0.0.1 - - [22/Oct/2021 01:44:24] "[37mGET /project/status?id=162 HTTP/1.1[0m" 200 -
+INFO:werkzeug:127.0.0.1 - - [22/Oct/2021 01:44:24] "[37mGET /project/status?id=160 HTTP/1.1[0m" 200 -
+INFO:werkzeug:127.0.0.1 - - [22/Oct/2021 01:44:24] "[37mGET /check/training HTTP/1.1[0m" 200 -
+INFO:werkzeug:127.0.0.1 - - [22/Oct/2021 01:44:28] "[37mGET /read/all/category HTTP/1.1[0m" 200 -
+INFO:werkzeug:127.0.0.1 - - [22/Oct/2021 01:47:31] "[37mGET /project/status?id=162 HTTP/1.1[0m" 200 -
+INFO:werkzeug:127.0.0.1 - - [22/Oct/2021 01:47:32] "[37mGET /project/status?id=160 HTTP/1.1[0m" 200 -
+INFO:werkzeug:127.0.0.1 - - [22/Oct/2021 01:47:32] "[37mGET /check/training HTTP/1.1[0m" 200 -
+INFO:werkzeug:127.0.0.1 - - [22/Oct/2021 01:47:58] "[37mGET /read/all/category HTTP/1.1[0m" 200 -
+INFO:werkzeug:127.0.0.1 - - [22/Oct/2021 01:52:00] "[37mGET /project/status?id=162 HTTP/1.1[0m" 200 -
+INFO:werkzeug:127.0.0.1 - - [22/Oct/2021 01:52:00] "[37mGET /project/status?id=160 HTTP/1.1[0m" 200 -
+INFO:werkzeug:127.0.0.1 - - [22/Oct/2021 01:52:01] "[37mGET /check/training HTTP/1.1[0m" 200 -
+INFO:werkzeug:127.0.0.1 - - [22/Oct/2021 01:52:06] "[37mGET /read/all/category HTTP/1.1[0m" 200 -
+INFO:werkzeug:127.0.0.1 - - [22/Oct/2021 01:56:02] "[37mGET /project/status?id=162 HTTP/1.1[0m" 200 -
+INFO:werkzeug:127.0.0.1 - - [22/Oct/2021 01:56:02] "[37mGET /project/status?id=160 HTTP/1.1[0m" 200 -
+INFO:werkzeug:127.0.0.1 - - [22/Oct/2021 01:56:02] "[37mGET /check/training HTTP/1.1[0m" 200 -
+INFO:werkzeug:127.0.0.1 - - [22/Oct/2021 01:56:05] "[37mGET /read/all/category HTTP/1.1[0m" 200 -
+INFO:werkzeug:127.0.0.1 - - [22/Oct/2021 01:56:52] "[37mGET /project/status?id=162 HTTP/1.1[0m" 200 -
+INFO:werkzeug:127.0.0.1 - - [22/Oct/2021 01:56:52] "[37mGET /project/status?id=160 HTTP/1.1[0m" 200 -
+INFO:werkzeug:127.0.0.1 - - [22/Oct/2021 01:56:53] "[37mGET /check/training HTTP/1.1[0m" 200 -
+INFO:werkzeug:127.0.0.1 - - [22/Oct/2021 01:57:06] "[37mGET /read/all/category HTTP/1.1[0m" 200 -
+INFO:werkzeug:127.0.0.1 - - [22/Oct/2021 02:05:35] "[37mGET /project/status?id=162 HTTP/1.1[0m" 200 -
+INFO:werkzeug:127.0.0.1 - - [22/Oct/2021 02:05:35] "[37mGET /project/status?id=160 HTTP/1.1[0m" 200 -
+INFO:werkzeug:127.0.0.1 - - [22/Oct/2021 02:05:35] "[37mGET /check/training HTTP/1.1[0m" 200 -
+INFO:werkzeug:127.0.0.1 - - [22/Oct/2021 02:05:39] "[37mGET /read/all/category HTTP/1.1[0m" 200 -
+INFO:werkzeug:127.0.0.1 - - [22/Oct/2021 02:06:27] "[37mGET /project/status?id=162 HTTP/1.1[0m" 200 -
+INFO:werkzeug:127.0.0.1 - - [22/Oct/2021 02:06:27] "[37mGET /project/status?id=160 HTTP/1.1[0m" 200 -
+INFO:werkzeug:127.0.0.1 - - [22/Oct/2021 02:06:28] "[37mGET /check/training HTTP/1.1[0m" 200 -
+INFO:werkzeug:127.0.0.1 - - [22/Oct/2021 02:06:50] "[37mGET /read/all/category HTTP/1.1[0m" 200 -
+INFO:werkzeug:127.0.0.1 - - [22/Oct/2021 02:10:45] "[37mGET /project/status?id=162 HTTP/1.1[0m" 200 -
+INFO:werkzeug:127.0.0.1 - - [22/Oct/2021 02:10:45] "[37mGET /project/status?id=160 HTTP/1.1[0m" 200 -
+INFO:werkzeug:127.0.0.1 - - [22/Oct/2021 02:10:45] "[37mGET /check/training HTTP/1.1[0m" 200 -
+INFO:werkzeug:127.0.0.1 - - [22/Oct/2021 02:10:50] "[37mGET /read/all/category HTTP/1.1[0m" 200 -
+INFO:werkzeug:127.0.0.1 - - [22/Oct/2021 02:12:17] "[37mGET /project/status?id=162 HTTP/1.1[0m" 200 -
+INFO:werkzeug:127.0.0.1 - - [22/Oct/2021 02:12:17] "[37mGET /project/status?id=160 HTTP/1.1[0m" 200 -
+INFO:werkzeug:127.0.0.1 - - [22/Oct/2021 02:12:17] "[37mGET /check/training HTTP/1.1[0m" 200 -
+INFO:werkzeug:127.0.0.1 - - [22/Oct/2021 02:12:23] "[37mGET /read/all/category HTTP/1.1[0m" 200 -
+INFO:werkzeug:127.0.0.1 - - [22/Oct/2021 02:14:59] "[37mGET /project/status?id=162 HTTP/1.1[0m" 200 -
+INFO:werkzeug:127.0.0.1 - - [22/Oct/2021 02:14:59] "[37mGET /project/status?id=160 HTTP/1.1[0m" 200 -
+INFO:werkzeug:127.0.0.1 - - [22/Oct/2021 02:14:59] "[37mGET /check/training HTTP/1.1[0m" 200 -
+INFO:werkzeug:127.0.0.1 - - [22/Oct/2021 02:15:02] "[37mGET /read/all/category HTTP/1.1[0m" 200 -
+INFO:werkzeug:127.0.0.1 - - [22/Oct/2021 02:15:28] "[37mGET /project/status?id=162 HTTP/1.1[0m" 200 -
+INFO:werkzeug:127.0.0.1 - - [22/Oct/2021 02:15:28] "[37mGET /project/status?id=160 HTTP/1.1[0m" 200 -
+INFO:werkzeug:127.0.0.1 - - [22/Oct/2021 02:15:28] "[37mGET /check/training HTTP/1.1[0m" 200 -
+INFO:werkzeug:127.0.0.1 - - [22/Oct/2021 02:15:51] "[37mGET /read/all/category HTTP/1.1[0m" 200 -
+INFO:werkzeug:127.0.0.1 - - [22/Oct/2021 02:18:22] "[37mGET /project/status?id=162 HTTP/1.1[0m" 200 -
+INFO:werkzeug:127.0.0.1 - - [22/Oct/2021 02:18:22] "[37mGET /project/status?id=160 HTTP/1.1[0m" 200 -
+INFO:werkzeug:127.0.0.1 - - [22/Oct/2021 02:18:22] "[37mGET /check/training HTTP/1.1[0m" 200 -
+INFO:werkzeug:127.0.0.1 - - [22/Oct/2021 02:18:25] "[37mGET /read/all/category HTTP/1.1[0m" 200 -
+INFO:werkzeug:127.0.0.1 - - [22/Oct/2021 02:19:16] "[37mGET /project/status?id=162 HTTP/1.1[0m" 200 -
+INFO:werkzeug:127.0.0.1 - - [22/Oct/2021 02:19:16] "[37mGET /project/status?id=160 HTTP/1.1[0m" 200 -
+INFO:werkzeug:127.0.0.1 - - [22/Oct/2021 02:19:16] "[37mGET /check/training HTTP/1.1[0m" 200 -
+INFO:werkzeug:127.0.0.1 - - [22/Oct/2021 02:19:37] "[37mGET /read/all/category HTTP/1.1[0m" 200 -
+INFO:werkzeug:127.0.0.1 - - [22/Oct/2021 02:26:21] "[37mGET /project/status?id=162 HTTP/1.1[0m" 200 -
+INFO:werkzeug:127.0.0.1 - - [22/Oct/2021 02:26:21] "[37mGET /project/status?id=160 HTTP/1.1[0m" 200 -
+INFO:werkzeug:127.0.0.1 - - [22/Oct/2021 02:26:21] "[37mGET /check/training HTTP/1.1[0m" 200 -
+INFO:werkzeug:127.0.0.1 - - [22/Oct/2021 02:26:25] "[37mGET /read/all/category HTTP/1.1[0m" 200 -
+INFO:werkzeug:127.0.0.1 - - [22/Oct/2021 02:29:03] "[37mGET /read/all/category HTTP/1.1[0m" 200 -
+INFO:werkzeug:127.0.0.1 - - [22/Oct/2021 02:29:33] "[37mGET /read/all/category HTTP/1.1[0m" 200 -
+INFO:werkzeug:127.0.0.1 - - [22/Oct/2021 02:34:52] "[37mGET /read/all/category HTTP/1.1[0m" 200 -
+INFO:werkzeug:127.0.0.1 - - [22/Oct/2021 02:40:07] "[37mGET /project/status?id=162 HTTP/1.1[0m" 200 -
+INFO:werkzeug:127.0.0.1 - - [22/Oct/2021 02:40:07] "[37mGET /project/status?id=160 HTTP/1.1[0m" 200 -
+INFO:werkzeug:127.0.0.1 - - [22/Oct/2021 02:40:07] "[37mGET /check/training HTTP/1.1[0m" 200 -
+INFO:werkzeug:127.0.0.1 - - [22/Oct/2021 02:40:10] "[37mGET /read/all/category HTTP/1.1[0m" 200 -
+INFO:werkzeug:127.0.0.1 - - [22/Oct/2021 02:41:21] "[37mGET /project/status?id=162 HTTP/1.1[0m" 200 -
+INFO:werkzeug:127.0.0.1 - - [22/Oct/2021 02:41:22] "[37mGET /project/status?id=160 HTTP/1.1[0m" 200 -
+INFO:werkzeug:127.0.0.1 - - [22/Oct/2021 02:41:22] "[37mGET /check/training HTTP/1.1[0m" 200 -
+INFO:werkzeug:127.0.0.1 - - [22/Oct/2021 02:41:25] "[37mGET /read/all/category HTTP/1.1[0m" 200 -
+INFO:werkzeug:127.0.0.1 - - [22/Oct/2021 02:42:37] "[37mGET /read/all/category HTTP/1.1[0m" 200 -
+INFO:werkzeug:127.0.0.1 - - [22/Oct/2021 02:42:57] "[37mGET /project/status?id=162 HTTP/1.1[0m" 200 -
+INFO:werkzeug:127.0.0.1 - - [22/Oct/2021 02:42:57] "[37mGET /project/status?id=160 HTTP/1.1[0m" 200 -
+INFO:werkzeug:127.0.0.1 - - [22/Oct/2021 02:42:57] "[37mGET /check/training HTTP/1.1[0m" 200 -
+INFO:werkzeug:127.0.0.1 - - [22/Oct/2021 02:43:00] "[37mGET /read/all/category HTTP/1.1[0m" 200 -
+INFO:werkzeug:127.0.0.1 - - [22/Oct/2021 02:44:14] "[37mGET /project/status?id=162 HTTP/1.1[0m" 200 -
+INFO:werkzeug:127.0.0.1 - - [22/Oct/2021 02:44:15] "[37mGET /project/status?id=160 HTTP/1.1[0m" 200 -
+INFO:werkzeug:127.0.0.1 - - [22/Oct/2021 02:44:15] "[37mGET /check/training HTTP/1.1[0m" 200 -
+INFO:werkzeug:127.0.0.1 - - [22/Oct/2021 02:44:19] "[37mGET /read/all/category HTTP/1.1[0m" 200 -
+INFO:werkzeug:127.0.0.1 - - [22/Oct/2021 02:44:44] "[37mGET /project/status?id=162 HTTP/1.1[0m" 200 -
+INFO:werkzeug:127.0.0.1 - - [22/Oct/2021 02:44:45] "[37mGET /project/status?id=160 HTTP/1.1[0m" 200 -
+INFO:werkzeug:127.0.0.1 - - [22/Oct/2021 02:44:45] "[37mGET /check/training HTTP/1.1[0m" 200 -
+INFO:werkzeug:127.0.0.1 - - [22/Oct/2021 02:45:13] "[37mGET /read/all/category HTTP/1.1[0m" 200 -
+INFO:werkzeug:127.0.0.1 - - [22/Oct/2021 02:46:38] "[37mGET /project/status?id=162 HTTP/1.1[0m" 200 -
+INFO:werkzeug:127.0.0.1 - - [22/Oct/2021 02:46:38] "[37mGET /project/status?id=160 HTTP/1.1[0m" 200 -
+INFO:werkzeug:127.0.0.1 - - [22/Oct/2021 02:46:38] "[37mGET /check/training HTTP/1.1[0m" 200 -
+INFO:werkzeug:127.0.0.1 - - [22/Oct/2021 02:46:41] "[37mGET /read/all/category HTTP/1.1[0m" 200 -
+INFO:werkzeug:127.0.0.1 - - [22/Oct/2021 02:52:13] "[37mGET /project/status?id=162 HTTP/1.1[0m" 200 -
+INFO:werkzeug:127.0.0.1 - - [22/Oct/2021 02:52:13] "[37mGET /project/status?id=160 HTTP/1.1[0m" 200 -
+INFO:werkzeug:127.0.0.1 - - [22/Oct/2021 02:52:13] "[37mGET /check/training HTTP/1.1[0m" 200 -
+INFO:werkzeug:127.0.0.1 - - [22/Oct/2021 02:52:16] "[37mGET /read/all/category HTTP/1.1[0m" 200 -
+INFO:werkzeug:127.0.0.1 - - [22/Oct/2021 02:53:35] "[37mGET /read/all/category HTTP/1.1[0m" 200 -
+INFO:werkzeug:127.0.0.1 - - [22/Oct/2021 02:56:28] "[37mGET /project/status?id=162 HTTP/1.1[0m" 200 -
+INFO:werkzeug:127.0.0.1 - - [22/Oct/2021 02:56:28] "[37mGET /project/status?id=160 HTTP/1.1[0m" 200 -
+INFO:werkzeug:127.0.0.1 - - [22/Oct/2021 02:56:28] "[37mGET /check/training HTTP/1.1[0m" 200 -
+INFO:werkzeug:127.0.0.1 - - [22/Oct/2021 02:56:31] "[37mGET /read/all/category HTTP/1.1[0m" 200 -
+INFO:werkzeug:127.0.0.1 - - [22/Oct/2021 03:01:20] "[37mGET /project/status?id=162 HTTP/1.1[0m" 200 -
+INFO:werkzeug:127.0.0.1 - - [22/Oct/2021 03:01:20] "[37mGET /project/status?id=160 HTTP/1.1[0m" 200 -
+INFO:werkzeug:127.0.0.1 - - [22/Oct/2021 03:01:20] "[37mGET /check/training HTTP/1.1[0m" 200 -
+INFO:werkzeug:127.0.0.1 - - [22/Oct/2021 03:01:25] "[37mGET /read/all/category HTTP/1.1[0m" 200 -
+INFO:werkzeug:127.0.0.1 - - [22/Oct/2021 03:04:51] "[37mGET /read/all/category HTTP/1.1[0m" 200 -
+INFO:werkzeug:127.0.0.1 - - [22/Oct/2021 03:05:11] "[37mGET /project/status?id=162 HTTP/1.1[0m" 200 -
+INFO:werkzeug:127.0.0.1 - - [22/Oct/2021 03:05:11] "[37mGET /project/status?id=160 HTTP/1.1[0m" 200 -
+INFO:werkzeug:127.0.0.1 - - [22/Oct/2021 03:05:12] "[37mGET /check/training HTTP/1.1[0m" 200 -
+INFO:werkzeug:127.0.0.1 - - [22/Oct/2021 03:05:15] "[37mGET /read/all/category HTTP/1.1[0m" 200 -
+INFO:werkzeug:127.0.0.1 - - [22/Oct/2021 03:05:44] "[37mGET /project/status?id=162 HTTP/1.1[0m" 200 -
+INFO:werkzeug:127.0.0.1 - - [22/Oct/2021 03:05:44] "[37mGET /project/status?id=160 HTTP/1.1[0m" 200 -
+INFO:werkzeug:127.0.0.1 - - [22/Oct/2021 03:05:44] "[37mGET /check/training HTTP/1.1[0m" 200 -
+INFO:werkzeug:127.0.0.1 - - [22/Oct/2021 03:06:58] "[37mGET /read/all/category HTTP/1.1[0m" 200 -
+INFO:werkzeug:127.0.0.1 - - [22/Oct/2021 03:07:03] "[37mPOST /predict HTTP/1.1[0m" 200 -
+INFO:werkzeug:127.0.0.1 - - [22/Oct/2021 03:08:39] "[37mGET /project/status?id=163 HTTP/1.1[0m" 200 -
+INFO:werkzeug:127.0.0.1 - - [22/Oct/2021 03:08:39] "[37mGET /project/status?id=160 HTTP/1.1[0m" 200 -
+INFO:werkzeug:127.0.0.1 - - [22/Oct/2021 03:08:39] "[37mGET /check/training HTTP/1.1[0m" 200 -
+INFO:werkzeug:127.0.0.1 - - [22/Oct/2021 03:10:21] "[37mGET /project/status?id=163 HTTP/1.1[0m" 200 -
+INFO:werkzeug:127.0.0.1 - - [22/Oct/2021 03:10:22] "[37mGET /project/status?id=160 HTTP/1.1[0m" 200 -
+INFO:werkzeug:127.0.0.1 - - [22/Oct/2021 03:10:22] "[37mGET /check/training HTTP/1.1[0m" 200 -
+INFO:werkzeug:127.0.0.1 - - [22/Oct/2021 03:10:46] "[37mGET /read/all/category HTTP/1.1[0m" 200 -
+INFO:werkzeug:127.0.0.1 - - [22/Oct/2021 03:10:51] "[37mPOST /predict HTTP/1.1[0m" 200 -
+INFO:werkzeug:127.0.0.1 - - [22/Oct/2021 03:11:03] "[37mGET /read/all/category HTTP/1.1[0m" 200 -
+INFO:werkzeug:127.0.0.1 - - [22/Oct/2021 03:13:06] "[37mGET /project/status?id=163 HTTP/1.1[0m" 200 -
+INFO:werkzeug:127.0.0.1 - - [22/Oct/2021 03:13:06] "[37mGET /project/status?id=160 HTTP/1.1[0m" 200 -
+INFO:werkzeug:127.0.0.1 - - [22/Oct/2021 03:13:07] "[37mGET /check/training HTTP/1.1[0m" 200 -
+INFO:werkzeug:127.0.0.1 - - [22/Oct/2021 03:13:10] "[37mGET /read/all/category HTTP/1.1[0m" 200 -
+INFO:werkzeug:127.0.0.1 - - [22/Oct/2021 03:16:57] "[37mGET /read/all/category HTTP/1.1[0m" 200 -
+INFO:werkzeug:127.0.0.1 - - [22/Oct/2021 03:17:36] "[37mGET /read/all/category HTTP/1.1[0m" 200 -
+INFO:werkzeug:127.0.0.1 - - [22/Oct/2021 03:19:42] "[37mGET /project/status?id=163 HTTP/1.1[0m" 200 -
+INFO:werkzeug:127.0.0.1 - - [22/Oct/2021 03:19:42] "[37mGET /project/status?id=160 HTTP/1.1[0m" 200 -
+INFO:werkzeug:127.0.0.1 - - [22/Oct/2021 03:19:42] "[37mGET /check/training HTTP/1.1[0m" 200 -
+INFO:werkzeug:127.0.0.1 - - [22/Oct/2021 03:19:45] "[37mGET /read/all/category HTTP/1.1[0m" 200 -
+INFO:werkzeug:127.0.0.1 - - [22/Oct/2021 03:24:12] "[37mGET /project/status?id=163 HTTP/1.1[0m" 200 -
+INFO:werkzeug:127.0.0.1 - - [22/Oct/2021 03:24:12] "[37mGET /project/status?id=160 HTTP/1.1[0m" 200 -
+INFO:werkzeug:127.0.0.1 - - [22/Oct/2021 03:24:12] "[37mGET /check/training HTTP/1.1[0m" 200 -
+INFO:werkzeug:127.0.0.1 - - [22/Oct/2021 03:24:16] "[37mGET /read/all/category HTTP/1.1[0m" 200 -
+INFO:werkzeug:127.0.0.1 - - [22/Oct/2021 03:26:50] "[37mGET /read/all/category HTTP/1.1[0m" 200 -
+INFO:werkzeug:127.0.0.1 - - [22/Oct/2021 03:27:07] "[37mGET /read/all/category HTTP/1.1[0m" 200 -
+INFO:werkzeug:127.0.0.1 - - [22/Oct/2021 03:28:13] "[37mGET /read/all/category HTTP/1.1[0m" 200 -
+INFO:werkzeug:127.0.0.1 - - [22/Oct/2021 03:28:47] "[37mGET /project/status?id=163 HTTP/1.1[0m" 200 -
+INFO:werkzeug:127.0.0.1 - - [22/Oct/2021 03:28:47] "[37mGET /project/status?id=160 HTTP/1.1[0m" 200 -
+INFO:werkzeug:127.0.0.1 - - [22/Oct/2021 03:28:47] "[37mGET /check/training HTTP/1.1[0m" 200 -
+INFO:werkzeug:127.0.0.1 - - [22/Oct/2021 03:28:51] "[37mGET /read/all/category HTTP/1.1[0m" 200 -
+INFO:werkzeug:127.0.0.1 - - [22/Oct/2021 03:30:19] "[37mGET /project/status?id=163 HTTP/1.1[0m" 200 -
+INFO:werkzeug:127.0.0.1 - - [22/Oct/2021 03:30:20] "[37mGET /project/status?id=160 HTTP/1.1[0m" 200 -
+INFO:werkzeug:127.0.0.1 - - [22/Oct/2021 03:30:20] "[37mGET /check/training HTTP/1.1[0m" 200 -
+INFO:werkzeug:127.0.0.1 - - [22/Oct/2021 03:30:49] "[37mGET /project/status?id=164 HTTP/1.1[0m" 200 -
+INFO:werkzeug:127.0.0.1 - - [22/Oct/2021 03:30:49] "[37mGET /project/status?id=160 HTTP/1.1[0m" 200 -
+INFO:werkzeug:127.0.0.1 - - [22/Oct/2021 03:30:50] "[37mGET /check/training HTTP/1.1[0m" 200 -
+INFO:werkzeug:127.0.0.1 - - [22/Oct/2021 03:31:21] "[37mGET /project/status?id=165 HTTP/1.1[0m" 200 -
+INFO:werkzeug:127.0.0.1 - - [22/Oct/2021 03:31:21] "[37mGET /project/status?id=164 HTTP/1.1[0m" 200 -
+INFO:werkzeug:127.0.0.1 - - [22/Oct/2021 03:31:22] "[37mGET /project/status?id=160 HTTP/1.1[0m" 200 -
+INFO:werkzeug:127.0.0.1 - - [22/Oct/2021 03:31:22] "[37mGET /check/training HTTP/1.1[0m" 200 -
