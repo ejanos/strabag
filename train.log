@@ -5023,3 +5023,15 @@ INFO:werkzeug:127.0.0.1 - - [22/Oct/2021 03:31:21] "[37mGET /project/status?id=
 INFO:werkzeug:127.0.0.1 - - [22/Oct/2021 03:31:21] "[37mGET /project/status?id=164 HTTP/1.1[0m" 200 -
 INFO:werkzeug:127.0.0.1 - - [22/Oct/2021 03:31:22] "[37mGET /project/status?id=160 HTTP/1.1[0m" 200 -
 INFO:werkzeug:127.0.0.1 - - [22/Oct/2021 03:31:22] "[37mGET /check/training HTTP/1.1[0m" 200 -
+INFO:werkzeug: * Running on http://0.0.0.0:3000/ (Press CTRL+C to quit)
+INFO:werkzeug: * Running on http://0.0.0.0:3000/ (Press CTRL+C to quit)
+INFO:werkzeug:127.0.0.1 - - [22/Oct/2021 12:13:04] "[37mGET /project/status?id=165 HTTP/1.1[0m" 200 -
+INFO:werkzeug:127.0.0.1 - - [22/Oct/2021 12:13:04] "[37mGET /project/status?id=164 HTTP/1.1[0m" 200 -
+INFO:werkzeug:127.0.0.1 - - [22/Oct/2021 12:13:04] "[37mGET /project/status?id=160 HTTP/1.1[0m" 200 -
+INFO:werkzeug:127.0.0.1 - - [22/Oct/2021 12:13:04] "[37mGET /check/training HTTP/1.1[0m" 200 -
+INFO:werkzeug:127.0.0.1 - - [22/Oct/2021 12:13:10] "[37mGET /project/status?id=165 HTTP/1.1[0m" 200 -
+INFO:werkzeug:127.0.0.1 - - [22/Oct/2021 12:13:10] "[37mGET /project/status?id=164 HTTP/1.1[0m" 200 -
+INFO:werkzeug:127.0.0.1 - - [22/Oct/2021 12:13:10] "[37mGET /project/status?id=160 HTTP/1.1[0m" 200 -
+INFO:werkzeug:127.0.0.1 - - [22/Oct/2021 12:13:10] "[37mGET /check/training HTTP/1.1[0m" 200 -
+INFO:werkzeug:127.0.0.1 - - [22/Oct/2021 12:13:16] "[37mGET /read/all/category HTTP/1.1[0m" 200 -
+INFO:werkzeug:127.0.0.1 - - [22/Oct/2021 12:13:44] "[37mPOST /predict HTTP/1.1[0m" 200 -
